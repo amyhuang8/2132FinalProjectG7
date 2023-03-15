@@ -1,0 +1,6 @@
+1. downloaded pg JBDC jar file
+2. created new eclipse dynamic web project
+3. add pg JBDC to module buildpath - libraries, add external jar
+4. write database table
+5. write java class
+6. run it
