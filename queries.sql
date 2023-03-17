@@ -73,3 +73,72 @@ CREATE TABLE employee (
     FOREIGN KEY (hotel_id) REFERENCES hotel(hotel_id) ON DELETE CASCADE,
     PRIMARY KEY (employee_id,hotel_id)
 );
+
+-- ----------------------------
+-- Table structure for a customer
+-- ----------------------------
+CREATE TABLE customer (
+  customer_id INT,
+  first_name VARCHAR(25) NOT NULL,
+  last_name VARCHAR (25) NOT NULL,
+  SIN INT NOT NULL,
+  city_address VARCHAR(25) NOT NULL,
+  street_address VARCHAR(50) NOT NULL,
+  registration_date DATE,
+  credit_card_num INT,
+  customer_phone_number INT,
+  customer_email VARCHAR(30) NOT NULL,
+  FOREIGN KEY (city_address) REFERENCES address(city),
+  PRIMARY KEY (customer_id)
+);
+
+-- ----------------------------
+-- Table structure for a booking
+-- ----------------------------
+CREATE TABLE booking (
+    booking_id INT,
+    check_in DATE NOT NULL,
+    check_out DATE NOT NULL,
+    confirmation_date DATE NOT NULL,
+    employee_id INT NOT NULL,
+    customer_id INT NOT NULL,
+    room_num INT NOT NULL,
+    FOREIGN KEY (employee_id) REFERENCES employee(employee_id),
+    FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
+    FOREIGN KEY (room_num) REFERENCES room(room_num) ON DELETE CASCADE,
+    PRIMARY KEY (booking_id)
+);
+
+-- ----------------------------
+-- Table structure for a rental
+-- ----------------------------
+CREATE TABLE rental (
+    rental_id INT,
+    booking_id INT NOT NULL,
+    check_in DATE NOT NULL,
+    check_out DATE NOT NULL,
+    room_num INT NOT NULL,
+    employee_id INT NOT NULL,
+    customer_id INT NOT NULL,
+    FOREIGN KEY (employee_id) REFERENCES employee(employee_id),
+    FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
+    FOREIGN KEY (room_num) REFERENCES room(room_num) ON DELETE CASCADE,
+    FOREIGN KEY (booking_id) REFERENCES booking(booking_id),
+    PRIMARY KEY (rental_id)
+);
+
+-- ----------------------------
+-- Table structure for an archive
+-- ----------------------------
+CREATE TABLE archive (
+    archive_id INT,
+    booking_id INT,
+    rental_id INT,
+    check_in DATE NOT NULL,
+    check_out DATE NOT NULL,
+    room_num INT NOT NULL,
+    final_price NUMERIC(8,2) NOT NULL,
+    customer_id INT NOT NULL,
+    employee_id INT NOT NULL,
+    PRIMARY KEY (archive_id)
+);
