@@ -11,12 +11,16 @@
     <body>
         <!--HEADINGS-->
         <h1>Welcome to eHotels!</h1>
+        <hr>
         <h2>Please select a role:</h2>
 
         <!--BUTTONS-->
-        <div style="text-align:center;">
-            <button style = "font-size:70px" onclick="location.href='Employee.html'"}>Employee</button>
-            <button onclick="location.href='Customer.html'">Customer</button></div></div>
+        <div style="text-align: center; padding-bottom: 20px">
+            <button style = "font-size: 40px; font-family:'Courier New'" onclick="location.href='Employee.jsp'"}>EMPLOYEE</button>
+        </div>
+        <div style="text-align: center;">
+            <button style = "font-size: 40px; font-family:'Courier New'" onclick="location.href='Customer.jsp'">CUSTOMER</button>
+        </div>
     </body>
 
 </html>
