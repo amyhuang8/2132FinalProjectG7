@@ -11,15 +11,15 @@
     <body>
         <!--HEADINGS-->
         <h1>Welcome to eHotels!</h1>
-        <hr>
+        <hr style="background-color: rosybrown; height: 1.5px">
         <h2>Please select a role:</h2>
 
         <!--BUTTONS-->
         <div style="text-align: center; padding-bottom: 20px">
-            <button style = "font-size: 40px; font-family:'Courier New'" onclick="location.href='Employee.jsp'"}>EMPLOYEE</button>
+            <button style = "font-size: 30px; font-family:'Courier New'" onclick="location.href='Employee.jsp'"}>EMPLOYEE</button>
         </div>
         <div style="text-align: center;">
-            <button style = "font-size: 40px; font-family:'Courier New'" onclick="location.href='Customer.jsp'">CUSTOMER</button>
+            <button style = "font-size: 30px; font-family:'Courier New'" onclick="location.href='Customer.jsp'">CUSTOMER</button>
         </div>
     </body>
 

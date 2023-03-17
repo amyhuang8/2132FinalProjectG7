@@ -34,7 +34,7 @@
     </head>
 
     <body>
-        <h1>EMPLOYEE LOGIN</h1>
+        <h1>Employee Login</h1>
         <hr style="background-color: rosybrown; height: 1.5px">
         <br>
         <form method="post" action="logintest" style="text-align: center;">
