@@ -1,0 +1,11 @@
+h1 {
+    color:rosybrown;
+    font-family: "Bell MT";
+    text-align: center;
+    size: 50px;
+}
+
+/* Background Styling */
+body {
+    background-color: peachpuff;
+}
