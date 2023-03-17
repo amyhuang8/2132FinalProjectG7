@@ -1,16 +1,49 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Amyhu
-  Date: 2023-03-17
-  Time: 3:21 p.m.
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
-<head>
-    <title>Title</title>
-</head>
-<body>
+    <head>
+        <meta charset="ISO-8859-1">
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Language" content="ch-cn">
+        <link rel = "stylesheet" href="css/styles.css">
 
-</body>
+        <!--TITLE-->
+        <title>Employee Login</title>
+
+        <script>
+            function validate() {
+                <!--VARIABLE DECLARATION: login vars-->
+                let username = document.getElementById("uid");
+                let password = document.getElementById("upwd");
+
+                <!--PROCESS: checking for null logins-->
+                if(username.value == "") { <!--null username-->
+                    <!--error-handling-->
+                    alert("Employee ID cannot be null!");
+                    return false;
+                }
+                else if(password.value == "") { <!--null password-->
+                    <!--error-handling-->
+                    alert("Password cannot be null!");
+                    return false;
+                }
+                else { <!--non-null login-->
+                    return true;
+                }
+            }
+        </script>
+    </head>
+
+    <body>
+        <h1>EMPLOYEE LOGIN</h1>
+        <hr style="background-color: rosybrown; height: 1.5px">
+        <br>
+        <form method="post" action="logintest" style="text-align: center;">
+            EMPLOYEE ID: <input type="text" id="uid" name="user id">
+            <br><br>
+            PASSWORD: <input type="password" id="upwd" name="password">
+            <br><br>
+            <button type="submit" value="submit" onclick="return validate();">LOG IN</button>
+            <button type="reset" value="reset">RESET</button>
+        </form>
+    </body>
 </html>
