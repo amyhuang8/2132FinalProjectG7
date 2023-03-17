@@ -1,12 +1,22 @@
+<!DOCTYPE html>
 <html>
-<head>
-    <link rel = "stylesheet" href="css/styles.css">
-</head>
+    <head>
+        <meta charset="ISO-8859-1">
+        <link rel = "stylesheet" href="css/styles.css">
 
-<body>
-<h1>Alex sucks</h1>
-<h2>READ AND WEEPS</h2>
-<h2>this is my second length of text</h2>
-</body>
+        <!--WEBSITE TITLE-->
+        <title>eHotels Welcome</title>
+    </head>
+
+    <body>
+        <!--HEADINGS-->
+        <h1>Welcome to eHotels!</h1>
+        <h2>Please select a role:</h2>
+
+        <!--BUTTONS-->
+        <div style="text-align:center;">
+            <button style = "font-size:70px" onclick="location.href='Employee.html'"}>Employee</button>
+            <button onclick="location.href='Customer.html'">Customer</button></div></div>
+    </body>
 
 </html>
