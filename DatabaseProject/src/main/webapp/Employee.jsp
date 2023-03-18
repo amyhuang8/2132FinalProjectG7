@@ -47,7 +47,7 @@
         <br>
 
         <!--LOGIN FORMS-->
-        <form method="post" action="" style="text-align: center;">
+        <form method="post" action="NEXTPAGEHERE" style="text-align: center;">
             EMPLOYEE ID: <input type="text" id="uid" name="user id">
             <br><br>
             PASSWORD: <input type="password" id="upwd" name="password">
