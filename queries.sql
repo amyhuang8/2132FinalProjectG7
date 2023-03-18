@@ -1,3 +1,5 @@
+SET search_path = ehotels;
+
 -- ----------------------------
 -- Table structure for address
 -- ----------------------------
@@ -6,6 +8,20 @@ CREATE TABLE address (
     province VARCHAR(25) NOT NULL,
     PRIMARY KEY (city)
 );
+
+-- ----------------------------
+-- Insertion statements for address
+-- ----------------------------
+INSERT INTO address (city, province)
+VALUES ('Ottawa', 'Ontario'),
+       ('Toronto', 'Ontario'),
+       ('Vancouver', 'British Columbia'),
+       ('Montreal', 'Quebec'),
+       ('Gatineau', 'Quebec'),
+       ('Winnipeg', 'Manitoba'),
+       ('Calgary', 'Alberta');
+
+SELECT * FROM address; -- view everything in address table
 
 -- ----------------------------
 -- Table structure for a hotel chain
