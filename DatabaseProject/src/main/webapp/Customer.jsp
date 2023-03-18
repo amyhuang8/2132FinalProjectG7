@@ -41,6 +41,80 @@
                     return false;
                 }
                 else { //all filled
+                    // PROCESS: validating first name
+                    if (!/^[a-zA-Z]/.test(fName.value) || fName.value.length > 25) { //invalid chars or length
+                        alert("Please enter a valid first name (25 characters max)!") //error-handling
+
+                        // OUTPUT
+                        return false;
+                    }
+
+                    // PROCESS: validating last name
+                    if (!/^[a-zA-Z]/.test(lName.value) || lName.value.length > 25) { //invalid chars or length
+                        alert("Please enter a valid last name (25 characters max)!") //error-handling
+
+                        // OUTPUT
+                        return false;
+                    }
+
+                    // PROCESS: validating phone number
+                    if (isNaN(phoneNum.value)) { //contains invalid chars
+                        alert("Please enter a valid phone number (ex: 123-123-1234)!") //error-handling
+
+                        // OUTPUT
+                        return false;
+                    }
+
+                    // PROCESS: validating address
+                    if (street.value.length > 50) { //too long
+                        alert("Please enter a valid street address (50 characters max)!") //error-handling
+
+                        // OUTPUT
+                        return false;
+                    }
+                    if (!/^[a-zA-Z]/.test(city.value) || city.value.length > 25) { //invalid chars or length
+                        alert("Please enter a valid city (25 characters max)!") //error-handling
+
+                        // OUTPUT
+                        return false;
+                    }
+                    if (!/^[a-zA-Z]/.test(province.value) || province.value.length > 25) { //invalid chars or length
+                        alert("Please enter a valid province (25 characters max)!") //error-handling
+
+                        // OUTPUT
+                        return false;
+                    }
+
+                    // PROCESS: validating SSN
+                    if (isNaN(ssn.value) || ssn.value.length != 9) { //invalid chars or length
+                        alert("Please enter a valid SSN (9 digits)!") //error-handling
+
+                        // OUTPUT
+                        return false;
+                    }
+
+                    // PROCESS: validating credit card
+                    if (isNaN(ccNum.value) || ccNum.value.length != 16) { //invalid chars or length
+                        alert("Please enter a valid credit card number (16 digits)!") //error-handling
+
+                        // OUTPUT
+                        return false;
+                    }
+                    if (isNaN(ccSecCode.value) || ccSecCode.value.length != 3) { //invalid chars or length
+                        alert("Please enter a valid credit card security code (3 digits)!") //error-handling
+
+                        // OUTPUT
+                        return false;
+                    }
+
+                    // PROCESS: validating password
+                    if (pwd.value != confirmPwd.value) {
+                        alert("Passwords do not match! Please try again.") //error-handling
+
+                        // OUTPUT
+                        return false;
+                    }
+
                     // OUTPUT
                     return true;
                 }
