@@ -11,10 +11,45 @@
 
         <!--SCRIPT CODE-->
         <script>
+            /** REGISTRATION VALIDATION:
+             * This function checks for null input in all the registration forms and checks
+             * if the inputted passwords match.
+             * It returns a boolean for this check. */
+            function validateRegistration() {
+                // VARIABLE DECLARATION: login vars
+                let fName = document.getElementById("fname");
+                let lName = document.getElementById("lname");
+                let email = document.getElementById("email");
+                let phoneNum = document.getElementById("phone_num");
+                let street = document.getElementById("street_address");
+                let city = document.getElementById("city");
+                let province = document.getElementById("province");
+                let ssn = document.getElementById("ssn");
+                let ccNum = document.getElementById("cc_num");
+                let ccSecCode = document.getElementById("cc_security");
+                let pwd = document.getElementById("new_upwd");
+                let confirmPwd = document.getElementById("confirm_new_upwd");
+
+                // PROCESS: checking for null registration forms
+                if(fName.value == "" || lName.value == "" || email.value == ""
+                    || phoneNum.value == "" || street.value == "" || city.value == ""
+                    || province.value == "" || ssn.value == "" || ccNum.value == ""
+                    || ccSecCode.value == "" || pwd.value == "" || confirmPwd.value == "") { //has null
+                    alert("Please fill out all forms!"); //error-handling
+
+                    // OUTPUT
+                    return false;
+                }
+                else { //all filled
+                    // OUTPUT
+                    return true;
+                }
+            }
+
             /** LOGIN VALIDATION:
              * This function checks for null input in the username and password forms of the login.
              * It returns a boolean for this check. */
-            function validate() {
+            function validateLogin() {
                 // VARIABLE DECLARATION: login vars
                 let username = document.getElementById("uid");
                 let password = document.getElementById("upwd");
@@ -89,13 +124,33 @@
 
         <!--REGISTRATION FORMS-->
         <form method="post" action="NEXTPAGEHERE" id="signUpForms" style="text-align: center; display: none">
-            NEW CUSTOMER ID: <input type="text" id="new_uid" name="new user id">
+            FIRST NAME: <input type="text" id="fname" name="first name">
+            <br><br>
+            LAST NAME: <input type="text" id="lname" name="last name">
+            <br><br>
+            EMAIL: <input type="email" id="email" name="email">
+            <br><br>
+            PHONE NUMBER: <input type="tel" id="phone_num" name="phone number">
+            <br><br>
+            STREET ADDRESS: <input type="text" id="street_address" name="street address">
+            <br><br>
+            CITY: <input type="text" id="city" name="city">
+            <br><br>
+            PROVINCE: <input type="text" id="province" name="province">
+            <br><br>
+            SOCIAL SECURITY NUMBER (SSN): <input type="password" id="ssn" name="ssn">
+            <br><br>
+            CREDIT CARD NUMBER: <input type="text" id="cc_num" name="credit card number">
+            <br><br>
+            CREDIT CARD SECURITY CODE: <input type="password" id="cc_security" name="credit card security code">
             <br><br>
             NEW PASSWORD: <input type="password" id="new_upwd" name="new password">
             <br><br>
+            CONFIRM NEW PASSWORD: <input type="password" id="confirm_new_upwd" name="new password confirmation">
+            <br><br>
 
             <!--BUTTONS-->
-            <button type="submit" value="register" onclick="return validate();">REGISTER</button>
+            <button type="submit" value="register" onclick="return validateRegistration();">REGISTER</button>
             <button type="reset" value="reset">RESET</button>
         </form>
 
@@ -107,7 +162,7 @@
             <br><br>
 
             <!--BUTTONS-->
-            <button type="submit" value="submit" onclick="return validate();">LOG IN</button>
+            <button type="submit" value="submit" onclick="return validateLogin();">LOG IN</button>
             <button type="reset" value="reset">RESET</button>
         </form>
     </body>
