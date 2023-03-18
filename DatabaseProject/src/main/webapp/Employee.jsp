@@ -11,10 +11,9 @@
 
         <!--SCRIPT CODE-->
         <script>
-            /* LOGIN VALIDATION:
-            This function checks for null input in the username and password forms of the login.
-            It returns a boolean for this check.
-             */
+            /** LOGIN VALIDATION:
+             * This function checks for null input in the username and password forms of the login.
+             * It returns a boolean for this check. */
             function validate() {
                 // VARIABLE DECLARATION: login vars
                 let username = document.getElementById("uid");
