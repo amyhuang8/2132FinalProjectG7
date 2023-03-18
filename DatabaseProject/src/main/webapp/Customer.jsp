@@ -23,18 +23,16 @@
                 let phoneNum = document.getElementById("phone_num");
                 let street = document.getElementById("street_address");
                 let city = document.getElementById("city");
-                let province = document.getElementById("province");
                 let ssn = document.getElementById("ssn");
                 let ccNum = document.getElementById("cc_num");
-                let ccSecCode = document.getElementById("cc_security");
                 let pwd = document.getElementById("new_upwd");
                 let confirmPwd = document.getElementById("confirm_new_upwd");
 
                 // PROCESS: checking for null registration forms
                 if(fName.value == "" || lName.value == "" || email.value == ""
                     || phoneNum.value == "" || street.value == "" || city.value == ""
-                    || province.value == "" || ssn.value == "" || ccNum.value == ""
-                    || ccSecCode.value == "" || pwd.value == "" || confirmPwd.value == "") { //has null
+                    || ssn.value == "" || ccNum.value == ""
+                    || pwd.value == "" || confirmPwd.value == "") { //has null
                     alert("Please fill out all forms!"); //error-handling
 
                     // OUTPUT
@@ -72,14 +70,8 @@
                         // OUTPUT
                         return false;
                     }
-                    if (!/^[a-zA-Z]/.test(city.value) || city.value.length > 25) { //invalid chars or length
-                        alert("Please enter a valid city (25 characters max)!") //error-handling
-
-                        // OUTPUT
-                        return false;
-                    }
-                    if (!/^[a-zA-Z]/.test(province.value) || province.value.length > 25) { //invalid chars or length
-                        alert("Please enter a valid province (25 characters max)!") //error-handling
+                    if (city.options[city.selectedIndex].value == "default") { //invalid selection
+                        alert("Please select a city!") //error-handling
 
                         // OUTPUT
                         return false;
@@ -96,12 +88,6 @@
                     // PROCESS: validating credit card
                     if (isNaN(ccNum.value) || ccNum.value.length != 16) { //invalid chars or length
                         alert("Please enter a valid credit card number (16 digits)!") //error-handling
-
-                        // OUTPUT
-                        return false;
-                    }
-                    if (isNaN(ccSecCode.value) || ccSecCode.value.length != 3) { //invalid chars or length
-                        alert("Please enter a valid credit card security code (3 digits)!") //error-handling
 
                         // OUTPUT
                         return false;
@@ -208,15 +194,22 @@
             <br><br>
             STREET ADDRESS: <input type="text" id="street_address" name="street address">
             <br><br>
-            CITY: <input type="text" id="city" name="city">
-            <br><br>
-            PROVINCE: <input type="text" id="province" name="province">
+            <label for="city">CITY: </label>
+
+            <select name="city" id="city">
+                <option value="default">SELECT...</option>
+                <option value="ottawa">Ottawa</option>
+                <option value="toronto">Toronto</option>
+                <option value="vancouver">Vancouver</option>
+                <option value="montreal">Montreal</option>
+                <option value="gatineau">Gatineau</option>
+                <option value="winnipeg">Winnipeg</option>
+                <option value="calgary">Calgary</option>
+            </select>
             <br><br>
             SOCIAL SECURITY NUMBER (SSN): <input type="password" id="ssn" name="ssn">
             <br><br>
             CREDIT CARD NUMBER: <input type="text" id="cc_num" name="credit card number">
-            <br><br>
-            CREDIT CARD SECURITY CODE: <input type="password" id="cc_security" name="credit card security code">
             <br><br>
             NEW PASSWORD: <input type="password" id="new_upwd" name="new password">
             <br><br>
