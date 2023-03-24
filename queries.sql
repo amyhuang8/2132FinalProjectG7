@@ -6,26 +6,37 @@ SET search_path = ehotels;
 CREATE TABLE address (
     city VARCHAR(25) NOT NULL,
     province VARCHAR(25) NOT NULL,
+    country VARCHAR(7) NOT NULL,
     PRIMARY KEY (city)
 );
 
--- ----------------------------
+-- ----------------------------------
 -- Insertion statements for address
--- ----------------------------
-INSERT INTO address (city, province)
-VALUES ('Ottawa', 'Ontario'),
-       ('Toronto', 'Ontario'),
-       ('Vancouver', 'British Columbia'),
-       ('Montreal', 'Quebec'),
-       ('Gatineau', 'Quebec'),
-       ('Winnipeg', 'Manitoba'),
-       ('Calgary', 'Alberta');
+-- ----------------------------------
+INSERT INTO address
+VALUES ('Ottawa', 'Ontario', 'Canada'),
+       ('Toronto', 'Ontario', 'Canada'),
+       ('Vancouver', 'British Columbia', 'Canada'),
+       ('Montreal', 'Quebec', 'Canada'),
+       ('Gatineau', 'Quebec', 'Canada'),
+       ('Winnipeg', 'Manitoba', 'Canada'),
+       ('Calgary', 'Alberta', 'Canada'),
+       ('New York City', 'New York', 'America'),
+       ('Columbus', 'Ohio', 'America'),
+       ('Volcano', 'Hawaii', 'America'),
+       ('Boring', 'Oregon', 'America'),
+       ('Mexico City','Mexico City', 'Mexico'),
+       ('Chihuahua City','Chihuahua', 'Mexico'),
+       ('Cancun', 'Quintana Roo', 'Mexico');
 
-SELECT * FROM address; -- view everything in address table
+-- -------------------------------
+-- View statements for address
+-- -------------------------------
+SELECT * FROM address;
 
--- ----------------------------
+-- -----------------------------------
 -- Table structure for a hotel chain
--- ----------------------------
+-- -----------------------------------
 CREATE TABLE hotel_chain (
     name VARCHAR(50) NOT NULL ,
     city_address VARCHAR(25) NOT NULL,
@@ -37,6 +48,9 @@ CREATE TABLE hotel_chain (
     PRIMARY KEY (name)
 );
 
+-- -------------------------------------
+-- Insertion statements for hotel_chain
+-- -------------------------------------
 INSERT INTO hotel_chain
 VALUES ('Hilton Worldwide', 'Ottawa', '123 Laurier', 40, 'hiltonworldwide@email.com', 6131231234),
        ('Omni Hotels & Resorts', 'Toronto', '12 Union Street', 15, 'omnihotels@email.com', 4161231234),
@@ -44,7 +58,15 @@ VALUES ('Hilton Worldwide', 'Ottawa', '123 Laurier', 40, 'hiltonworldwide@email.
        ('Shangri-La Hotels & Resorts', 'Vancouver', '15 Ontario Street', 6, 'shangri-lihotels@email.com', 6041231234),
        ('Best Western', 'Calgary', '2136 Airport Road', 66, 'bestwestern@email.com', 4031231234);
 
-SELECT * FROM hotel_chain;
+
+-- -------------------------------
+-- View statements for address
+-- -------------------------------
+SELECT * FROM hotel_chain; -- view everything
+
+SELECT h.name, a.city, a.province, a.country, h.street_address -- QUERY to view the entire address
+FROM address a
+INNER JOIN hotel_chain h ON h.city_address = a.city;
 
 -- ----------------------------
 -- Table structure for a hotel
@@ -62,6 +84,14 @@ CREATE TABLE hotel (
     FOREIGN KEY (hotel_city_address) REFERENCES address(city),
     PRIMARY KEY (hotel_id)
 );
+
+-- ----------------------------------
+-- Insertion statements for a hotel
+-- ----------------------------------
+INSERT INTO hotel
+VALUES (1, 'Hilton Worldwide', 313, 'Ottawa', '361 Queen Street', 'hiltonworldwide1@email.com', 3432904580);
+
+
 
 -- ----------------------------
 -- Table structure for a room
