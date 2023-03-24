@@ -12,9 +12,9 @@
 
     <body>
         <!--HEADING-->
-        <h1>Employee Login</h1>
+        <h1>Deals from your favourite hotels</h1>
         <hr style="background-color: rosybrown; height: 1.5px">
         <br>
-        
+
     </body>
 </html>
