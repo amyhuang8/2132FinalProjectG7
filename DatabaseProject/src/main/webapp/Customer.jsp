@@ -222,7 +222,7 @@
         </form>
 
         <!--LOGIN FORMS-->
-        <form method="post" action="NEXTPAGEHERE" id="loginForms" style="text-align: center; display: none">
+        <form method="post" action="ViewRooms.jsp" id="loginForms" style="text-align: center; display: none">
             CUSTOMER ID: <input type="text" id="uid" name="user id">
             <br><br>
             PASSWORD: <input type="password" id="upwd" name="password">
