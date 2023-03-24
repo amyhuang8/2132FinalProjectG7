@@ -32,10 +32,19 @@ CREATE TABLE hotel_chain (
     street_address VARCHAR (50) NOT NULL,
     num_of_hotels INT NOT NULL,
     email VARCHAR(100) NOT NULL,
-    central_phone_number INT NOT NULL,
+    central_phone_number CHAR(10) NOT NULL,
     FOREIGN KEY (city_address) REFERENCES address(city),
     PRIMARY KEY (name)
 );
+
+INSERT INTO hotel_chain
+VALUES ('Hilton Worldwide', 'Ottawa', '123 Laurier', 40, 'hiltonworldwide@email.com', 6131231234),
+       ('Omni Hotels & Resorts', 'Toronto', '12 Union Street', 15, 'omnihotels@email.com', 4161231234),
+       ('Four Seasons Hotels & Resorts', 'Toronto', '13 Union Street', 21, 'fourseasonshotels@email.com', 4163214321),
+       ('Shangri-La Hotels & Resorts', 'Vancouver', '15 Ontario Street', 6, 'shangri-lihotels@email.com', 6041231234),
+       ('Best Western', 'Calgary', '2136 Airport Road', 66, 'bestwestern@email.com', 4031231234);
+
+SELECT * FROM hotel_chain;
 
 -- ----------------------------
 -- Table structure for a hotel

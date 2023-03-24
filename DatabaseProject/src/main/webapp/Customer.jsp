@@ -200,7 +200,7 @@
                 <option value="default">SELECT...</option>
                 <option value="calgary">Calgary</option>
                 <option value="gatineau">Gatineau</option>
-                <option value="montreal">Montréal</option>
+                <option value="montreal">Montreal</option>
                 <option value="ottawa">Ottawa</option>
                 <option value="toronto">Toronto</option>
                 <option value="vancouver">Vancouver</option>
