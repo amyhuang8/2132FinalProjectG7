@@ -89,44 +89,71 @@ CREATE TABLE hotel (
 -- Insertion statements for a hotel
 -- ----------------------------------
 
--- insertion statements from hilton hotels worldwide
+-- insertion statements for hilton hotels worldwide
 INSERT INTO hotel
 VALUES (1, 'Hilton Worldwide', 313, 'Ottawa', '361 Queen St', 'hiltonworldwide1@email.com', 3432904580, 4.3),
-       (2, 'Hilton Worldwide', 210, 'Montreal', '380 Sherbrooke Street W', 'hiltonworldwide2@email.com', 5143267892, 3.0),
+       (2, 'Hilton Worldwide', 210, 'Montreal', '380 Sherbrooke St W', 'hiltonworldwide2@email.com', 5143267892, 3.0),
        (3, 'Hilton Worldwide', 456, 'New York City', '1335 6th Ave', 'hiltonworldwide3@email.com', 2123134141, 4.1),
        (4, 'Hilton Worldwide', 300, 'Columbus', '8700 Lyra Dr', 'hiltonworldwide4@email.com', 6145687234, 3.9),
-       (5, 'Hilton Worldwide', 333, 'Columbus', '3900 Chagrin Dr', 'hiltonworldwide5@email.com', 9144967982, 3.8),
+       (5, 'Hilton Worldwide', 333, 'Columbus', '3900 Chagrin Dr', 'hiltonworldwide5@email.com', 6144967982, 3.8),
        (6, 'Hilton Worldwide', 101, 'Milwaukee', '509 W Wisconsin Ave', 'hiltonworldwide6@email.com', 4142120101, 4.6),
        (7, 'Hilton Worldwide', 456, 'Mexico City', 'Ave Juarez 70', 'hiltonworldwide7@email.com', 5253545556, 4.0),
        (8, 'Hilton Worldwide', 300, 'Cancun', 'Carr Federal Libre 307 Cancun-Tulum 248-868', 'hiltonworldwide8@email.com', 9988860073, 5.0);
 
--- insertion statements from omni hotels & resorts
+-- insertion statements for omni hotels & resorts
 INSERT INTO hotel
-VALUES (9, 'Omni Hotels & Resorts', 306, 'Toronto', '37 KING STREET EAST', 'omnihotels1@email.com', 4168639700, 4.5),
-       (10, 'Omni Hotels & Resorts', 250, 'Montreal', '1050 Sherbrooke Street W', 'omnihotels2@email.com', 5142841110, 3.2),
-       (11, 'Omni Hotels & Resorts', 265, 'Toronto', '2727 West Club Dr', 'omnihotels3@email.com', 6472972271, 3.0),
+VALUES (9, 'Omni Hotels & Resorts', 306, 'Toronto', '37 King St E', 'omnihotels1@email.com', 4168639700, 4.5),
+       (10, 'Omni Hotels & Resorts', 265, 'Toronto', '2727 West Club Dr', 'omnihotels2@email.com', 6472972271, 3.0),
+       (11, 'Omni Hotels & Resorts', 250, 'Montreal', '1050 Sherbrooke Street W', 'omnihotels3@email.com', 5142841110, 3.2),
        (12, 'Omni Hotels & Resorts', 169, 'Calgary', '100 South 12th St', 'omnihotels4@email.com', 4033447000, 4.2),
-       (13, 'Omni Hotels & Resorts', 89, 'Volcano', '7696 Sam Snead Highway', 'omnihotels5@email.com', 8088381766, 4.1),
+       (13, 'Omni Hotels & Resorts', 89, 'Volcano', '7696 Sam Snead Hwy', 'omnihotels5@email.com', 8088381766, 4.1),
        (14, 'Omni Hotels & Resorts', 279, 'New York City', '21 E 52nd St', 'omnihotels6@email.com', 2127535800, 3.5),
-       (15, 'Omni Hotels & Resorts', 99, 'Tijuana', '23 Ocean Lane', 'omnihotels7@email.com', 8088428000, 4.7),
+       (15, 'Omni Hotels & Resorts', 99, 'Tijuana', '23 Ocean Lane', 'omnihotels7@email.com', 8088428000, 5.0),
        (16, 'Omni Hotels & Resorts', 143, 'Tijuana', '555 S Lamar', 'omnihotels8@email.com', 8087446664, 4.2);
 
--- insertion statements from four seasons hotels & resorts (THIS IS NOT COMPLETE!!!)
+-- insertion statements for four seasons hotels & resorts
 INSERT INTO hotel
-VALUES (17, 'Four Seasons Hotels & Resorts', 306, 'Vancouver', '37 KING STREET EAST', 'fourseasonshotels1@email.com', 4168639700, 4.5),
-       (18, 'Four Seasons Hotels & Resorts', 250, 'Gatineau', '1050 Sherbrooke Street W', 'fourseasonshotels2@email.com', 5142841110, 3.2),
-       (19, 'Four Seasons Hotels & Resorts', 265, 'Chihuahua City', '2727 West Club Dr', 'fourseasonshotels3@email.com', 6472972271, 3.0),
-       (20, 'Four Seasons Hotels & Resorts', 169, 'Chihuahua City', '100 South 12th St', 'fourseasonshotels4@email.com', 4033447000, 4.2),
-       (21, 'Four Seasons Hotels & Resorts', 89, 'Chihuahua City', '7696 Sam Snead Highway', 'fourseasonshotels5@email.com', 8088381766, 4.1),
-       (22, 'Four Seasons Hotels & Resorts', 279, 'New York City', '21 E 52nd St', 'fourseasonshotels6@email.com', 2127535800, 3.5),
-       (23, 'Four Seasons Hotels & Resorts', 99, 'Toronto', '23 Ocean Lane', 'fourseasonshotels7@email.com', 8088428000, 4.7),
-
+VALUES (17, 'Four Seasons Hotels & Resorts', 343, 'Vancouver', '791 W Georgia S', 'fourseasonshotels1@email.com', 6046105195, 4.1),
+       (18, 'Four Seasons Hotels & Resorts', 152, 'Gatineau', '4591 Blackcomb Way', 'fourseasonshotels2@email.com', 3119353400, 3.7),
+       (19, 'Four Seasons Hotels & Resorts', 203, 'Chihuahua City', '48898 La Huerta', 'fourseasonshotels3@email.com', 6211642163, 3.3),
+       (20, 'Four Seasons Hotels & Resorts', 178, 'Chihuahua City', '63734 Corral del Risco', 'fourseasonshotels4@email.com', 6212916000, 4.8),
+       (21, 'Four Seasons Hotels & Resorts', 167, 'Mexico City', 'Paseo de la Reforma #500', 'fourseasonshotels5@email.com', 5552301818, 5.0),
+       (22, 'Four Seasons Hotels & Resorts', 420, 'New York City', '27 Barclay St', 'fourseasonshotels6@email.com', 6468801999, 5.0),
+       (23, 'Four Seasons Hotels & Resorts', 237, 'Toronto', '60 Yorkville Ave', 'fourseasonshotels7@email.com', 4169640411, 4.7),
        (24, 'Four Seasons Hotels & Resorts', 168, 'Montreal', '1440 Rue de la Montagne', 'fourseasonshotels8@email.com', 5148432500, 4.6);
+
+-- insertion statements for shangri-la hotels and resorts
+INSERT INTO hotel
+VALUES (25, 'Shangri-La Hotels & Resorts', 391, 'Vancouver', '1128 West Georgia St', 'shangri-lihotels1@email.com', 6046891120, 5.0),
+       (26, 'Shangri-La Hotels & Resorts', 265, 'Vancouver', '1326 Davie St', 'shangri-lihotels2@email.com', 6042673472, 5.0),
+       (27, 'Shangri-La Hotels & Resorts', 201, 'Winnipeg', '931 Main St', 'shangri-lihotels3@email.com', 2046470913, 3.8),
+       (28, 'Shangri-La Hotels & Resorts', 220, 'Calgary', '1140 10 Ave SW', 'shangri-lihotels4@email.com', 4034687984, 4.6),
+       (29, 'Shangri-La Hotels & Resorts', 180, 'Cancun', 'Margaritas 2 LOC-10 SM-22, SM 22, 77500', 'shangri-lihotels5@email.com', 9988856988, 3.8),
+       (30, 'Shangri-La Hotels & Resorts', 166, 'Milwaukee', '9100 W Oklahoma Ave', 'shangri-lihotels6@email.com', 4149882210, 4.1),
+       (31, 'Shangri-La Hotels & Resorts', 387, 'Mexico City', 'Isabel La Católica 30', 'shangri-lihotels7@email.com', 5551306830, 3.0),
+       (32, 'Shangri-La Hotels & Resorts', 240, 'Volcano', '19-3820 Old Volcano Rd', 'shangri-lihotels8@email.com', 9988860073, 4.4);
+
+-- insertion statements for best western hotels
+INSERT INTO hotel
+VALUES (33, 'Best Western', 343, 'Winnipeg', '80 St Marys Rd', 'bestwestern1@email.com', 2042948568, 4.3),
+       (34, 'Best Western', 247, 'Winnipeg', '2 Lombard Place', 'bestwestern2@email.com', 2049571350, 4.3),
+       (35, 'Best Western', 279, 'Calgary', '86 Freeport Blvd ME', 'bestwestern3@email.com', 4032649650, 4.4),
+       (36, 'Best Western', 269, 'Ottawa', '1274 Carling Ave', 'bestwestern4@email.com', 6137281951, 4.0),
+       (37, 'Best Western', 251, 'Gatineau', '131 Laurier St', 'bestwestern5@email.com', 8197708550, 3.7),
+       (38, 'Best Western', 164, 'Columbus', '1450 Airpointe Dr', 'bestwestern6@email.com', 6143378400, 3.0),
+       (39, 'Best Western', 275, 'Chihuahua City', 'Vialidad Ch-P 8800', 'bestwestern7@email.com', 6214209000, 3.2),
+       (40, 'Best Western', 367, 'Tijuana', 'Blvd Agua Caliente 4558', 'bestwestern8@email.com', 8086817000, 5.0);
+
 
 -- -------------------------------
 -- View statements for hotel
 -- -------------------------------
 SELECT * FROM hotel; -- view everything
+
+SELECT h.name, h.hotel_street_address,a.city, a.province, a.country -- view the entire address of all hotel (ordered by their id's)
+FROM address a
+        JOIN hotel h ON h.hotel_city_address = a.city
+ORDER BY h.hotel_id;
 
 -- ----------------------------
 -- Table structure for a room
