@@ -24,10 +24,11 @@ VALUES ('Ottawa', 'Ontario', 'Canada'),
        ('New York City', 'New York', 'America'),
        ('Columbus', 'Ohio', 'America'),
        ('Volcano', 'Hawaii', 'America'),
-       ('Boring', 'Oregon', 'America'),
+       ('Milwaukee', 'Wisconsin', 'America'),
        ('Mexico City','Mexico City', 'Mexico'),
        ('Chihuahua City','Chihuahua', 'Mexico'),
-       ('Cancun', 'Quintana Roo', 'Mexico');
+       ('Cancun', 'Quintana Roo', 'Mexico'),
+       ('Tijuana', 'Baja California', 'Mexico');
 
 -- -------------------------------
 -- View statements for address
@@ -52,19 +53,18 @@ CREATE TABLE hotel_chain (
 -- Insertion statements for hotel_chain
 -- -------------------------------------
 INSERT INTO hotel_chain
-VALUES ('Hilton Worldwide', 'Ottawa', '123 Laurier', 40, 'hiltonworldwide@email.com', 6131231234),
-       ('Omni Hotels & Resorts', 'Toronto', '12 Union Street', 15, 'omnihotels@email.com', 4161231234),
-       ('Four Seasons Hotels & Resorts', 'Toronto', '13 Union Street', 21, 'fourseasonshotels@email.com', 4163214321),
-       ('Shangri-La Hotels & Resorts', 'Vancouver', '15 Ontario Street', 6, 'shangri-lihotels@email.com', 6041231234),
+VALUES ('Hilton Worldwide', 'Ottawa', '123 Laurier Ave', 40, 'hiltonworldwide@email.com', 6131231234),
+       ('Omni Hotels & Resorts', 'Toronto', '12 Union St', 15, 'omnihotels@email.com', 4161231234),
+       ('Four Seasons Hotels & Resorts', 'Toronto', '13 Union St', 21, 'fourseasonshotels@email.com', 4163214321),
+       ('Shangri-La Hotels & Resorts', 'Vancouver', '15 Ontario St', 6, 'shangri-lihotels@email.com', 6041231234),
        ('Best Western', 'Calgary', '2136 Airport Road', 66, 'bestwestern@email.com', 4031231234);
-
 
 -- -------------------------------
 -- View statements for address
 -- -------------------------------
 SELECT * FROM hotel_chain; -- view everything
 
-SELECT h.name, a.city, a.province, a.country, h.street_address -- QUERY to view the entire address
+SELECT h.name, h.street_address,a.city, a.province, a.country -- view the entire address of all hotel chains
 FROM address a
 INNER JOIN hotel_chain h ON h.city_address = a.city;
 
@@ -78,7 +78,7 @@ CREATE TABLE hotel (
     hotel_city_address VARCHAR(25) NOT NULL,
     hotel_street_address VARCHAR(50),
     email VARCHAR(30) NOT NULL,
-    hotel_phone_number INT NOT NULL,
+    hotel_phone_number CHAR(10) NOT NULL,
     rating numeric(2,1) NOT NULL,
     FOREIGN KEY (name) REFERENCES hotel_chain(name) ON DELETE CASCADE,
     FOREIGN KEY (hotel_city_address) REFERENCES address(city),
@@ -88,10 +88,45 @@ CREATE TABLE hotel (
 -- ----------------------------------
 -- Insertion statements for a hotel
 -- ----------------------------------
+
+-- insertion statements from hilton hotels worldwide
 INSERT INTO hotel
-VALUES (1, 'Hilton Worldwide', 313, 'Ottawa', '361 Queen Street', 'hiltonworldwide1@email.com', 3432904580);
+VALUES (1, 'Hilton Worldwide', 313, 'Ottawa', '361 Queen St', 'hiltonworldwide1@email.com', 3432904580, 4.3),
+       (2, 'Hilton Worldwide', 210, 'Montreal', '380 Sherbrooke Street W', 'hiltonworldwide2@email.com', 5143267892, 3.0),
+       (3, 'Hilton Worldwide', 456, 'New York City', '1335 6th Ave', 'hiltonworldwide3@email.com', 2123134141, 4.1),
+       (4, 'Hilton Worldwide', 300, 'Columbus', '8700 Lyra Dr', 'hiltonworldwide4@email.com', 6145687234, 3.9),
+       (5, 'Hilton Worldwide', 333, 'Columbus', '3900 Chagrin Dr', 'hiltonworldwide5@email.com', 9144967982, 3.8),
+       (6, 'Hilton Worldwide', 101, 'Milwaukee', '509 W Wisconsin Ave', 'hiltonworldwide6@email.com', 4142120101, 4.6),
+       (7, 'Hilton Worldwide', 456, 'Mexico City', 'Ave Juarez 70', 'hiltonworldwide7@email.com', 5253545556, 4.0),
+       (8, 'Hilton Worldwide', 300, 'Cancun', 'Carr Federal Libre 307 Cancun-Tulum 248-868', 'hiltonworldwide8@email.com', 9988860073, 5.0);
 
+-- insertion statements from omni hotels & resorts
+INSERT INTO hotel
+VALUES (9, 'Omni Hotels & Resorts', 306, 'Toronto', '37 KING STREET EAST', 'omnihotels1@email.com', 4168639700, 4.5),
+       (10, 'Omni Hotels & Resorts', 250, 'Montreal', '1050 Sherbrooke Street W', 'omnihotels2@email.com', 5142841110, 3.2),
+       (11, 'Omni Hotels & Resorts', 265, 'Toronto', '2727 West Club Dr', 'omnihotels3@email.com', 6472972271, 3.0),
+       (12, 'Omni Hotels & Resorts', 169, 'Calgary', '100 South 12th St', 'omnihotels4@email.com', 4033447000, 4.2),
+       (13, 'Omni Hotels & Resorts', 89, 'Volcano', '7696 Sam Snead Highway', 'omnihotels5@email.com', 8088381766, 4.1),
+       (14, 'Omni Hotels & Resorts', 279, 'New York City', '21 E 52nd St', 'omnihotels6@email.com', 2127535800, 3.5),
+       (15, 'Omni Hotels & Resorts', 99, 'Tijuana', '23 Ocean Lane', 'omnihotels7@email.com', 8088428000, 4.7),
+       (16, 'Omni Hotels & Resorts', 143, 'Tijuana', '555 S Lamar', 'omnihotels8@email.com', 8087446664, 4.2);
 
+-- insertion statements from four seasons hotels & resorts (THIS IS NOT COMPLETE!!!)
+INSERT INTO hotel
+VALUES (17, 'Four Seasons Hotels & Resorts', 306, 'Vancouver', '37 KING STREET EAST', 'fourseasonshotels1@email.com', 4168639700, 4.5),
+       (18, 'Four Seasons Hotels & Resorts', 250, 'Gatineau', '1050 Sherbrooke Street W', 'fourseasonshotels2@email.com', 5142841110, 3.2),
+       (19, 'Four Seasons Hotels & Resorts', 265, 'Chihuahua City', '2727 West Club Dr', 'fourseasonshotels3@email.com', 6472972271, 3.0),
+       (20, 'Four Seasons Hotels & Resorts', 169, 'Chihuahua City', '100 South 12th St', 'fourseasonshotels4@email.com', 4033447000, 4.2),
+       (21, 'Four Seasons Hotels & Resorts', 89, 'Chihuahua City', '7696 Sam Snead Highway', 'fourseasonshotels5@email.com', 8088381766, 4.1),
+       (22, 'Four Seasons Hotels & Resorts', 279, 'New York City', '21 E 52nd St', 'fourseasonshotels6@email.com', 2127535800, 3.5),
+       (23, 'Four Seasons Hotels & Resorts', 99, 'Toronto', '23 Ocean Lane', 'fourseasonshotels7@email.com', 8088428000, 4.7),
+
+       (24, 'Four Seasons Hotels & Resorts', 168, 'Montreal', '1440 Rue de la Montagne', 'fourseasonshotels8@email.com', 5148432500, 4.6);
+
+-- -------------------------------
+-- View statements for hotel
+-- -------------------------------
+SELECT * FROM hotel; -- view everything
 
 -- ----------------------------
 -- Table structure for a room

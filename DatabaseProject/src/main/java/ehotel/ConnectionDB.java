@@ -6,10 +6,14 @@ public class ConnectionDB {
 
     public static void main(String[] args) throws SQLException{
 
-        Connection db = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "3634859648");
+        // nat's connection
+        //Connection db = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "3634859648");
+
+        // amy's connection
+        //Connection db = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "user", "password");
 
         // kristen's connection
-        //Connection db = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+        Connection db = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
 
         if (!db.equals(null)) {
             String query = "SELECT * FROM ehotels.address"; // get the data from the address table in the ehotels schema
