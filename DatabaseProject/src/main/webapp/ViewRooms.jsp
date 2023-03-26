@@ -66,7 +66,7 @@
 
             <!--SEARCH MENU-->
             <div id="chainDropdown" class="dropdown-content">
-                <input type="text" placeholder="Search Cities..."
+                <input type="text" placeholder="Search Hotel Chains..."
                        class="dropdown-list" id="chainSearchInput"
                        onkeyup="filterSearchInput('chainSearchInput', 'chainDropdown')">
 
