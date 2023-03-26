@@ -13,18 +13,29 @@
 
     <script>
         /** REVEALING AREA DROPDOWN:
-         * This function toggles the dropdown list's visibility for the hotel area search. */
-        function showDropdown() {
-            document.getElementById("areaDropdown").classList.toggle("show"); //updating block visibility
+         * This function toggles the dropdown list's visibility for the search dropdowns. */
+        function showDropdown(showName, hideName) {
+            // VARIABLE DECLARATION: the dropdown menus
+            let shown = document.getElementById(showName);
+            let hidden = document.getElementById(hideName);
+
+            if (shown.style.display == "none") { //needs to be shown
+                shown.style.display = "block"; //updating dropdown visibility
+            }
+            else { //needs to be hidden
+                shown.style.display = "none"; //updating dropdown visibility
+            }
+
+            hidden.style.display = "none"; //updating dropdown visibility of hidden menu
         }
 
         /** SEARCH FILTERING:
-         * This function filters the area results when the user types by checking for matching
-         * text in each of the city dropdown options. The list display updates as the user types. */
-        function filterCities() {
+         * This function filters the search results when the user types by checking for matching
+         * text in each of the dropdown options. The list display updates as the user types. */
+        function filterSearchInput(input, dropdownList) {
             // VARIABLE DECLARATION: user input & cities result list
-            let userInput = document.getElementById("areaSearchInput").value.toUpperCase();
-            let resultsList = document.getElementById("areaDropdown").getElementsByTagName("a");
+            let userInput = document.getElementById(input).value.toUpperCase();
+            let resultsList = document.getElementById(dropdownList).getElementsByTagName("a");
 
             // PROCESS: looping through cities list
             for (let i = 0; i < resultsList.length; i++) {
@@ -47,15 +58,38 @@
         <hr style="background-color: rosybrown; height: 1.5px">
         <br>
 
-        <!--AREA SEARCH BAR-->
-        <div class="areaSearch">
+        <!--HOTEL CHAIN SEARCH BAR-->
+        <div class="searchMenu" style="padding-right: 20px">
             <!--SEARCH BUTTON-->
-            <button onclick="showDropdown()" class="buttons">HOTEL AREAS</button>
+            <button onclick="showDropdown('chainDropdown', 'areaDropdown')"
+                    class="buttons">HOTEL CHAINS</button>
+
+            <!--SEARCH MENU-->
+            <div id="chainDropdown" class="dropdown-content">
+                <input type="text" placeholder="Search Cities..."
+                       class="dropdown-list" id="chainSearchInput"
+                       onkeyup="filterSearchInput('chainSearchInput', 'chainDropdown')">
+
+                <!--CHAINS LIST (may need to become buttons to enable SQL querying later)-->
+                <a href="#hiltonhotels">Hilton Worldwide</a>
+                <a href="#omnihotels">Omni Hotels & Resorts</a>
+                <a href="#fourseasonshotels">Four Seasons Hotels & Resorts</a>
+                <a href="#shangrilahotels">Shangri-La Hotels & Resorts</a>
+                <a href="#bestwesternhotels">Best Western</a>
+            </div>
+        </div>
+
+        <!--AREA SEARCH BAR-->
+        <div class="searchMenu">
+            <!--SEARCH BUTTON-->
+            <button onclick="showDropdown('areaDropdown', 'chainDropdown')"
+                    class="buttons">HOTEL LOCATIONS</button>
 
             <!--SEARCH MENU-->
             <div id="areaDropdown" class="dropdown-content">
                 <input type="text" placeholder="Search Cities..."
-                       id="areaSearchInput" onkeyup="filterCities()">
+                       class="dropdown-list" id="areaSearchInput"
+                       onkeyup="filterSearchInput('areaSearchInput', 'areaDropdown')">
 
                 <!--CITIES LIST (may need to become buttons to enable SQL querying later)-->
                 <a href="#calgaryhotels">Calgary</a>

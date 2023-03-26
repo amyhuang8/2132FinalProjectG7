@@ -14,14 +14,19 @@
     font-size: 20px;
 }
 
-/* AREA SEARCHING */
 /* FUNCTIONAL DESIGN: Buttons on hover & focus */
 .buttons:hover, .buttons:focus {
     background-color: orange;
 }
 
-/* DESIGN: area search field */
-#areaSearchInput {
+/* DESIGN: Search Menu <div> containers */
+.searchMenu {
+    position: center;
+    display: inline-block;
+}
+
+/* DESIGN: search field */
+.dropdown-list {
     box-sizing: border-box;
     background-image: url('resources/searchicon.png');
     background-size: contain;
@@ -32,15 +37,9 @@
     border-bottom: 1px solid #ddd;
 }
 
-/* FUNCTIONAL DESIGN: area search field on focus/click */
-#areaSearchInput:focus {
-    outline: 3px solid #ddd;
-}
-
-/* DESIGN: Area Search <div> container */
-.areaSearch {
-    position: center;
-    display: inline-block;
+/* FUNCTIONAL DESIGN: search field on focus or click */
+.dropdown-list:focus {
+    outline: 1px solid #ddd;
 }
 
 /* FUNCTIONAL DESIGN: Dropdown Content (default hidden) */
@@ -64,9 +63,4 @@
 /* FUNCTIONAL DESIGN: Dropdown Content links on hover */
 .dropdown-content a:hover {
     background-color: lightgrey;
-}
-
-/* FUNCTIONALITY: showing dropdown menu; to be used in JS */
-.show {
-    display: block;
 }
