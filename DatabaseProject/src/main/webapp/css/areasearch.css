@@ -59,7 +59,7 @@
     background-color: #f1f1f1
 }
 
-/* FUNCTIONALITY: showing dropdown menu */
+/* FUNCTIONALITY: showing dropdown menu; to be used in JS */
 .show {
     display:block;
 }
