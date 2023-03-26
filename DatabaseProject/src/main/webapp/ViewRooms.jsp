@@ -4,8 +4,8 @@
         <meta charset="ISO-8859-1">
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <meta http-equiv="Content-Language" content="ch-cn">
-        <link rel ="stylesheet" href="css/areasearch.css">
         <link rel ="stylesheet" href="css/styles.css">
+        <link rel ="stylesheet" href="css/viewrooms.css">
 
         <!--TITLE-->
         <title>eHotels Home</title>
@@ -50,14 +50,14 @@
         <!--AREA SEARCH BAR-->
         <div class="areaSearch">
             <!--SEARCH BUTTON-->
-            <button onclick="showDropdown()" class="areaSearchBtn">Hotel Areas</button>
+            <button onclick="showDropdown()" class="buttons">HOTEL AREAS</button>
 
             <!--SEARCH MENU-->
             <div id="areaDropdown" class="dropdown-content">
                 <input type="text" placeholder="Search Cities..."
                        id="areaSearchInput" onkeyup="filterCities()">
 
-                <!--CITY LIST-->
+                <!--CITIES LIST (may need to become buttons to enable SQL querying later)-->
                 <a href="#calgaryhotels">Calgary</a>
                 <a href="#cancunhotels">Cancun</a>
                 <a href="#chihuahuacityhotels">Chihuahua City</a>
@@ -73,6 +73,24 @@
                 <a href="#volcanohotels">Volcano</a>
                 <a href="#winnipeghotels">Winnipeg</a>
             </div>
+        </div>
+
+        <br><br><br>
+
+        <!--BOOKING DATE PICKERS-->
+        <div>
+            <!--START DATE-->
+            <form style="display: inline; padding-right: 20px">
+                <label for="checkin" class="labels">Check in:</label>
+                <input type="date" id="checkin" name="check in date" style="font-size: 18px">
+            </form>
+
+            <!--END DATE-->
+            <form action="ACTIONHERE" style="display: inline">
+                <label for="checkout" class="labels">Check out:</label>
+                <input type="date" id="checkout" name="check out date" style="font-size: 18px">
+                <input type="submit" class="buttons" value="SEARCH">
+            </form>
         </div>
     </body>
 

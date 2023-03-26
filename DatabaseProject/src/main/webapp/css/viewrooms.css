@@ -1,15 +1,22 @@
-/* DESIGN: Area Search button */
-.areaSearchBtn {
+/* GENERAL */
+/* DESIGN: Buttons */
+.buttons {
     background-color: darkorange;
     color: white;
-    padding: 16px;
-    font-size: 16px;
+    padding: 5px;
+    font-size: 18px;
+    font-family:'Courier New';
     border: 1px solid rosybrown;
     cursor: pointer;
 }
 
-/* FUNCTIONAL DESIGN: Area Search button on hover & focus */
-.areaSearchBtn:hover, .areaSearchBtn:focus {
+.labels {
+    font-size: 20px;
+}
+
+/* AREA SEARCHING */
+/* FUNCTIONAL DESIGN: Buttons on hover & focus */
+.buttons:hover, .buttons:focus {
     background-color: orange;
 }
 
@@ -61,5 +68,5 @@
 
 /* FUNCTIONALITY: showing dropdown menu; to be used in JS */
 .show {
-    display:block;
+    display: block;
 }
