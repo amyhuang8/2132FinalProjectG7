@@ -135,10 +135,13 @@
                 <option value="single">Single</option>
                 <option value="double">Double</option>
                 <option value="triple">Triple</option>
+                <option value="quad">Quad</option>
                 <option value="joint">Joint</option>
+                <!-- I DON'T THINK WE'RE GONNA USE THOSE
                 <option value="queen">Queen</option>
                 <option value="king">King</option>
                 <option value="deluxe">Deluxe</option>
+                -->
             </select>
         </div>
     </body>

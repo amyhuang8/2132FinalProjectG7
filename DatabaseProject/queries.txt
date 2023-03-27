@@ -3,6 +3,7 @@ SET search_path = ehotels;
 -- ----------------------------
 -- Table structure for address
 -- ----------------------------
+DROP TABLE IF EXISTS address;
 CREATE TABLE address (
     city VARCHAR(25) NOT NULL,
     province VARCHAR(25) NOT NULL,
@@ -38,6 +39,7 @@ SELECT * FROM address;
 -- -----------------------------------
 -- Table structure for a hotel chain
 -- -----------------------------------
+DROP TABLE IF EXISTS hotel_chain;
 CREATE TABLE hotel_chain (
     name VARCHAR(50) NOT NULL ,
     city_address VARCHAR(25) NOT NULL,
@@ -71,6 +73,7 @@ INNER JOIN hotel_chain h ON h.city_address = a.city;
 -- ----------------------------
 -- Table structure for a hotel
 -- ----------------------------
+DROP TABLE IF EXISTS hotel;
 CREATE TABLE hotel (
     hotel_id INT,
     name VARCHAR(50) NOT NULL,
@@ -80,7 +83,7 @@ CREATE TABLE hotel (
     email VARCHAR(30) NOT NULL,
     hotel_phone_number CHAR(10) NOT NULL,
     rating numeric(2,1) NOT NULL,
-    FOREIGN KEY (name) REFERENCES hotel_chain(name) ON DELETE CASCADE,
+    FOREIGN KEY (name) REFERENCES hotel_chain(name) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (hotel_city_address) REFERENCES address(city),
     PRIMARY KEY (hotel_id)
 );
@@ -144,7 +147,6 @@ VALUES (33, 'Best Western', 343, 'Winnipeg', '80 St Marys Rd', 'bestwestern1@ema
        (39, 'Best Western', 275, 'Chihuahua City', 'Vialidad Ch-P 8800', 'bestwestern7@email.com', 6214209000, 3.2),
        (40, 'Best Western', 367, 'Tijuana', 'Blvd Agua Caliente 4558', 'bestwestern8@email.com', 8086817000, 5.0);
 
-
 -- -------------------------------
 -- View statements for hotel
 -- -------------------------------
@@ -158,51 +160,107 @@ ORDER BY h.hotel_id;
 -- ----------------------------
 -- Table structure for a room
 -- ----------------------------
+DROP TABLE IF EXISTS room;
 CREATE TABLE room (
-    room_num INT UNIQUE,
+    room_num INT,
     hotel_id INT,
     price NUMERIC(8,2),
     amenities VARCHAR (255),
     capacity VARCHAR(20),
     view_type VARCHAR(20),
-    extendable BIT NOT NULL,
+    extendable BOOLEAN NOT NULL,
     damages NUMERIC(8,2),
-    availability BIT NOT NULL,
-    FOREIGN KEY (hotel_id) REFERENCES hotel(hotel_id) ON DELETE CASCADE,
+    availability BOOLEAN NOT NULL,
+    FOREIGN KEY (hotel_id) REFERENCES hotel(hotel_id) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (room_num, hotel_id, price, capacity, view_type, extendable)
 );
+
+-- ----------------------------------------
+-- Insertion statements for Hilton Hotels
+-- ----------------------------------------
+INSERT INTO room
+VALUES
+        (1,1,239.99,'Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning','Single','Sea',true,0.0,true),
+        (2,1,249.89,'Mini refrigerator, Microwave, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning','Double','Cityscape',true,0.0,true),
+        (3,1,239.79,'Mini refrigerator, Hand-held shower, Lowered toilet, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, and many more accessibility features','Triple','Cityscape',true,0.0,true),
+        (4,1,256.69,'Mini refrigerator, Microwave, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board','Quad','River',false,0.0,true),
+        (5,1,230.59,'Microwave, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning','Joint','Mountain',false,20.51,true),
+
+        (1,2,185.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board','Single','Cityscape',true,0.0,true),
+        (2,2,203.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board','Double','Cityscape',true,0.0,true),
+        (3,2,185.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board','Triple','Sea',true,0.0,true),
+        (4,2,185.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Many accessibility features','Quad','Sea',true,15.20,true),
+        (5,2,210.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Keurig, Snacks','Joint','Cityscape',true,0.0,true),
+
+        (1,3,672.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Large work desk, complementary breakfast','Single','Mountain',true,0.0,true),
+        (2,3,259.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Double','Mountain',false,0.0,true),
+        (3,3,250.00,'Spacious work desk, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Triple','Mountain',false,0.0,true),
+        (4,3,721.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock, Large Table','Quad','Mountain',true,0.0,true),
+        (5,3,391.00,'LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Joint','Mountain',false,0.0,true),
+
+        (1,4,185.00,'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Single', 'River',false,0.0,true),
+        (2,4,223.00,'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Double', 'Cityscape',false,0.0,true),
+        (3,4,232.00,'Widescreen LCD TV with cable & on-demand movies, Hairdryer, Shower, Radio Alarm Clock','Triple', 'River',false,0.0,true),
+        (4,4,185.00,'A/C/Heating, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Quad', 'Cityscape',false,0.0,true),
+        (5,4,223.00,'A/C/Heating, Microwave, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer','Joint', 'Mountain',false,0.0,true),
+
+        (1,5,166.99,'Mini refrigerator, Coffee Maker, A/C/Heating, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Includes Sofa Bed','Single', 'River',false,0.0,true),
+        (2,5,147.99,'Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Walk-In Shower, Includes Sofa Bed','Double', 'River',false,0.0,true),
+        (3,5,166.99,'Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Two Queen beds','Triple', 'Cityscape',false,0.0,true),
+        (4,5,147.99,'Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Includes Queen Sleeper','Quad', 'Mountain',true,0.0,true),
+        (5,5,147.99,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Walk-In Shower, Two Queen beds','Joint', 'Cityscape',false,0.0,true),
+
+        (1,6,286.57,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Large work desk, complementary breakfast','Single','River',true,0.0,true),
+        (2,6,199.99,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Double','Mountain',false,0.0,true),
+        (3,6,306.55,'Spacious work desk, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Triple','Mountain',true,0.0,true),
+        (4,6,360.25,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock, Large Table','Quad','Cityscape',true,0.0,true),
+        (5,6,317.67,'LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Joint','Sea',true,0.0,true),
+
+        (1,7,259.25,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Single', 'Cityscape',false,0.0,true),
+        (2,7,411.50,'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Double', 'Cityscape',false,0.0,true),
+        (3,7,279.68,'Widescreen LCD TV with cable & on-demand movies, Hairdryer, Shower, Radio Alarm Clock','Triple', 'Sea',false,0.0,true),
+        (4,7,383.24,'Two Queen beds with 250-thread sheets, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Quad', 'Cityscape',false,0.0,true),
+        (5,7,191.87,'Two Queen beds with 250-thread sheets, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Joint', 'River',false,0.0,true),
+
+        (1,8,276.99,'Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Iron/Ironing board, Shower/Tub','Single', 'River',false,0.0,true),
+        (2,8,209.59,'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board','Double', 'Cityscape',false,0.0,true),
+        (3,8,331.99,'LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Triple', 'Cityscape',true,0.0,true),
+        (4,8,390.49,'Mini refrigerator, Coffee Maker, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub','Quad', 'Sea',true,0.0,true),
+        (5,8,380.49,'LCD TV with cable & on-demand movies, Hairdryer, Mini refrigerator','Joint', 'Sea',false,0.0,true);
 
 -- ----------------------------
 -- Table structure for an employee
 -- ----------------------------
+DROP TABLE IF EXISTS employee;
 CREATE TABLE employee (
     employee_id INT UNIQUE,
     manager_id INT,
     hotel_id INT,
     first_name VARCHAR(25) NOT NULL,
     last_name VARCHAR (25) NOT NULL,
-    SIN INT NOT NULL,
+    SIN CHAR(9) NOT NULL,
     city_address VARCHAR(25) NOT NULL,
     street_address VARCHAR(50) NOT NULL,
     position VARCHAR(15) NOT NULL,
     salary NUMERIC(6,2) NOT NULL ,
     FOREIGN KEY (city_address) REFERENCES address(city),
-    FOREIGN KEY (hotel_id) REFERENCES hotel(hotel_id) ON DELETE CASCADE,
+    FOREIGN KEY (hotel_id) REFERENCES hotel(hotel_id) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (employee_id,hotel_id)
 );
 
 -- ----------------------------
 -- Table structure for a customer
 -- ----------------------------
+DROP TABLE IF EXISTS customer;
 CREATE TABLE customer (
   customer_id INT,
   first_name VARCHAR(25) NOT NULL,
   last_name VARCHAR (25) NOT NULL,
-  SIN INT NOT NULL,
+  SIN CHAR(9) NOT NULL,
   city_address VARCHAR(25) NOT NULL,
   street_address VARCHAR(50) NOT NULL,
   registration_date DATE,
-  credit_card_num INT,
+  credit_card_num CHAR(16),
   customer_phone_number INT,
   customer_email VARCHAR(30) NOT NULL,
   FOREIGN KEY (city_address) REFERENCES address(city),
@@ -212,6 +270,7 @@ CREATE TABLE customer (
 -- ----------------------------
 -- Table structure for a booking
 -- ----------------------------
+DROP TABLE IF EXISTS booking;
 CREATE TABLE booking (
     booking_id INT,
     check_in DATE NOT NULL,
@@ -222,13 +281,14 @@ CREATE TABLE booking (
     room_num INT NOT NULL,
     FOREIGN KEY (employee_id) REFERENCES employee(employee_id),
     FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
-    FOREIGN KEY (room_num) REFERENCES room(room_num) ON DELETE CASCADE,
+    FOREIGN KEY (room_num) REFERENCES room(room_num) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (booking_id)
 );
 
 -- ----------------------------
 -- Table structure for a rental
 -- ----------------------------
+DROP TABLE IF EXISTS rental;
 CREATE TABLE rental (
     rental_id INT,
     booking_id INT NOT NULL,
@@ -239,7 +299,7 @@ CREATE TABLE rental (
     customer_id INT NOT NULL,
     FOREIGN KEY (employee_id) REFERENCES employee(employee_id),
     FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
-    FOREIGN KEY (room_num) REFERENCES room(room_num) ON DELETE CASCADE,
+    FOREIGN KEY (room_num) REFERENCES room(room_num) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (booking_id) REFERENCES booking(booking_id),
     PRIMARY KEY (rental_id)
 );
@@ -247,6 +307,7 @@ CREATE TABLE rental (
 -- ----------------------------
 -- Table structure for an archive
 -- ----------------------------
+DROP TABLE IF EXISTS archive;
 CREATE TABLE archive (
     archive_id INT,
     booking_id INT,
