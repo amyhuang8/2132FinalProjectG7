@@ -9,7 +9,7 @@
 
         <!--TITLE-->
         <title>eHotels Home</title>
-        <button onclick="ACTIONHERE"
+        <button onclick="window.location.href='CustomerProfile.jsp'"
                 style="float: right; padding: 20px; border-radius: 50%; background-color: lightyellow;
                 background-image: url('css/resources/profileicon.png');
                 background-size: contain; background-repeat: no-repeat;"></button>
