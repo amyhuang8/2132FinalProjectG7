@@ -5,7 +5,7 @@ import java.util.Date;
 public class Customer {
 
     // INSTANCE VARIABLES ----------------------------------------------------------------------------------------------
-    private Integer id;
+    private int id;
     private String firstName;
     private String lastName;
     private String sin;
@@ -33,7 +33,7 @@ public class Customer {
      * @param creditCardNumber credit card number of customer
      * @param email email of customer
      */
-    public Customer(Integer id, String firstName, String lastName, String sin, String cityAddress,
+    public Customer(int id, String firstName, String lastName, String sin, String cityAddress,
                     String streetAddress, String stateOrProvince, String country, Date dateOfRegistration,
                     String creditCardNumber, String email) {
         this.id = id;
@@ -50,7 +50,7 @@ public class Customer {
     }
 
     // GETTERS ---------------------------------------------------------------------------------------------------------
-    public Integer getId() {
+    public int getId() {
         return this.id;
     }
     public String getFirstName() {
