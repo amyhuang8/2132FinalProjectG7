@@ -212,6 +212,7 @@
                 <option value="toronto">Toronto</option>
                 <option value="volcano">Volcano</option>
                 <option value="winnipeg">Winnipeg</option>
+                <option value="vancouver">Vancouver</option>
             </select>
             <br><br>
             SOCIAL SECURITY NUMBER (SSN): <input type="password" id="ssn" name="ssn">
