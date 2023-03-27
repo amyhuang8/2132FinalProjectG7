@@ -199,11 +199,18 @@
             <select name="city" id="city">
                 <option value="default">SELECT...</option>
                 <option value="calgary">Calgary</option>
+                <option value="cancun">Cancun</option>
+                <option value="chihuahuacity">Chihuahua City</option>
+                <option value="columbus">Columbus</option>
                 <option value="gatineau">Gatineau</option>
+                <option value="mexicocity">Mexico City</option>
+                <option value="milwaukee">Milwaukee</option>
                 <option value="montreal">Montreal</option>
+                <option value="nyc">New York City</option>
                 <option value="ottawa">Ottawa</option>
+                <option value="tijuana">Tijuana</option>
                 <option value="toronto">Toronto</option>
-                <option value="vancouver">Vancouver</option>
+                <option value="volcano">Volcano</option>
                 <option value="winnipeg">Winnipeg</option>
             </select>
             <br><br>
