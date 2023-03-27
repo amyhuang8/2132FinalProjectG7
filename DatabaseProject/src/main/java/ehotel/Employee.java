@@ -3,9 +3,9 @@ package ehotel;
 public class Employee {
 
     // INSTANCE VARIABLES ----------------------------------------------------------------------------------------------
-    private Integer id;
-    private Integer managerID;
-    private Integer hotelID;
+    private int id;
+    private int managerID;
+    private int hotelID;
     private String firstName;
     private String lastName;
     private String sin;
@@ -20,19 +20,19 @@ public class Employee {
 
     /**
      * Constructor to save employee's data (without manager id)
-     * @param id
-     * @param hotelID
-     * @param firstName
-     * @param lastName
-     * @param sin
-     * @param cityAddress
-     * @param streetAddress
-     * @param stateOrProvince
-     * @param country
-     * @param position
-     * @param salary
+     * @param id id of employee
+     * @param hotelID hotel id the employee works at
+     * @param firstName first name of employee
+     * @param lastName last name of employee
+     * @param sin sin of employee
+     * @param cityAddress city address of employee
+     * @param streetAddress street address of employee
+     * @param stateOrProvince state/province of employee
+     * @param country country of employee
+     * @param position position of employee
+     * @param salary salary of employee
      */
-    public Employee (Integer id, Integer hotelID, String firstName, String lastName, String sin, String cityAddress,
+    public Employee (int id, int hotelID, String firstName, String lastName, String sin, String cityAddress,
                      String streetAddress, String stateOrProvince, String country, String position, Double salary) {
         this.id = id;
         this.hotelID = hotelID;
@@ -49,20 +49,20 @@ public class Employee {
 
     /**
      * Constructor to save employee's data (with manager id)
-     * @param id
-     * @param managerID
-     * @param hotelID
-     * @param firstName
-     * @param lastName
-     * @param sin
-     * @param cityAddress
-     * @param streetAddress
-     * @param stateOrProvince
-     * @param country
-     * @param position
-     * @param salary
+     * @param id id of employee
+     * @param managerID manager id of employee
+     * @param hotelID hotel id the employee works at
+     * @param firstName first name of employee
+     * @param lastName last name of employee
+     * @param sin sin of employee
+     * @param cityAddress city address of employee
+     * @param streetAddress street address of employee
+     * @param stateOrProvince state/province of employee
+     * @param country country of employee
+     * @param position position of employee
+     * @param salary salary of employee
      */
-    public Employee (Integer id, Integer managerID, Integer hotelID, String firstName, String lastName, String sin, String cityAddress,
+    public Employee (int id, int managerID, int hotelID, String firstName, String lastName, String sin, String cityAddress,
                      String streetAddress, String stateOrProvince, String country, String position, Double salary) {
         this.id = id;
         this.managerID = managerID;
@@ -79,13 +79,13 @@ public class Employee {
     }
 
     // GETTERS ---------------------------------------------------------------------------------------------------------
-    public Integer getId() {
+    public int getId() {
         return this.id;
     }
-    public Integer getManagerID() {
+    public int getManagerID() {
         return this.managerID;
     }
-    public Integer getHotelID() {
+    public int getHotelID() {
         return this.hotelID;
     }
     public String getFirstName() {
