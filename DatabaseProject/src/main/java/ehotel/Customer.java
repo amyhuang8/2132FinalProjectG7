@@ -88,5 +88,37 @@ public class Customer {
     }
 
     // SETTERS ---------------------------------------------------------------------------------------------------------
-
+    public void setId (int id) {
+        this.id = id;
+    }
+    public void setFirstName (String firstName) {
+        this.firstName = firstName;
+    }
+    public void setLastName (String lastName) {
+        this.lastName = lastName;
+    }
+    public void setSin (String sin) {
+        this.sin = sin;
+    }
+    public void setCityAddress (String cityAddress) {
+        this.cityAddress = cityAddress;
+    }
+    public void setStreetAddress (String streetAddress) {
+        this.streetAddress = streetAddress;
+    }
+    public void setStateOrProvince (String stateOrProvince) {
+        this.stateOrProvince = stateOrProvince;
+    }
+    public void setCountry (String country) {
+        this.country = country;
+    }
+    public void setDateOfRegistration (Date dateOfRegistration) {
+        this.dateOfRegistration = dateOfRegistration;
+    }
+    public void setCreditCardNumber (String creditCardNumber) {
+        this.creditCardNumber = creditCardNumber;
+    }
+    public void setEmail (String email) {
+        this.email = email;
+    }
 }

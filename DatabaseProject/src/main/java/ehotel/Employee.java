@@ -120,6 +120,45 @@ public class Employee {
     }
 
     // SETTERS ---------------------------------------------------------------------------------------------------------
+    public void setId(int id) {
+        this.id = id;
+    }
+    public void setManagerID(int managerID) {
+        this.managerID = managerID;
+    }
+    public void setHotelID(int hotelID) {
+        this.hotelID = hotelID;
+    }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+    public void setSin(String sin) {
+        this.sin = sin;
+    }
+    public void setCityAddress(String cityAddress) {
+        this.cityAddress = cityAddress;
+    }
+    public void setStreetAddress(String streetAddress) {
+        this.streetAddress = streetAddress;
+    }
+    public void setStateOrProvince(String stateOrProvince) {
+        this.stateOrProvince = stateOrProvince;
+    }
+    public void setCountry(String country) {
+        this.country = country;
+    }
+    public void setPosition(String position){
+        this.position = position;
+    }
+    public void setSalary(Double salary) {
+        this.salary = salary;
+    }
+
+
+    // METHODS ---------------------------------------------------------------------------------------------------------
     @Override
     public String toString() { // RETURN THE TYPE OF STRING (in html) OF WHAT WE WANT
         return "";
