@@ -183,7 +183,7 @@
         <br><br>
 
         <!--REGISTRATION FORMS-->
-        <form method="post" action="NEXTPAGEHERE" id="signUpForms" style="text-align: center; display: none">
+        <form method="post" action="ViewRooms.jsp" id="signUpForms" style="text-align: center; display: none">
             FIRST NAME: <input type="text" id="fname" name="first name">
             <br><br>
             LAST NAME: <input type="text" id="lname" name="last name">
