@@ -173,6 +173,36 @@ CREATE TABLE room (
 );
 
 -- ----------------------------
+-- Insertion statements for Hilton rooms
+-- ----------------------------
+INSERT INTO room (
+VALUES (0,1,(239,0),'Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning','Sleeps 2','Cityscape',0,(0,0),0),
+	   (1,1,(249,0),'Mini refrigerator, Microwave, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning','Sleeps 4','Cityscape',0,(0,0),0),
+	   (2,1,(239,0),'Mini refrigerator, Hand-held shower, Lowered toilet, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, and many more accessibility features','Sleeps 2','Cityscape',0,(0,0),1),
+	   (3,1,(256,0),'Mini refrigerator, Microwave, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board','Sleeps 2','River',0,(0,0),1),
+	   (4,1,(230,0),'Microwave, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning','Sleeps 2','Limited',0,(20,51),1),
+	   (5,2,(185,0),'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board','Sleeps 2','Cityscape',0,(0,0),1),
+	   (6,2,(203,0),'2 rooms, Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board','Sleeps 2','Cityscape',0,(0,0),1),
+	   (7,2,(185,0),'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board','Sleeps 4','Cityscape',0,(0,0),1),
+	   (8,2,(185,0),'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Many accessibility features','Sleeps 4','Cityscape',0,(15,20),1),
+	   (9,2,(210,0),'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Keurig, Snacks','Sleeps 2','Cityscape',0,(0,0),1),
+	   (10,3,(672,0),'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Large work desk, complementary breakfast','Sleeps 6','Skyline',0,(0,0),1),
+	   (11,3,(259,0),'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Sleeps 4','Cityscape',1,(0,0),1),
+	   (12,3,(250,0),'Spacious work desk, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Sleeps 2','Cityscape',1,(0,0),1),
+	   (13,3,(721,0),'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock, Large Table','Sleeps 7','Cityscape',0,(0,0),0),
+	   (14,3,(391,0),'LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Sleeps 4','Cityscape',1,(0,0),1),
+	   (15,4,(185,0),'Mini refridgerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Sleeps 2', 'Cityscape',1,(0,0),1),
+	   (16,4,(223,0),'Mini refridgerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Sleeps 2', 'Fantastic Cityscape',1,(0,0),1),
+	   (17,4,(232,0),'Widescreen LCD TV with cable & on-demand movies, Hairdryer, Shower, Radio Alarm Clock','Sleeps 2', 'Cityscape (Corner)',1,(0,0),1),
+	   (18,4,(185,0),'Two Queen beds with 250-thread sheets, Mini refridgerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Sleeps 4', 'Cityscape',1,(0,0),1),
+	   (19,4,(223,0),'Two Queen beds with 250-thread sheets, Mini refridgerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Sleeps 4', 'Fantastic Cityscape',1,(0,0),1),
+	   (20,5,(166,0),'Mini refridgerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Includes Sofa Bed','Sleeps 4', 'Cityscape',1,(0,0),1),
+	   (21,5,(147,0),'Mini refridgerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Walk-In Shower, Includes Sofa Bed','Sleeps 2', 'Cityscape (Small Window)',1,(0,0),1),
+	   (22,5,(166,0),'Mini refridgerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Two Queen beds','Sleeps 4', 'Cityscape',1,(0,0),1),
+	   (23,5,(147,0),'Mini refridgerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Includes Queen Sleeper','Sleeps 4', 'Cityscape',1,(0,0),1),
+	   (24,5,(147,0),'Mini refridgerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Walk-In Shower, Two Queen beds','Sleeps 4', 'Cityscape',1,(0,0),1),
+);
+-- ----------------------------
 -- Table structure for an employee
 -- ----------------------------
 CREATE TABLE employee (
@@ -181,7 +211,7 @@ CREATE TABLE employee (
     hotel_id INT,
     first_name VARCHAR(25) NOT NULL,
     last_name VARCHAR (25) NOT NULL,
-    SIN INT NOT NULL,
+    SIN CHAR(9) NOT NULL,
     city_address VARCHAR(25) NOT NULL,
     street_address VARCHAR(50) NOT NULL,
     position VARCHAR(15) NOT NULL,
@@ -192,18 +222,25 @@ CREATE TABLE employee (
 );
 
 -- ----------------------------
+-- Insertion statements for employees
+-- ----------------------------
+INSERT INTO employee (
+VALUES (1,1,1,'Steven','Jones','4537987743','Ottawa','123 Fisher Dr.','Desk Staff',(20,50))
+);
+
+-- ----------------------------
 -- Table structure for a customer
 -- ----------------------------
 CREATE TABLE customer (
   customer_id INT,
   first_name VARCHAR(25) NOT NULL,
   last_name VARCHAR (25) NOT NULL,
-  SIN INT NOT NULL,
+  SIN CHAR(9) NOT NULL,
   city_address VARCHAR(25) NOT NULL,
   street_address VARCHAR(50) NOT NULL,
   registration_date DATE,
-  credit_card_num INT,
-  customer_phone_number INT,
+  credit_card_num CHAR(16),
+  customer_phone_number CHAR(10),
   customer_email VARCHAR(30) NOT NULL,
   FOREIGN KEY (city_address) REFERENCES address(city),
   PRIMARY KEY (customer_id)
