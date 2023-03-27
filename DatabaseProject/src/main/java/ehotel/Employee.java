@@ -8,7 +8,7 @@ public class Employee {
     private Integer hotelID;
     private String firstName;
     private String lastName;
-    private Integer sin;
+    private String sin;
     private String cityAddress;
     private String streetAddress;
     private String stateOrProvince;
@@ -32,7 +32,7 @@ public class Employee {
      * @param position
      * @param salary
      */
-    public Employee (Integer id, Integer hotelID, String firstName, String lastName, Integer sin, String cityAddress,
+    public Employee (Integer id, Integer hotelID, String firstName, String lastName, String sin, String cityAddress,
                      String streetAddress, String stateOrProvince, String country, String position, Double salary) {
         this.id = id;
         this.hotelID = hotelID;
@@ -62,7 +62,7 @@ public class Employee {
      * @param position
      * @param salary
      */
-    public Employee (Integer id, Integer managerID, Integer hotelID, String firstName, String lastName, Integer sin, String cityAddress,
+    public Employee (Integer id, Integer managerID, Integer hotelID, String firstName, String lastName, String sin, String cityAddress,
                      String streetAddress, String stateOrProvince, String country, String position, Double salary) {
         this.id = id;
         this.managerID = managerID;
@@ -94,7 +94,7 @@ public class Employee {
     public String getLastName() {
         return this.lastName;
     }
-    public Integer getSin() {
+    public String getSin() {
         return this.sin;
     }
     public String getCityAddress() {
