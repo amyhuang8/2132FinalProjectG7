@@ -14,13 +14,13 @@ public class Booking {
 
     /**
      * Constructor to save a booking's data
-     * @param id
-     * @param checkIn
-     * @param checkOut
-     * @param confirmationDate
-     * @param employeeID
-     * @param customerID
-     * @param roomNum
+     * @param id id of booking
+     * @param checkIn check in date of customer's booking
+     * @param checkOut check out date of customer's booking
+     * @param confirmationDate confirmation date of customer's booking
+     * @param employeeID id of employee in charge of booking
+     * @param customerID id of customer's booking
+     * @param roomNum room number of booking
      */
     public Booking(int id, Date checkIn, Date checkOut, Date confirmationDate, int employeeID, int customerID, int roomNum) {
         this.id = id;
@@ -33,7 +33,27 @@ public class Booking {
     }
 
     // GETTERS
-
+    public int getId() {
+        return this.id;
+    }
+    public Date getCheckIn() {
+        return this.checkIn;
+    }
+    public Date getCheckOut() {
+        return this.checkOut;
+    }
+    public Date getConfirmationDate() {
+        return this.confirmationDate;
+    }
+    public int getEmployeeID() {
+        return this.employeeID;
+    }
+    public int getCustomerID() {
+        return this.customerID;
+    }
+    public int getRoomNum() {
+        return this.roomNum;
+    }
 
     // SETTERS
 
