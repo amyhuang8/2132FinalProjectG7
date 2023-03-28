@@ -9,10 +9,7 @@ public class Employee {
     private String firstName;
     private String lastName;
     private String sin;
-    private String cityAddress;
-    private String streetAddress;
-    private String stateOrProvince;
-    private String country;
+    private Address address;
     private String position;
     private Double salary;
 
@@ -25,24 +22,17 @@ public class Employee {
      * @param firstName first name of employee
      * @param lastName last name of employee
      * @param sin sin of employee
-     * @param cityAddress city address of employee
-     * @param streetAddress street address of employee
-     * @param stateOrProvince state/province of employee
-     * @param country country of employee
+     * @param address address of employee
      * @param position position of employee
      * @param salary salary of employee
      */
-    public Employee (int id, int hotelID, String firstName, String lastName, String sin, String cityAddress,
-                     String streetAddress, String stateOrProvince, String country, String position, Double salary) {
+    public Employee (int id, int hotelID, String firstName, String lastName, String sin, Address address, String position, Double salary) {
         this.id = id;
         this.hotelID = hotelID;
         this.firstName = firstName;
         this.lastName = lastName;
         this.sin = sin;
-        this.cityAddress = cityAddress;
-        this.streetAddress = streetAddress;
-        this.stateOrProvince = stateOrProvince;
-        this.country = country;
+        this.address = address;
         this.position = position;
         this.salary = salary;
     }
@@ -55,25 +45,19 @@ public class Employee {
      * @param firstName first name of employee
      * @param lastName last name of employee
      * @param sin sin of employee
-     * @param cityAddress city address of employee
-     * @param streetAddress street address of employee
-     * @param stateOrProvince state/province of employee
-     * @param country country of employee
+     * @param address address of employee
      * @param position position of employee
      * @param salary salary of employee
      */
-    public Employee (int id, int managerID, int hotelID, String firstName, String lastName, String sin, String cityAddress,
-                     String streetAddress, String stateOrProvince, String country, String position, Double salary) {
+    public Employee (int id, int managerID, int hotelID, String firstName, String lastName,
+                     String sin, Address address, String position, Double salary) {
         this.id = id;
         this.managerID = managerID;
         this.hotelID = hotelID;
         this.firstName = firstName;
         this.lastName = lastName;
         this.sin = sin;
-        this.cityAddress = cityAddress;
-        this.streetAddress = streetAddress;
-        this.stateOrProvince = stateOrProvince;
-        this.country = country;
+        this.address = address;
         this.position = position;
         this.salary = salary;
     }
@@ -97,20 +81,8 @@ public class Employee {
     public String getSin() {
         return this.sin;
     }
-    public String getCityAddress() {
-        return this.cityAddress;
-    }
-    public String getStreetAddress() {
-        return this.streetAddress;
-    }
-    public String getStateOrProvince() {
-        return this.stateOrProvince;
-    }
-    public String getCountry() {
-        return this.country;
-    }
-    public String getFullAddress() { // combines all attributes that make up the address into a single string
-        return this.streetAddress + ", " + this.cityAddress + ", " + this.stateOrProvince + ", " + this.country;
+    public Address getAddress() {
+        return this.address;
     }
     public String getPosition() {
         return this.position;
@@ -138,17 +110,8 @@ public class Employee {
     public void setSin(String sin) {
         this.sin = sin;
     }
-    public void setCityAddress(String cityAddress) {
-        this.cityAddress = cityAddress;
-    }
-    public void setStreetAddress(String streetAddress) {
-        this.streetAddress = streetAddress;
-    }
-    public void setStateOrProvince(String stateOrProvince) {
-        this.stateOrProvince = stateOrProvince;
-    }
-    public void setCountry(String country) {
-        this.country = country;
+    public void setAddress(Address address) {
+        this.address = address;
     }
     public void setPosition(String position){
         this.position = position;

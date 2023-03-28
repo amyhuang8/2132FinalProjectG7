@@ -3,46 +3,141 @@ SET search_path = ehotels;
 -- ----------------------------
 -- Deletion for any table
 -- ----------------------------
-drop table address;
-drop table hotel_chain;
-drop table hotel;
-drop table room;
-drop table employee;
-drop table customer;
-drop table booking;
-drop table rental;
 drop table archive;
+drop table rental;
+drop table booking;
+drop table customer;
+drop table employee;
+drop table room;
+drop table hotel;
+drop table hotel_chain;
+drop table address;
 
 -- ----------------------------
 -- Table structure for address
 -- ----------------------------
 DROP TABLE IF EXISTS address;
 CREATE TABLE address (
+    id SERIAL,
+    street VARCHAR(50) NOT NULL,
     city VARCHAR(25) NOT NULL,
     province VARCHAR(25) NOT NULL,
     country VARCHAR(7) NOT NULL,
-    PRIMARY KEY (city)
+    PRIMARY KEY (id)
 );
 
 -- ----------------------------------
 -- Insertion statements for address
 -- ----------------------------------
-INSERT INTO address
-VALUES ('Ottawa', 'Ontario', 'Canada'),
-       ('Toronto', 'Ontario', 'Canada'),
-       ('Vancouver', 'British Columbia', 'Canada'),
-       ('Montreal', 'Quebec', 'Canada'),
-       ('Gatineau', 'Quebec', 'Canada'),
-       ('Winnipeg', 'Manitoba', 'Canada'),
-       ('Calgary', 'Alberta', 'Canada'),
-       ('New York City', 'New York', 'America'),
-       ('Columbus', 'Ohio', 'America'),
-       ('Volcano', 'Hawaii', 'America'),
-       ('Milwaukee', 'Wisconsin', 'America'),
-       ('Mexico City','Mexico City', 'Mexico'),
-       ('Chihuahua City','Chihuahua', 'Mexico'),
-       ('Cancun', 'Quintana Roo', 'Mexico'),
-       ('Tijuana', 'Baja California', 'Mexico');
+
+-- for hotel chains (id #: 1-5)
+INSERT INTO address (street, city, province, country)
+VALUES ('123 Laurier Ave','Ottawa', 'Ontario', 'Canada'),
+       ('12 Union St', 'Toronto', 'Ontario', 'Canada'),
+       ('13 Union St', 'Toronto', 'Ontario', 'Canada'),
+       ('15 Ontario St','Vancouver', 'British Columbia', 'Canada'),
+       ('2136 Airport Road', 'Calgary', 'Alberta', 'Canada');
+
+-- for hotels (id #: 6-45)
+INSERT INTO address (street, city, province, country)
+VALUES ('361 Queen St', 'Ottawa', 'Ontario', 'Canada'), -- hilton
+       ('380 Sherbrooke St W', 'Montreal', 'Quebec', 'Canada'),
+       ('1335 6th Ave', 'New York City', 'New York', 'America'),
+       ('8700 Lyra Dr', 'Columbus', 'Ohio', 'America'),
+       ('3900 Chagrin Dr', 'Columbus', 'Ohio', 'America'),
+       ('509 W Wisconsin Ave','Milwaukee', 'Wisconsin', 'America'),
+       ('Ave Juarez 70', 'Mexico City','Mexico City', 'Mexico'),
+       ('Carr Federal Libre 307 Cancun-Tulum 248-868', 'Cancun', 'Quintana Roo', 'Mexico'),
+
+       ('37 King St E', 'Toronto', 'Ontario', 'Canada'), -- omni
+       ('2727 West Club Dr', 'Toronto', 'Ontario', 'Canada'),
+       ('1050 Sherbrooke Street W', 'Montreal', 'Quebec', 'Canada'),
+       ('100 South 12th St', 'Calgary', 'Alberta', 'Canada'),
+       ('7696 Sam Snead Hwy', 'Volcano', 'Hawaii', 'America'),
+       ('21 E 52nd St', 'New York City', 'New York', 'America'),
+       ('23 Ocean Lane', 'Tijuana', 'Baja California', 'Mexico'),
+       ('555 S Lamar', 'Tijuana', 'Baja California', 'Mexico'),
+
+       ('791 W Georgia S','Vancouver', 'British Columbia', 'Canada'),
+       ('4591 Blackcomb Way', 'Gatineau', 'Quebec', 'Canada'),
+       ('48898 La Huerta', 'Chihuahua City','Chihuahua', 'Mexico'),
+       ('63734 Corral del Risco', 'Chihuahua City','Chihuahua', 'Mexico'),
+       ('Paseo de la Reforma #500', 'Mexico City','Mexico City', 'Mexico'),
+       ('27 Barclay St', 'New York City', 'New York', 'America'),
+       ('60 Yorkville Ave', 'Toronto', 'Ontario', 'Canada'),
+       ('1440 Rue de la Montagne', 'Montreal', 'Quebec', 'Canada'),
+
+       ('1128 West Georgia St','Vancouver', 'British Columbia', 'Canada'),
+       ('1326 Davie St','Vancouver', 'British Columbia', 'Canada'),
+       ('931 Main St', 'Winnipeg', 'Manitoba', 'Canada'),
+       ('1140 10 Ave SW', 'Calgary', 'Alberta', 'Canada'),
+       ('Margaritas 2 LOC-10 SM-22, SM 22, 77500', 'Cancun', 'Quintana Roo', 'Mexico'),
+       ('9100 W Oklahoma Ave', 'Milwaukee', 'Wisconsin', 'America'),
+       ('Isabel La Católica 30', 'Mexico City','Mexico City', 'Mexico'),
+       ('19-3820 Old Volcano Rd', 'Volcano', 'Hawaii', 'America'),
+
+       ('80 St Marys Rd', 'Winnipeg', 'Manitoba', 'Canada'),
+       ('2 Lombard Place', 'Winnipeg', 'Manitoba', 'Canada'),
+       ('86 Freeport Blvd NE', 'Calgary', 'Alberta', 'Canada'),
+       ('1274 Carling Ave', 'Ottawa', 'Ontario', 'Canada'),
+       ('131 Laurier St', 'Gatineau', 'Quebec', 'Canada'),
+       ('1450 Airpointe Dr', 'Columbus', 'Ohio', 'America'),
+       ('Vialidad Ch-P 8800', 'Chihuahua City','Chihuahua', 'Mexico'),
+       ('Blvd Agua Caliente 4558', 'Tijuana', 'Baja California', 'Mexico');
+
+-- for employees working at hilton (id #: 46-61)
+INSERT INTO address (street, city, province, country)
+VALUES ('56 Wellington St', 'Ottawa', 'Ontario', 'Canada'),
+       ('145 Sparks St', 'Ottawa', 'Ontario', 'Canada'),
+
+       ('55 Blvd Saint-Charles', 'Montreal', 'Quebec', 'Canada'),
+       ('189 Blvd Saint-Jean', 'Montreal', 'Quebec', 'Canada'),
+
+       ('2007 Waverly Place', 'New York City', 'New York', 'America'),
+       ('56 Greenwich Village', 'New York City', 'New York', 'America'),
+
+       ('986 Aaron Dr', 'Columbus', 'Ohio', 'America'),
+       ('5698 Abbey Rd', 'Columbus', 'Ohio', 'America'),
+
+       ('1234 Acarie Dr', 'Columbus', 'Ohio', 'America'),
+       ('3421 Adell Court', 'Columbus', 'Ohio', 'America'),
+
+       ('2023 Airport Fwy', 'Milwaukee', 'Wisconsin', 'America'),
+       ('98 Alice St', 'Milwaukee', 'Wisconsin', 'America'),
+
+       ('506-8 Madero St', 'Mexico City','Mexico City', 'Mexico'),
+       ('58-4 Genova St', 'Mexico City','Mexico City', 'Mexico'),
+
+       ('999 Avenida Tulum', 'Cancun', 'Quintana Roo', 'Mexico'),
+       ('5-65 Avenida Kukulkan', 'Cancun', 'Quintana Roo', 'Mexico');
+
+-- for employees working at omni (id #: 62-77)
+INSERT INTO address (street, city, province, country)
+VALUES ('185 Warden Ave', 'Toronto', 'Ontario', 'Canada'),
+       ('69 Valleys Dr', 'Toronto', 'Ontario', 'Canada'),
+
+       ('111 Beverly St', 'Toronto', 'Ontario', 'Canada'),
+       ('69 Colborne St', 'Toronto', 'Ontario', 'Canada'),
+
+       ('2003 Saint Patrick St', 'Montreal', 'Quebec', 'Canada'),
+       ('96 Rude de la Commune', 'Montreal', 'Quebec', 'Canada'),
+
+       ('164 Harvest Hills Blvd', 'Calgary', 'Alberta', 'Canada'),
+       ('101 Centre St', 'Calgary', 'Alberta', 'Canada'),
+
+       ('12 Anuhea Circle Dr', 'Volcano', 'Hawaii', 'America'),
+       ('342 Hapu Lane', 'Volcano', 'Hawaii', 'America'),
+
+       ('20 Park Ave', 'New York City', 'New York', 'America'),
+       ('1246 Crosby St', 'New York City', 'New York', 'America'),
+
+       ('103-4 Calle Sexta', 'Tijuana', 'Baja California', 'Mexico'),
+       ('103-4 Calle Sexta', 'Tijuana', 'Baja California', 'Mexico'),
+
+       ('103-4 Calle Sexta', 'Tijuana', 'Baja California', 'Mexico'),
+       ('5956 Calle Juan Aldama', 'Tijuana', 'Baja California', 'Mexico');
+
+
 
 -- -------------------------------
 -- View statements for address
@@ -55,49 +150,47 @@ SELECT * FROM address;
 DROP TABLE IF EXISTS hotel_chain;
 CREATE TABLE hotel_chain (
     name VARCHAR(50) NOT NULL ,
-    city_address VARCHAR(25) NOT NULL,
-    street_address VARCHAR (50) NOT NULL,
+    hotel_chain_address_id SERIAL,
     num_of_hotels INT NOT NULL,
     email VARCHAR(100) NOT NULL,
     central_phone_number CHAR(10) NOT NULL,
-    FOREIGN KEY (city_address) REFERENCES address(city),
+    FOREIGN KEY (hotel_chain_address_id) REFERENCES address(id),
     PRIMARY KEY (name)
 );
 
 -- -------------------------------------
 -- Insertion statements for hotel_chain
 -- -------------------------------------
-INSERT INTO hotel_chain
-VALUES ('Hilton Worldwide', 'Ottawa', '123 Laurier Ave', 40, 'hiltonworldwide@email.com', 6131231234),
-       ('Omni Hotels & Resorts', 'Toronto', '12 Union St', 15, 'omnihotels@email.com', 4161231234),
-       ('Four Seasons Hotels & Resorts', 'Toronto', '13 Union St', 21, 'fourseasonshotels@email.com', 4163214321),
-       ('Shangri-La Hotels & Resorts', 'Vancouver', '15 Ontario St', 6, 'shangri-lihotels@email.com', 6041231234),
-       ('Best Western', 'Calgary', '2136 Airport Road', 66, 'bestwestern@email.com', 4031231234);
+INSERT INTO hotel_chain (name, num_of_hotels, email, central_phone_number)
+VALUES ('Hilton Worldwide', 40, 'hiltonworldwide@email.com', 6131231234),
+       ('Omni Hotels & Resorts', 15, 'omnihotels@email.com', 4161231234),
+       ('Four Seasons Hotels & Resorts', 21, 'fourseasonshotels@email.com', 4163214321),
+       ('Shangri-La Hotels & Resorts', 6, 'shangri-lihotels@email.com', 6041231234),
+       ('Best Western', 66, 'bestwestern@email.com', 4031231234);
 
 -- -------------------------------
 -- View statements for address
 -- -------------------------------
 SELECT * FROM hotel_chain; -- view everything
 
-SELECT h.name, h.street_address,a.city, a.province, a.country -- view the entire address of all hotel chains
+SELECT h.name, a.street,a.city, a.province, a.country -- view the entire address of all hotel chains
 FROM address a
-INNER JOIN hotel_chain h ON h.city_address = a.city;
+INNER JOIN hotel_chain h ON h.hotel_chain_address_id = a.id;
 
 -- ----------------------------
 -- Table structure for a hotel
 -- ----------------------------
 DROP TABLE IF EXISTS hotel;
 CREATE TABLE hotel (
-    hotel_id INT,
+    hotel_id SERIAL,
     name VARCHAR(50) NOT NULL,
     num_of_rooms INT NOT NULL,
-    hotel_city_address VARCHAR(25) NOT NULL,
-    hotel_street_address VARCHAR(50),
+    hotel_address_id INT,
     email VARCHAR(30) NOT NULL,
     hotel_phone_number CHAR(10) NOT NULL,
     rating numeric(2,1) NOT NULL,
     FOREIGN KEY (name) REFERENCES hotel_chain(name) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (hotel_city_address) REFERENCES address(city),
+    FOREIGN KEY (hotel_address_id) REFERENCES address(id),
     PRIMARY KEY (hotel_id)
 );
 
@@ -106,68 +199,68 @@ CREATE TABLE hotel (
 -- ----------------------------------
 
 -- insertion statements for hilton hotels worldwide
-INSERT INTO hotel
-VALUES (1, 'Hilton Worldwide', 313, 'Ottawa', '361 Queen St', 'hiltonworldwide1@email.com', 3432904580, 4.3),
-       (2, 'Hilton Worldwide', 210, 'Montreal', '380 Sherbrooke St W', 'hiltonworldwide2@email.com', 5143267892, 3.0),
-       (3, 'Hilton Worldwide', 456, 'New York City', '1335 6th Ave', 'hiltonworldwide3@email.com', 2123134141, 4.1),
-       (4, 'Hilton Worldwide', 300, 'Columbus', '8700 Lyra Dr', 'hiltonworldwide4@email.com', 6145687234, 3.9),
-       (5, 'Hilton Worldwide', 333, 'Columbus', '3900 Chagrin Dr', 'hiltonworldwide5@email.com', 6144967982, 3.8),
-       (6, 'Hilton Worldwide', 101, 'Milwaukee', '509 W Wisconsin Ave', 'hiltonworldwide6@email.com', 4142120101, 4.6),
-       (7, 'Hilton Worldwide', 456, 'Mexico City', 'Ave Juarez 70', 'hiltonworldwide7@email.com', 5253545556, 4.0),
-       (8, 'Hilton Worldwide', 300, 'Cancun', 'Carr Federal Libre 307 Cancun-Tulum 248-868', 'hiltonworldwide8@email.com', 9988860073, 5.0);
+INSERT INTO hotel (name, num_of_rooms, hotel_address_id, email, hotel_phone_number, rating)
+VALUES ('Hilton Worldwide', 313, 6, 'hiltonworldwide1@email.com', 3432904580, 4.3),
+       ('Hilton Worldwide', 210, 7, 'hiltonworldwide2@email.com', 5143267892, 3.0),
+       ('Hilton Worldwide', 456, 8, 'hiltonworldwide3@email.com', 2123134141, 4.1),
+       ('Hilton Worldwide', 300, 9,'hiltonworldwide4@email.com', 6145687234, 3.9),
+       ('Hilton Worldwide', 333, 10, 'hiltonworldwide5@email.com', 6144967982, 3.8),
+       ('Hilton Worldwide', 101, 11, 'hiltonworldwide6@email.com', 4142120101, 4.6),
+       ('Hilton Worldwide', 456, 12, 'hiltonworldwide7@email.com', 5253545556, 4.0),
+       ('Hilton Worldwide', 300, 13, 'hiltonworldwide8@email.com', 9988860073, 5.0);
 
 -- insertion statements for omni hotels & resorts
-INSERT INTO hotel
-VALUES (9, 'Omni Hotels & Resorts', 306, 'Toronto', '37 King St E', 'omnihotels1@email.com', 4168639700, 4.5),
-       (10, 'Omni Hotels & Resorts', 265, 'Toronto', '2727 West Club Dr', 'omnihotels2@email.com', 6472972271, 3.0),
-       (11, 'Omni Hotels & Resorts', 250, 'Montreal', '1050 Sherbrooke Street W', 'omnihotels3@email.com', 5142841110, 3.2),
-       (12, 'Omni Hotels & Resorts', 169, 'Calgary', '100 South 12th St', 'omnihotels4@email.com', 4033447000, 4.2),
-       (13, 'Omni Hotels & Resorts', 89, 'Volcano', '7696 Sam Snead Hwy', 'omnihotels5@email.com', 8088381766, 4.1),
-       (14, 'Omni Hotels & Resorts', 279, 'New York City', '21 E 52nd St', 'omnihotels6@email.com', 2127535800, 3.5),
-       (15, 'Omni Hotels & Resorts', 99, 'Tijuana', '23 Ocean Lane', 'omnihotels7@email.com', 8088428000, 5.0),
-       (16, 'Omni Hotels & Resorts', 143, 'Tijuana', '555 S Lamar', 'omnihotels8@email.com', 8087446664, 4.2);
+INSERT INTO hotel (name, num_of_rooms, hotel_address_id, email, hotel_phone_number, rating)
+VALUES ('Omni Hotels & Resorts', 306, 14, 'omnihotels1@email.com', 4168639700, 4.5),
+       ('Omni Hotels & Resorts', 265, 15, 'omnihotels2@email.com', 6472972271, 3.0),
+       ('Omni Hotels & Resorts', 250, 16, 'omnihotels3@email.com', 5142841110, 3.2),
+       ('Omni Hotels & Resorts', 169, 17, 'omnihotels4@email.com', 4033447000, 4.2),
+       ('Omni Hotels & Resorts', 89, 18, 'omnihotels5@email.com', 8088381766, 4.1),
+       ('Omni Hotels & Resorts', 279, 19, 'omnihotels6@email.com', 2127535800, 3.5),
+       ('Omni Hotels & Resorts', 99, 20, 'omnihotels7@email.com', 8088428000, 5.0),
+       ('Omni Hotels & Resorts', 143, 21, 'omnihotels8@email.com', 8087446664, 4.2);
 
 -- insertion statements for four seasons hotels & resorts
-INSERT INTO hotel
-VALUES (17, 'Four Seasons Hotels & Resorts', 343, 'Vancouver', '791 W Georgia S', 'fourseasonshotels1@email.com', 6046105195, 4.1),
-       (18, 'Four Seasons Hotels & Resorts', 152, 'Gatineau', '4591 Blackcomb Way', 'fourseasonshotels2@email.com', 3119353400, 3.7),
-       (19, 'Four Seasons Hotels & Resorts', 203, 'Chihuahua City', '48898 La Huerta', 'fourseasonshotels3@email.com', 6211642163, 3.3),
-       (20, 'Four Seasons Hotels & Resorts', 178, 'Chihuahua City', '63734 Corral del Risco', 'fourseasonshotels4@email.com', 6212916000, 4.8),
-       (21, 'Four Seasons Hotels & Resorts', 167, 'Mexico City', 'Paseo de la Reforma #500', 'fourseasonshotels5@email.com', 5552301818, 5.0),
-       (22, 'Four Seasons Hotels & Resorts', 420, 'New York City', '27 Barclay St', 'fourseasonshotels6@email.com', 6468801999, 5.0),
-       (23, 'Four Seasons Hotels & Resorts', 237, 'Toronto', '60 Yorkville Ave', 'fourseasonshotels7@email.com', 4169640411, 4.7),
-       (24, 'Four Seasons Hotels & Resorts', 168, 'Montreal', '1440 Rue de la Montagne', 'fourseasonshotels8@email.com', 5148432500, 4.6);
+INSERT INTO hotel (name, num_of_rooms, hotel_address_id, email, hotel_phone_number, rating)
+VALUES ('Four Seasons Hotels & Resorts', 343, 22, 'fourseasonshotels1@email.com', 6046105195, 4.1),
+       ('Four Seasons Hotels & Resorts', 152, 23, 'fourseasonshotels2@email.com', 3119353400, 3.7),
+       ('Four Seasons Hotels & Resorts', 203, 24, 'fourseasonshotels3@email.com', 6211642163, 3.3),
+       ('Four Seasons Hotels & Resorts', 178, 25, 'fourseasonshotels4@email.com', 6212916000, 4.8),
+       ('Four Seasons Hotels & Resorts', 167, 26, 'fourseasonshotels5@email.com', 5552301818, 5.0),
+       ('Four Seasons Hotels & Resorts', 420, 27, 'fourseasonshotels6@email.com', 6468801999, 5.0),
+       ('Four Seasons Hotels & Resorts', 237, 28, 'fourseasonshotels7@email.com', 4169640411, 4.7),
+       ('Four Seasons Hotels & Resorts', 168, 29, 'fourseasonshotels8@email.com', 5148432500, 4.6);
 
 -- insertion statements for shangri-la hotels and resorts
-INSERT INTO hotel
-VALUES (25, 'Shangri-La Hotels & Resorts', 391, 'Vancouver', '1128 West Georgia St', 'shangri-lihotels1@email.com', 6046891120, 5.0),
-       (26, 'Shangri-La Hotels & Resorts', 265, 'Vancouver', '1326 Davie St', 'shangri-lihotels2@email.com', 6042673472, 5.0),
-       (27, 'Shangri-La Hotels & Resorts', 201, 'Winnipeg', '931 Main St', 'shangri-lihotels3@email.com', 2046470913, 3.8),
-       (28, 'Shangri-La Hotels & Resorts', 220, 'Calgary', '1140 10 Ave SW', 'shangri-lihotels4@email.com', 4034687984, 4.6),
-       (29, 'Shangri-La Hotels & Resorts', 180, 'Cancun', 'Margaritas 2 LOC-10 SM-22, SM 22, 77500', 'shangri-lihotels5@email.com', 9988856988, 3.8),
-       (30, 'Shangri-La Hotels & Resorts', 166, 'Milwaukee', '9100 W Oklahoma Ave', 'shangri-lihotels6@email.com', 4149882210, 4.1),
-       (31, 'Shangri-La Hotels & Resorts', 387, 'Mexico City', 'Isabel La Católica 30', 'shangri-lihotels7@email.com', 5551306830, 3.0),
-       (32, 'Shangri-La Hotels & Resorts', 240, 'Volcano', '19-3820 Old Volcano Rd', 'shangri-lihotels8@email.com', 9988860073, 4.4);
+INSERT INTO hotel (name, num_of_rooms, hotel_address_id, email, hotel_phone_number, rating)
+VALUES ('Shangri-La Hotels & Resorts', 391, 30, 'shangri-lihotels1@email.com', 6046891120, 5.0),
+       ('Shangri-La Hotels & Resorts', 265, 31, 'shangri-lihotels2@email.com', 6042673472, 5.0),
+       ('Shangri-La Hotels & Resorts', 201, 32, 'shangri-lihotels3@email.com', 2046470913, 3.8),
+       ('Shangri-La Hotels & Resorts', 220, 33, 'shangri-lihotels4@email.com', 4034687984, 4.6),
+       ('Shangri-La Hotels & Resorts', 180, 34, 'shangri-lihotels5@email.com', 9988856988, 3.8),
+       ('Shangri-La Hotels & Resorts', 166, 35, 'shangri-lihotels6@email.com', 4149882210, 4.1),
+       ('Shangri-La Hotels & Resorts', 387, 36, 'shangri-lihotels7@email.com', 5551306830, 3.0),
+       ('Shangri-La Hotels & Resorts', 240, 37, 'shangri-lihotels8@email.com', 9988860073, 4.4);
 
 -- insertion statements for best western hotels
-INSERT INTO hotel
-VALUES (33, 'Best Western', 343, 'Winnipeg', '80 St Marys Rd', 'bestwestern1@email.com', 2042948568, 4.3),
-       (34, 'Best Western', 247, 'Winnipeg', '2 Lombard Place', 'bestwestern2@email.com', 2049571350, 4.3),
-       (35, 'Best Western', 279, 'Calgary', '86 Freeport Blvd ME', 'bestwestern3@email.com', 4032649650, 4.4),
-       (36, 'Best Western', 269, 'Ottawa', '1274 Carling Ave', 'bestwestern4@email.com', 6137281951, 4.0),
-       (37, 'Best Western', 251, 'Gatineau', '131 Laurier St', 'bestwestern5@email.com', 8197708550, 3.7),
-       (38, 'Best Western', 164, 'Columbus', '1450 Airpointe Dr', 'bestwestern6@email.com', 6143378400, 3.0),
-       (39, 'Best Western', 275, 'Chihuahua City', 'Vialidad Ch-P 8800', 'bestwestern7@email.com', 6214209000, 3.2),
-       (40, 'Best Western', 367, 'Tijuana', 'Blvd Agua Caliente 4558', 'bestwestern8@email.com', 8086817000, 5.0);
+INSERT INTO hotel (name, num_of_rooms, hotel_address_id, email, hotel_phone_number, rating)
+VALUES ('Best Western', 343, 38, 'bestwestern1@email.com', 2042948568, 4.3),
+       ('Best Western', 247, 39, 'bestwestern2@email.com', 2049571350, 4.3),
+       ('Best Western', 279, 40, 'bestwestern3@email.com', 4032649650, 4.4),
+       ('Best Western', 269, 41, 'bestwestern4@email.com', 6137281951, 4.0),
+       ('Best Western', 251, 42, 'bestwestern5@email.com', 8197708550, 3.7),
+       ('Best Western', 164, 43, 'bestwestern6@email.com', 6143378400, 3.0),
+       ('Best Western', 275, 44, 'bestwestern7@email.com', 6214209000, 3.2),
+       ('Best Western', 367, 45, 'bestwestern8@email.com', 8086817000, 5.0);
 
 -- -------------------------------
 -- View statements for hotel
 -- -------------------------------
 SELECT * FROM hotel; -- view everything
 
-SELECT h.name, h.hotel_street_address,a.city, a.province, a.country -- view the entire address of all hotel (ordered by their id's)
+SELECT h.name, h.hotel_address_id,a.street, a.city, a.province, a.country -- view the entire address of all hotel (ordered by their id's)
 FROM address a
-        JOIN hotel h ON h.hotel_city_address = a.city
+        JOIN hotel h ON h.hotel_address_id = a.id
 ORDER BY h.hotel_id;
 
 -- ----------------------------
@@ -258,11 +351,10 @@ CREATE TABLE employee (
     first_name VARCHAR(25) NOT NULL,
     last_name VARCHAR (25) NOT NULL,
     SIN CHAR(9) NOT NULL UNIQUE,
-    city_address VARCHAR(25) NOT NULL,
-    street_address VARCHAR(50) NOT NULL,
+    employee_address_id INT,
     position VARCHAR(25) NOT NULL,
     salary NUMERIC(7,2) NOT NULL ,
-    FOREIGN KEY (city_address) REFERENCES address(city),
+    FOREIGN KEY (employee_address_id) REFERENCES address(id),
     FOREIGN KEY (hotel_id) REFERENCES hotel(hotel_id) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (employee_id,hotel_id)
 );
@@ -270,60 +362,60 @@ CREATE TABLE employee (
 -- -----------------------------------------------------
 -- Insertion statements for employees at hilton hotels
 -- -----------------------------------------------------
-INSERT INTO employee (manager_id, hotel_id, first_name, last_name, SIN, city_address, street_address, position, salary)
+INSERT INTO employee (manager_id, hotel_id, first_name, last_name, SIN, employee_address_id, position, salary)
 VALUES
-    (null, 1, 'Mickey', 'Mouse', 951753456, 'Ottawa', '56 Wellington St', 'Housekeeping', 30088.56),
-    (101, 1, 'Daisy', 'Duck', 753159762, 'Ottawa', '145 Sparks St', 'Maintenance Manager', 86002.67),
+    (null, 1, 'Mickey', 'Mouse', 432517863, 46, 'Housekeeping', 30088.56),
+    (101, 1, 'Daisy', 'Duck', 753159762, 47, 'Maintenance Manager', 86002.67),
 
-    (null, 2, 'Hugh', 'Normous', 456789123, 'Montreal', 'Blvd Saint-Charles', 'Events', 46020.56),
-    (102, 2, 'Luke', 'Skywalker', 789654123, 'Montreal', 'Blvd Saint-Jean', 'Security Manager', 99567.79),
+    (null, 2, 'Hugh', 'Normous', 456789123, 48, 'Events', 46020.56),
+    (102, 2, 'Luke', 'Skywalker', 789654123, 49, 'Security Manager', 99567.79),
 
-    (null, 3, 'Alex', 'Russo', 123556789, 'New York City', '2007 Waverly Place', 'Front Desk Agent', 45042.62),
-    (103, 3, 'Justin', 'Russo', 987654321, 'New York City', '56 Greenwich Village', 'Concierge Manager', 68569.45),
+    (null, 3, 'Alex', 'Russo', 123556789, 50, 'Front Desk Agent', 45042.62),
+    (103, 3, 'Justin', 'Russo', 987654321, 51, 'Concierge Manager', 68569.45),
 
-    (null, 4, 'Mike', 'Wazowski', 951753456, 'Columbus', '986 Aaron Dr', 'Entertainer', 80982.56),
-    (104, 4, 'Jimmy', 'Neutron', 753159762, 'Columbus', '5698 Abbey Rd', 'Housekeeper Manager', 86056.67),
+    (null, 4, 'Mike', 'Wazowski', 951753456, 52, 'Entertainer', 80982.56),
+    (104, 4, 'Jimmy', 'Neutron', 653214896, 53, 'Housekeeper Manager', 86056.67),
 
-    (null, 5, 'Spongebob', 'Squarepants', 842695713, 'Columbus', '1234 Acarie Dr', 'Concierge', 46053.56),
-    (105, 5, 'Patrick', 'Star', 963852741, 'Columbus', '3421 Adell Court', 'Security', 99645.79),
+    (null, 5, 'Spongebob', 'Squarepants', 842695713, 54, 'Concierge', 46053.56),
+    (105, 5, 'Patrick', 'Star', 963852741, 55, 'Security', 99645.79),
 
-    (null, 6, 'Betty', 'Boop', 123123123, 'Milwaukee', '2023 Airport Fwy', 'Entertainer', 45456.62),
-    (106, 6, 'Admiral', 'Ackbar', 456456456, 'Milwaukee', '98 Alice St', 'Security', 68452.45),
+    (null, 6, 'Betty', 'Boop', 123123123, 56, 'Entertainer', 45456.62),
+    (106, 6, 'Admiral', 'Ackbar', 456456456, 57, 'Security', 68452.45),
 
-    (null, 7, 'Bill', 'Nye', 789789789, 'Mexico City', '506-8 Madero St', 'Front Desk Agent', 46205.56),
-    (107, 7, 'Tiger', 'Woods', 741741741, 'Mexico City', '58-4 Genova St', 'Entertainer Manager', 99123.79),
+    (null, 7, 'Bill', 'Nye', 789789789, 58, 'Front Desk Agent', 46205.56),
+    (107, 7, 'Tiger', 'Woods', 741741741, 59, 'Entertainer Manager', 99123.79),
 
-    (null, 8, 'Red', 'Skull', 852852852, 'Cancun', '999 Avenida Tulum', 'Housekeeper', 45456.62),
-    (108, 8, 'Petter', 'Pan', 963963963, 'Cancun', '5-65 Avenida Kukulkan', 'Front Desk Agent Manager', 68789.45);
+    (null, 8, 'Red', 'Skull', 852852852, 60, 'Housekeeper', 45456.62),
+    (108, 8, 'Peter', 'Pan', 963963963, 61, 'Front Desk Agent Manager', 68789.45);
 
 -- -------------------------------------------------------------
 -- Insertion statements for employees at omni hotels & resorts
 -- -------------------------------------------------------------
-INSERT INTO employee (manager_id, hotel_id, first_name, last_name, SIN, city_address, street_address, position, salary)
+INSERT INTO employee (manager_id, hotel_id, first_name, last_name, SIN, employee_address_id, position, salary)
 VALUES
-    (null, 9, 'Tinker', 'Bell', 012345678, 'Toronto', '1185 Warden Ave', 'Front Desk Agent', 45689.56),
-    (109, 9, 'Minnie', 'Mouse', 234567890, 'Toronto', '69 Valleys Dr', 'Maintenance Manager', 80000.67),
+    (null, 9, 'Tinker', 'Bell', 012345678, 62, 'Front Desk Agent', 45689.56),
+    (109, 9, 'Minnie', 'Mouse', 234567890, 63, 'Maintenance Manager', 80000.67),
 
-    (null, 10, 'Johnny', 'Test', 345678901, 'Toronto', '111 Beverly St', 'Maintenance', 45682.56),
-    (110, 10, 'Mario', 'Kart', 456789012, 'Toronto', '69 Colborne St', 'Events Manager', 84560.79),
+    (null, 10, 'Johnny', 'Test', 345678901, 64, 'Maintenance', 45682.56),
+    (110, 10, 'Mario', 'Kart', 456789012, 65, 'Events Manager', 84560.79),
 
-    (null, 11, 'Lisa', 'Simpson', 567890123, 'Montreal', '2003 Saint Patrick St', 'Entertainer', 92045.62),
-    (111, 11, 'Scooby', 'Doo', 678901234, 'Montreal', '96 Rude de la Commune', 'Chef Manager', 45684.45),
+    (null, 11, 'Lisa', 'Simpson', 567890123, 66, 'Entertainer', 92045.62),
+    (111, 11, 'Scooby', 'Doo', 678901234, 67, 'Chef Manager', 45684.45),
 
-    (null, 12, 'Charlie', 'Brown', 789012345, 'Calgary', '100 Harvest Hills Blvd', 'Entertainer', 76102.56),
-    (112, 12, 'Winnie', 'the Pooh', 890123456, 'Calgary', '101 Centre St', 'Housekeeper Manager', 76523.67),
+    (null, 12, 'Charlie', 'Brown', 789012345, 68, 'Entertainer', 76102.56),
+    (112, 12, 'Winnie', 'the Pooh', 890123456, 69, 'Housekeeper Manager', 76523.67),
 
-    (null, 13, 'Tweety', 'Bird', 901234567, 'Volcano', '12 Anuhea Circle Dr', 'Front Desk Agent', 49782.56),
-    (113, 13, 'Jessice', 'Rabbit', 876543210, 'Volcano', '342 Hapu Lane', 'Security', 78922.79),
+    (null, 13, 'Tweety', 'Bird', 901234567, 70, 'Front Desk Agent', 49782.56),
+    (113, 13, 'Jessice', 'Rabbit', 876543210, 71, 'Security', 78922.79),
 
-    (null, 14, 'Jiminy', 'Cricket', 765432109, 'New York City', '20 Park Ave', 'Events', 95842.62),
-    (114, 14, 'Heinz', 'Doofenshmirtz', 654321098, 'New York City', '101 Crosby St', 'Security', 62000.45),
+    (null, 14, 'Jiminy', 'Cricket', 765432109, 73, 'Events', 95842.62),
+    (114, 14, 'Heinz', 'Doofenshmirtz', 654321098, 72, 'Security', 62000.45),
 
-    (null, 15, 'Phineas', 'Flynn', 543210987, 'Tijuana', '103-4 Calle Sexta', 'Security', 69842.56),
-    (115, 15, 'Ferb', 'Fletcher', 432109876, 'Tijuana', '103-4 Calle Sexta', 'Housekeeper Manager', 94650.79),
+    (null, 15, 'Phineas', 'Flynn', 543210987, 74, 'Security', 69842.56),
+    (115, 15, 'Ferb', 'Fletcher', 432109876, 75, 'Housekeeper Manager', 94650.79),
 
-    (null, 16, 'Perry', 'the Platypus', 321098765, 'Tijuana', '103-4 Calle Sexta', 'Chef', 54035.62),
-    (116, 16, 'Isabella', 'Garcia-Shapiro', 210987654, 'Tijuana', '5956 Calle Juan Aldama', 'Front Desk Agent Manager', 46894.45);
+    (null, 16, 'Perry', 'the Platypus', 321098765, 76, 'Chef', 54035.62),
+    (116, 16, 'Isabella', 'Garcia-Shapiro', 210987654, 77, 'Front Desk Agent Manager', 46894.45);
 
 -- -------------------------------
 -- View statement for employee
