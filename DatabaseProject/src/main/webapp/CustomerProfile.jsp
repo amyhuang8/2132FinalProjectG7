@@ -5,6 +5,7 @@
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <meta http-equiv="Content-Language" content="ch-cn">
         <link rel = "stylesheet" href="css/styles.css">
+        <link rel = "stylesheet" href="css/customerprofile.css">
 
         <!--TITLE-->
         <title>Customer Profile</title>
@@ -84,6 +85,18 @@
                         return false;
                     }
 
+                    // THERE SHOULD BE SOME JAVA CALL HERE WHERE THE DATABASE ACTUALLY UPDATES!!
+                    
+                    // VARIABLE DECLARATION: save success snackbar
+                    let success = document.getElementById("changes_snackbar");
+
+                    success.className = "show"; //updating class name
+
+                    // PROCESS: removing show class from element after 3 secs
+                    setTimeout(function() {
+                        success.className = success.className.replace("show", "");
+                        }, 3000);
+
                     // OUTPUT
                     return true;
                 }
@@ -146,13 +159,13 @@
             <br><br>
 
             <!--BUTTONS-->
-            <button type="submit" value="savechanges"
+            <button type="button" value="savechanges"
                     onclick="return validateProfileSave();">SAVE CHANGES</button>
             <button type="reset" value="reset">RESET CHANGES</button>
         </form>
 
         <!--SAVED CHANGES SNACKBAR-->
-        <!--<div id="changes_snackbar">All changes saved!</div>-->
+        <div id="changes_snackbar">All changes saved!</div>
 
     </body>
 </html>

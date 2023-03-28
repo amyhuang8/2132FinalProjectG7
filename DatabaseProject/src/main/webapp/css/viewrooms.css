@@ -34,12 +34,12 @@
     font-size: 16px;
     padding: 14px 20px 12px 45px;
     border: none;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid lightgrey;
 }
 
 /* FUNCTIONAL DESIGN: search field on focus or click */
 .dropdown-list:focus {
-    outline: 1px solid #ddd;
+    outline: 1px solid lightgrey;
 }
 
 /* FUNCTIONAL DESIGN: Dropdown Content (default hidden) */
@@ -48,7 +48,7 @@
     position: absolute;
     background-color: white;
     min-width: 230px;
-    border: 1px solid #ddd;
+    border: 1px solid lightgrey;
     z-index: 1;
 }
 
