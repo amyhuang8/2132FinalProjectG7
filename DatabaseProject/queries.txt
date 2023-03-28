@@ -162,6 +162,7 @@ ORDER BY h.hotel_id;
 -- ----------------------------
 DROP TABLE IF EXISTS room;
 CREATE TABLE room (
+    room_id SERIAL UNIQUE,
     room_num INT,
     hotel_id INT,
     price NUMERIC(8,2),
@@ -172,13 +173,13 @@ CREATE TABLE room (
     damages NUMERIC(8,2),
     availability BOOLEAN NOT NULL,
     FOREIGN KEY (hotel_id) REFERENCES hotel(hotel_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    PRIMARY KEY (room_num, hotel_id, price, capacity, view_type, extendable)
+    PRIMARY KEY (room_id, room_num, hotel_id, price, capacity, view_type, extendable)
 );
 
 -- ----------------------------------------
 -- Insertion statements for Hilton Hotels
 -- ----------------------------------------
-INSERT INTO room
+INSERT INTO room (room_num, hotel_id, price, amenities, capacity, view_type, extendable, damages, availability)
 VALUES
         (1,1,239.99,'Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning','Single','Sea',true,0.0,true),
         (2,1,249.89,'Mini refrigerator, Microwave, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning','Double','Cityscape',true,0.0,true),
@@ -228,12 +229,17 @@ VALUES
         (4,8,390.49,'Mini refrigerator, Coffee Maker, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub','Quad', 'Sea',true,0.0,true),
         (5,8,380.49,'LCD TV with cable & on-demand movies, Hairdryer, Mini refrigerator','Joint', 'Sea',false,0.0,true);
 
--- ----------------------------
+-- ---------------------------------
+-- View statements for a room
+-- ---------------------------------
+SELECT * FROM room;
+
+-- ---------------------------------
 -- Table structure for an employee
--- ----------------------------
+-- ---------------------------------
 DROP TABLE IF EXISTS employee;
 CREATE TABLE employee (
-    employee_id INT UNIQUE,
+    employee_id SMALLSERIAL UNIQUE,
     manager_id INT,
     hotel_id INT,
     first_name VARCHAR(25) NOT NULL,
@@ -241,19 +247,54 @@ CREATE TABLE employee (
     SIN CHAR(9) NOT NULL,
     city_address VARCHAR(25) NOT NULL,
     street_address VARCHAR(50) NOT NULL,
-    position VARCHAR(15) NOT NULL,
+    position VARCHAR(25) NOT NULL,
     salary NUMERIC(6,2) NOT NULL ,
     FOREIGN KEY (city_address) REFERENCES address(city),
     FOREIGN KEY (hotel_id) REFERENCES hotel(hotel_id) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (employee_id,hotel_id)
 );
 
--- ----------------------------
+-- ----------------------------------------
+-- Insertion statements for Hilton Hotels
+-- ----------------------------------------
+INSERT INTO employee (manager_id, hotel_id, first_name, last_name, SIN, city_address, street_address, position, salary)
+VALUES
+    (null, 1, 'Mickey', 'Mouse', 951753456, 'Ottawa', '56 Wellington St', 'Housekeeping', 30.56),
+    (101, 1, 'Daisy', 'Duck', 753159762, 'Ottawa', '145 Sparks St', 'Maintenance Manager', 86.67),
+
+    (null, 2, 'Hugh', 'Normous', 456789123, 'Montreal', 'Blvd Saint-Charles', 'Events', 46.56),
+    (102, 2, 'Luke', 'Skywalker', 789654123, 'Montreal', 'Blvd Saint-Jean', 'Security Manager', 99.79),
+
+    (null, 3, 'Alex', 'Russo', 123556789, 'New York City', '2007 Waverly Place', 'Front Desk Agent', 45.62),
+    (103, 3, 'Justin', 'Russo', 987654321, 'New York City', '56 Greenwich Village', 'Concierge Manager', 68.45),
+
+    (null, 4, 'Mike', 'Wazowski', 951753456, 'Columbus', '986 Aaron Dr', 'Entertainer', 30.56),
+    (104, 4, 'Jimmy', 'Neutron', 753159762, 'Columbus', '5698 Abbey Rd', 'Housekeeper Manager', 86.67),
+
+    (null, 5, 'Spongebob', 'Squarepants', 842695713, 'Columbus', '1234 Acarie Dr', 'Concierge', 46.56),
+    (105, 5, 'Patrick', 'Star', 963852741, 'Columbus', '3421 Adell Court', 'Security', 99.79),
+
+    (null, 6, 'Betty', 'Boop', 123123123, 'Milwaukee', '2023 Airport Fwy', 'Entertainer', 45.62),
+    (106, 6, 'Admiral', 'Ackbar', 456456456, 'Milwaukee', '98 Alice St', 'Security', 68.45),
+
+    (null, 7, 'Bill', 'Nye', 789789789, 'Mexico City', '506-8 Madero St', 'Front Desk Agent', 46.56),
+    (107, 7, 'Tiger', 'Woods', 741741741, 'Mexico City', '58-4 Genova St', 'Entertainer Manager', 99.79),
+
+    (null, 8, 'Red', 'Skull', 852852852, 'Cancun', '999 Avenida Tulum', 'Housekeeper', 45.62),
+    (108, 8, 'Petter', 'Pan', 963963963, 'Cancun', '5-65 Avenida Kukulkan', 'Front Desk Agent Manager', 68.45);
+
+-- -------------------------------
+-- View statement for employee
+-- -------------------------------
+SELECT * FROM employee;
+
+
+-- -------------------------------
 -- Table structure for a customer
--- ----------------------------
+-- -------------------------------
 DROP TABLE IF EXISTS customer;
 CREATE TABLE customer (
-  customer_id INT,
+  customer_id SERIAL,
   first_name VARCHAR(25) NOT NULL,
   last_name VARCHAR (25) NOT NULL,
   SIN CHAR(9) NOT NULL,
@@ -261,55 +302,71 @@ CREATE TABLE customer (
   street_address VARCHAR(50) NOT NULL,
   registration_date DATE,
   credit_card_num CHAR(16),
-  customer_phone_number INT,
+  customer_phone_number CHAR(10),
   customer_email VARCHAR(30) NOT NULL,
   FOREIGN KEY (city_address) REFERENCES address(city),
   PRIMARY KEY (customer_id)
 );
 
--- ----------------------------
+-- --------------------------------------
+-- Insertion statements for customers
+-- --------------------------------------
+INSERT INTO customer (first_name, last_name, SIN, city_address, street_address, registration_date, credit_card_num, customer_phone_number, customer_email)
+VALUES
+('Bob', 'the Builder', 111111111, 'Tijuana', '147 Mehico', CURRENT_DATE, 1234567891234567, 8085679514, 'bobthebuilder@email.com'),
+('Harper', 'Finkle', 222222222, 'New York City', '896 Broadway', CURRENT_DATE, 1111111111111111, 6467985555, 'harperfinkle@email.com'),
+('Max', 'Russo', 333333333, 'Vancouver', '468 Cordova St', CURRENT_DATE, 2222222222222222, 6045687989, 'notawizard@email.com');
+
+-- -------------------------------
+-- View statement for customer
+-- -------------------------------
+SELECT * FROM customer;
+DELETE FROM customer;
+
+
+-- ------------------------------
 -- Table structure for a booking
--- ----------------------------
+-- ------------------------------
 DROP TABLE IF EXISTS booking;
 CREATE TABLE booking (
-    booking_id INT,
+    booking_id SERIAL,
     check_in DATE NOT NULL,
     check_out DATE NOT NULL,
     confirmation_date DATE NOT NULL,
     employee_id INT NOT NULL,
     customer_id INT NOT NULL,
-    room_num INT NOT NULL,
+    room_id INT,
     FOREIGN KEY (employee_id) REFERENCES employee(employee_id),
     FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
-    FOREIGN KEY (room_num) REFERENCES room(room_num) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (room_id) REFERENCES room(room_id) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (booking_id)
 );
 
--- ----------------------------
+-- ------------------------------
 -- Table structure for a rental
--- ----------------------------
+-- ------------------------------
 DROP TABLE IF EXISTS rental;
 CREATE TABLE rental (
-    rental_id INT,
+    rental_id SERIAL,
     booking_id INT NOT NULL,
     check_in DATE NOT NULL,
     check_out DATE NOT NULL,
-    room_num INT NOT NULL,
+    room_id INT NOT NULL,
     employee_id INT NOT NULL,
     customer_id INT NOT NULL,
     FOREIGN KEY (employee_id) REFERENCES employee(employee_id),
     FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
-    FOREIGN KEY (room_num) REFERENCES room(room_num) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (room_id) REFERENCES room(room_id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (booking_id) REFERENCES booking(booking_id),
     PRIMARY KEY (rental_id)
 );
 
--- ----------------------------
+-- -------------------------------
 -- Table structure for an archive
--- ----------------------------
+-- -------------------------------
 DROP TABLE IF EXISTS archive;
 CREATE TABLE archive (
-    archive_id INT,
+    archive_id SERIAL,
     booking_id INT,
     rental_id INT,
     check_in DATE NOT NULL,
