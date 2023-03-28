@@ -1,6 +1,19 @@
 SET search_path = ehotels;
 
 -- ----------------------------
+-- Deletion for any table
+-- ----------------------------
+drop table address;
+drop table hotel_chain;
+drop table hotel;
+drop table room;
+drop table employee;
+drop table customer;
+drop table booking;
+drop table rental;
+drop table archive;
+
+-- ----------------------------
 -- Table structure for address
 -- ----------------------------
 DROP TABLE IF EXISTS address;
@@ -244,44 +257,73 @@ CREATE TABLE employee (
     hotel_id INT,
     first_name VARCHAR(25) NOT NULL,
     last_name VARCHAR (25) NOT NULL,
-    SIN CHAR(9) NOT NULL,
+    SIN CHAR(9) NOT NULL UNIQUE,
     city_address VARCHAR(25) NOT NULL,
     street_address VARCHAR(50) NOT NULL,
     position VARCHAR(25) NOT NULL,
-    salary NUMERIC(6,2) NOT NULL ,
+    salary NUMERIC(7,2) NOT NULL ,
     FOREIGN KEY (city_address) REFERENCES address(city),
     FOREIGN KEY (hotel_id) REFERENCES hotel(hotel_id) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (employee_id,hotel_id)
 );
 
--- ----------------------------------------
--- Insertion statements for Hilton Hotels
--- ----------------------------------------
+-- -----------------------------------------------------
+-- Insertion statements for employees at hilton hotels
+-- -----------------------------------------------------
 INSERT INTO employee (manager_id, hotel_id, first_name, last_name, SIN, city_address, street_address, position, salary)
 VALUES
-    (null, 1, 'Mickey', 'Mouse', 951753456, 'Ottawa', '56 Wellington St', 'Housekeeping', 30.56),
-    (101, 1, 'Daisy', 'Duck', 753159762, 'Ottawa', '145 Sparks St', 'Maintenance Manager', 86.67),
+    (null, 1, 'Mickey', 'Mouse', 951753456, 'Ottawa', '56 Wellington St', 'Housekeeping', 30088.56),
+    (101, 1, 'Daisy', 'Duck', 753159762, 'Ottawa', '145 Sparks St', 'Maintenance Manager', 86002.67),
 
-    (null, 2, 'Hugh', 'Normous', 456789123, 'Montreal', 'Blvd Saint-Charles', 'Events', 46.56),
-    (102, 2, 'Luke', 'Skywalker', 789654123, 'Montreal', 'Blvd Saint-Jean', 'Security Manager', 99.79),
+    (null, 2, 'Hugh', 'Normous', 456789123, 'Montreal', 'Blvd Saint-Charles', 'Events', 46020.56),
+    (102, 2, 'Luke', 'Skywalker', 789654123, 'Montreal', 'Blvd Saint-Jean', 'Security Manager', 99567.79),
 
-    (null, 3, 'Alex', 'Russo', 123556789, 'New York City', '2007 Waverly Place', 'Front Desk Agent', 45.62),
-    (103, 3, 'Justin', 'Russo', 987654321, 'New York City', '56 Greenwich Village', 'Concierge Manager', 68.45),
+    (null, 3, 'Alex', 'Russo', 123556789, 'New York City', '2007 Waverly Place', 'Front Desk Agent', 45042.62),
+    (103, 3, 'Justin', 'Russo', 987654321, 'New York City', '56 Greenwich Village', 'Concierge Manager', 68569.45),
 
-    (null, 4, 'Mike', 'Wazowski', 951753456, 'Columbus', '986 Aaron Dr', 'Entertainer', 30.56),
-    (104, 4, 'Jimmy', 'Neutron', 753159762, 'Columbus', '5698 Abbey Rd', 'Housekeeper Manager', 86.67),
+    (null, 4, 'Mike', 'Wazowski', 951753456, 'Columbus', '986 Aaron Dr', 'Entertainer', 80982.56),
+    (104, 4, 'Jimmy', 'Neutron', 753159762, 'Columbus', '5698 Abbey Rd', 'Housekeeper Manager', 86056.67),
 
-    (null, 5, 'Spongebob', 'Squarepants', 842695713, 'Columbus', '1234 Acarie Dr', 'Concierge', 46.56),
-    (105, 5, 'Patrick', 'Star', 963852741, 'Columbus', '3421 Adell Court', 'Security', 99.79),
+    (null, 5, 'Spongebob', 'Squarepants', 842695713, 'Columbus', '1234 Acarie Dr', 'Concierge', 46053.56),
+    (105, 5, 'Patrick', 'Star', 963852741, 'Columbus', '3421 Adell Court', 'Security', 99645.79),
 
-    (null, 6, 'Betty', 'Boop', 123123123, 'Milwaukee', '2023 Airport Fwy', 'Entertainer', 45.62),
-    (106, 6, 'Admiral', 'Ackbar', 456456456, 'Milwaukee', '98 Alice St', 'Security', 68.45),
+    (null, 6, 'Betty', 'Boop', 123123123, 'Milwaukee', '2023 Airport Fwy', 'Entertainer', 45456.62),
+    (106, 6, 'Admiral', 'Ackbar', 456456456, 'Milwaukee', '98 Alice St', 'Security', 68452.45),
 
-    (null, 7, 'Bill', 'Nye', 789789789, 'Mexico City', '506-8 Madero St', 'Front Desk Agent', 46.56),
-    (107, 7, 'Tiger', 'Woods', 741741741, 'Mexico City', '58-4 Genova St', 'Entertainer Manager', 99.79),
+    (null, 7, 'Bill', 'Nye', 789789789, 'Mexico City', '506-8 Madero St', 'Front Desk Agent', 46205.56),
+    (107, 7, 'Tiger', 'Woods', 741741741, 'Mexico City', '58-4 Genova St', 'Entertainer Manager', 99123.79),
 
-    (null, 8, 'Red', 'Skull', 852852852, 'Cancun', '999 Avenida Tulum', 'Housekeeper', 45.62),
-    (108, 8, 'Petter', 'Pan', 963963963, 'Cancun', '5-65 Avenida Kukulkan', 'Front Desk Agent Manager', 68.45);
+    (null, 8, 'Red', 'Skull', 852852852, 'Cancun', '999 Avenida Tulum', 'Housekeeper', 45456.62),
+    (108, 8, 'Petter', 'Pan', 963963963, 'Cancun', '5-65 Avenida Kukulkan', 'Front Desk Agent Manager', 68789.45);
+
+-- -------------------------------------------------------------
+-- Insertion statements for employees at omni hotels & resorts
+-- -------------------------------------------------------------
+INSERT INTO employee (manager_id, hotel_id, first_name, last_name, SIN, city_address, street_address, position, salary)
+VALUES
+    (null, 9, 'Tinker', 'Bell', 012345678, 'Toronto', '1185 Warden Ave', 'Front Desk Agent', 45689.56),
+    (109, 9, 'Minnie', 'Mouse', 234567890, 'Toronto', '69 Valleys Dr', 'Maintenance Manager', 80000.67),
+
+    (null, 10, 'Johnny', 'Test', 345678901, 'Toronto', '111 Beverly St', 'Maintenance', 45682.56),
+    (110, 10, 'Mario', 'Kart', 456789012, 'Toronto', '69 Colborne St', 'Events Manager', 84560.79),
+
+    (null, 11, 'Lisa', 'Simpson', 567890123, 'Montreal', '2003 Saint Patrick St', 'Entertainer', 92045.62),
+    (111, 11, 'Scooby', 'Doo', 678901234, 'Montreal', '96 Rude de la Commune', 'Chef Manager', 45684.45),
+
+    (null, 12, 'Charlie', 'Brown', 789012345, 'Calgary', '100 Harvest Hills Blvd', 'Entertainer', 76102.56),
+    (112, 12, 'Winnie', 'the Pooh', 890123456, 'Calgary', '101 Centre St', 'Housekeeper Manager', 76523.67),
+
+    (null, 13, 'Tweety', 'Bird', 901234567, 'Volcano', '12 Anuhea Circle Dr', 'Front Desk Agent', 49782.56),
+    (113, 13, 'Jessice', 'Rabbit', 876543210, 'Volcano', '342 Hapu Lane', 'Security', 78922.79),
+
+    (null, 14, 'Jiminy', 'Cricket', 765432109, 'New York City', '20 Park Ave', 'Events', 95842.62),
+    (114, 14, 'Heinz', 'Doofenshmirtz', 654321098, 'New York City', '101 Crosby St', 'Security', 62000.45),
+
+    (null, 15, 'Phineas', 'Flynn', 543210987, 'Tijuana', '103-4 Calle Sexta', 'Security', 69842.56),
+    (115, 15, 'Ferb', 'Fletcher', 432109876, 'Tijuana', '103-4 Calle Sexta', 'Housekeeper Manager', 94650.79),
+
+    (null, 16, 'Perry', 'the Platypus', 321098765, 'Tijuana', '103-4 Calle Sexta', 'Chef', 54035.62),
+    (116, 16, 'Isabella', 'Garcia-Shapiro', 210987654, 'Tijuana', '5956 Calle Juan Aldama', 'Front Desk Agent Manager', 46894.45);
 
 -- -------------------------------
 -- View statement for employee
@@ -297,7 +339,7 @@ CREATE TABLE customer (
   customer_id SERIAL,
   first_name VARCHAR(25) NOT NULL,
   last_name VARCHAR (25) NOT NULL,
-  SIN CHAR(9) NOT NULL,
+  SIN CHAR(9) NOT NULL UNIQUE,
   city_address VARCHAR(25) NOT NULL,
   street_address VARCHAR(50) NOT NULL,
   registration_date DATE,
