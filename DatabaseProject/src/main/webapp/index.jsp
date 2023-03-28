@@ -5,7 +5,7 @@
         <link rel = "stylesheet" href="css/styles.css">
 
         <!--WEBSITE TITLE-->
-        <title>eHotels Welcome</title>
+        <title>eHotels Home</title>
     </head>
 
     <body>

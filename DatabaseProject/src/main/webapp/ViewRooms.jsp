@@ -8,7 +8,7 @@
         <link rel ="stylesheet" href="css/viewrooms.css">
 
         <!--TITLE-->
-        <title>eHotels Home</title>
+        <title>eHotels Room Search</title>
         <button id="profile_button" onclick="window.location.href='CustomerProfile.jsp'"
                 style="float: right; padding: 20px; border-radius: 50%; background-color: burlywood;
                 background-image: url('css/resources/profileicon.png');
