@@ -9,10 +9,7 @@ public class Customer {
     private String firstName;
     private String lastName;
     private String sin;
-    private String cityAddress;
-    private String streetAddress;
-    private String stateOrProvince;
-    private String country;
+    private Address address;
     private Date dateOfRegistration;
     private String creditCardNumber;
     private String email;
@@ -25,25 +22,18 @@ public class Customer {
      * @param firstName first name of customer
      * @param lastName last name of customer
      * @param sin SIN of customer
-     * @param cityAddress city address of customer
-     * @param streetAddress street address of customer
-     * @param stateOrProvince state/province of customer
-     * @param country country of customer
+     * @param address address of customer
      * @param dateOfRegistration date of registration of customer
      * @param creditCardNumber credit card number of customer
      * @param email email of customer
      */
-    public Customer(int id, String firstName, String lastName, String sin, String cityAddress,
-                    String streetAddress, String stateOrProvince, String country, Date dateOfRegistration,
+    public Customer(int id, String firstName, String lastName, String sin, Address address, Date dateOfRegistration,
                     String creditCardNumber, String email) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.sin = sin;
-        this.cityAddress = cityAddress;
-        this.streetAddress = streetAddress;
-        this.stateOrProvince = stateOrProvince;
-        this.country = country;
+        this.address = address;
         this.dateOfRegistration = dateOfRegistration;
         this.creditCardNumber = creditCardNumber;
         this.email = email;
@@ -62,20 +52,8 @@ public class Customer {
     public String getSin() {
         return this.sin;
     }
-    public String getCityAddress() {
-        return this.cityAddress;
-    }
-    public String getStreetAddress() {
-        return this.streetAddress;
-    }
-    public String getStateOrProvince() {
-        return this.stateOrProvince;
-    }
-    public String getCountry() {
-        return this.country;
-    }
-    public String getFullAddress() { // combines all attributes that make up the address into a single string
-        return this.streetAddress + ", " + this.cityAddress + ", " + this.stateOrProvince + ", " + this.country;
+    public Address getAddress() {
+        return this.address;
     }
     public Date getDateOfRegistration() {
         return this.dateOfRegistration;
@@ -100,17 +78,8 @@ public class Customer {
     public void setSin (String sin) {
         this.sin = sin;
     }
-    public void setCityAddress (String cityAddress) {
-        this.cityAddress = cityAddress;
-    }
-    public void setStreetAddress (String streetAddress) {
-        this.streetAddress = streetAddress;
-    }
-    public void setStateOrProvince (String stateOrProvince) {
-        this.stateOrProvince = stateOrProvince;
-    }
-    public void setCountry (String country) {
-        this.country = country;
+    public void setAddress(Address address) {
+        this.address = address;
     }
     public void setDateOfRegistration (Date dateOfRegistration) {
         this.dateOfRegistration = dateOfRegistration;
