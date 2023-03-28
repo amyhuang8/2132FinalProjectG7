@@ -11,6 +11,83 @@
 
         <!--SCRIPT CODE-->
         <script>
+            /** PROFILE CHANGES VALIDATION:
+             * This function checks for null input in all the forms and validates every form,
+             * based on database constraints. It returns a boolean for this check. */
+            function validateProfileSave() {
+                // VARIABLE DECLARATION: login vars
+                let fName = document.getElementById("fname");
+                let lName = document.getElementById("lname");
+                let email = document.getElementById("email");
+                let phoneNum = document.getElementById("phone_num");
+                let street = document.getElementById("street_address");
+                let city = document.getElementById("city");
+                let ssn = document.getElementById("ssn");
+                let ccNum = document.getElementById("cc_num");
+                let pwd = document.getElementById("new_upwd");
+
+                // PROCESS: checking for null registration forms
+                if(fName.value == "" || lName.value == "" || email.value == ""
+                    || phoneNum.value == "" || street.value == "" || city.value == ""
+                    || ssn.value == "" || ccNum.value == "" || pwd.value == "") { //has null
+                    alert("Please fill out all forms!"); //error-handling
+
+                    // OUTPUT
+                    return false;
+                }
+                else { //all filled
+                    // PROCESS: validating first name
+                    if (!/^[a-zA-Z]/.test(fName.value) || fName.value.length > 25) { //invalid chars or length
+                        alert("Please enter a valid first name (25 characters max)!") //error-handling
+
+                        // OUTPUT
+                        return false;
+                    }
+
+                    // PROCESS: validating last name
+                    if (!/^[a-zA-Z]/.test(lName.value) || lName.value.length > 25) { //invalid chars or length
+                        alert("Please enter a valid last name (25 characters max)!") //error-handling
+
+                        // OUTPUT
+                        return false;
+                    }
+
+                    // PROCESS: validating phone number
+                    if (isNaN(phoneNum.value)) { //contains invalid chars
+                        alert("Please enter a valid phone number (ex: 123-123-1234)!") //error-handling
+
+                        // OUTPUT
+                        return false;
+                    }
+
+                    // PROCESS: validating address
+                    if (street.value.length > 50) { //too long
+                        alert("Please enter a valid street address (50 characters max)!") //error-handling
+
+                        // OUTPUT
+                        return false;
+                    }
+
+                    // PROCESS: validating SSN
+                    if (isNaN(ssn.value) || ssn.value.length != 9) { //invalid chars or length
+                        alert("Please enter a valid SSN (9 digits)!") //error-handling
+
+                        // OUTPUT
+                        return false;
+                    }
+
+                    // PROCESS: validating credit card
+                    if (isNaN(ccNum.value) || ccNum.value.length != 16) { //invalid chars or length
+                        alert("Please enter a valid credit card number (16 digits)!") //error-handling
+
+                        // OUTPUT
+                        return false;
+                    }
+
+                    // OUTPUT
+                    return true;
+                }
+            }
         </script>
     </head>
 
@@ -73,6 +150,9 @@
                     onclick="return validateProfileSave();">SAVE CHANGES</button>
             <button type="reset" value="reset">RESET CHANGES</button>
         </form>
+
+        <!--SAVED CHANGES SNACKBAR-->
+        <!--<div id="changes_snackbar">All changes saved!</div>-->
 
     </body>
 </html>

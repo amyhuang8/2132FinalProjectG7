@@ -13,7 +13,7 @@
         <script>
             /** REGISTRATION VALIDATION:
              * This function checks for null input in all the registration forms and checks
-             * if the inputted passwords match.
+             * if the inputted passwords match. It validates every form, based on database constraints.
              * It returns a boolean for this check. */
             function validateRegistration() {
                 // VARIABLE DECLARATION: login vars
