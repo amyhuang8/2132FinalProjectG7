@@ -86,7 +86,7 @@
                     }
 
                     // THERE SHOULD BE SOME JAVA CALL HERE WHERE THE DATABASE ACTUALLY UPDATES!!
-                    
+
                     // VARIABLE DECLARATION: save success snackbar
                     let success = document.getElementById("changes_snackbar");
 
@@ -111,25 +111,24 @@
 
         <!--INFORMATION FORMS-->
         <form method="post" action="CustomerProfile.jsp" id="signUpForms"
-              style="text-align: center; display: block">
-            FIRST NAME: <input type="text" id="fname" name="first name"
+              style="font-size: 20px; text-align: center; display: block">
+            FIRST NAME: <input class="labels" type="text" id="fname" name="first name"
                                value="RETRIEVE FIRST NAME HERE">
             <br><br>
-            LAST NAME: <input type="text" id="lname" name="last name"
+            LAST NAME: <input class="labels" type="text" id="lname" name="last name"
                               value="RETRIEVE LAST NAME HERE">
             <br><br>
-            EMAIL: <input type="email" id="email" name="email"
+            EMAIL: <input class="labels" type="email" id="email" name="email"
                           value="RETRIEVE EMAIL HERE">
             <br><br>
-            PHONE NUMBER: <input type="tel" id="phone_num" name="phone number"
+            PHONE NUMBER: <input class="labels" type="tel" id="phone_num" name="phone number"
                                  value="RETRIEVE PHONE NUMBER">
             <br><br>
-            STREET ADDRESS: <input type="text" id="street_address" name="street address"
+            STREET ADDRESS: <input class="labels" type="text" id="street_address" name="street address"
                                    value="RETRIEVE ADDRESS HERE">
             <br><br>
-
-            <label for="city">CITY: </label>
-            <select name="city" id="city">
+            <label class="labels" for="city">CITY: </label>
+            <select name="city" id="city" style="font-size: 18px">
                 <option value="RETRIEVE CITY HERE">RETRIEVE CITY HERE</option>
                 <option value="calgary">Calgary</option>
                 <option value="cancun">Cancun</option>
@@ -148,20 +147,21 @@
                 <option value="vancouver">Vancouver</option>
             </select>
             <br><br>
-            SOCIAL SECURITY NUMBER (SSN): <input type="password" id="ssn" name="ssn"
+            SOCIAL SECURITY NUMBER (SSN): <input class="labels" type="password" id="ssn" name="ssn"
                                                  value="RETRIEVE SIN # HERE">
             <br><br>
-            CREDIT CARD NUMBER: <input type="text" id="cc_num" name="credit card number"
+            CREDIT CARD NUMBER: <input class="labels" type="text" id="cc_num" name="credit card number"
                                        value="RETRIEVE CARD # HERE">
             <br><br>
-            PASSWORD: <input type="password" id="new_upwd" name="new password"
+            PASSWORD: <input class="labels" type="password" id="new_upwd" name="new password"
                                         value="RETRIEVE PW HERE">
             <br><br>
 
             <!--BUTTONS-->
-            <button type="button" value="savechanges"
-                    onclick="return validateProfileSave();">SAVE CHANGES</button>
-            <button type="reset" value="reset">RESET CHANGES</button>
+            <button type="button" class="buttons" value="savechanges" style="margin-right: 2px"
+                    onclick="return validateProfileSave()">SAVE CHANGES</button>
+            <button type="reset" class="buttons" value="reset"
+                    style="margin-left: 2px">RESET CHANGES</button>
         </form>
 
         <!--SAVED CHANGES SNACKBAR-->

@@ -174,29 +174,30 @@
 
         <!--BUTTONS-->
         <div style="text-align: center; padding-bottom: 20px">
-            <button style = "font-size: 25px; font-family:'Courier New'" onclick="showForms(false);"}>SIGN UP</button>
-        </div>
-        <div style="text-align: center;">
-            <button style = "font-size: 25px; font-family:'Courier New'" onclick="showForms(true)">LOG IN</button>
+            <button class="buttons" onclick="showForms(false)"
+                    style="margin-right: 5px; font-size: 25px">SIGN UP</button>
+            <button class="buttons" onclick="showForms(true)"
+                    style="margin-left: 5px; font-size: 25px">LOG IN</button>
         </div>
 
         <br><br>
 
         <!--REGISTRATION FORMS-->
-        <form method="post" action="ViewRooms.jsp" id="signUpForms" style="text-align: center; display: none">
-            FIRST NAME: <input type="text" id="fname" name="first name">
+        <form method="post" action="ViewRooms.jsp" id="signUpForms"
+              style="font-size: 20px; text-align: center; display: none">
+            FIRST NAME: <input class="labels" type="text" id="fname" name="first name">
             <br><br>
-            LAST NAME: <input type="text" id="lname" name="last name">
+            LAST NAME: <input class="labels" type="text" id="lname" name="last name">
             <br><br>
-            EMAIL: <input type="email" id="email" name="email">
+            EMAIL: <input class="labels" type="email" id="email" name="email">
             <br><br>
-            PHONE NUMBER: <input type="tel" id="phone_num" name="phone number">
+            PHONE NUMBER: <input class="labels" type="tel" id="phone_num" name="phone number">
             <br><br>
-            STREET ADDRESS: <input type="text" id="street_address" name="street address">
+            STREET ADDRESS: <input class="labels" type="text" id="street_address" name="street address">
             <br><br>
-            <label for="city">CITY: </label>
 
-            <select name="city" id="city">
+            <label class="labels" for="city">CITY: </label>
+            <select name="city" id="city" style="font-size: 18px">
                 <option value="default">SELECT...</option>
                 <option value="calgary">Calgary</option>
                 <option value="cancun">Cancun</option>
@@ -215,30 +216,34 @@
                 <option value="vancouver">Vancouver</option>
             </select>
             <br><br>
-            SOCIAL SECURITY NUMBER (SSN): <input type="password" id="ssn" name="ssn">
+            SOCIAL SECURITY NUMBER (SSN): <input class="labels" type="password" id="ssn" name="ssn">
             <br><br>
-            CREDIT CARD NUMBER: <input type="text" id="cc_num" name="credit card number">
+            CREDIT CARD NUMBER: <input class="labels" type="text" id="cc_num" name="credit card number">
             <br><br>
-            NEW PASSWORD: <input type="password" id="new_upwd" name="new password">
+            NEW PASSWORD: <input class="labels" type="password" id="new_upwd" name="new password">
             <br><br>
-            CONFIRM NEW PASSWORD: <input type="password" id="confirm_new_upwd" name="new password confirmation">
+            CONFIRM NEW PASSWORD: <input class="labels" type="password" id="confirm_new_upwd" name="new password confirmation">
             <br><br>
 
             <!--BUTTONS-->
-            <button type="submit" value="register" onclick="return validateRegistration();">REGISTER</button>
-            <button type="reset" value="reset">RESET</button>
+            <button type="submit" class="buttons" value="register"
+                    style="margin-right: 2px"
+                    onclick="return validateRegistration()">REGISTER</button>
+            <button type="reset" class="buttons" value="reset" style="margin-left: 2px">RESET</button>
         </form>
 
         <!--LOGIN FORMS-->
-        <form method="post" action="ViewRooms.jsp" id="loginForms" style="text-align: center; display: none">
-            CUSTOMER ID: <input type="text" id="uid" name="user id">
+        <form method="post" action="ViewRooms.jsp" id="loginForms"
+              style="font-size: 20px; text-align: center; display: none">
+            CUSTOMER ID: <input class="labels" type="text" id="uid" name="user id">
             <br><br>
-            PASSWORD: <input type="password" id="upwd" name="password">
+            PASSWORD: <input class="labels" type="password" id="upwd" name="password">
             <br><br>
 
             <!--BUTTONS-->
-            <button type="submit" value="submit" onclick="return validateLogin();">LOG IN</button>
-            <button type="reset" value="reset">RESET</button>
+            <button type="submit" class="buttons" value="submit" style="margin-right: 2px"
+                    onclick="return validateLogin()">LOG IN</button>
+            <button type="reset" class="buttons" value="reset" style="margin-left: 2px">RESET</button>
         </form>
     </body>
 </html>

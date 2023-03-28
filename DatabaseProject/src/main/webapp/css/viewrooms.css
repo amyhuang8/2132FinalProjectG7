@@ -1,22 +1,5 @@
-/* GENERAL */
-/* DESIGN: Buttons */
-.buttons {
-    background-color: darkorange;
-    color: white;
-    padding: 5px;
-    font-size: 18px;
-    font-family:'Courier New';
-    border: 1px solid rosybrown;
-    cursor: pointer;
-}
-
-.labels {
-    font-size: 20px;
-}
-
-/* FUNCTIONAL DESIGN: Buttons on hover & focus */
-.buttons:hover, .buttons:focus {
-    background-color: orange;
+#profile_button:hover, :focus {
+    background-color: lightyellow!important;
 }
 
 /* DESIGN: Search Menu <div> containers */

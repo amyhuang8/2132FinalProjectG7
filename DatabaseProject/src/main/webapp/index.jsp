@@ -15,11 +15,11 @@
         <h2>Please select a role:</h2>
 
         <!--BUTTONS-->
-        <div style="text-align: center; padding-bottom: 20px">
-            <button style = "font-size: 30px; font-family:'Courier New'" onclick="location.href='Employee.jsp'"}>EMPLOYEE</button>
-        </div>
-        <div style="text-align: center;">
-            <button style = "font-size: 30px; font-family:'Courier New'" onclick="location.href='Customer.jsp'">CUSTOMER</button>
+        <div style="text-align: center">
+            <button class="buttons" style="margin-right: 5px; font-size: 25px"
+                    onclick="location.href='Employee.jsp'">EMPLOYEE</button>
+            <button class="buttons" style="margin-left: 5px; font-size: 25px"
+                    onclick="location.href='Customer.jsp'">CUSTOMER</button>
         </div>
     </body>
 

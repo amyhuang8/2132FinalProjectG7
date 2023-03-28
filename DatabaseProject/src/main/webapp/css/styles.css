@@ -1,3 +1,4 @@
+/* DESIGN: Heading 1 */
 h1 {
     color:rosybrown;
     font-family: "Bell MT";
@@ -5,6 +6,7 @@ h1 {
     size: 50px;
 }
 
+/* DESIGN: Heading 2 */
 h2 {
     color:black;
     font-family: "Bell MT";
@@ -12,7 +14,28 @@ h2 {
     size: 25px;
 }
 
-/* Background Styling */
+/* DESIGN: Background Styling */
 body {
     background-color: peachpuff;
+}
+
+/* DESIGN: Buttons */
+.buttons {
+    background-color: darkorange;
+    color: white;
+    padding: 5px;
+    font-size: 18px;
+    font-family:'Courier New';
+    border: 1px solid rosybrown;
+    cursor: pointer;
+}
+
+/* DESIGN: Labels */
+.labels {
+    font-size: 20px;
+}
+
+/* FUNCTIONAL DESIGN: Buttons on hover & focus */
+.buttons:hover, .buttons:focus {
+    background-color: orange;
 }

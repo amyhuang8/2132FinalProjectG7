@@ -47,15 +47,16 @@
         <br>
 
         <!--LOGIN FORMS-->
-        <form method="post" action="NEXTPAGEHERE" style="text-align: center;">
-            EMPLOYEE ID: <input type="text" id="uid" name="user id">
+        <form method="post" action="NEXTPAGEHERE" style="font-size: 20px; text-align: center">
+            EMPLOYEE ID: <input class="labels" type="text" id="uid" name="user id">
             <br><br>
-            PASSWORD: <input type="password" id="upwd" name="password">
+            PASSWORD: <input class="labels" type="password" id="upwd" name="password">
             <br><br>
 
             <!--BUTTONS-->
-            <button type="submit" value="submit" onclick="return validate();">LOG IN</button>
-            <button type="reset" value="reset">RESET</button>
+            <button class="buttons" type="submit" value="submit" style="margin-right: 2px"
+                    onclick="return validate()">LOG IN</button>
+            <button class="buttons" type="reset" value="reset" style="margin-left: 2px">RESET</button>
         </form>
     </body>
 </html>
