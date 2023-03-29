@@ -215,7 +215,11 @@ VALUES ('80 St Marys Rd', 'Winnipeg', 'Manitoba', 'Canada'),
        ('Blvd Agua Caliente 4558', 'Tijuana', 'Baja California', 'Mexico'),
        ('Blvd Agua Caliente 4558', 'Tijuana', 'Baja California', 'Mexico');
 
-
+-- for customers (id #: 126-128)
+INSERT INTO address (street, city, province, country)
+VALUES ('147 Mehico', 'Tijuana', 'Baja California', 'Mexico'),
+       ('896 Broadway', 'New York City', 'New York', 'America'),
+       ('468 Cordova St', 'Vancouver', 'British Columbia', 'Canada');
 
 -- -------------------------------
 -- View statements for address
@@ -813,29 +817,33 @@ CREATE TABLE customer (
   first_name VARCHAR(25) NOT NULL,
   last_name VARCHAR (25) NOT NULL,
   SIN CHAR(9) NOT NULL UNIQUE,
-  city_address VARCHAR(25) NOT NULL,
-  street_address VARCHAR(50) NOT NULL,
+  customer_address_id INT NOT NULL,
   registration_date DATE,
   credit_card_num CHAR(16),
   customer_phone_number CHAR(10),
   customer_email VARCHAR(30) NOT NULL,
-  FOREIGN KEY (city_address) REFERENCES address(city),
+  FOREIGN KEY (customer_address_id) REFERENCES address(id),
   PRIMARY KEY (customer_id)
 );
 
 -- --------------------------------------
 -- Insertion statements for customers
 -- --------------------------------------
-INSERT INTO customer (first_name, last_name, SIN, city_address, street_address, registration_date, credit_card_num, customer_phone_number, customer_email)
+INSERT INTO customer (first_name, last_name, SIN, customer_address_id, registration_date, credit_card_num, customer_phone_number, customer_email)
 VALUES
-('Bob', 'the Builder', 111111111, 'Tijuana', '147 Mehico', CURRENT_DATE, 1234567891234567, 8085679514, 'bobthebuilder@email.com'),
-('Harper', 'Finkle', 222222222, 'New York City', '896 Broadway', CURRENT_DATE, 1111111111111111, 6467985555, 'harperfinkle@email.com'),
-('Max', 'Russo', 333333333, 'Vancouver', '468 Cordova St', CURRENT_DATE, 2222222222222222, 6045687989, 'notawizard@email.com');
+('Bob', 'the Builder', 111111111, 126, CURRENT_DATE, 1234567891234567, 8085679514, 'bobthebuilder@email.com'),
+('Harper', 'Finkle', 222222222, 127, CURRENT_DATE, 1111111111111111, 6467985555, 'harperfinkle@email.com'),
+('Max', 'Russo', 333333333, 128, CURRENT_DATE, 2222222222222222, 6045687989, 'notawizard@email.com');
 
 -- -------------------------------
 -- View statement for customer
 -- -------------------------------
 SELECT * FROM customer;
+
+SELECT c.customer_id, c.first_name, a.street, a.city, a.province, a.country -- view the entire address of a customer (ordered by their id's)
+FROM address a
+         JOIN customer c ON c.customer_address_id = a.id;
+
 
 -- ---------------------------------------------------------------------------------------------------------------------
 -- Table structure for a booking
