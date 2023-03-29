@@ -32,7 +32,7 @@ public class Booking {
         this.roomNum = roomNum;
     }
 
-    // GETTERS
+    // GETTERS  --------------------------------------------------------------------------------------------------------
     public int getId() {
         return this.id;
     }
@@ -55,7 +55,27 @@ public class Booking {
         return this.roomNum;
     }
 
-    // SETTERS
-
+    // SETTERS ---------------------------------------------------------------------------------------------------------
+    public void setId(int id) {
+        this.id = id;
+    }
+    public void setCheckIn(Date checkIn) {
+        this.checkIn = checkIn;
+    }
+    public void setCheckOut(Date checkOut) {
+        this.checkOut = checkOut;
+    }
+    public void setConfirmationDate(Date confirmationDate) {
+        this.confirmationDate = confirmationDate;
+    }
+    public void setEmployeeID(int employeeID) {
+        this.employeeID = employeeID;
+    }
+    public void setCustomerID(int customerID) {
+        this.customerID = customerID;
+    }
+    public void setRoomNum(int roomNum) {
+        this.roomNum = roomNum;
+    }
 
 }

@@ -21,7 +21,7 @@ public class Address {
         this.country = country;
     }
 
-    // GETTERS
+    // GETTERS ---------------------------------------------------------------------------------------------------------
     public int getId() {
         return this.id;
     }
@@ -36,5 +36,22 @@ public class Address {
     }
     public String getCountry(){
         return this.country;
+    }
+
+    // SETTERS ---------------------------------------------------------------------------------------------------------
+    public void setId(int id){
+        this.id = id;
+    }
+    public void setStreet(String street){
+        this.street = street;
+    }
+    public void setCity(String city){
+        this.city = city;
+    }
+    public void setProvince(String province){
+        this.province = province;
+    }
+    public void setCountry(String country){
+        this.country = country;
     }
 }
