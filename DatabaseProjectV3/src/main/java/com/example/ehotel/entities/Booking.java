@@ -1,4 +1,4 @@
-package ehotel;
+package com.example.ehotel.entities;
 
 import java.util.Date;
 
