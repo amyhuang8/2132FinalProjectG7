@@ -10,6 +10,9 @@ public class ConnectionDB {
     ResultSet rs = null;
     Statement st = null;
 
+    /**
+     * This method is used to get the connection to the database
+     */
     public void getConn(){
 
         try {
@@ -22,6 +25,9 @@ public class ConnectionDB {
 
     }
 
+    /**
+     * This method is used to close the connection to the database
+     */
     public void closeDB() {
 
         try {
@@ -44,6 +50,11 @@ public class ConnectionDB {
 
     }
 
+    /**
+     * This method is used to get the SIN of the employee
+     * @param id employee id
+     * @return SIN of employee
+     */
     public int getESINByUser(String id) throws SQLException, ClassNotFoundException {
         Class.forName("org.postgresql.Driver");
         Connection db = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
@@ -69,6 +80,11 @@ public class ConnectionDB {
         return SIN;
     }
 
+    /**
+     * This method is used to get the SIN of the customer
+     * @param email customer email
+     * @return SIN of customer
+     */
     public int getCSINByEmail(String email) throws SQLException, ClassNotFoundException {
         Class.forName("org.postgresql.Driver");
         Connection db = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
