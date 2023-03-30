@@ -3,7 +3,7 @@ SET search_path = ehotels;
 -- ---------------------------------------------------------------------------------------------------------------------
 -- Deletion for any table
 -- ---------------------------------------------------------------------------------------------------------------------
-drop table archive;
+/*drop table archive;
 drop table rental;
 drop table booking;
 drop table customer;
@@ -11,7 +11,7 @@ drop table employee;
 drop table room;
 drop table hotel;
 drop table hotel_chain;
-drop table address;
+drop table address;*/
 
 -- ---------------------------------------------------------------------------------------------------------------------
 -- Table structure for address
@@ -813,7 +813,7 @@ ORDER BY e.employee_id;
 -- ---------------------------------------------------------------------------------------------------------------------
 DROP TABLE IF EXISTS customer;
 CREATE TABLE customer (
-  customer_id SERIAL,
+  customer_id SERIAL, -- auto-incrementing id
   first_name VARCHAR(25) NOT NULL,
   last_name VARCHAR (25) NOT NULL,
   SIN CHAR(9) NOT NULL UNIQUE,
@@ -821,7 +821,7 @@ CREATE TABLE customer (
   registration_date DATE,
   credit_card_num CHAR(16),
   customer_phone_number CHAR(10),
-  customer_email VARCHAR(30) NOT NULL,
+  customer_email VARCHAR(30) NOT NULL CHECK (customer_email LIKE '_%@_%._%'),
   FOREIGN KEY (customer_address_id) REFERENCES address(id),
   PRIMARY KEY (customer_id)
 );
