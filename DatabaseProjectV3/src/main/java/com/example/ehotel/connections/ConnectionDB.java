@@ -45,8 +45,8 @@ public class ConnectionDB {
     }
 
     public int getESINByUser(String id) throws SQLException, ClassNotFoundException {
-        Class.forName("org.postgresql.Driver");
-        Connection db = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+        getConn();
+
         int SIN = 0;
 
         try{
@@ -70,8 +70,7 @@ public class ConnectionDB {
     }
 
     public int getCSINByEmail(String email) throws SQLException, ClassNotFoundException {
-        Class.forName("org.postgresql.Driver");
-        Connection db = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
+        getConn();
 
         int SIN = 0;
 
