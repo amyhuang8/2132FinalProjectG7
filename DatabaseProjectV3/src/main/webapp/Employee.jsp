@@ -50,7 +50,7 @@
         <form method="post" action="employee-login-servlet" style="font-size: 20px; text-align: center">
             EMPLOYEE ID: <input class="labels" type="text" id="uid" name="user id">
             <br><br>
-            PASSWORD: <input class="labels" type="password" id="upwd" name="password">
+            PASSWORD (SIN #): <input class="labels" type="password" id="upwd" name="password">
             <br><br>
 
             <!--BUTTONS-->

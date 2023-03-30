@@ -1,0 +1,13 @@
+1. Create a new project in IntelliJ
+2. Select Jakarta EE on the left-hand side menu named "Generators"
+3. Choose "Web application" for template
+4. Choose where your Tomcat folder is for "application server"
+5. Click next
+6. Ensure that under the dependencies list and specifications, "Servlet (5.0.0)" is selected;
+on the right-hand side, there should be a small box that says "Added dependencies:" and lists "Servlet" underneath
+7. Click create
+8. On the right-hand side of the screen, select "Database"
+9. Click the plus sign to add a new "data source"; select Postgresql
+10. Configure your database with your credentials
+11. Test connection
+12. Once connection is established, click "schemas" and ensure "ehotel" is selected
