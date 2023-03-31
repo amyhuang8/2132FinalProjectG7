@@ -37,5 +37,5 @@ body {
 
 /* FUNCTIONAL DESIGN: Buttons on hover & focus */
 .buttons:hover, .buttons:focus {
-    background-color: orange;
+    background-color: orange!important;
 }
