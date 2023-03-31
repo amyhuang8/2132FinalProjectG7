@@ -290,10 +290,7 @@ public class ConnectionDB {
     /**
      * MAIN METHOD: Used for testing
      * @param args
-     * @throws SQLException
-     * @throws ClassNotFoundException
      */
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
-
-    }
+    public static void main(String[] args) {}
+    
 }
