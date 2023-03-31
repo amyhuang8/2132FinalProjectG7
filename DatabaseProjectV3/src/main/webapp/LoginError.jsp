@@ -11,7 +11,7 @@
     </head>
 
     <body>
-        <!--HEADING-->
+        <!--HEADINGS-->
         <h1>LOGIN ERROR</h1>
         <hr style="background-color: rosybrown; height: 1.5px">
         <br>

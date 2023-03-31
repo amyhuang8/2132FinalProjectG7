@@ -25,14 +25,11 @@
                 let city = document.getElementById("city");
                 let ssn = document.getElementById("ssn");
                 let ccNum = document.getElementById("cc_num");
-                let pwd = document.getElementById("new_upwd");
-                let confirmPwd = document.getElementById("confirm_new_upwd");
 
                 // PROCESS: checking for null registration forms
-                if(fName.value == "" || lName.value == "" || email.value == ""
-                    || phoneNum.value == "" || street.value == "" || city.value == ""
-                    || ssn.value == "" || ccNum.value == ""
-                    || pwd.value == "" || confirmPwd.value == "") { //has null
+                if(fName.value === "" || lName.value === "" || email.value === ""
+                    || phoneNum.value === "" || street.value === "" || city.value === ""
+                    || ssn.value === "" || ccNum.value === "") { //has null
                     alert("Please fill out all forms!"); //error-handling
 
                     // OUTPUT
@@ -70,7 +67,7 @@
                         // OUTPUT
                         return false;
                     }
-                    if (city.options[city.selectedIndex].value == "default") { //invalid selection
+                    if (city.options[city.selectedIndex].value === "default") { //invalid selection
                         alert("Please select a city!") //error-handling
 
                         // OUTPUT
@@ -78,7 +75,7 @@
                     }
 
                     // PROCESS: validating SSN
-                    if (isNaN(ssn.value) || ssn.value.length != 9) { //invalid chars or length
+                    if (isNaN(ssn.value) || ssn.value.length !== 9) { //invalid chars or length
                         alert("Please enter a valid SSN (9 digits)!") //error-handling
 
                         // OUTPUT
@@ -86,16 +83,8 @@
                     }
 
                     // PROCESS: validating credit card
-                    if (isNaN(ccNum.value) || ccNum.value.length != 16) { //invalid chars or length
+                    if (isNaN(ccNum.value) || ccNum.value.length !== 16) { //invalid chars or length
                         alert("Please enter a valid credit card number (16 digits)!") //error-handling
-
-                        // OUTPUT
-                        return false;
-                    }
-
-                    // PROCESS: validating password
-                    if (pwd.value != confirmPwd.value) {
-                        alert("Passwords do not match! Please try again.") //error-handling
 
                         // OUTPUT
                         return false;
@@ -142,22 +131,22 @@
                 let signUpForms = document.getElementById("signUpForms");
 
                 // PROCESS: checking which forms to show
-                if (isLogin == true) { //show login
-                    if (loginForms.style.display == "none") { //currently hidden
+                if (isLogin === true) { //show login
+                    if (loginForms.style.display === "none") { //currently hidden
                         loginForms.style.display = "block"; //updating display to visible
                     }
 
-                    if (signUpForms.style.display == "block") { //currently displayed
+                    if (signUpForms.style.display === "block") { //currently displayed
                         signUpForms.style.display = "none"; //hiding forms
                         signUpForms.reset(); //clearing forms
                     }
                 }
                 else { //show registration
-                    if (signUpForms.style.display == "none") { //currently hidden
+                    if (signUpForms.style.display === "none") { //currently hidden
                         signUpForms.style.display = "block"; //updating display to visible
                     }
 
-                    if (loginForms.style.display == "block") { //currently displayed
+                    if (loginForms.style.display === "block") { //currently displayed
                         loginForms.style.display = "none"; //hiding forms
                         loginForms.reset(); //clearing forms
                     }
@@ -220,10 +209,6 @@
             <br><br>
             CREDIT CARD NUMBER: <input class="labels" type="text" id="cc_num" name="credit card number">
             <br><br>
-            NEW PASSWORD: <input class="labels" type="password" id="new_upwd" name="new password">
-            <br><br>
-            CONFIRM NEW PASSWORD: <input class="labels" type="password" id="confirm_new_upwd" name="new password confirmation">
-            <br><br>
 
             <!--BUTTONS-->
             <button type="submit" class="buttons" value="register"
@@ -237,7 +222,7 @@
               style="font-size: 20px; text-align: center; display: none">
             CUSTOMER EMAIL: <input class="labels" type="text" id="uid" name="email">
             <br><br>
-            PASSWORD: <input class="labels" type="password" id="upwd" name="password">
+            PASSWORD (SIN #): <input class="labels" type="password" id="upwd" name="password">
             <br><br>
 
             <!--BUTTONS-->
