@@ -39,14 +39,8 @@ public class CustomerLoginServlet extends HttpServlet {
         int sinFromDB;
 
         // PROCESS: retrieving customer SIN from given username (email)
-        try {
-            // INITIALIZATION
-            sinFromDB = con.getCSINByEmail(email);
-        }
-        catch (SQLException | ClassNotFoundException e) { //error-handling
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
+        // INITIALIZATION
+        sinFromDB = con.getCSINByEmail(email);
 
         // PROCESS: checking if given password matches SIN from db
         if (password == sinFromDB) { //success

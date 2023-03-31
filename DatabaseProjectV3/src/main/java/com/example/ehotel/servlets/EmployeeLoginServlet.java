@@ -39,14 +39,8 @@ public class EmployeeLoginServlet extends HttpServlet {
         int sinFromDB;
 
         // PROCESS: retrieving employee SIN from given username (employee ID)
-        try {
-            // INITIALIZATION
-            sinFromDB = con.getESINByUser(username);
-        }
-        catch (SQLException | ClassNotFoundException e) { //error-handling
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
+        // INITIALIZATION
+        sinFromDB = con.getESINByUser(username);
 
         // PROCESS: checking if given password matches SIN from db
         if (pwd == sinFromDB) { //success
