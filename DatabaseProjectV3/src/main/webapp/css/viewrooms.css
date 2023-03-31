@@ -47,3 +47,13 @@
 .dropdown-content a:hover {
     background-color: lightgrey;
 }
+
+/* DESIGN: Rating of stars */
+.checked {
+    color: orange;
+}
+
+/* DESIGN: Category p tags */
+small {
+    font-size: 20px;
+}

@@ -6,6 +6,8 @@
         <meta http-equiv="Content-Language" content="ch-cn">
         <link rel ="stylesheet" href="css/styles.css">
         <link rel ="stylesheet" href="css/viewrooms.css">
+        <!-- Add icon library -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <!--TITLE-->
         <title>eHotels Room Search</title>
@@ -115,7 +117,7 @@
 
         <br><br><br>
 
-        <div>
+        <div id = "room_date_booking">
             <!--BOOKING DATE PICKERS-->
             <!--START DATE-->
             <form style="display: inline; padding-right: 20px">
@@ -130,8 +132,11 @@
                 <input type="submit" class="buttons" value="SEARCH">
             </form>
 
+        </div>
+
             <br><br>
 
+        <div id = "room_capacity">
             <!--CAPACITY DROPDOWN MENU-->
             <label for="capacity" class="labels">Capacity:</label>
             <select name="capacity" id="capacity" style="font-size: 18px">
@@ -141,13 +146,62 @@
                 <option value="triple">Triple</option>
                 <option value="quad">Quad</option>
                 <option value="joint">Joint</option>
-                <!-- I DON'T THINK WE'RE GONNA USE THOSE
-                <option value="queen">Queen</option>
-                <option value="king">King</option>
-                <option value="deluxe">Deluxe</option>
-                -->
             </select>
         </div>
+
+        <!--CATEGORY INPUT -->
+        <div id="room_category">
+            <br><br>
+            <small>Category:</small>
+            <br><br>
+            <input type="radio" id="five-stars-and-up" name="category" value="five-stars-and-up">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <label for="five-stars-and-up" class="labels">& up</label>
+            <br><br>
+            <input type="radio" id="four-stars-and-up" name="category" value="four-stars-and-up">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+            <label for="four-stars-and-up" class="labels">& up</label>
+            <br><br>
+            <input type="radio" id="three-stars-and-up" name="category" value="four-stars-and-up">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <label for="three-stars-and-up" class="labels">& up</label>
+        </div>
+
+        <!-- VIEW TYPE INPUT -->
+        <div id="room_view_type">
+            <br><br>
+            <small>View Type:</small>
+            <br><br>
+            <input type="checkbox" id="city-view" name="city-view" value="city-view">
+            <label for="city-view" class="labels">Cityscape View</label>
+            <input type="checkbox" id="sea-view" name="sea-view" value="sea-view">
+            <label for="sea-view" class="labels">Sea View</label>
+            <input type="checkbox" id="mountain-view" name="mountain-view" value="mountain-view">
+            <label for="mountain-view" class="labels">Mountain View</label>
+            <input type="checkbox" id="river-view" name="river-view" value="river-view">
+            <label for="river-view" class="labels">Garden View</label>
+            <br><br>
+        </div>
+
+        <!-- MAX PRICE INPUT -->
+        <div id="room_max_price">
+            <br><br>
+            Max Price: <input class="labels" type="text" id="max-price" name="max-price">
+        </div>
+
+
     </body>
 
 </html>
