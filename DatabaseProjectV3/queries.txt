@@ -17,12 +17,13 @@ drop table address;*/
 -- Table structure for address
 -- ---------------------------------------------------------------------------------------------------------------------
 DROP TABLE IF EXISTS address;
-CREATE TABLE address (
-    id SERIAL,
-    street VARCHAR(50) NOT NULL,
-    city VARCHAR(25) NOT NULL,
+CREATE TABLE address
+(
+    id       SERIAL,
+    street   VARCHAR(50) NOT NULL,
+    city     VARCHAR(25) NOT NULL,
     province VARCHAR(25) NOT NULL,
-    country VARCHAR(7) NOT NULL,
+    country  VARCHAR(7)  NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -32,21 +33,21 @@ CREATE TABLE address (
 
 -- for hotel chains (id #: 1-5)
 INSERT INTO address (street, city, province, country)
-VALUES ('123 Laurier Ave','Ottawa', 'Ontario', 'Canada'),
+VALUES ('123 Laurier Ave', 'Ottawa', 'Ontario', 'Canada'),
        ('12 Union St', 'Toronto', 'Ontario', 'Canada'),
        ('13 Union St', 'Toronto', 'Ontario', 'Canada'),
-       ('15 Ontario St','Vancouver', 'British Columbia', 'Canada'),
+       ('15 Ontario St', 'Vancouver', 'British Columbia', 'Canada'),
        ('2136 Airport Road', 'Calgary', 'Alberta', 'Canada');
 
 -- for hotels (id #: 6-45)
 INSERT INTO address (street, city, province, country)
-VALUES ('361 Queen St', 'Ottawa', 'Ontario', 'Canada'), -- hilton
+VALUES ('361 Queen St', 'Ottawa', 'Ontario', 'Canada'),  -- hilton
        ('380 Sherbrooke St W', 'Montreal', 'Quebec', 'Canada'),
        ('1335 6th Ave', 'New York City', 'New York', 'America'),
        ('8700 Lyra Dr', 'Columbus', 'Ohio', 'America'),
        ('3900 Chagrin Dr', 'Columbus', 'Ohio', 'America'),
-       ('509 W Wisconsin Ave','Milwaukee', 'Wisconsin', 'America'),
-       ('Ave Juarez 70', 'Mexico City','Mexico City', 'Mexico'),
+       ('509 W Wisconsin Ave', 'Milwaukee', 'Wisconsin', 'America'),
+       ('Ave Juarez 70', 'Mexico City', 'Mexico City', 'Mexico'),
        ('Carr Federal Libre 307 Cancun-Tulum 248-868', 'Cancun', 'Quintana Roo', 'Mexico'),
 
        ('37 King St E', 'Toronto', 'Ontario', 'Canada'), -- omni
@@ -58,22 +59,22 @@ VALUES ('361 Queen St', 'Ottawa', 'Ontario', 'Canada'), -- hilton
        ('23 Ocean Lane', 'Tijuana', 'Baja California', 'Mexico'),
        ('555 S Lamar', 'Tijuana', 'Baja California', 'Mexico'),
 
-       ('791 W Georgia S','Vancouver', 'British Columbia', 'Canada'),
+       ('791 W Georgia S', 'Vancouver', 'British Columbia', 'Canada'),
        ('4591 Blackcomb Way', 'Gatineau', 'Quebec', 'Canada'),
-       ('48898 La Huerta', 'Chihuahua City','Chihuahua', 'Mexico'),
-       ('63734 Corral del Risco', 'Chihuahua City','Chihuahua', 'Mexico'),
-       ('Paseo de la Reforma #500', 'Mexico City','Mexico City', 'Mexico'),
+       ('48898 La Huerta', 'Chihuahua City', 'Chihuahua', 'Mexico'),
+       ('63734 Corral del Risco', 'Chihuahua City', 'Chihuahua', 'Mexico'),
+       ('Paseo de la Reforma #500', 'Mexico City', 'Mexico City', 'Mexico'),
        ('27 Barclay St', 'New York City', 'New York', 'America'),
        ('60 Yorkville Ave', 'Toronto', 'Ontario', 'Canada'),
        ('1440 Rue de la Montagne', 'Montreal', 'Quebec', 'Canada'),
 
-       ('1128 West Georgia St','Vancouver', 'British Columbia', 'Canada'),
-       ('1326 Davie St','Vancouver', 'British Columbia', 'Canada'),
+       ('1128 West Georgia St', 'Vancouver', 'British Columbia', 'Canada'),
+       ('1326 Davie St', 'Vancouver', 'British Columbia', 'Canada'),
        ('931 Main St', 'Winnipeg', 'Manitoba', 'Canada'),
        ('1140 10 Ave SW', 'Calgary', 'Alberta', 'Canada'),
        ('Margaritas 2 LOC-10 SM-22, SM 22, 77500', 'Cancun', 'Quintana Roo', 'Mexico'),
        ('9100 W Oklahoma Ave', 'Milwaukee', 'Wisconsin', 'America'),
-       ('Isabel La Católica 30', 'Mexico City','Mexico City', 'Mexico'),
+       ('Isabel La Católica 30', 'Mexico City', 'Mexico City', 'Mexico'),
        ('19-3820 Old Volcano Rd', 'Volcano', 'Hawaii', 'America'),
 
        ('80 St Marys Rd', 'Winnipeg', 'Manitoba', 'Canada'),
@@ -82,7 +83,7 @@ VALUES ('361 Queen St', 'Ottawa', 'Ontario', 'Canada'), -- hilton
        ('1274 Carling Ave', 'Ottawa', 'Ontario', 'Canada'),
        ('131 Laurier St', 'Gatineau', 'Quebec', 'Canada'),
        ('1450 Airpointe Dr', 'Columbus', 'Ohio', 'America'),
-       ('Vialidad Ch-P 8800', 'Chihuahua City','Chihuahua', 'Mexico'),
+       ('Vialidad Ch-P 8800', 'Chihuahua City', 'Chihuahua', 'Mexico'),
        ('Blvd Agua Caliente 4558', 'Tijuana', 'Baja California', 'Mexico');
 
 -- for employees working at hilton (id #: 46-61)
@@ -105,8 +106,8 @@ VALUES ('56 Wellington St', 'Ottawa', 'Ontario', 'Canada'),
        ('2023 Airport Fwy', 'Milwaukee', 'Wisconsin', 'America'),
        ('98 Alice St', 'Milwaukee', 'Wisconsin', 'America'),
 
-       ('506-8 Madero St', 'Mexico City','Mexico City', 'Mexico'),
-       ('58-4 Genova St', 'Mexico City','Mexico City', 'Mexico'),
+       ('506-8 Madero St', 'Mexico City', 'Mexico City', 'Mexico'),
+       ('58-4 Genova St', 'Mexico City', 'Mexico City', 'Mexico'),
 
        ('999 Avenida Tulum', 'Cancun', 'Quintana Roo', 'Mexico'),
        ('5-65 Avenida Kukulkan', 'Cancun', 'Quintana Roo', 'Mexico');
@@ -165,11 +166,11 @@ VALUES ('1111 Burrard St', 'Vancouver', 'British Columbia', 'Canada'),
 
 -- for employees working at shangri-la (id #: 94-109)
 INSERT INTO address (street, city, province, country)
-VALUES ('1128 West Georgia St','Vancouver', 'British Columbia', 'Canada'),
-       ('1128 West Georgia St','Vancouver', 'British Columbia', 'Canada'),
+VALUES ('1128 West Georgia St', 'Vancouver', 'British Columbia', 'Canada'),
+       ('1128 West Georgia St', 'Vancouver', 'British Columbia', 'Canada'),
 
-       ('1326 Davie St','Vancouver', 'British Columbia', 'Canada'),
-       ('1326 Davie St','Vancouver', 'British Columbia', 'Canada'),
+       ('1326 Davie St', 'Vancouver', 'British Columbia', 'Canada'),
+       ('1326 Davie St', 'Vancouver', 'British Columbia', 'Canada'),
 
        ('931 Main St', 'Winnipeg', 'Manitoba', 'Canada'),
        ('931 Main St', 'Winnipeg', 'Manitoba', 'Canada'),
@@ -183,8 +184,8 @@ VALUES ('1128 West Georgia St','Vancouver', 'British Columbia', 'Canada'),
        ('9100 W Oklahoma Ave', 'Milwaukee', 'Wisconsin', 'America'),
        ('9100 W Oklahoma Ave', 'Milwaukee', 'Wisconsin', 'America'),
 
-       ('Isabel La Católica 30', 'Mexico City','Mexico City', 'Mexico'),
-       ('Isabel La Católica 30', 'Mexico City','Mexico City', 'Mexico'),
+       ('Isabel La Católica 30', 'Mexico City', 'Mexico City', 'Mexico'),
+       ('Isabel La Católica 30', 'Mexico City', 'Mexico City', 'Mexico'),
 
        ('19-3820 Old Volcano Rd', 'Volcano', 'Hawaii', 'America'),
        ('19-3820 Old Volcano Rd', 'Volcano', 'Hawaii', 'America');
@@ -209,8 +210,8 @@ VALUES ('80 St Marys Rd', 'Winnipeg', 'Manitoba', 'Canada'),
        ('1450 Airpointe Dr', 'Columbus', 'Ohio', 'America'),
        ('1450 Airpointe Dr', 'Columbus', 'Ohio', 'America'),
 
-       ('Vialidad Ch-P 8800', 'Chihuahua City','Chihuahua', 'Mexico'),
-       ('Vialidad Ch-P 8800', 'Chihuahua City','Chihuahua', 'Mexico'),
+       ('Vialidad Ch-P 8800', 'Chihuahua City', 'Chihuahua', 'Mexico'),
+       ('Vialidad Ch-P 8800', 'Chihuahua City', 'Chihuahua', 'Mexico'),
 
        ('Blvd Agua Caliente 4558', 'Tijuana', 'Baja California', 'Mexico'),
        ('Blvd Agua Caliente 4558', 'Tijuana', 'Baja California', 'Mexico');
@@ -224,19 +225,21 @@ VALUES ('147 Mehico', 'Tijuana', 'Baja California', 'Mexico'),
 -- -------------------------------
 -- View statements for address
 -- -------------------------------
-SELECT * FROM address;
+SELECT *
+FROM address;
 
 -- -----------------------------------
 -- Table structure for a hotel chain
 -- -----------------------------------
 DROP TABLE IF EXISTS hotel_chain;
-CREATE TABLE hotel_chain (
-    name VARCHAR(50) NOT NULL ,
+CREATE TABLE hotel_chain
+(
+    name                   VARCHAR(50)  NOT NULL,
     hotel_chain_address_id SERIAL,
-    num_of_hotels INT NOT NULL,
-    email VARCHAR(100) NOT NULL,
-    central_phone_number CHAR(10) NOT NULL,
-    FOREIGN KEY (hotel_chain_address_id) REFERENCES address(id),
+    num_of_hotels          INT          NOT NULL,
+    email                  VARCHAR(100) NOT NULL,
+    central_phone_number   CHAR(10)     NOT NULL,
+    FOREIGN KEY (hotel_chain_address_id) REFERENCES address (id),
     PRIMARY KEY (name)
 );
 
@@ -253,26 +256,28 @@ VALUES ('Hilton Worldwide', 40, 'hiltonworldwide@email.com', 6131231234),
 -- -------------------------------
 -- View statements for address
 -- -------------------------------
-SELECT * FROM hotel_chain; -- view everything
+SELECT *
+FROM hotel_chain; -- view everything
 
-SELECT h.name, a.street,a.city, a.province, a.country -- view the entire address of all hotel chains
+SELECT h.name, a.street, a.city, a.province, a.country -- view the entire address of all hotel chains
 FROM address a
-INNER JOIN hotel_chain h ON h.hotel_chain_address_id = a.id;
+         INNER JOIN hotel_chain h ON h.hotel_chain_address_id = a.id;
 
 -- ---------------------------------------------------------------------------------------------------------------------
 -- Table structure for a hotel
 -- ---------------------------------------------------------------------------------------------------------------------
 DROP TABLE IF EXISTS hotel;
-CREATE TABLE hotel (
-    hotel_id SERIAL,
-    name VARCHAR(50) NOT NULL,
-    num_of_rooms INT NOT NULL,
-    hotel_address_id INT,
-    email VARCHAR(30) NOT NULL,
-    hotel_phone_number CHAR(10) NOT NULL,
-    rating numeric(2,1) NOT NULL,
-    FOREIGN KEY (name) REFERENCES hotel_chain(name) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (hotel_address_id) REFERENCES address(id),
+CREATE TABLE hotel
+(
+    hotel_id           SERIAL,
+    name               VARCHAR(50)   NOT NULL,
+    num_of_rooms       INT           NOT NULL,
+    hotel_address_id   INT,
+    email              VARCHAR(30)   NOT NULL,
+    hotel_phone_number CHAR(10)      NOT NULL,
+    rating             numeric(2, 1) NOT NULL,
+    FOREIGN KEY (name) REFERENCES hotel_chain (name) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (hotel_address_id) REFERENCES address (id),
     PRIMARY KEY (hotel_id)
 );
 
@@ -285,7 +290,7 @@ INSERT INTO hotel (name, num_of_rooms, hotel_address_id, email, hotel_phone_numb
 VALUES ('Hilton Worldwide', 313, 6, 'hiltonworldwide1@email.com', 3432904580, 4.3),
        ('Hilton Worldwide', 210, 7, 'hiltonworldwide2@email.com', 5143267892, 3.0),
        ('Hilton Worldwide', 456, 8, 'hiltonworldwide3@email.com', 2123134141, 4.1),
-       ('Hilton Worldwide', 300, 9,'hiltonworldwide4@email.com', 6145687234, 3.9),
+       ('Hilton Worldwide', 300, 9, 'hiltonworldwide4@email.com', 6145687234, 3.9),
        ('Hilton Worldwide', 333, 10, 'hiltonworldwide5@email.com', 6144967982, 3.8),
        ('Hilton Worldwide', 101, 11, 'hiltonworldwide6@email.com', 4142120101, 4.6),
        ('Hilton Worldwide', 456, 12, 'hiltonworldwide7@email.com', 5253545556, 4.0),
@@ -338,29 +343,36 @@ VALUES ('Best Western', 343, 38, 'bestwestern1@email.com', 2042948568, 4.3),
 -- -------------------------------
 -- View statements for hotel
 -- -------------------------------
-SELECT * FROM hotel; -- view everything
+SELECT *
+FROM hotel; -- view everything
 
-SELECT h.name, h.hotel_address_id,a.street, a.city, a.province, a.country -- view the entire address of all hotel (ordered by their id's)
+SELECT h.name,
+       h.hotel_address_id,
+       a.street,
+       a.city,
+       a.province,
+       a.country -- view the entire address of all hotel (ordered by their id's)
 FROM address a
-        JOIN hotel h ON h.hotel_address_id = a.id
+         JOIN hotel h ON h.hotel_address_id = a.id
 ORDER BY h.hotel_id;
 
 -- ---------------------------------------------------------------------------------------------------------------------
 -- Table structure for a room
 -- ---------------------------------------------------------------------------------------------------------------------
 DROP TABLE IF EXISTS room;
-CREATE TABLE room (
-    room_id SERIAL UNIQUE,
-    room_num INT,
-    hotel_id INT,
-    price NUMERIC(8,2),
-    amenities VARCHAR (255),
-    capacity VARCHAR(20),
-    view_type VARCHAR(20),
-    extendable BOOLEAN NOT NULL,
-    damages NUMERIC(8,2),
+CREATE TABLE room
+(
+    room_id      SERIAL UNIQUE,
+    room_num     INT,
+    hotel_id     INT,
+    price        NUMERIC(8, 2),
+    amenities    VARCHAR(255),
+    capacity     VARCHAR(20),
+    view_type    VARCHAR(20),
+    extendable   BOOLEAN NOT NULL,
+    damages      NUMERIC(8, 2),
     availability BOOLEAN NOT NULL,
-    FOREIGN KEY (hotel_id) REFERENCES hotel(hotel_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (hotel_id) REFERENCES hotel (hotel_id) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (room_id, room_num, hotel_id, price, capacity, view_type, extendable)
 );
 
@@ -368,377 +380,690 @@ CREATE TABLE room (
 -- Insertion statements for Hilton Hotels
 -- ----------------------------------------
 INSERT INTO room (room_num, hotel_id, price, amenities, capacity, view_type, extendable, damages, availability)
-VALUES
-        (1,1,239.99,'Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning','Single','Sea',true,0.0,true),
-        (2,1,249.89,'Mini refrigerator, Microwave, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning','Double','Cityscape',true,0.0,true),
-        (3,1,239.79,'Mini refrigerator, Hand-held shower, Lowered toilet, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, and many more accessibility features','Triple','Cityscape',true,0.0,true),
-        (4,1,256.69,'Mini refrigerator, Microwave, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board','Quad','River',false,0.0,true),
-        (5,1,230.59,'Microwave, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning','Joint','Mountain',false,20.51,true),
+VALUES (1, 1, 239.99,
+        'Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning',
+        'Single', 'Sea', true, 0.0, true),
+       (2, 1, 249.89,
+        'Mini refrigerator, Microwave, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning',
+        'Double', 'Cityscape', true, 0.0, true),
+       (3, 1, 239.79,
+        'Mini refrigerator, Hand-held shower, Lowered toilet, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, and many more accessibility features',
+        'Triple', 'Cityscape', true, 0.0, true),
+       (4, 1, 256.69,
+        'Mini refrigerator, Microwave, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board',
+        'Quad', 'River', false, 0.0, true),
+       (5, 1, 230.59,
+        'Microwave, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning',
+        'Joint', 'Mountain', false, 20.51, true),
 
-        (1,2,185.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board','Single','Cityscape',true,0.0,true),
-        (2,2,203.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board','Double','Cityscape',true,0.0,true),
-        (3,2,185.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board','Triple','Sea',true,0.0,true),
-        (4,2,185.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Many accessibility features','Quad','Sea',true,15.20,true),
-        (5,2,210.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Keurig, Snacks','Joint','Cityscape',true,0.0,true),
+       (1, 2, 185.00,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board', 'Single',
+        'Cityscape', true, 0.0, true),
+       (2, 2, 203.00,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board', 'Double',
+        'Cityscape', true, 0.0, true),
+       (3, 2, 185.00,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board', 'Triple',
+        'Sea', true, 0.0, true),
+       (4, 2, 185.00,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Many accessibility features',
+        'Quad', 'Sea', true, 15.20, true),
+       (5, 2, 210.00,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Keurig, Snacks',
+        'Joint', 'Cityscape', true, 0.0, true),
 
-        (1,3,672.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Large work desk, complementary breakfast','Single','Mountain',true,0.0,true),
-        (2,3,259.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Double','Mountain',false,0.0,true),
-        (3,3,250.00,'Spacious work desk, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Triple','Mountain',false,0.0,true),
-        (4,3,721.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock, Large Table','Quad','Mountain',true,0.0,true),
-        (5,3,391.00,'LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Joint','Mountain',false,0.0,true),
+       (1, 3, 672.00,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Large work desk, complementary breakfast',
+        'Single', 'Mountain', true, 0.0, true),
+       (2, 3, 259.00, 'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock',
+        'Double', 'Mountain', false, 0.0, true),
+       (3, 3, 250.00, 'Spacious work desk, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock', 'Triple',
+        'Mountain', false, 0.0, true),
+       (4, 3, 721.00,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock, Large Table',
+        'Quad', 'Mountain', true, 0.0, true),
+       (5, 3, 391.00, 'LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock', 'Joint', 'Mountain', false,
+        0.0, true),
 
-        (1,4,185.00,'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Single', 'River',false,0.0,true),
-        (2,4,223.00,'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Double', 'Cityscape',false,0.0,true),
-        (3,4,232.00,'Widescreen LCD TV with cable & on-demand movies, Hairdryer, Shower, Radio Alarm Clock','Triple', 'River',false,0.0,true),
-        (4,4,185.00,'A/C/Heating, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Quad', 'Cityscape',false,0.0,true),
-        (5,4,223.00,'A/C/Heating, Microwave, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer','Joint', 'Mountain',false,0.0,true),
+       (1, 4, 185.00, 'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub', 'Single',
+        'River', false, 0.0, true),
+       (2, 4, 223.00, 'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub', 'Double',
+        'Cityscape', false, 0.0, true),
+       (3, 4, 232.00, 'Widescreen LCD TV with cable & on-demand movies, Hairdryer, Shower, Radio Alarm Clock', 'Triple',
+        'River', false, 0.0, true),
+       (4, 4, 185.00, 'A/C/Heating, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub',
+        'Quad', 'Cityscape', false, 0.0, true),
+       (5, 4, 223.00, 'A/C/Heating, Microwave, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer',
+        'Joint', 'Mountain', false, 0.0, true),
 
-        (1,5,166.99,'Mini refrigerator, Coffee Maker, A/C/Heating, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Includes Sofa Bed','Single', 'River',false,0.0,true),
-        (2,5,147.99,'Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Walk-In Shower, Includes Sofa Bed','Double', 'River',false,0.0,true),
-        (3,5,166.99,'Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Two Queen beds','Triple', 'Cityscape',false,0.0,true),
-        (4,5,147.99,'Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Includes Queen Sleeper','Quad', 'Mountain',true,0.0,true),
-        (5,5,147.99,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Walk-In Shower, Two Queen beds','Joint', 'Cityscape',false,0.0,true),
+       (1, 5, 166.99,
+        'Mini refrigerator, Coffee Maker, A/C/Heating, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Includes Sofa Bed',
+        'Single', 'River', false, 0.0, true),
+       (2, 5, 147.99,
+        'Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Walk-In Shower, Includes Sofa Bed',
+        'Double', 'River', false, 0.0, true),
+       (3, 5, 166.99,
+        'Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Two Queen beds',
+        'Triple', 'Cityscape', false, 0.0, true),
+       (4, 5, 147.99,
+        'Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Includes Queen Sleeper',
+        'Quad', 'Mountain', true, 0.0, true),
+       (5, 5, 147.99,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Walk-In Shower, Two Queen beds',
+        'Joint', 'Cityscape', false, 0.0, true),
 
-        (1,6,286.57,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Large work desk, complementary breakfast','Single','River',true,0.0,true),
-        (2,6,199.99,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Double','Mountain',false,0.0,true),
-        (3,6,306.55,'Spacious work desk, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Triple','Mountain',true,0.0,true),
-        (4,6,360.25,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock, Large Table','Quad','Cityscape',true,0.0,true),
-        (5,6,317.67,'LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Joint','Sea',true,0.0,true),
+       (1, 6, 286.57,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Large work desk, complementary breakfast',
+        'Single', 'River', true, 0.0, true),
+       (2, 6, 199.99, 'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock',
+        'Double', 'Mountain', false, 0.0, true),
+       (3, 6, 306.55, 'Spacious work desk, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock', 'Triple',
+        'Mountain', true, 0.0, true),
+       (4, 6, 360.25,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock, Large Table',
+        'Quad', 'Cityscape', true, 0.0, true),
+       (5, 6, 317.67, 'LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock', 'Joint', 'Sea', true, 0.0,
+        true),
 
-        (1,7,259.25,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Single', 'Cityscape',false,0.0,true),
-        (2,7,411.50,'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Double', 'Cityscape',false,0.0,true),
-        (3,7,279.68,'Widescreen LCD TV with cable & on-demand movies, Hairdryer, Shower, Radio Alarm Clock','Triple', 'Sea',false,0.0,true),
-        (4,7,383.24,'Two Queen beds with 250-thread sheets, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Quad', 'Cityscape',false,0.0,true),
-        (5,7,191.87,'Two Queen beds with 250-thread sheets, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Joint', 'River',false,0.0,true),
+       (1, 7, 259.25, 'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub',
+        'Single', 'Cityscape', false, 0.0, true),
+       (2, 7, 411.50, 'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub', 'Double',
+        'Cityscape', false, 0.0, true),
+       (3, 7, 279.68, 'Widescreen LCD TV with cable & on-demand movies, Hairdryer, Shower, Radio Alarm Clock', 'Triple',
+        'Sea', false, 0.0, true),
+       (4, 7, 383.24,
+        'Two Queen beds with 250-thread sheets, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub',
+        'Quad', 'Cityscape', false, 0.0, true),
+       (5, 7, 191.87,
+        'Two Queen beds with 250-thread sheets, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub',
+        'Joint', 'River', false, 0.0, true),
 
-        (1,8,276.99,'Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Iron/Ironing board, Shower/Tub','Single', 'River',false,0.0,true),
-        (2,8,209.59,'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board','Double', 'Cityscape',false,0.0,true),
-        (3,8,331.99,'LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Triple', 'Cityscape',true,0.0,true),
-        (4,8,390.49,'Mini refrigerator, Coffee Maker, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub','Quad', 'Sea',true,0.0,true),
-        (5,8,380.49,'LCD TV with cable & on-demand movies, Hairdryer, Mini refrigerator','Joint', 'Sea',false,0.0,true);
+       (1, 8, 276.99,
+        'Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Iron/Ironing board, Shower/Tub',
+        'Single', 'River', false, 0.0, true),
+       (2, 8, 209.59, 'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board',
+        'Double', 'Cityscape', false, 0.0, true),
+       (3, 8, 331.99, 'LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock', 'Triple', 'Cityscape', true,
+        0.0, true),
+       (4, 8, 390.49,
+        'Mini refrigerator, Coffee Maker, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub',
+        'Quad', 'Sea', true, 0.0, true),
+       (5, 8, 380.49, 'LCD TV with cable & on-demand movies, Hairdryer, Mini refrigerator', 'Joint', 'Sea', false, 0.0,
+        true);
 
 -- ----------------------------------------
 -- Insertion statements for Omni Hotels
 -- ----------------------------------------
 INSERT INTO room (room_num, hotel_id, price, amenities, capacity, view_type, extendable, damages, availability)
-VALUES
-    (1,9,235.46,'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning','Single','Sea',true,0.0,true),
-    (2,9,254.39,'Mini refrigerator, Microwave, Balcony, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning','Double','Cityscape',true,0.0,true),
-    (3,9,237.79,'Mini refrigerator, Hand-held shower, Lowered toilet, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, and many more accessibility features','Triple','Cityscape',true,0.0,true),
-    (4,9,249.69,'Mini refrigerator, Microwave, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board','Quad','River',false,0.0,true),
-    (5,9,213.59,'Microwave, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning','Joint','Mountain',false,20.51,true),
+VALUES (1, 9, 235.46,
+        'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning',
+        'Single', 'Sea', true, 0.0, true),
+       (2, 9, 254.39,
+        'Mini refrigerator, Microwave, Balcony, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning',
+        'Double', 'Cityscape', true, 0.0, true),
+       (3, 9, 237.79,
+        'Mini refrigerator, Hand-held shower, Lowered toilet, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, and many more accessibility features',
+        'Triple', 'Cityscape', true, 0.0, true),
+       (4, 9, 249.69,
+        'Mini refrigerator, Microwave, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board',
+        'Quad', 'River', false, 0.0, true),
+       (5, 9, 213.59,
+        'Microwave, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning',
+        'Joint', 'Mountain', false, 20.51, true),
 
-    (1,10,182.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board','Single','Cityscape',true,0.0,true),
-    (2,10,200.00,'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board','Double','Cityscape',true,0.0,true),
-    (3,10,182.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board','Triple','Sea',true,0.0,true),
-    (4,10,182.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Many accessibility features','Quad','Sea',true,15.20,true),
-    (5,10,211.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Keurig, Snacks','Joint','Cityscape',true,0.0,true),
+       (1, 10, 182.00,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board', 'Single',
+        'Cityscape', true, 0.0, true),
+       (2, 10, 200.00, 'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board',
+        'Double', 'Cityscape', true, 0.0, true),
+       (3, 10, 182.00,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board', 'Triple',
+        'Sea', true, 0.0, true),
+       (4, 10, 182.00,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Many accessibility features',
+        'Quad', 'Sea', true, 15.20, true),
+       (5, 10, 211.00,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Keurig, Snacks',
+        'Joint', 'Cityscape', true, 0.0, true),
 
-    (1,11,572.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Large work desk, complementary breakfast','Single','Mountain',true,0.0,true),
-    (2,11,259.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Double','Mountain',false,0.0,true),
-    (3,11,350.00,'Spacious work desk, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Triple','Mountain',false,0.0,true),
-    (4,11,711.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock, Large Table','Quad','Mountain',true,0.0,true),
-    (5,11,391.00,'LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Joint','Mountain',false,0.0,true),
+       (1, 11, 572.00,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Large work desk, complementary breakfast',
+        'Single', 'Mountain', true, 0.0, true),
+       (2, 11, 259.00, 'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock',
+        'Double', 'Mountain', false, 0.0, true),
+       (3, 11, 350.00, 'Spacious work desk, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock', 'Triple',
+        'Mountain', false, 0.0, true),
+       (4, 11, 711.00,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock, Large Table',
+        'Quad', 'Mountain', true, 0.0, true),
+       (5, 11, 391.00, 'LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock', 'Joint', 'Mountain', false,
+        0.0, true),
 
-    (1,12,185.00,'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Single', 'River',false,0.0,true),
-    (2,12,223.00,'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Double', 'Cityscape',false,0.0,true),
-    (3,12,232.00,'Computer with Internet, Widescreen LCD TV with cable & on-demand movies, Hairdryer, Shower, Radio Alarm Clock','Triple', 'Sea',false,0.0,true),
-    (4,12,185.00,'A/C/Heating, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Quad', 'Cityscape',false,0.0,true),
-    (5,12,223.00,'A/C/Heating, Microwave, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer','Joint', 'Mountain',false,0.0,true),
+       (1, 12, 185.00, 'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub', 'Single',
+        'River', false, 0.0, true),
+       (2, 12, 223.00, 'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub', 'Double',
+        'Cityscape', false, 0.0, true),
+       (3, 12, 232.00,
+        'Computer with Internet, Widescreen LCD TV with cable & on-demand movies, Hairdryer, Shower, Radio Alarm Clock',
+        'Triple', 'Sea', false, 0.0, true),
+       (4, 12, 185.00, 'A/C/Heating, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub',
+        'Quad', 'Cityscape', false, 0.0, true),
+       (5, 12, 223.00, 'A/C/Heating, Microwave, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer',
+        'Joint', 'Mountain', false, 0.0, true),
 
-    (1,13,166.99,'Computer with Internet, Mini refrigerator, Coffee Maker, A/C/Heating, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Includes Sofa Bed','Single', 'River',false,0.0,true),
-    (2,13,147.99,'Computer with Internet, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Walk-In Shower, Includes Sofa Bed','Double', 'River',false,0.0,true),
-    (3,13,166.99,'Computer with Internet, Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Two Queen beds','Triple', 'Cityscape',false,0.0,true),
-    (4,13,147.99,'Computer with Internet, Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Includes Queen Sleeper','Quad', 'Mountain',true,0.0,true),
-    (5,13,147.99,'Computer with Internet, Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Walk-In Shower, Two Queen beds','Joint', 'Cityscape',false,0.0,true),
+       (1, 13, 166.99,
+        'Computer with Internet, Mini refrigerator, Coffee Maker, A/C/Heating, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Includes Sofa Bed',
+        'Single', 'River', false, 0.0, true),
+       (2, 13, 147.99,
+        'Computer with Internet, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Walk-In Shower, Includes Sofa Bed',
+        'Double', 'River', false, 0.0, true),
+       (3, 13, 166.99,
+        'Computer with Internet, Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Two Queen beds',
+        'Triple', 'Cityscape', false, 0.0, true),
+       (4, 13, 147.99,
+        'Computer with Internet, Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Includes Queen Sleeper',
+        'Quad', 'Mountain', true, 0.0, true),
+       (5, 13, 147.99,
+        'Computer with Internet, Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Walk-In Shower, Two Queen beds',
+        'Joint', 'Cityscape', false, 0.0, true),
 
-    (1,14,236.57,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Large work desk, complementary breakfast','Single','River',true,0.0,true),
-    (2,14,199.98,'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Double','Mountain',false,0.0,true),
-    (3,14,306.55,'Spacious work desk, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Triple','Mountain',true,0.0,true),
-    (4,14,300.22,'Mini refrigerator, Oven & Stovetop, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock, Large Table','Quad','Cityscape',true,0.0,true),
-    (5,14,317.67,'LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Joint','Sea',true,0.0,true),
+       (1, 14, 236.57,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Large work desk, complementary breakfast',
+        'Single', 'River', true, 0.0, true),
+       (2, 14, 199.98, 'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock', 'Double',
+        'Mountain', false, 0.0, true),
+       (3, 14, 306.55, 'Spacious work desk, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock', 'Triple',
+        'Mountain', true, 0.0, true),
+       (4, 14, 300.22,
+        'Mini refrigerator, Oven & Stovetop, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock, Large Table',
+        'Quad', 'Cityscape', true, 0.0, true),
+       (5, 14, 317.67, 'LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock', 'Joint', 'Sea', true, 0.0,
+        true),
 
-    (1,15,259.25,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Single', 'Cityscape',false,0.0,true),
-    (2,15,411.50,'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Double', 'Cityscape',false,0.0,true),
-    (3,15,279.68,'Widescreen LCD TV with cable & on-demand movies, Hairdryer, Shower, Radio Alarm Clock','Triple', 'Sea',false,0.0,true),
-    (4,15,383.24,'Two Queen beds with 250-thread sheets, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Quad', 'Sea',false,0.0,true),
-    (5,15,191.87,'Two Queen beds with 250-thread sheets, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Joint', 'River',false,0.0,true),
+       (1, 15, 259.25, 'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub',
+        'Single', 'Cityscape', false, 0.0, true),
+       (2, 15, 411.50, 'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub', 'Double',
+        'Cityscape', false, 0.0, true),
+       (3, 15, 279.68, 'Widescreen LCD TV with cable & on-demand movies, Hairdryer, Shower, Radio Alarm Clock',
+        'Triple', 'Sea', false, 0.0, true),
+       (4, 15, 383.24,
+        'Two Queen beds with 250-thread sheets, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub',
+        'Quad', 'Sea', false, 0.0, true),
+       (5, 15, 191.87,
+        'Two Queen beds with 250-thread sheets, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub',
+        'Joint', 'River', false, 0.0, true),
 
-    (1,16,231.49,'Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Iron/Ironing board, Shower/Tub','Single', 'River',false,0.0,true),
-    (2,16,239.59,'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board','Double', 'Plaza',false,0.0,true),
-    (3,16,334.29,'LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Triple', 'Cityscape',true,0.0,true),
-    (4,16,190.49,'Mini refrigerator, Coffee Maker, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub','Quad', 'Sea',true,0.0,true),
-    (5,16,343.39,'LCD TV with cable & on-demand movies, Hairdryer, Refrigerator','Joint', 'River',false,0.0,true);
+       (1, 16, 231.49,
+        'Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Iron/Ironing board, Shower/Tub',
+        'Single', 'River', false, 0.0, true),
+       (2, 16, 239.59, 'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board',
+        'Double', 'Plaza', false, 0.0, true),
+       (3, 16, 334.29, 'LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock', 'Triple', 'Cityscape', true,
+        0.0, true),
+       (4, 16, 190.49,
+        'Mini refrigerator, Coffee Maker, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub',
+        'Quad', 'Sea', true, 0.0, true),
+       (5, 16, 343.39, 'LCD TV with cable & on-demand movies, Hairdryer, Refrigerator', 'Joint', 'River', false, 0.0,
+        true);
 
 -- ----------------------------------------
 -- Insertion statements for Four Seasons
 -- ----------------------------------------
 INSERT INTO room (room_num, hotel_id, price, amenities, capacity, view_type, extendable, damages, availability)
-VALUES
-    (1,17,239.99,'LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning','Double','Sea',true,0.0,true),
-    (2,17,249.89,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning','Double','Cityscape',true,0.0,true),
-    (3,17,239.79,'Computer with Internet, Mini refrigerator, Hand-held shower, Lowered toilet, LCD TV with cable & on-demand movies, Hairdryer, and many more accessibility features','Triple','Cityscape',true,0.0,true),
-    (4,17,256.69,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board','Quad','River',false,0.0,true),
-    (5,17,230.59,'Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning','Joint','Mountain',false,20.51,true),
+VALUES (1, 17, 239.99, 'LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning',
+        'Double', 'Sea', true, 0.0, true),
+       (2, 17, 249.89,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning',
+        'Double', 'Cityscape', true, 0.0, true),
+       (3, 17, 239.79,
+        'Computer with Internet, Mini refrigerator, Hand-held shower, Lowered toilet, LCD TV with cable & on-demand movies, Hairdryer, and many more accessibility features',
+        'Triple', 'Cityscape', true, 0.0, true),
+       (4, 17, 256.69,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board', 'Quad',
+        'River', false, 0.0, true),
+       (5, 17, 230.59,
+        'Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning', 'Joint',
+        'Mountain', false, 20.51, true),
 
-    (1,18,185.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board','Single','Cityscape',true,0.0,true),
-    (2,18,203.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board','Double','Cityscape',true,0.0,true),
-    (3,18,185.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board','Triple','Sea',true,0.0,true),
-    (4,18,185.00,'Computer with Internet, Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Many accessibility features','Quad','Sea',true,15.20,true),
-    (5,18,210.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Keurig, Snacks','Joint','Cityscape',true,0.0,true),
+       (1, 18, 185.00,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board', 'Single',
+        'Cityscape', true, 0.0, true),
+       (2, 18, 203.00,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board', 'Double',
+        'Cityscape', true, 0.0, true),
+       (3, 18, 185.00,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board', 'Triple',
+        'Sea', true, 0.0, true),
+       (4, 18, 185.00,
+        'Computer with Internet, Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Many accessibility features',
+        'Quad', 'Sea', true, 15.20, true),
+       (5, 18, 210.00,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Keurig, Snacks',
+        'Joint', 'Cityscape', true, 0.0, true),
 
-    (1,19,672.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Large work desk, complementary breakfast','Single','Mountain',true,0.0,true),
-    (2,19,259.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Double','Mountain',false,0.0,true),
-    (3,19,250.00,'Spacious work desk, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Triple','Mountain',false,0.0,true),
-    (4,19,721.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock, Large Table','Quad','Mountain',true,0.0,true),
-    (5,19,391.00,'LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Joint','Mountain',false,0.0,true),
+       (1, 19, 672.00,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Large work desk, complementary breakfast',
+        'Single', 'Mountain', true, 0.0, true),
+       (2, 19, 259.00, 'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock',
+        'Double', 'Mountain', false, 0.0, true),
+       (3, 19, 250.00, 'Spacious work desk, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock', 'Triple',
+        'Mountain', false, 0.0, true),
+       (4, 19, 721.00,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock, Large Table',
+        'Quad', 'Mountain', true, 0.0, true),
+       (5, 19, 391.00, 'LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock', 'Joint', 'Mountain', false,
+        0.0, true),
 
-    (1,20,194.00,'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Single', 'River',false,0.0,true),
-    (2,20,213.00,'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Double', 'Cityscape',false,0.0,true),
-    (3,20,236.00,'Widescreen LCD TV with cable & on-demand movies, Hairdryer, Shower, Radio Alarm Clock','Triple', 'River',false,0.0,true),
-    (4,20,194.00,'A/C/Heating, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Quad', 'Cityscape',false,0.0,true),
-    (5,20,220.00,'Computer with Internet, A/C/Heating, Microwave, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer','Joint', 'Mountain',false,0.0,true),
+       (1, 20, 194.00, 'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub', 'Single',
+        'River', false, 0.0, true),
+       (2, 20, 213.00, 'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub', 'Double',
+        'Cityscape', false, 0.0, true),
+       (3, 20, 236.00, 'Widescreen LCD TV with cable & on-demand movies, Hairdryer, Shower, Radio Alarm Clock',
+        'Triple', 'River', false, 0.0, true),
+       (4, 20, 194.00, 'A/C/Heating, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub',
+        'Quad', 'Cityscape', false, 0.0, true),
+       (5, 20, 220.00,
+        'Computer with Internet, A/C/Heating, Microwave, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer',
+        'Joint', 'Mountain', false, 0.0, true),
 
-    (1,21,166.99,'Mini refrigerator, Coffee Maker, A/C/Heating, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Includes Sofa Bed','Single', 'River',false,0.0,true),
-    (2,21,147.99,'Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Walk-In Shower, Includes Sofa Bed','Double', 'River',false,0.0,true),
-    (3,21,166.99,'Computer with Internet, Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Two Queen beds','Triple', 'Cityscape',false,0.0,true),
-    (4,21,147.99,'Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Includes Queen Sleeper','Quad', 'Mountain',true,0.0,true),
-    (5,21,147.99,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Walk-In Shower, Two Queen beds','Joint', 'Cityscape',false,0.0,true),
+       (1, 21, 166.99,
+        'Mini refrigerator, Coffee Maker, A/C/Heating, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Includes Sofa Bed',
+        'Single', 'River', false, 0.0, true),
+       (2, 21, 147.99,
+        'Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Walk-In Shower, Includes Sofa Bed',
+        'Double', 'River', false, 0.0, true),
+       (3, 21, 166.99,
+        'Computer with Internet, Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Two Queen beds',
+        'Triple', 'Cityscape', false, 0.0, true),
+       (4, 21, 147.99,
+        'Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Includes Queen Sleeper',
+        'Quad', 'Mountain', true, 0.0, true),
+       (5, 21, 147.99,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Walk-In Shower, Two Queen beds',
+        'Joint', 'Cityscape', false, 0.0, true),
 
-    (1,22,286.57,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Large work desk, complementary breakfast','Single','River',true,0.0,true),
-    (2,22,199.99,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Double','Mountain',false,0.0,true),
-    (3,22,306.55,'Spacious work desk, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Triple','Mountain',true,0.0,true),
-    (4,22,360.25,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock, Large Table','Quad','Cityscape',true,0.0,true),
-    (5,22,317.67,'Computer with Internet, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Joint','Sea',true,0.0,true),
+       (1, 22, 286.57,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Large work desk, complementary breakfast',
+        'Single', 'River', true, 0.0, true),
+       (2, 22, 199.99, 'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock',
+        'Double', 'Mountain', false, 0.0, true),
+       (3, 22, 306.55, 'Spacious work desk, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock', 'Triple',
+        'Mountain', true, 0.0, true),
+       (4, 22, 360.25,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock, Large Table',
+        'Quad', 'Cityscape', true, 0.0, true),
+       (5, 22, 317.67, 'Computer with Internet, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock',
+        'Joint', 'Sea', true, 0.0, true),
 
-    (1,23,259.25,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Single', 'Cityscape',false,0.0,true),
-    (2,23,411.50,'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Double', 'Cityscape',false,0.0,true),
-    (3,23,279.68,'Widescreen LCD TV with cable & on-demand movies, Hairdryer, Shower, Radio Alarm Clock','Triple', 'Sea',false,0.0,true),
-    (4,23,383.24,'Computer with Internet, Two Queen beds with 250-thread sheets, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Quad', 'Cityscape',false,0.0,true),
-    (5,23,191.87,'Computer with Internet, Two Queen beds with 250-thread sheets, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Joint', 'River',false,0.0,true),
+       (1, 23, 259.25, 'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub',
+        'Single', 'Cityscape', false, 0.0, true),
+       (2, 23, 411.50, 'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub', 'Double',
+        'Cityscape', false, 0.0, true),
+       (3, 23, 279.68, 'Widescreen LCD TV with cable & on-demand movies, Hairdryer, Shower, Radio Alarm Clock',
+        'Triple', 'Sea', false, 0.0, true),
+       (4, 23, 383.24,
+        'Computer with Internet, Two Queen beds with 250-thread sheets, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub',
+        'Quad', 'Cityscape', false, 0.0, true),
+       (5, 23, 191.87,
+        'Computer with Internet, Two Queen beds with 250-thread sheets, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub',
+        'Joint', 'River', false, 0.0, true),
 
-    (1,24,276.99,'Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Iron/Ironing board, Shower/Tub','Single', 'River',false,0.0,true),
-    (2,24,209.59,'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board','Double', 'Cityscape',false,0.0,true),
-    (3,24,331.99,'Computer with Internet, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Triple', 'Cityscape',true,0.0,true),
-    (4,24,390.49,'Mini refrigerator, Coffee Maker, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub','Quad', 'Sea',true,0.0,true),
-    (5,24,380.49,'LCD TV with cable & on-demand movies, Hairdryer, Mini refrigerator','Joint', 'River',false,0.0,true);
+       (1, 24, 276.99,
+        'Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Iron/Ironing board, Shower/Tub',
+        'Single', 'River', false, 0.0, true),
+       (2, 24, 209.59, 'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board',
+        'Double', 'Cityscape', false, 0.0, true),
+       (3, 24, 331.99, 'Computer with Internet, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock',
+        'Triple', 'Cityscape', true, 0.0, true),
+       (4, 24, 390.49,
+        'Mini refrigerator, Coffee Maker, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub',
+        'Quad', 'Sea', true, 0.0, true),
+       (5, 24, 380.49, 'LCD TV with cable & on-demand movies, Hairdryer, Mini refrigerator', 'Joint', 'River', false,
+        0.0, true);
 
 -- ----------------------------------------
 -- Insertion statements for Shangri-La
 -- ----------------------------------------
 INSERT INTO room (room_num, hotel_id, price, amenities, capacity, view_type, extendable, damages, availability)
-VALUES
-    (1,25,239.99,'Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning','Single','Sea',true,0.0,true),
-    (2,25,249.89,'Mini refrigerator, Microwave, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning','Double','Cityscape',true,0.0,true),
-    (3,25,239.79,'Mini refrigerator, Hand-held shower, Lowered toilet, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, and many more accessibility features','Triple','Cityscape',true,0.0,true),
-    (4,25,256.69,'Mini refrigerator, Microwave, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board','Quad','River',false,0.0,true),
-    (5,25,230.59,'Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning','Joint','Mountain',false,20.51,true),
+VALUES (1, 25, 239.99,
+        'Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning',
+        'Single', 'Sea', true, 0.0, true),
+       (2, 25, 249.89,
+        'Mini refrigerator, Microwave, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning',
+        'Double', 'Cityscape', true, 0.0, true),
+       (3, 25, 239.79,
+        'Mini refrigerator, Hand-held shower, Lowered toilet, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, and many more accessibility features',
+        'Triple', 'Cityscape', true, 0.0, true),
+       (4, 25, 256.69,
+        'Mini refrigerator, Microwave, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board',
+        'Quad', 'River', false, 0.0, true),
+       (5, 25, 230.59,
+        'Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning', 'Joint',
+        'Mountain', false, 20.51, true),
 
-    (1,26,185.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board','Single','Cityscape',true,0.0,true),
-    (2,26,203.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board','Double','Cityscape',true,0.0,true),
-    (3,26,185.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board','Unlimited','Sea',true,0.0,true),
-    (4,26,185.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Many accessibility features','Quad','Sea',true,15.20,true),
-    (5,26,210.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Keurig, Snacks','Joint','Cityscape',true,0.0,true),
+       (1, 26, 185.00,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board', 'Single',
+        'Cityscape', true, 0.0, true),
+       (2, 26, 203.00,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board', 'Double',
+        'Cityscape', true, 0.0, true),
+       (3, 26, 185.00,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board',
+        'Unlimited', 'Sea', true, 0.0, true),
+       (4, 26, 185.00,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Many accessibility features',
+        'Quad', 'Sea', true, 15.20, true),
+       (5, 26, 210.00,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Keurig, Snacks',
+        'Joint', 'Cityscape', true, 0.0, true),
 
-    (1,27,672.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Large work desk, complementary breakfast','Single','Mountain',true,0.0,true),
-    (2,27,259.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Double','Mountain',false,0.0,true),
-    (3,27,250.00,'LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Triple','Mountain',false,0.0,true),
-    (4,27,721.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock, Large Table','Quad','Mountain',true,0.0,true),
-    (5,27,391.00,'LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Joint','Mountain',false,0.0,true),
+       (1, 27, 672.00,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Large work desk, complementary breakfast',
+        'Single', 'Mountain', true, 0.0, true),
+       (2, 27, 259.00, 'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock',
+        'Double', 'Mountain', false, 0.0, true),
+       (3, 27, 250.00, 'LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock', 'Triple', 'Mountain', false,
+        0.0, true),
+       (4, 27, 721.00,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock, Large Table',
+        'Quad', 'Mountain', true, 0.0, true),
+       (5, 27, 391.00, 'LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock', 'Joint', 'Mountain', false,
+        0.0, true),
 
-    (1,28,185.00,'Computer with Internet, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Single', 'River',false,0.0,true),
-    (2,28,223.00,'Computer with Internet, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Double', 'Cityscape',false,0.0,true),
-    (3,28,232.00,'Widescreen LCD TV with cable & on-demand movies, Hairdryer, Shower, Radio Alarm Clock','Triple', 'River',false,0.0,true),
-    (4,28,185.00,'A/C/Heating, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Quad', 'Cityscape',false,0.0,true),
-    (5,28,223.00,'A/C/Heating, Microwave, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer','Joint', 'Mountain',false,0.0,true),
+       (1, 28, 185.00,
+        'Computer with Internet, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub',
+        'Single', 'River', false, 0.0, true),
+       (2, 28, 223.00,
+        'Computer with Internet, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub',
+        'Double', 'Cityscape', false, 0.0, true),
+       (3, 28, 232.00, 'Widescreen LCD TV with cable & on-demand movies, Hairdryer, Shower, Radio Alarm Clock',
+        'Triple', 'River', false, 0.0, true),
+       (4, 28, 185.00, 'A/C/Heating, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub',
+        'Quad', 'Cityscape', false, 0.0, true),
+       (5, 28, 223.00, 'A/C/Heating, Microwave, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer',
+        'Joint', 'Mountain', false, 0.0, true),
 
-    (1,29,166.99,'Oven, Mini refrigerator, Coffee Maker, A/C/Heating, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Includes Sofa Bed','Single', 'River',false,0.0,true),
-    (2,29,147.99,'Oven, Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Walk-In Shower, Includes Sofa Bed','Double', 'River',false,0.0,true),
-    (3,29,166.99,'Oven, Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Two Queen beds','Triple', 'Cityscape',false,0.0,true),
-    (4,29,147.99,'Oven, Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Includes Queen Sleeper','Quad', 'Mountain',true,0.0,true),
-    (5,29,147.99,'Oven, Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Walk-In Shower, Two Queen beds','Joint', 'Cityscape',false,0.0,true),
+       (1, 29, 166.99,
+        'Oven, Mini refrigerator, Coffee Maker, A/C/Heating, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Includes Sofa Bed',
+        'Single', 'River', false, 0.0, true),
+       (2, 29, 147.99,
+        'Oven, Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Walk-In Shower, Includes Sofa Bed',
+        'Double', 'River', false, 0.0, true),
+       (3, 29, 166.99,
+        'Oven, Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Two Queen beds',
+        'Triple', 'Cityscape', false, 0.0, true),
+       (4, 29, 147.99,
+        'Oven, Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Includes Queen Sleeper',
+        'Quad', 'Mountain', true, 0.0, true),
+       (5, 29, 147.99,
+        'Oven, Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Walk-In Shower, Two Queen beds',
+        'Joint', 'Cityscape', false, 0.0, true),
 
-    (1,30,286.57,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Large work desk, complementary breakfast','Single','River',true,0.0,true),
-    (2,30,199.99,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Double','Mountain',false,0.0,true),
-    (3,30,306.55,'Spacious work desk, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Triple','Mountain',true,0.0,true),
-    (4,30,360.25,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock, Large Table','Quad','Cityscape',true,0.0,true),
-    (5,30,317.67,'LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Joint','Sea',true,0.0,true),
+       (1, 30, 286.57,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Large work desk, complementary breakfast',
+        'Single', 'River', true, 0.0, true),
+       (2, 30, 199.99, 'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock',
+        'Double', 'Mountain', false, 0.0, true),
+       (3, 30, 306.55, 'Spacious work desk, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock', 'Triple',
+        'Mountain', true, 0.0, true),
+       (4, 30, 360.25,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock, Large Table',
+        'Quad', 'Cityscape', true, 0.0, true),
+       (5, 30, 317.67, 'LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock', 'Joint', 'Sea', true, 0.0,
+        true),
 
-    (1,31,259.25,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Single', 'Cityscape',false,0.0,true),
-    (2,31,411.50,'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Double', 'Cityscape',false,0.0,true),
-    (3,31,279.68,'Widescreen LCD TV with cable & on-demand movies, Hairdryer, Shower, Radio Alarm Clock','Triple', 'Sea',false,0.0,true),
-    (4,31,383.24,'Two Queen beds with 250-thread sheets, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Quad', 'Cityscape',false,0.0,true),
-    (5,31,191.87,'Two Queen beds with 250-thread sheets, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Joint', 'River',false,0.0,true),
+       (1, 31, 259.25, 'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub',
+        'Single', 'Cityscape', false, 0.0, true),
+       (2, 31, 411.50, 'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub', 'Double',
+        'Cityscape', false, 0.0, true),
+       (3, 31, 279.68, 'Widescreen LCD TV with cable & on-demand movies, Hairdryer, Shower, Radio Alarm Clock',
+        'Triple', 'Sea', false, 0.0, true),
+       (4, 31, 383.24,
+        'Two Queen beds with 250-thread sheets, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub',
+        'Quad', 'Cityscape', false, 0.0, true),
+       (5, 31, 191.87,
+        'Two Queen beds with 250-thread sheets, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub',
+        'Joint', 'River', false, 0.0, true),
 
-    (1,32,276.99,'Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Iron/Ironing board, Shower/Tub','Single', 'River',false,0.0,true),
-    (2,32,209.59,'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board','Double', 'Cityscape',false,0.0,true),
-    (3,32,331.99,'LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Triple', 'Cityscape',true,0.0,true),
-    (4,32,390.49,'Mini refrigerator, Coffee Maker, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub','Quad', 'Sea',true,0.0,true),
-    (5,32,380.49,'LCD TV with cable & on-demand movies, Hairdryer, Mini refrigerator','Joint', 'Sea',false,0.0,true);
+       (1, 32, 276.99,
+        'Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Iron/Ironing board, Shower/Tub',
+        'Single', 'River', false, 0.0, true),
+       (2, 32, 209.59, 'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board',
+        'Double', 'Cityscape', false, 0.0, true),
+       (3, 32, 331.99, 'LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock', 'Triple', 'Cityscape', true,
+        0.0, true),
+       (4, 32, 390.49,
+        'Mini refrigerator, Coffee Maker, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub',
+        'Quad', 'Sea', true, 0.0, true),
+       (5, 32, 380.49, 'LCD TV with cable & on-demand movies, Hairdryer, Mini refrigerator', 'Joint', 'Sea', false, 0.0,
+        true);
 
 -- ----------------------------------------
 -- Insertion statements for Best Western
 -- ----------------------------------------
 INSERT INTO room (room_num, hotel_id, price, amenities, capacity, view_type, extendable, damages, availability)
-VALUES
-    (1,33,250.99,'LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning','Single','Sea',true,0.0,true),
-    (2,33,261.89,'Mini refrigerator, Microwave, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning','Double','Cityscape',true,0.0,true),
-    (3,33,219.79,'Mini refrigerator, Hand-held shower, Lowered toilet, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, and many more accessibility features','Triple','Cityscape',true,0.0,true),
-    (4,33,310.69,'Mini refrigerator, Microwave, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board','Quad','River',false,0.0,true),
-    (5,33,240.59,'Bunk Beds, Microwave, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning','Joint','Mountain',false,20.51,true),
+VALUES (1, 33, 250.99, 'LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning',
+        'Single', 'Sea', true, 0.0, true),
+       (2, 33, 261.89,
+        'Mini refrigerator, Microwave, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning',
+        'Double', 'Cityscape', true, 0.0, true),
+       (3, 33, 219.79,
+        'Mini refrigerator, Hand-held shower, Lowered toilet, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, and many more accessibility features',
+        'Triple', 'Cityscape', true, 0.0, true),
+       (4, 33, 310.69,
+        'Mini refrigerator, Microwave, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board',
+        'Quad', 'River', false, 0.0, true),
+       (5, 33, 240.59,
+        'Bunk Beds, Microwave, Serta Suite Dreams(R) bedding, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Air Conditioning',
+        'Joint', 'Mountain', false, 20.51, true),
 
-    (1,34,185.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board','Single','Valley',true,0.0,true),
-    (2,34,200.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board','Double','Mountain',true,0.0,true),
-    (3,34,183.00,'Refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board','Triple','Mountain',true,0.0,true),
-    (4,34,184.99,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Many accessibility features','Quad','Valley',true,15.20,true),
-    (5,34,211.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Snacks','Joint','Valley',true,0.0,true),
+       (1, 34, 185.00,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board', 'Single',
+        'Valley', true, 0.0, true),
+       (2, 34, 200.00,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board', 'Double',
+        'Mountain', true, 0.0, true),
+       (3, 34, 183.00, 'Refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board',
+        'Triple', 'Mountain', true, 0.0, true),
+       (4, 34, 184.99,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Many accessibility features',
+        'Quad', 'Valley', true, 15.20, true),
+       (5, 34, 211.00, 'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Snacks', 'Joint',
+        'Valley', true, 0.0, true),
 
-    (1,35,672.00,'Signature Fruit Salad, Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Large work desk, complementary breakfast','Single','Mountain',true,0.0,true),
-    (2,35,259.00,'Chaise lounge, Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Double','Valley',false,0.0,true),
-    (3,35,250.00,'Spacious work desk, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Triple','Mountain',false,0.0,true),
-    (4,35,721.00,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock, Large Table','Quad','Mountain',true,0.0,true),
-    (5,35,391.00,'LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Joint','Mountain',false,0.0,true),
+       (1, 35, 672.00,
+        'Signature Fruit Salad, Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Large work desk, complementary breakfast',
+        'Single', 'Mountain', true, 0.0, true),
+       (2, 35, 259.00,
+        'Chaise lounge, Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock',
+        'Double', 'Valley', false, 0.0, true),
+       (3, 35, 250.00, 'Spacious work desk, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock', 'Triple',
+        'Mountain', false, 0.0, true),
+       (4, 35, 721.00,
+        'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock, Large Table',
+        'Quad', 'Mountain', true, 0.0, true),
+       (5, 35, 391.00, 'LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock', 'Joint', 'Mountain', false,
+        0.0, true),
 
-    (1,36,185.00,'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Single', 'River',false,0.0,true),
-    (2,36,223.00,'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Double', 'Cityscape',false,0.0,true),
-    (3,36,232.00,'Two chaise loungesWidescreen LCD TV with cable & on-demand movies, Hairdryer, Shower, Radio Alarm Clock','Triple', 'River',false,0.0,true),
-    (4,36,185.00,'A/C/Heating, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Quad', 'Cityscape',false,0.0,true),
-    (5,36,223.00,'Chaise lounge, A/C/Heating, Microwave, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer','Joint', 'Mountain',false,0.0,true),
+       (1, 36, 185.00, 'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub', 'Single',
+        'River', false, 0.0, true),
+       (2, 36, 223.00, 'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub', 'Double',
+        'Cityscape', false, 0.0, true),
+       (3, 36, 232.00,
+        'Two chaise loungesWidescreen LCD TV with cable & on-demand movies, Hairdryer, Shower, Radio Alarm Clock',
+        'Triple', 'River', false, 0.0, true),
+       (4, 36, 185.00, 'A/C/Heating, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub',
+        'Quad', 'Cityscape', false, 0.0, true),
+       (5, 36, 223.00,
+        'Chaise lounge, A/C/Heating, Microwave, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer',
+        'Joint', 'Mountain', false, 0.0, true),
 
-    (1,37,166.99,'Chaise lounge, Mini refrigerator, Coffee Maker, A/C/Heating, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Includes Sofa Bed','Single', 'River',false,0.0,true),
-    (2,37,147.99,'Chaise lounge, Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Walk-In Shower, Includes Sofa Bed','Double', 'River',false,0.0,true),
-    (3,37,166.99,'Chaise lounge, Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Two Queen beds','Triple', 'Cityscape',false,0.0,true),
-    (4,37,147.99,'Chaise lounge, Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Includes Queen Sleeper','Quad', 'Mountain',true,0.0,true),
-    (5,37,147.99,'Chaise lounge, Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Walk-In Shower, Two Queen beds','Joint', 'Cityscape',false,0.0,true),
+       (1, 37, 166.99,
+        'Chaise lounge, Mini refrigerator, Coffee Maker, A/C/Heating, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Includes Sofa Bed',
+        'Single', 'River', false, 0.0, true),
+       (2, 37, 147.99,
+        'Chaise lounge, Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Walk-In Shower, Includes Sofa Bed',
+        'Double', 'River', false, 0.0, true),
+       (3, 37, 166.99,
+        'Chaise lounge, Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Two Queen beds',
+        'Triple', 'Cityscape', false, 0.0, true),
+       (4, 37, 147.99,
+        'Chaise lounge, Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub, Includes Queen Sleeper',
+        'Quad', 'Mountain', true, 0.0, true),
+       (5, 37, 147.99,
+        'Chaise lounge, Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Walk-In Shower, Two Queen beds',
+        'Joint', 'Cityscape', false, 0.0, true),
 
-    (1,38,286.57,'Chaise lounge, Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Large work desk, complementary breakfast','Single','River',true,0.0,true),
-    (2,38,199.99,'Chaise lounge, Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Double','Mountain',false,0.0,true),
-    (3,38,306.55,'Chaise lounge, Spacious work desk, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Triple','Mountain',true,0.0,true),
-    (4,38,360.25,'Chaise lounge, Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock, Large Table','Quad','Cityscape',true,0.0,true),
-    (5,38,317.67,'Chaise lounge, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Joint','Sea',true,0.0,true),
+       (1, 38, 286.57,
+        'Chaise lounge, Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/ironing board, Large work desk, complementary breakfast',
+        'Single', 'River', true, 0.0, true),
+       (2, 38, 199.99,
+        'Chaise lounge, Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock',
+        'Double', 'Mountain', false, 0.0, true),
+       (3, 38, 306.55,
+        'Chaise lounge, Spacious work desk, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock', 'Triple',
+        'Mountain', true, 0.0, true),
+       (4, 38, 360.25,
+        'Chaise lounge, Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock, Large Table',
+        'Quad', 'Cityscape', true, 0.0, true),
+       (5, 38, 317.67, 'Chaise lounge, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock', 'Joint',
+        'Sea', true, 0.0, true),
 
-    (1,39,259.25,'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Single', 'Cityscape',false,0.0,true),
-    (2,39,411.50,'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Double', 'Cityscape',false,0.0,true),
-    (3,39,279.68,'Widescreen LCD TV with cable & on-demand movies, Hairdryer, Shower, Radio Alarm Clock','Triple', 'Sea',false,0.0,true),
-    (4,39,383.24,'Two Queen beds with 250-thread sheets, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Quad', 'Cityscape',false,0.0,true),
-    (5,39,191.87,'Two Queen beds with 250-thread sheets, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub','Joint', 'River',false,0.0,true),
+       (1, 39, 259.25, 'Mini refrigerator, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub',
+        'Single', 'Cityscape', false, 0.0, true),
+       (2, 39, 411.50, 'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub', 'Double',
+        'Cityscape', false, 0.0, true),
+       (3, 39, 279.68, 'Widescreen LCD TV with cable & on-demand movies, Hairdryer, Shower, Radio Alarm Clock',
+        'Triple', 'Sea', false, 0.0, true),
+       (4, 39, 383.24,
+        'Two Queen beds with 250-thread sheets, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub',
+        'Quad', 'Cityscape', false, 0.0, true),
+       (5, 39, 191.87,
+        'Two Queen beds with 250-thread sheets, Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Shower/Tub',
+        'Joint', 'River', false, 0.0, true),
 
-    (1,40,276.99,'Chaise lounge, Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Iron/Ironing board, Shower/Tub','Single', 'River',false,0.0,true),
-    (2,40,209.59,'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board','Double', 'Cityscape',false,0.0,true),
-    (3,40,331.99,'Chaise lounge, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock','Triple', 'Cityscape',true,0.0,true),
-    (4,40,390.49,'Chaise lounge, Mini refrigerator, Coffee Maker, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub','Quad', 'Sea',true,0.0,true),
-    (5,40,380.49,'Chaise lounge, LCD TV with cable & on-demand movies, Hairdryer, Mini refrigerator','Joint', 'Sea',false,0.0,true);
+       (1, 40, 276.99,
+        'Chaise lounge, Mini refrigerator, Coffee Maker, LCD TV with cable & on-demand movies, Iron/Ironing board, Shower/Tub',
+        'Single', 'River', false, 0.0, true),
+       (2, 40, 209.59, 'Mini refrigerator, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board',
+        'Double', 'Cityscape', false, 0.0, true),
+       (3, 40, 331.99, 'Chaise lounge, LCD TV with cable & on-demand movies, Hairdryer, MP3 Alarm Clock', 'Triple',
+        'Cityscape', true, 0.0, true),
+       (4, 40, 390.49,
+        'Chaise lounge, Mini refrigerator, Coffee Maker, Microwave, LCD TV with cable & on-demand movies, Hairdryer, Iron/Ironing board, Shower/Tub',
+        'Quad', 'Sea', true, 0.0, true),
+       (5, 40, 380.49, 'Chaise lounge, LCD TV with cable & on-demand movies, Hairdryer, Mini refrigerator', 'Joint',
+        'Sea', false, 0.0, true);
 
 -- ---------------------------------
 -- View statements for a room
 -- ---------------------------------
-SELECT * FROM room;
+SELECT *
+FROM room;
 
 -- ---------------------------------------------------------------------------------------------------------------------
 -- Table structure for an employee
 -- ---------------------------------------------------------------------------------------------------------------------
 DROP TABLE IF EXISTS employee;
-CREATE TABLE employee (
-    employee_id SMALLSERIAL UNIQUE,
-    manager_id INT,
-    hotel_id INT,
-    first_name VARCHAR(25) NOT NULL,
-    last_name VARCHAR (25) NOT NULL,
-    SIN CHAR(9) NOT NULL UNIQUE,
+CREATE TABLE employee
+(
+    employee_id         SMALLSERIAL UNIQUE,
+    manager_id          INT,
+    hotel_id            INT,
+    first_name          VARCHAR(25)   NOT NULL,
+    last_name           VARCHAR(25)   NOT NULL,
+    SIN                 CHAR(9)       NOT NULL UNIQUE,
     employee_address_id INT,
-    position VARCHAR(25) NOT NULL,
-    salary NUMERIC(7,2) NOT NULL ,
-    FOREIGN KEY (employee_address_id) REFERENCES address(id),
-    FOREIGN KEY (hotel_id) REFERENCES hotel(hotel_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    PRIMARY KEY (employee_id,hotel_id)
+    position            VARCHAR(25)   NOT NULL,
+    salary              NUMERIC(7, 2) NOT NULL,
+    FOREIGN KEY (employee_address_id) REFERENCES address (id),
+    FOREIGN KEY (hotel_id) REFERENCES hotel (hotel_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    PRIMARY KEY (employee_id, hotel_id)
 );
 
 -- -----------------------------------------------------
 -- Insertion statements for employees at hilton hotels
 -- -----------------------------------------------------
 INSERT INTO employee (manager_id, hotel_id, first_name, last_name, SIN, employee_address_id, position, salary)
-VALUES
-    (null, 1, 'Mickey', 'Mouse', 432517863, 46, 'Housekeeping', 30088.56),
-    (101, 1, 'Daisy', 'Duck', 753159762, 47, 'Maintenance Manager', 86002.67),
+VALUES (null, 1, 'Mickey', 'Mouse', 432517863, 46, 'Housekeeping', 30088.56),
+       (101, 1, 'Daisy', 'Duck', 753159762, 47, 'Maintenance Manager', 86002.67),
 
-    (null, 2, 'Hugh', 'Normous', 456789123, 48, 'Events', 46020.56),
-    (102, 2, 'Luke', 'Skywalker', 789654123, 49, 'Security Manager', 99567.79),
+       (null, 2, 'Hugh', 'Normous', 456789123, 48, 'Events', 46020.56),
+       (102, 2, 'Luke', 'Skywalker', 789654123, 49, 'Security Manager', 99567.79),
 
-    (null, 3, 'Alex', 'Russo', 123556789, 50, 'Front Desk Agent', 45042.62),
-    (103, 3, 'Justin', 'Russo', 987654321, 51, 'Concierge Manager', 68569.45),
+       (null, 3, 'Alex', 'Russo', 123556789, 50, 'Front Desk Agent', 45042.62),
+       (103, 3, 'Justin', 'Russo', 987654321, 51, 'Concierge Manager', 68569.45),
 
-    (null, 4, 'Mike', 'Wazowski', 951753456, 52, 'Entertainer', 80982.56),
-    (104, 4, 'Jimmy', 'Neutron', 653214896, 53, 'Housekeeper Manager', 86056.67),
+       (null, 4, 'Mike', 'Wazowski', 951753456, 52, 'Entertainer', 80982.56),
+       (104, 4, 'Jimmy', 'Neutron', 653214896, 53, 'Housekeeper Manager', 86056.67),
 
-    (null, 5, 'Spongebob', 'Squarepants', 842695713, 54, 'Concierge', 46053.56),
-    (105, 5, 'Patrick', 'Star', 963852741, 55, 'Security', 99645.79),
+       (null, 5, 'Spongebob', 'Squarepants', 842695713, 54, 'Concierge', 46053.56),
+       (105, 5, 'Patrick', 'Star', 963852741, 55, 'Security', 99645.79),
 
-    (null, 6, 'Betty', 'Boop', 123123123, 56, 'Entertainer', 45456.62),
-    (106, 6, 'Admiral', 'Ackbar', 456456456, 57, 'Security', 68452.45),
+       (null, 6, 'Betty', 'Boop', 123123123, 56, 'Entertainer', 45456.62),
+       (106, 6, 'Admiral', 'Ackbar', 456456456, 57, 'Security', 68452.45),
 
-    (null, 7, 'Bill', 'Nye', 789789789, 58, 'Front Desk Agent', 46205.56),
-    (107, 7, 'Tiger', 'Woods', 741741741, 59, 'Entertainer Manager', 99123.79),
+       (null, 7, 'Bill', 'Nye', 789789789, 58, 'Front Desk Agent', 46205.56),
+       (107, 7, 'Tiger', 'Woods', 741741741, 59, 'Entertainer Manager', 99123.79),
 
-    (null, 8, 'Red', 'Skull', 852852852, 60, 'Housekeeper', 45456.62),
-    (108, 8, 'Peter', 'Pan', 963963963, 61, 'Front Desk Agent Manager', 68789.45);
+       (null, 8, 'Red', 'Skull', 852852852, 60, 'Housekeeper', 45456.62),
+       (108, 8, 'Peter', 'Pan', 963963963, 61, 'Front Desk Agent Manager', 68789.45);
 
 -- -------------------------------------------------------------
 -- Insertion statements for employees at omni hotels & resorts
 -- -------------------------------------------------------------
 INSERT INTO employee (manager_id, hotel_id, first_name, last_name, SIN, employee_address_id, position, salary)
-VALUES
-    (null, 9, 'Tinker', 'Bell', 012345678, 62, 'Front Desk Agent', 45689.56),
-    (109, 9, 'Minnie', 'Mouse', 234567890, 63, 'Maintenance Manager', 80000.67),
+VALUES (null, 9, 'Tinker', 'Bell', 012345678, 62, 'Front Desk Agent', 45689.56),
+       (109, 9, 'Minnie', 'Mouse', 234567890, 63, 'Maintenance Manager', 80000.67),
 
-    (null, 10, 'Johnny', 'Test', 345678901, 64, 'Maintenance', 45682.56),
-    (110, 10, 'Mario', 'Kart', 456789012, 65, 'Events Manager', 84560.79),
+       (null, 10, 'Johnny', 'Test', 345678901, 64, 'Maintenance', 45682.56),
+       (110, 10, 'Mario', 'Kart', 456789012, 65, 'Events Manager', 84560.79),
 
-    (null, 11, 'Lisa', 'Simpson', 567890123, 66, 'Entertainer', 92045.62),
-    (111, 11, 'Scooby', 'Doo', 678901234, 67, 'Chef Manager', 45684.45),
+       (null, 11, 'Lisa', 'Simpson', 567890123, 66, 'Entertainer', 92045.62),
+       (111, 11, 'Scooby', 'Doo', 678901234, 67, 'Chef Manager', 45684.45),
 
-    (null, 12, 'Charlie', 'Brown', 789012345, 68, 'Entertainer', 76102.56),
-    (112, 12, 'Winnie', 'the Pooh', 890123456, 69, 'Housekeeper Manager', 76523.67),
+       (null, 12, 'Charlie', 'Brown', 789012345, 68, 'Entertainer', 76102.56),
+       (112, 12, 'Winnie', 'the Pooh', 890123456, 69, 'Housekeeper Manager', 76523.67),
 
-    (null, 13, 'Tweety', 'Bird', 901234567, 70, 'Front Desk Agent', 49782.56),
-    (113, 13, 'Jessice', 'Rabbit', 876543210, 71, 'Security', 78922.79),
+       (null, 13, 'Tweety', 'Bird', 901234567, 70, 'Front Desk Agent', 49782.56),
+       (113, 13, 'Jessice', 'Rabbit', 876543210, 71, 'Security', 78922.79),
 
-    (null, 14, 'Jiminy', 'Cricket', 765432109, 73, 'Events', 95842.62),
-    (114, 14, 'Heinz', 'Doofenshmirtz', 654321098, 72, 'Security', 62000.45),
+       (null, 14, 'Jiminy', 'Cricket', 765432109, 73, 'Events', 95842.62),
+       (114, 14, 'Heinz', 'Doofenshmirtz', 654321098, 72, 'Security', 62000.45),
 
-    (null, 15, 'Phineas', 'Flynn', 543210987, 74, 'Security', 69842.56),
-    (115, 15, 'Ferb', 'Fletcher', 432109876, 75, 'Housekeeper Manager', 94650.79),
+       (null, 15, 'Phineas', 'Flynn', 543210987, 74, 'Security', 69842.56),
+       (115, 15, 'Ferb', 'Fletcher', 432109876, 75, 'Housekeeper Manager', 94650.79),
 
-    (null, 16, 'Perry', 'the Platypus', 321098765, 76, 'Chef', 54035.62),
-    (116, 16, 'Isabella', 'Garcia-Shapiro', 210987654, 77, 'Front Desk Agent Manager', 46894.45);
+       (null, 16, 'Perry', 'the Platypus', 321098765, 76, 'Chef', 54035.62),
+       (116, 16, 'Isabella', 'Garcia-Shapiro', 210987654, 77, 'Front Desk Agent Manager', 46894.45);
 
 -- ---------------------------------------------------------------------
 -- Insertion statements for employees at four seasons hotels & resorts
 -- --------------------------------------------------------------------
 INSERT INTO employee (manager_id, hotel_id, first_name, last_name, SIN, employee_address_id, position, salary)
-VALUES
-    (null, 17, 'Marge', 'Simpson', 109876543, 78, 'Chef', 45689.56),
-    (117, 17, 'Bart', 'Simpson', 098765432, 79, 'Chef Manager', 80000.67),
+VALUES (null, 17, 'Marge', 'Simpson', 109876543, 78, 'Chef', 45689.56),
+       (117, 17, 'Bart', 'Simpson', 098765432, 79, 'Chef Manager', 80000.67),
 
-    (null, 18, 'Bob', 'the Builder', 632145698, 80, 'Front Desk Agent', 45682.56),
-    (118, 18, 'Walter', 'White', 853214567, 81, 'Events Manager', 84560.79),
+       (null, 18, 'Bob', 'the Builder', 632145698, 80, 'Front Desk Agent', 45682.56),
+       (118, 18, 'Walter', 'White', 853214567, 81, 'Events Manager', 84560.79),
 
-    (null, 19, 'Leonardo', 'da Vinci', 120320140, 82, 'Entertainer', 92045.62),
-    (119, 19, 'Bob', 'Ross', 321452059, 83, 'Security Manager', 45684.45),
+       (null, 19, 'Leonardo', 'da Vinci', 120320140, 82, 'Entertainer', 92045.62),
+       (119, 19, 'Bob', 'Ross', 321452059, 83, 'Security Manager', 45684.45),
 
-    (null, 20, 'Ludwig', 'van Beethoven', 596420254, 84, 'Entertainer', 76102.56),
-    (120, 20, 'Natalie ', 'Portman', 256000025, 85, 'Housekeeper Manager', 76523.67),
+       (null, 20, 'Ludwig', 'van Beethoven', 596420254, 84, 'Entertainer', 76102.56),
+       (120, 20, 'Natalie ', 'Portman', 256000025, 85, 'Housekeeper Manager', 76523.67),
 
-    (null, 21, 'Peter', 'Parker', 100000001, 86, 'Chef', 64252.40),
-    (121, 21, 'Wendy', 'Thomas', 100000002, 87, 'Front Desk Agent Manager', 95412.00),
+       (null, 21, 'Peter', 'Parker', 100000001, 86, 'Chef', 64252.40),
+       (121, 21, 'Wendy', 'Thomas', 100000002, 87, 'Front Desk Agent Manager', 95412.00),
 
-    (null, 22, 'John', 'Smith', 100000003, 88, 'Security', 69842.56),
-    (122, 22, 'Jane', 'Doe', 100000004, 89, 'Housekeeper Manager', 94650.79),
+       (null, 22, 'John', 'Smith', 100000003, 88, 'Security', 69842.56),
+       (122, 22, 'Jane', 'Doe', 100000004, 89, 'Housekeeper Manager', 94650.79),
 
-    (null, 23, 'John', 'Smith', 100000005, 90, 'Events', 60935.62),
-    (123, 23, 'Jane', 'Doe', 100000006, 91, 'Front Desk Agent Manager', 82043.45),
+       (null, 23, 'John', 'Smith', 100000005, 90, 'Events', 60935.62),
+       (123, 23, 'Jane', 'Doe', 100000006, 91, 'Front Desk Agent Manager', 82043.45),
 
-    (null, 24, 'Alex', 'Eclipse', 100000007, 92, 'Chef', 58553.56),
-    (124, 24, 'Sarah', 'IntelliJ', 100000008, 93, 'Chef Manager', 85200.67);
+       (null, 24, 'Alex', 'Eclipse', 100000007, 92, 'Chef', 58553.56),
+       (124, 24, 'Sarah', 'IntelliJ', 100000008, 93, 'Chef Manager', 85200.67);
 
 -- ---------------------------------------------------------------------
 -- Insertion statements for employees at shangri-la hotels & resorts
@@ -800,9 +1125,15 @@ VALUES (null, 33, 'Officer', 'Jenny', 10000025, 110, 'Chef', 45689.56),
 -- -------------------------------
 -- View statement for employee
 -- -------------------------------
-SELECT * FROM employee;
+SELECT *
+FROM employee;
 
-SELECT e.employee_id, e.first_name,a.street, a.city, a.province, a.country -- view the entire address of an employee (ordered by their id's)
+SELECT e.employee_id, -- view the entire address of an employee (ordered by their id's)
+       e.first_name,
+       a.street,
+       a.city,
+       a.province,
+       a.country
 FROM address a
          JOIN employee e ON e.employee_address_id = a.id
 ORDER BY e.employee_id;
@@ -812,35 +1143,42 @@ ORDER BY e.employee_id;
 -- Table structure for a customer
 -- ---------------------------------------------------------------------------------------------------------------------
 DROP TABLE IF EXISTS customer;
-CREATE TABLE customer (
-  customer_id SERIAL, -- auto-incrementing id
-  first_name VARCHAR(25) NOT NULL,
-  last_name VARCHAR (25) NOT NULL,
-  SIN CHAR(9) NOT NULL UNIQUE,
-  customer_address_id INT NOT NULL,
-  registration_date DATE,
-  credit_card_num CHAR(16),
-  customer_phone_number CHAR(10),
-  customer_email VARCHAR(30) NOT NULL CHECK (customer_email LIKE '_%@_%._%'),
-  FOREIGN KEY (customer_address_id) REFERENCES address(id),
-  PRIMARY KEY (customer_id)
+CREATE TABLE customer
+(
+    customer_id           SERIAL,
+    first_name            VARCHAR(25) NOT NULL,
+    last_name             VARCHAR(25) NOT NULL,
+    SIN                   CHAR(9)     NOT NULL UNIQUE,
+    customer_address_id   INT         NOT NULL,
+    registration_date     DATE,
+    credit_card_num       CHAR(16),
+    customer_phone_number CHAR(10),
+    customer_email        VARCHAR(30) NOT NULL CHECK (customer_email LIKE '_%@_%._%') UNIQUE,
+    FOREIGN KEY (customer_address_id) REFERENCES address (id),
+    PRIMARY KEY (customer_id)
 );
 
 -- --------------------------------------
 -- Insertion statements for customers
 -- --------------------------------------
-INSERT INTO customer (first_name, last_name, SIN, customer_address_id, registration_date, credit_card_num, customer_phone_number, customer_email)
-VALUES
-('Bob', 'the Builder', 111111111, 126, CURRENT_DATE, 1234567891234567, 8085679514, 'bobthebuilder@email.com'),
-('Harper', 'Finkle', 222222222, 127, CURRENT_DATE, 1111111111111111, 6467985555, 'harperfinkle@email.com'),
-('Max', 'Russo', 333333333, 128, CURRENT_DATE, 2222222222222222, 6045687989, 'notawizard@email.com');
+INSERT INTO customer (first_name, last_name, SIN, customer_address_id, registration_date, credit_card_num,
+                      customer_phone_number, customer_email)
+VALUES ('Bob', 'the Builder', 111111111, 126, CURRENT_DATE, 1234567891234567, 8085679514, 'bobthebuilder@email.com'),
+       ('Harper', 'Finkle', 222222222, 127, CURRENT_DATE, 1111111111111111, 6467985555, 'harperfinkle@email.com'),
+       ('Max', 'Russo', 333333333, 128, CURRENT_DATE, 2222222222222222, 6045687989, 'notawizard@email.com');
 
 -- -------------------------------
 -- View statement for customer
 -- -------------------------------
-SELECT * FROM customer;
+SELECT *
+FROM customer;
 
-SELECT c.customer_id, c.first_name, a.street, a.city, a.province, a.country -- view the entire address of a customer (ordered by their id's)
+SELECT c.customer_id, -- view the entire address of a customer (ordered by their id's)
+       c.first_name,
+       a.street,
+       a.city,
+       a.province,
+       a.country
 FROM address a
          JOIN customer c ON c.customer_address_id = a.id;
 
@@ -849,17 +1187,18 @@ FROM address a
 -- Table structure for a booking
 -- ---------------------------------------------------------------------------------------------------------------------
 DROP TABLE IF EXISTS booking;
-CREATE TABLE booking (
-    booking_id SERIAL,
-    check_in DATE NOT NULL,
-    check_out DATE NOT NULL,
+CREATE TABLE booking
+(
+    booking_id        SERIAL,
+    check_in          DATE NOT NULL,
+    check_out         DATE NOT NULL,
     confirmation_date DATE NOT NULL,
-    employee_id INT NOT NULL,
-    customer_id INT NOT NULL,
-    room_id INT,
-    FOREIGN KEY (employee_id) REFERENCES employee(employee_id),
-    FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
-    FOREIGN KEY (room_id) REFERENCES room(room_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    employee_id       INT  NOT NULL,
+    customer_id       INT  NOT NULL,
+    room_id           INT,
+    FOREIGN KEY (employee_id) REFERENCES employee (employee_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (customer_id) REFERENCES customer (customer_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (room_id) REFERENCES room (room_id) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (booking_id)
 );
 
@@ -867,18 +1206,19 @@ CREATE TABLE booking (
 -- Table structure for a rental
 -- ---------------------------------------------------------------------------------------------------------------------
 DROP TABLE IF EXISTS rental;
-CREATE TABLE rental (
-    rental_id SERIAL,
-    booking_id INT NOT NULL,
-    check_in DATE NOT NULL,
-    check_out DATE NOT NULL,
-    room_id INT NOT NULL,
-    employee_id INT NOT NULL,
-    customer_id INT NOT NULL,
-    FOREIGN KEY (employee_id) REFERENCES employee(employee_id),
-    FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
-    FOREIGN KEY (room_id) REFERENCES room(room_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (booking_id) REFERENCES booking(booking_id),
+CREATE TABLE rental
+(
+    rental_id   SERIAL,
+    booking_id  INT  NOT NULL,
+    check_in    DATE NOT NULL,
+    check_out   DATE NOT NULL,
+    room_id     INT  NOT NULL,
+    employee_id INT  NOT NULL,
+    customer_id INT  NOT NULL,
+    FOREIGN KEY (employee_id) REFERENCES employee (employee_id),
+    FOREIGN KEY (customer_id) REFERENCES customer (customer_id),
+    FOREIGN KEY (room_id) REFERENCES room (room_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (booking_id) REFERENCES booking (booking_id),
     PRIMARY KEY (rental_id)
 );
 
@@ -886,15 +1226,16 @@ CREATE TABLE rental (
 -- Table structure for an archive
 -- ---------------------------------------------------------------------------------------------------------------------
 DROP TABLE IF EXISTS archive;
-CREATE TABLE archive (
-    archive_id SERIAL,
-    booking_id INT,
-    rental_id INT,
-    check_in DATE NOT NULL,
-    check_out DATE NOT NULL,
-    room_num INT NOT NULL,
-    final_price NUMERIC(8,2) NOT NULL,
-    customer_id INT NOT NULL,
-    employee_id INT NOT NULL,
+CREATE TABLE archive
+(
+    archive_id  SERIAL,
+    booking_id  INT,
+    rental_id   INT,
+    check_in    DATE          NOT NULL,
+    check_out   DATE          NOT NULL,
+    room_num    INT           NOT NULL,
+    final_price NUMERIC(8, 2) NOT NULL,
+    customer_id INT           NOT NULL,
+    employee_id INT           NOT NULL,
     PRIMARY KEY (archive_id)
 );
