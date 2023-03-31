@@ -9,46 +9,31 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 @WebServlet(name = "customerRegistrationServlet", value = "/customer-registration-servlet")
-
 public class CustomerRegistrationServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        //doPost(req, resp);
+        doPost(req, resp);
     }
 
-    //@Override
-    /*public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        // TODO Auto-generated method stub
+    @Override
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         HttpSession session = req.getSession();
-//		employee account = new employee();
-        String custSSN = req.getParameter("custSSN");
-        String custName = req.getParameter("custName");
-        String custPwd = req.getParameter("custPwd");
+        String fName = req.getParameter("first name");
+        String lName = req.getParameter("last name");
+        int SIN = Integer.parseInt(req.getParameter("ssn"));
+        String streetAddress = req.getParameter("street address");
+        String city = req.getParameter("first name");
+        String province = req.getParameter("province");
+        String country = req.getParameter("country");
+        int ccNum = Integer.parseInt(req.getParameter("credit card number"));
+        int phoneNum = Integer.parseInt(req.getParameter("phone number"));
+        String email = req.getParameter("email");
 
-        String[] param = new String[] {custSSN,custName,custPwd};
+        // VARIABLE DECLARATION: new connection
+        ConnectionDB con = new ConnectionDB();
 
-        PostgreSqlConn con = new PostgreSqlConn();
-        boolean pwdfromdb = con.insertNewCustomer(param);
-
-        System.out.println(pwdfromdb);
-
-        if (pwdfromdb) {
-            System.out.println("success");
-
-            ArrayList<Room> bookedRooms = con.getbookedRooms(custSSN);
-
-            ArrayList<Room> allRooms = con.getAllAvailRooms();
-
-            System.out.println(allRooms);
-
-            req.setAttribute("CustName", custName);
-            req.setAttribute("bookedRooms", bookedRooms);
-            req.setAttribute("allRooms", allRooms);
-
-            req.getRequestDispatcher("booking.jsp").forward(req, resp);
-            return;
-        }
-        resp.sendRedirect("register_failure.jsp");
-        return;
-    }*/
+        // PROCESS: inserting new customer to database
+        con.insertNewCustomer(fName, lName, SIN, streetAddress, city, province, country, ccNum,
+                phoneNum, email);
+    }
 
 }

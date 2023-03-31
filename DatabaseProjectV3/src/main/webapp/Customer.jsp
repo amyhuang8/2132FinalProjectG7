@@ -23,12 +23,14 @@
                 let phoneNum = document.getElementById("phone_num");
                 let street = document.getElementById("street_address");
                 let city = document.getElementById("city");
+                let province = document.getElementById("provincestate");
+                let country = document.getElementById("country");
                 let ssn = document.getElementById("ssn");
                 let ccNum = document.getElementById("cc_num");
 
                 // PROCESS: checking for null registration forms
                 if(fName.value === "" || lName.value === "" || email.value === ""
-                    || phoneNum.value === "" || street.value === "" || city.value === ""
+                    || phoneNum.value === "" || street.value === ""
                     || ssn.value === "" || ccNum.value === "") { //has null
                     alert("Please fill out all forms!"); //error-handling
 
@@ -69,6 +71,18 @@
                     }
                     if (city.options[city.selectedIndex].value === "default") { //invalid selection
                         alert("Please select a city!") //error-handling
+
+                        // OUTPUT
+                        return false;
+                    }
+                    if (province.options[province.selectedIndex].value === "default") { //invalid selection
+                        alert("Please select a province!") //error-handling
+
+                        // OUTPUT
+                        return false;
+                    }
+                    if (country.options[country.selectedIndex].value === "default") { //invalid selection
+                        alert("Please select a country!") //error-handling
 
                         // OUTPUT
                         return false;
@@ -188,7 +202,6 @@
             <br><br>
             STREET ADDRESS: <input class="labels" type="text" id="street_address" name="street address">
             <br><br>
-
             <label class="labels" for="city">CITY: </label>
             <select name="city" id="city" style="font-size: 18px">
                 <option value="default">SELECT...</option>
@@ -207,6 +220,30 @@
                 <option value="volcano">Volcano</option>
                 <option value="winnipeg">Winnipeg</option>
                 <option value="vancouver">Vancouver</option>
+            </select>
+            <br><br>
+            <label class="labels" for="provincestate">PROVINCE/STATE: </label>
+            <select name="city" id="provincestate" style="font-size: 18px">
+                <option value="default">SELECT...</option>
+                <option value="alberta">Alberta</option>
+                <option value="bajacalifornia">Baja California</option>
+                <option value="britishcolumbia">British Columbia</option>
+                <option value="chihuahua">Chihuahua</option>
+                <option value="hawaii">Hawaii</option>
+                <option value="mexicocity_city">Mexico City</option>
+                <option value="newyork">New York</option>
+                <option value="ohio">Ohio</option>
+                <option value="ontario">Ontario</option>
+                <option value="quebec">Quebec</option>
+                <option value="wisconsin">Wisconsin</option>
+            </select>
+            <br><br>
+            <label class="labels" for="country">COUNTRY: </label>
+            <select name="city" id="country" style="font-size: 18px">
+                <option value="default">SELECT...</option>
+                <option value="canada">Canada</option>
+                <option value="mexico">Mexico</option>
+                <option value="usa">United States of America</option>
             </select>
             <br><br>
             SOCIAL SECURITY NUMBER (SSN): <input class="labels" type="password" id="ssn" name="ssn">
