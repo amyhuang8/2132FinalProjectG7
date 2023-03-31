@@ -42,6 +42,6 @@ public class EmployeeLoginServlet extends HttpServlet {
             resp.sendRedirect("ViewBookings.jsp");
             return;
         }
-        resp.sendRedirect("index.jsp");
+        resp.sendRedirect("LoginError.jsp");
     }
 }

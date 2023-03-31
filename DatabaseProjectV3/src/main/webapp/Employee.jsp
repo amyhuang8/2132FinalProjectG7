@@ -36,8 +36,9 @@
                     if (isNaN(username.value)) {
                         alert("Invalid employee ID!"); //error-handling
                         return false;
-                    } else if (isNaN(password.value) || (password.value.length != 9)) {
-                        alert("Invalid SIN number!"); //error-handling
+                    }
+                    else if (isNaN(password.value) || (password.value.length != 9)) {
+                        alert("Invalid SIN number (9 digits)!"); //error-handling
                         return false;
                     }
                     // OUTPUT
