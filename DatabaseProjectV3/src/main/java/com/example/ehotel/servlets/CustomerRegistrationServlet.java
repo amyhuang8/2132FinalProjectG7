@@ -1,15 +1,15 @@
 package com.example.ehotel.servlets;
 
-import java.io.*;
-import java.sql.SQLException;
-
 import com.example.ehotel.connections.ConnectionDB;
+
+import java.io.*;
 
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 @WebServlet(name = "customerRegistrationServlet", value = "/customer-registration-servlet")
 public class CustomerRegistrationServlet extends HttpServlet {
+
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         doPost(req, resp);
     }

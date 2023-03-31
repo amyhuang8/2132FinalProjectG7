@@ -1,9 +1,9 @@
 package com.example.ehotel.servlets;
 
-import java.io.*;
-import java.sql.SQLException;
-
 import com.example.ehotel.connections.ConnectionDB;
+
+import java.io.*;
+import java.sql.*;
 
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -16,32 +16,46 @@ public class EmployeeLoginServlet extends HttpServlet {
     }
 
     /**
-     * This method is used to get the employee id and password (SIN) from the login page and
-     * compare it to the database
-     * @param req
-     * @param resp
+     * This method takes the employee ID and password (SIN) from the user input on the
+     * login page and retrieves the corresponding fields from the database. It then compares
+     * the login information and redirects the user to the appropriate page.
+     * @param req the request sent from the JSP file
+     * @param resp the response to be sent to the JSP file
      * @throws IOException
      */
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+
+        // VARIABLE DECLARATION: new session
         HttpSession session = req.getSession();
-//		employee account = new employee();
+
+        // VARIABLE DECLARATION: username and password from user input
         String username = req.getParameter("user id");
         int pwd = Integer.parseInt(req.getParameter("password"));
 
+        // VARIABLE DECLARATION: new connection
         ConnectionDB con = new ConnectionDB();
+
+        // VARIABLE DECLARATION: new SIN var. to hold SIN retrieved from db
         int sinFromDB;
+
+        // PROCESS: retrieving employee SIN from given username (employee ID)
         try {
+            // INITIALIZATION
             sinFromDB = con.getESINByUser(username);
-        } catch (SQLException | ClassNotFoundException e) {
+        }
+        catch (SQLException | ClassNotFoundException e) { //error-handling
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
 
-        if (pwd == sinFromDB) {
-            System.out.println("success");
-            req.setAttribute("employee_id", username);
-            resp.sendRedirect("ViewBookings.jsp");
-            return;
+        // PROCESS: checking if given password matches SIN from db
+        if (pwd == sinFromDB) { //success
+            //req.setAttribute("employee_id", username);
+            resp.sendRedirect("ViewBookings.jsp"); //redirecting to bookings page
         }
-        resp.sendRedirect("LoginError.jsp");
+        else { //failure
+            resp.sendRedirect("LoginError.jsp"); //redirecting to error page
+        }
+
     }
 }

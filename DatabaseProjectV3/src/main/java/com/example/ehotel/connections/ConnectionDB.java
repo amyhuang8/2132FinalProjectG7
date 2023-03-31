@@ -16,13 +16,13 @@ public class ConnectionDB {
 
     // CONNECTION METHODS--------------------------------------------------------------------------------
     /**
-     * This method is used to get the connection to the database
+     * This method gets the connection to the database.
      */
     public void getConn() {
 
         // PROCESS: getting driver connection to database
         try {
-            Class.forName("org.postgresql.Driver"); //setting class
+            Class.forName("org.postgresql.Driver"); //setting the class
             db = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
         }
         catch (Exception e) { //error-handling
@@ -32,7 +32,7 @@ public class ConnectionDB {
     }
 
     /**
-     * This method is used to close the connection to the database
+     * This method closes the connection to the database.
      */
     public void closeDB() {
 
@@ -52,6 +52,7 @@ public class ConnectionDB {
             }
         }
         catch (SQLException e) { //error-handling
+            // OUTPUT
             e.printStackTrace();
         }
 
@@ -59,11 +60,11 @@ public class ConnectionDB {
 
     // GETTER METHODS------------------------------------------------------------------------------------
     /**
-     * This method is used to get the SIN of the employee
-     * @param id employee id
+     * This method retrieves the employee SIN from the database, given the employee ID.
+     * @param id the employee ID provided at login time
      * @return SIN of employee
      */
-    public int getESINByUser(String id) throws SQLException, ClassNotFoundException {
+    public int getESINByUser(String id) {
 
         // PROCESS: connecting to db
         getConn();
@@ -88,6 +89,7 @@ public class ConnectionDB {
 
         }
         catch (SQLException e) { //error-handling
+            // OUTPUT
             e.printStackTrace();
         }
         finally { //closing connection after querying
@@ -96,14 +98,15 @@ public class ConnectionDB {
 
         // OUTPUT
         return SIN;
+
     }
 
     /**
-     * This method is used to get the SIN of the customer
-     * @param email customer email
+     * This method retrieves the customer SIN from the database, given the customer email
+     * @param email the customer email provided at login time
      * @return SIN of customer
      */
-    public int getCSINByEmail(String email) throws SQLException, ClassNotFoundException {
+    public int getCSINByEmail(String email) {
 
         // PROCESS: connecting to db
         getConn();
@@ -128,6 +131,7 @@ public class ConnectionDB {
 
         }
         catch (SQLException e) { //error-handling
+            // OUTPUT
             e.printStackTrace();
         }
         finally { //closing connection after querying
@@ -136,9 +140,24 @@ public class ConnectionDB {
 
         // OUTPUT
         return SIN;
+
     }
 
     // INSERTION METHODS---------------------------------------------------------------------------------
+    /**
+     * This method inserts a new customer into the database, given the user information at registration.
+     * @param fName the first name
+     * @param lName the last name
+     * @param SIN the SIN number
+     * @param streetAddress the street address
+     * @param city the city
+     * @param province the province
+     * @param country the country
+     * @param ccNum the credit card number
+     * @param phoneNum the phone number
+     * @param email the email address
+     * @return whether the insertion was successful
+     */
     public boolean insertNewCustomer(String fName, String lName, int SIN, String streetAddress,
                                      String city, String province, String country, long ccNum,
                                      long phoneNum, String email) {
@@ -172,6 +191,7 @@ public class ConnectionDB {
 
                 }
                 catch (SQLException e) { //error-handling
+                    // OUTPUT
                     e.printStackTrace();
                 }
 
@@ -203,6 +223,7 @@ public class ConnectionDB {
         }
         catch(SQLException e){ //error-handling
 
+            // OUTPUT
             e.printStackTrace();
 
             LOGGER.info("CUSTOMER INSERTION IN DB FAILED"); //log msg
@@ -217,6 +238,15 @@ public class ConnectionDB {
 
     }
 
+    /**
+     * This helper method inserts a new address into the database, given the information at registration.
+     * It is called in the <code>insertNewCustomer()</code> method.
+     * @param streetAddress the street address
+     * @param city the city
+     * @param province the province
+     * @param country the country
+     * @return whether the insertion was successful
+     */
     private boolean insertNewAddress(String streetAddress, String city, String province, String country) {
 
         // PROCESS: connecting to db
@@ -244,6 +274,7 @@ public class ConnectionDB {
         }
         catch(SQLException e){ //error-handling
 
+            // OUTPUT
             e.printStackTrace();
 
             LOGGER.severe("ADDRESS INSERTION IN DB FAILED"); //log msg
@@ -255,6 +286,7 @@ public class ConnectionDB {
 
     }
 
+    // MAIN METHOD------------------------------------------------------------------------------------
     /**
      * MAIN METHOD: Used for testing
      * @param args
@@ -273,5 +305,6 @@ public class ConnectionDB {
         con.getConn();
         int SIN = con.getCSINByEmail("bobthebuilder@email.com");
         System.out.println(SIN);*/
+
     }
 }
