@@ -105,7 +105,7 @@
 
                 // PROCESS: checking for null logins
                 if(username.value == "") { //null username
-                    alert("Customer ID cannot be null!"); //error-handling
+                    alert("Customer email cannot be null!"); //error-handling
 
                     // OUTPUT
                     return false;
@@ -117,8 +117,12 @@
                     return false;
                 }
                 else { //non-null login
+                    if (isNaN(password.value) || (password.value.length != 9)) {
+                        alert("Invalid SIN number (9 digits)!"); //error-handling
+                        return false;
+                    }
                     // OUTPUT
-                    return true;
+                    return true; // passed all checks
                 }
             }
 
