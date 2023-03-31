@@ -140,8 +140,8 @@ public class ConnectionDB {
 
     // INSERTION METHODS---------------------------------------------------------------------------------
     public boolean insertNewCustomer(String fName, String lName, int SIN, String streetAddress,
-                                     String city, String province, String country, int ccNum,
-                                     int phoneNum, String email) {
+                                     String city, String province, String country, long ccNum,
+                                     long phoneNum, String email) {
 
         // PROCESS: connecting to db
         getConn();
@@ -150,53 +150,62 @@ public class ConnectionDB {
         try {
 
             // PROCESS: calling helper method to insert new address
-            insertNewAddress(streetAddress, city, province, country);
+            if (insertNewAddress(streetAddress, city, province, country)) { //success
 
-            // VARIABLE DECLARATION: setting address ID to initial 0
-            int address_id = 0;
+                // VARIABLE DECLARATION: setting address ID to initial 0
+                int address_id = 0;
 
-            // PROCESS: setting params to query reqs.
-            try {
+                // PROCESS: setting params to query reqs.
+                try {
 
-                // INITIALIZATION
-                ps = db.prepareStatement("select id from ehotels.address where street=?");
-                ps.setString(1, streetAddress);
-
-                // PROCESS: executing SQL query
-                rs = ps.executeQuery();
-
-                while (rs.next()) { //looping while RS still has conditions
                     // INITIALIZATION
-                    address_id = Integer.parseInt(rs.getString(1));
+                    ps = db.prepareStatement("select id from ehotels.address where street=?");
+                    ps.setString(1, streetAddress);
+
+                    // PROCESS: executing SQL query
+                    rs = ps.executeQuery();
+
+                    while (rs.next()) { //looping while RS still has conditions
+                        // INITIALIZATION
+                        address_id = Integer.parseInt(rs.getString(1));
+                    }
+
+                }
+                catch (SQLException e) { //error-handling
+                    e.printStackTrace();
                 }
 
+                // INITIALIZATION
+                st = db.createStatement();
+
+                sql = "insert into ehotels.customer(first_name, last_name, SIN, customer_address_id," +
+                        "registration_date, credit_card_num, customer_phone_number, customer_email)" +
+                        "values('" + fName + "','" + lName + "','" + SIN + "','"
+                        + address_id + "','" + new java.sql.Date(new java.util.Date().getTime()) + "','"
+                        + ccNum + "','" + phoneNum + "','" + email + "')"; //updating quire statement
+
+                LOGGER.info(sql); //log msg
+
+                // PROCESS: executing insertion
+                st.executeUpdate(sql);
+
+                LOGGER.info("CUSTOMER INSERTION IN DB SUCCESS"); //log msg
+
+                // OUTPUT
+                return true;
+
             }
-            catch (SQLException e) { //error-handling
-                e.printStackTrace();
+            else { //failed address insertion
+                // OUTPUT
+                return false;
             }
-            finally { //closing connection after querying
-                closeDB();
-            }
-
-            // INITIALIZATION
-            st = db.createStatement();
-
-            sql = "insert into ehotels.customer values('" + fName + "','" + lName + "','" + SIN + "','"
-                    + address_id + "','" + new java.sql.Date(new java.util.Date().getTime()) + "','"
-                    + ccNum + "','" + phoneNum + "','" + email + "')"; //updating quire statement
-
-            LOGGER.info(sql); //log msg
-
-            // PROCESS: executing insertion
-            st.executeUpdate(sql);
-
-            // OUTPUT
-            return true;
 
         }
         catch(SQLException e){ //error-handling
 
             e.printStackTrace();
+
+            LOGGER.info("CUSTOMER INSERTION IN DB FAILED"); //log msg
 
             // OUTPUT
             return false;
@@ -219,8 +228,8 @@ public class ConnectionDB {
             // INITIALIZATION
             st = db.createStatement();
 
-            sql = "insert into ehotels.address values('" + streetAddress + "','" + city +
-                    "','" + province + country + "')"; //updating quire statement
+            sql = "insert into ehotels.address(street, city, province, country) values('" + streetAddress + "','" + city +
+                    "','" + province + "','" + country + "')"; //updating quire statement
 
             LOGGER.info(sql); //log msg
 
@@ -242,9 +251,6 @@ public class ConnectionDB {
             // OUTPUT: insertion failure
             return false;
 
-        }
-        finally { //closing connection after querying
-            closeDB();
         }
 
     }

@@ -190,7 +190,7 @@
         <br><br>
 
         <!--REGISTRATION FORMS-->
-        <form method="post" action="ViewRooms.jsp" id="signUpForms"
+        <form method="post" action="customer-registration-servlet" id="signUpForms"
               style="font-size: 20px; text-align: center; display: none">
             FIRST NAME: <input class="labels" type="text" id="fname" name="first name">
             <br><br>
@@ -222,8 +222,8 @@
                 <option value="vancouver">Vancouver</option>
             </select>
             <br><br>
-            <label class="labels" for="provincestate">PROVINCE/STATE: </label>
-            <select name="city" id="provincestate" style="font-size: 18px">
+            <label class="labels" for="province_state">PROVINCE/STATE: </label>
+            <select name="provincestate" id="province_state" style="font-size: 18px">
                 <option value="default">SELECT...</option>
                 <option value="alberta">Alberta</option>
                 <option value="bajacalifornia">Baja California</option>
@@ -239,7 +239,7 @@
             </select>
             <br><br>
             <label class="labels" for="country">COUNTRY: </label>
-            <select name="city" id="country" style="font-size: 18px">
+            <select name="country" id="country" style="font-size: 18px">
                 <option value="default">SELECT...</option>
                 <option value="canada">Canada</option>
                 <option value="mexico">Mexico</option>
