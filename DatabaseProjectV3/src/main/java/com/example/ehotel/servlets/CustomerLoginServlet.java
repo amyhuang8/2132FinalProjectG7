@@ -8,15 +8,14 @@ import com.example.ehotel.connections.ConnectionDB;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
-@WebServlet(name = "employeeLoginServlet", value = "/employee-login-servlet")
-public class EmployeeLoginServlet extends HttpServlet {
-
+@WebServlet(name = "customerLoginServlet", value = "/customer-login-servlet")
+public class CustomerLoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         doPost(req, resp);
     }
 
     /**
-     * This method is used to get the employee id and password (SIN) from the login page and
+     * This method is used to get the customer id and password (SIN) from the login page and
      * compare it to the database
      * @param req
      * @param resp
@@ -24,24 +23,28 @@ public class EmployeeLoginServlet extends HttpServlet {
      */
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         HttpSession session = req.getSession();
-//		employee account = new employee();
-        String username = req.getParameter("user id");
-        int pwd = Integer.parseInt(req.getParameter("password"));
+//		customer account = new customer();
+        String email = req.getParameter("email");
+        int password = Integer.parseInt(req.getParameter("password"));
 
         ConnectionDB con = new ConnectionDB();
+
         int sinFromDB;
-        try {
-            sinFromDB = con.getESINByUser(username);
+        try { // try to retrieve the sin of the customer from the database
+            sinFromDB = con.getCSINByEmail(email);
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
-        if (pwd == sinFromDB) {
+        if (password == sinFromDB) { // if password (inputted) matches the sin of the customer (from database)
             System.out.println("success");
-            req.setAttribute("employee_id", username);
-            resp.sendRedirect("ViewBookings.jsp");
+            req.setAttribute("email", email);
+            resp.sendRedirect("ViewRooms.jsp");
             return;
+        } else {
+            System.out.println("fail");
+            resp.sendRedirect("index.jsp");
         }
-        resp.sendRedirect("index.jsp");
+
     }
 }

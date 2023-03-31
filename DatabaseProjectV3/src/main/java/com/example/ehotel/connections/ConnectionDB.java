@@ -13,13 +13,12 @@ public class ConnectionDB {
     /**
      * This method is used to get the connection to the database
      */
-    public void getConn(){
+    public void getConn() {
 
         try {
             Class.forName("org.postgresql.Driver");
             db = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             System.out.print("ERROR MSG HERE");
         }
 
@@ -31,20 +30,19 @@ public class ConnectionDB {
     public void closeDB() {
 
         try {
-            if(rs != null) {
+            if (rs != null) {
                 rs.close();
             }
-            if(ps != null) {
+            if (ps != null) {
                 ps.close();
             }
-            if(st != null) {
+            if (st != null) {
                 st.close();
             }
-            if(db != null) {
+            if (db != null) {
                 db.close();
             }
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -52,6 +50,7 @@ public class ConnectionDB {
 
     /**
      * This method is used to get the SIN of the employee
+     *
      * @param id employee id
      * @return SIN of employee
      */
@@ -60,20 +59,18 @@ public class ConnectionDB {
 
         int SIN = 0;
 
-        try{
+        try {
             ps = db.prepareStatement("select SIN from ehotels.employee where cast(employee_id as varchar)=?");
 
             ps.setString(1, id);
             rs = ps.executeQuery();
 
-            while(rs.next()) {
+            while (rs.next()) {
                 SIN = Integer.parseInt(rs.getString(1));
             }
-        }
-        catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             closeDB();
         }
 
@@ -82,6 +79,7 @@ public class ConnectionDB {
 
     /**
      * This method is used to get the SIN of the customer
+     *
      * @param email customer email
      * @return SIN of customer
      */
@@ -90,20 +88,18 @@ public class ConnectionDB {
 
         int SIN = 0;
 
-        try{
+        try {
             ps = db.prepareStatement("select SIN from ehotels.customer where customer_email=?");
 
             ps.setString(1, email);
             rs = ps.executeQuery();
 
-            while(rs.next()) {
+            while (rs.next()) {
                 SIN = Integer.parseInt(rs.getString(1));
             }
-        }
-        catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             closeDB();
         }
 

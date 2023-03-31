@@ -233,9 +233,9 @@
         </form>
 
         <!--LOGIN FORMS-->
-        <form method="post" action="ViewRooms.jsp" id="loginForms"
+        <form method="post" action="customer-login-servlet" id="loginForms"
               style="font-size: 20px; text-align: center; display: none">
-            CUSTOMER ID: <input class="labels" type="text" id="uid" name="user id">
+            CUSTOMER EMAIL: <input class="labels" type="text" id="uid" name="email">
             <br><br>
             PASSWORD: <input class="labels" type="password" id="upwd" name="password">
             <br><br>

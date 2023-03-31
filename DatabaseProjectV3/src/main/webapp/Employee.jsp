@@ -33,8 +33,15 @@
                     return false;
                 }
                 else { //non-null login
+                    if (isNaN(username.value)) {
+                        alert("Invalid employee ID!"); //error-handling
+                        return false;
+                    } else if (isNaN(password.value) || (password.value.length != 9)) {
+                        alert("Invalid SIN number!"); //error-handling
+                        return false;
+                    }
                     // OUTPUT
-                    return true;
+                    return true; // passes validation
                 }
             }
         </script>
