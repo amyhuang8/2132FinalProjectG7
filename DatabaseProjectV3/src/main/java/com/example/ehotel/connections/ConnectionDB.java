@@ -295,16 +295,5 @@ public class ConnectionDB {
      */
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
-        // nat's connection
-        //Connection db = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "3634859648");
-
-        // amy & kristen's connections
-        //Connection db = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "password");
-
-        /*ConnectionDB con = new ConnectionDB();
-        con.getConn();
-        int SIN = con.getCSINByEmail("bobthebuilder@email.com");
-        System.out.println(SIN);*/
-
     }
 }
