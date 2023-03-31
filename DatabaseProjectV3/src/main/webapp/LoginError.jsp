@@ -18,8 +18,9 @@
         <h2>Your login information is incorrect. Please return to the previous page, and try again.</h2>
         <br>
         <!--RETURN BUTTON-->
-        <form action="Employee.jsp" style="text-align: center">
-            <button class="buttons" type="submit" value="submit" style="font-size: 30px">RETURN</button>
+        <form style="text-align: center">
+            <button class="buttons" type="button" value="return"
+                    style="font-size: 30px" onclick="history.back()">RETURN</button>
         </form>
     </body>
 </html>

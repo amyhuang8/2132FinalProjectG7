@@ -41,10 +41,7 @@ public class CustomerLoginServlet extends HttpServlet {
             req.setAttribute("email", email);
             resp.sendRedirect("ViewRooms.jsp");
             return;
-        } else {
-            System.out.println("fail");
-            resp.sendRedirect("index.jsp");
         }
-
+        resp.sendRedirect("LoginError.jsp");
     }
 }
