@@ -11,6 +11,16 @@ public class Rental {
     private int employeeID;
     private int customerID;
 
+    /**
+     * Constructor to save rental's data
+     * @param id
+     * @param bookingID
+     * @param checkIn
+     * @param checkOut
+     * @param roomID
+     * @param employeeID
+     * @param customerID
+     */
     public Rental(int id, int bookingID, Date checkIn, Date checkOut, int roomID, int employeeID, int customerID) {
         this.id = id;
         this.bookingID = bookingID;
