@@ -3,6 +3,11 @@
     display: inline-block;
 }
 
+/* DESIGN: Category p tags */
+small {
+    font-size: 20px;
+}
+
 /* DESIGN: search field */
 .dropdown-list {
     box-sizing: border-box;
@@ -51,4 +56,61 @@
 /* DESIGN: Category p tags */
 small {
     font-size: 20px;
+}
+
+/* DESIGN: Rating of stars */
+.checked {
+    color: orange;
+    color: darkorange;
+}
+
+/* DESIGN: Price Slider */
+/* make container fit to the left */
+.price-range-slider{
+    width: 50%;
+}
+
+/* styling the text */
+.prices{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+/* styling the slider container */
+.range-slider {
+    width: 100%;
+    display: block;
+    position: relative;
+    margin: 5px 0 30px 0;
+}
+/* styling the input range */
+input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    background: transparent;
+    position: absolute;
+    left: 0;
+}
+
+/* styling the thumb (circle) */
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: darkorange;
+    cursor: pointer;
+    margin-top: -6px;
+    position: relative;
+    z-index: 1;
+}
+/* styling the track (line) */
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 7px;
+    background: #d6c6ab;
+    border-radius: 5px;
+    border: none;
 }
