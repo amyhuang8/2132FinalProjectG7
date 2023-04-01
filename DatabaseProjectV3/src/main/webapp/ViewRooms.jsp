@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="ISO-8859-1">
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-        <meta http-equiv="Content-Language" content="ch-cn">
-        <link rel="stylesheet" href="css/styles.css">
-        <link rel="stylesheet" href="css/viewrooms.css">
-        <script src="js/viewrooms.js"></script>
-        <!-- Add icon library -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head>
+    <meta charset="ISO-8859-1">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Language" content="ch-cn">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/view-rooms.css">
+    <script src="js/viewrooms.js"></script>
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!--TITLE-->
     <title>eHotels Room Search</title>
+
     <!--HEADER BUTTONS-->
     <button id="profile_button" class="header-buttons"
             onclick="window.location.href='CustomerProfile.jsp'"
@@ -21,9 +22,7 @@
             onclick="window.location.href='index.jsp'"
             style="float: right; border-radius: 30%;
                 background-image: url('css/resources/logouticon.png');"></button>
-    </head>
-        <!--TITLE-->
-        <title>eHotels Room Search</title>
+</head>
 
 <body>
 <!--HEADING-->
@@ -102,8 +101,8 @@
 
     <br><br>
 
-    <!--CAPACITY DROPDOWN MENU-->
     <div class="capacity">
+        <!--CAPACITY DROPDOWN MENU-->
         <label for="capacity" class="labels">Capacity:</label>
         <select name="capacity" id="capacity" style="font-size: 18px">
             <option value="default">SELECT...</option>
@@ -126,6 +125,7 @@
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
+        <label for="five-stars-and-up" class="labels">& up</label>
         <br><br>
         <input type="radio" id="four-stars-and-up" name="category" value="four-stars-and-up">
         <span class="fa fa-star checked"></span>
@@ -145,7 +145,7 @@
     </div>
 
     <!-- VIEW TYPE INPUT -->
-    <div class="view_type">
+    <div class="view-type">
         <br><br>
         <small>View Type:</small>
         <br><br>
@@ -174,7 +174,7 @@
         </div>
         <br><br>
     </div>
-    </form>
+</form>
 </body>
 
 </html>
