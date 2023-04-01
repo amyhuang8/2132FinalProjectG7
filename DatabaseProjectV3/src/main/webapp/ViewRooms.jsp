@@ -161,19 +161,30 @@
     </div>
 
     <!-- MAX PRICE INPUT -->
-    <div class="price-range-slider">
+    <div class="price-range-container">
         <br>
         <div class="prices">
-            <small>Price / night:</small>
-            <small>$100 - $750+</small>
+            <small>Price per night:</small>
+            <small>$ <span id="price"></span></small>
         </div>
-        <br><br>
-        <div class="range-slider">
-            <input type="range" class="min-price" value="200" min="10" max="750" step="10">
-            <input type="range" class="max-price" value="375" min="10" max="750" step="10">
-        </div>
+        <br>
+        <input type="range" class="slider" value="100" id="slider-range" min="100" max="750" step="1">
         <br><br>
     </div>
+
+    <!-- JS for price slider -->
+    <script>
+        var slider = document.getElementById("slider-range");
+        var output = document.getElementById("price");
+        output.innerHTML = slider.value; // Display the default slider value
+
+        // Update the current slider value (each time you drag the slider handle)
+        slider.oninput = function () {
+            output.innerHTML = this.value;
+        }
+    </script>
+
+
 </form>
 </body>
 
