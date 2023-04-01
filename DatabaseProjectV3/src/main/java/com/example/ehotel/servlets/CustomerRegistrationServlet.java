@@ -4,18 +4,19 @@ import com.example.ehotel.connections.ConnectionDB;
 
 import java.io.*;
 
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 @WebServlet(name = "customerRegistrationServlet", value = "/customer-registration-servlet")
 public class CustomerRegistrationServlet extends HttpServlet {
 
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         doPost(req, resp);
     }
 
     @Override
-    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
         // VARIABLE DECLARATION: new session
         HttpSession session = req.getSession();
@@ -44,7 +45,13 @@ public class CustomerRegistrationServlet extends HttpServlet {
             resp.sendRedirect("ViewRooms.jsp"); //redirecting to rooms page
         }
         else { //failure
-            resp.sendRedirect("SIGNUPERROR.jsp"); //redirecting to error page
+            resp.setStatus(400); //setting error status
+            req.setAttribute("status", "CREG-DB-400"); //setting error status attribute
+            req.setAttribute("heading", "REGISTRATION ERROR");
+            req.setAttribute("error_msg", "An account with either this email or SIN already exists. " +
+                    "Please return to the previous page, and try again."); //setting error msg attribute
+            req.getRequestDispatcher("AccessError.jsp").forward(req, resp); //forwarding response attributes to error page
+            resp.sendRedirect("AccessError.jsp"); //redirecting to error page
         }
 
     }

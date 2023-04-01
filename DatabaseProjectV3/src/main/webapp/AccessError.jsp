@@ -7,15 +7,15 @@
         <link rel = "stylesheet" href="css/styles.css">
 
         <!--TITLE-->
-        <title>Login Error</title>
+        <title>${status}</title>
     </head>
 
     <body>
         <!--HEADINGS-->
-        <h1>LOGIN ERROR</h1>
+        <h1>${heading}</h1>
         <hr style="background-color: rosybrown; height: 1.5px">
         <br>
-        <h2>Your login information is incorrect. Please return to the previous page, and try again.</h2>
+        <h2>${error_msg}</h2>
         <br>
         <!--RETURN BUTTON-->
         <form style="text-align: center">
