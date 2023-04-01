@@ -46,7 +46,7 @@ public class CustomerLoginServlet extends HttpServlet {
         if (password == sinFromDB) { //success
             session.setAttribute("uid", email); //updating session's user id to customer email
 
-            setSessionAttributes(req, session, con, email);
+            setSessionAttributes(req, session, con, email); //setting session attributes
 
             resp.sendRedirect("ViewRooms.jsp"); //redirecting to rooms page
         }
@@ -61,6 +61,13 @@ public class CustomerLoginServlet extends HttpServlet {
 
     }
 
+    /**
+     * This helper method sets all the session attributes once the user logs in.
+     * @param req the request sent from the JSP file
+     * @param session the current session
+     * @param con the current database connection
+     * @param uid the current user ID
+     */
     private void setSessionAttributes(HttpServletRequest req, HttpSession session,
                                       CustomerServer con, String uid) {
 

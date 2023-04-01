@@ -56,6 +56,12 @@ public class CustomerServer {
 
     }
 
+    /**
+     * This method retrieves a specific field from the customer table, given the column name
+     * @param fieldName the name of the table column
+     * @param email the customer email from which we will query other attributes
+     * @return the requested attribute
+     */
     public Object getFieldByID(String fieldName, String email) {
 
         // PROCESS: connecting to db
@@ -133,6 +139,12 @@ public class CustomerServer {
 
     }
 
+    /**
+     * This helper method retrieves a specific field from the address table, given the column name
+     * @param fieldName the name of the table column
+     * @param addressID the address ID associated with the current customer
+     * @return the requested attributes
+     */
     private Object getAddressFieldByID(String fieldName, Long addressID) {
 
         // PROCESS: connecting to db
@@ -170,8 +182,14 @@ public class CustomerServer {
             rs = ps.executeQuery();
 
             while (rs.next()) { //looping while RS still has conditions
-                // INITIALIZATION
-                value = rs.getString(1);
+                if (fieldName.equals("street")) {
+                    // INITIALIZATION
+                    value = rs.getString("street");
+                }
+                else {
+                    // INITIALIZATION
+                    value = rs.getString(1);
+                }
             }
 
         }
