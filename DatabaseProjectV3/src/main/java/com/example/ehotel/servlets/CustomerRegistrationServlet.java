@@ -1,10 +1,10 @@
 package com.example.ehotel.servlets;
 
-import com.example.ehotel.connections.ConnectionDB;
+import com.example.ehotel.connections.CustomerServer;
 
 import java.io.*;
 
-import jakarta.servlet.ServletException;
+import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
@@ -37,7 +37,7 @@ public class CustomerRegistrationServlet extends HttpServlet {
         String email = req.getParameter("email");
 
         // VARIABLE DECLARATION: new connection
-        ConnectionDB con = new ConnectionDB();
+        CustomerServer con = new CustomerServer();
 
         // PROCESS: inserting new customer to database
         if (con.insertNewCustomer(fName, lName, SIN, streetAddress, city, province, country, ccNum,

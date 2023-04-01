@@ -1,11 +1,11 @@
 package com.example.ehotel.servlets;
 
-import com.example.ehotel.connections.ConnectionDB;
+import com.example.ehotel.connections.CustomerServer;
 
 import java.io.*;
 import java.sql.*;
 
-import jakarta.servlet.ServletException;
+import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
@@ -34,7 +34,7 @@ public class CustomerLoginServlet extends HttpServlet {
         int password = Integer.parseInt(req.getParameter("password"));
 
         // VARIABLE DECLARATION: new connection
-        ConnectionDB con = new ConnectionDB();
+        CustomerServer con = new CustomerServer();
 
         // VARIABLE DECLARATION: new SIN var. to hold SIN retrieved from db
         int sinFromDB;

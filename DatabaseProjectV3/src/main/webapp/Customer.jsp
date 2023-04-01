@@ -54,6 +54,14 @@
                         return false;
                     }
 
+                    // PROCESS: validating email
+                    if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email.value)) { //invalid chars
+                        alert("Please enter a valid email address!") //error-handling
+
+                        // OUTPUT
+                        return false;
+                    }
+
                     // PROCESS: validating phone number
                     if (isNaN(phoneNum.value)) { //contains invalid chars
                         alert("Please enter a valid phone number (ex: 123-123-1234)!") //error-handling
