@@ -25,13 +25,13 @@
                 let city = document.getElementById("city");
                 let province = document.getElementById("provincestate");
                 let country = document.getElementById("country");
-                let ssn = document.getElementById("ssn");
+                let sin = document.getElementById("sin");
                 let ccNum = document.getElementById("cc_num");
 
                 // PROCESS: checking for null registration forms
                 if(fName.value === "" || lName.value === "" || email.value === ""
                     || phoneNum.value === "" || street.value === ""
-                    || ssn.value === "" || ccNum.value === "") { //has null
+                    || sin.value === "" || ccNum.value === "") { //has null
                     alert("Please fill out all forms!"); //error-handling
 
                     // OUTPUT
@@ -96,9 +96,9 @@
                         return false;
                     }
 
-                    // PROCESS: validating SSN
-                    if (isNaN(ssn.value) || ssn.value.length !== 9) { //invalid chars or length
-                        alert("Please enter a valid SSN (9 digits)!") //error-handling
+                    // PROCESS: validating SIN
+                    if (isNaN(sin.value) || sin.value.length !== 9) { //invalid chars or length
+                        alert("Please enter a valid SIN (9 digits)!") //error-handling
 
                         // OUTPUT
                         return false;
@@ -254,7 +254,7 @@
                 <option value="usa">United States of America</option>
             </select>
             <br><br>
-            SOCIAL SECURITY NUMBER (SSN): <input class="labels" type="password" id="ssn" name="ssn">
+            SOCIAL SECURITY NUMBER (SIN): <input class="labels" type="password" id="sin" name="sin">
             <br><br>
             CREDIT CARD NUMBER: <input class="labels" type="text" id="cc_num" name="credit card number">
             <br><br>

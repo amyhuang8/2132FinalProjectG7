@@ -23,14 +23,14 @@
                 let phoneNum = document.getElementById("phone_num");
                 let street = document.getElementById("street_address");
                 let city = document.getElementById("city");
-                let ssn = document.getElementById("ssn");
+                let sin = document.getElementById("sin");
                 let ccNum = document.getElementById("cc_num");
                 let pwd = document.getElementById("new_upwd");
 
                 // PROCESS: checking for null registration forms
                 if(fName.value == "" || lName.value == "" || email.value == ""
                     || phoneNum.value == "" || street.value == "" || city.value == ""
-                    || ssn.value == "" || ccNum.value == "" || pwd.value == "") { //has null
+                    || sin.value == "" || ccNum.value == "" || pwd.value == "") { //has null
                     alert("Please fill out all forms!"); //error-handling
 
                     // OUTPUT
@@ -69,9 +69,9 @@
                         return false;
                     }
 
-                    // PROCESS: validating SSN
-                    if (isNaN(ssn.value) || ssn.value.length != 9) { //invalid chars or length
-                        alert("Please enter a valid SSN (9 digits)!") //error-handling
+                    // PROCESS: validating SIN
+                    if (isNaN(sin.value) || sin.value.length != 9) { //invalid chars or length
+                        alert("Please enter a valid SIN (9 digits)!") //error-handling
 
                         // OUTPUT
                         return false;
@@ -147,7 +147,7 @@
                 <option value="vancouver">Vancouver</option>
             </select>
             <br><br>
-            SOCIAL SECURITY NUMBER (SSN): <input class="labels" type="password" id="ssn" name="ssn"
+            SOCIAL SECURITY NUMBER (SIN): <input class="labels" type="password" id="sin" name="sin"
                                                  value="RETRIEVE SIN # HERE">
             <br><br>
             CREDIT CARD NUMBER: <input class="labels" type="text" id="cc_num" name="credit card number"
