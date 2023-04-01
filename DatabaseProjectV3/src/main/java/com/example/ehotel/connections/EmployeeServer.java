@@ -4,16 +4,10 @@ import java.sql.*;
 
 public class EmployeeServer {
     // VARIABLE DECLARATION: INSTANCE VARS. FOR CONNECTION
-    Connection db = null;
-    PreparedStatement ps = null;
     ResultSet rs = null;
-    Statement st = null;
     String sql;
 
     // GETTER METHODS------------------------------------------------------------------------------------
-    /**
-     * This method gets the connection to the database.
-     */
     /**
      * This method retrieves the employee SIN from the database, given the employee ID.
      * @param id the employee ID provided at login time
