@@ -1,14 +1,18 @@
 package com.example.ehotel.servlets;
 
-import java.io.*;
 import com.example.ehotel.connections.EmployeeServer;
+
+import java.io.*;
+import java.sql.*;
+
+import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 @WebServlet(name = "employeeLoginServlet", value = "/employee-login-servlet")
 public class EmployeeLoginServlet extends HttpServlet {
 
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         doPost(req, resp);
     }
 
@@ -20,7 +24,7 @@ public class EmployeeLoginServlet extends HttpServlet {
      * @param resp the response to be sent to the JSP file
      * @throws IOException
      */
-    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
         // VARIABLE DECLARATION: new session
         HttpSession session = req.getSession();
@@ -45,7 +49,12 @@ public class EmployeeLoginServlet extends HttpServlet {
             resp.sendRedirect("ViewBookings.jsp"); //redirecting to bookings page
         }
         else { //failure
-            resp.sendRedirect("LoginError.jsp"); //redirecting to error page
+            resp.setStatus(401); //setting error status
+            req.setAttribute("status", "ELOG-DB-401"); //setting error status to title attribute
+            req.setAttribute("heading", "LOGIN ERROR");
+            req.setAttribute("error_msg", "Your login information is incorrect. Please return to the previous page, and try again."); //setting error msg attribute
+            req.getRequestDispatcher("AccessError.jsp").forward(req, resp); //forwarding response attributes to error page
+            resp.sendRedirect("AccessError.jsp"); //redirecting to error page
         }
 
     }
