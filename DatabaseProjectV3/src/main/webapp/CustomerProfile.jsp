@@ -161,10 +161,10 @@
                 <option value="RETRIEVE CITY HERE">RETRIEVE CITY HERE</option>
                 <option value="calgary">Calgary</option>
                 <option value="cancun">Cancun</option>
-                <option value="chihuahuacity">Chihuahua City</option>
+                <option value="chihuahua-city">Chihuahua City</option>
                 <option value="columbus">Columbus</option>
                 <option value="gatineau">Gatineau</option>
-                <option value="mexicocity">Mexico City</option>
+                <option value="mexico-city">Mexico City</option>
                 <option value="milwaukee">Milwaukee</option>
                 <option value="montreal">Montreal</option>
                 <option value="nyc">New York City</option>
@@ -180,12 +180,12 @@
             <select name="province-state" id="province_state" style="font-size: 18px">
                 <option value="RETRIEVE PROVINCE/STATE HERE">RETRIEVE PROVINCE/STATE HERE</option>
                 <option value="alberta">Alberta</option>
-                <option value="bajacalifornia">Baja California</option>
-                <option value="britishcolumbia">British Columbia</option>
+                <option value="baja-california">Baja California</option>
+                <option value="british-columbia">British Columbia</option>
                 <option value="chihuahua">Chihuahua</option>
                 <option value="hawaii">Hawaii</option>
-                <option value="mexicocity_city">Mexico City</option>
-                <option value="newyork">New York</option>
+                <option value="mexico-city-province">Mexico City</option>
+                <option value="new-york">New York</option>
                 <option value="ohio">Ohio</option>
                 <option value="ontario">Ontario</option>
                 <option value="quebec">Quebec</option>
