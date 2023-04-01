@@ -25,16 +25,13 @@
                 // VARIABLE DECLARATION: login vars
                 let fName = document.getElementById("fname");
                 let lName = document.getElementById("lname");
-                let phoneNum = document.getElementById("phone_num");
                 let street = document.getElementById("street_address");
                 let city = document.getElementById("city");
                 let province = document.getElementById("province_state");
                 let country = document.getElementById("country");
-                let sin = document.getElementById("sin");
 
                 // PROCESS: checking for null registration forms
-                if(fName.value === "" || lName.value === "" || phoneNum.value === ""
-                    || street.value === "" || sin.value === "") { //has null
+                if(fName.value === "" || lName.value === "" || street.value === "") { //has null
                     alert("Please fill out all forms!"); //error-handling
 
                     // OUTPUT
@@ -52,14 +49,6 @@
                     // PROCESS: validating last name
                     if (!/^[a-zA-Z]/.test(lName.value) || lName.value.length > 25) { //invalid chars or length
                         alert("Please enter a valid last name (25 characters max)!") //error-handling
-
-                        // OUTPUT
-                        return false;
-                    }
-
-                    // PROCESS: validating phone number
-                    if (isNaN(phoneNum.value)) { //contains invalid chars
-                        alert("Please enter a valid phone number (ex: 123-123-1234)!") //error-handling
 
                         // OUTPUT
                         return false;
@@ -86,14 +75,6 @@
                     }
                     if (country.options[country.selectedIndex].value === "default") { //invalid selection
                         alert("Please select a country!") //error-handling
-
-                        // OUTPUT
-                        return false;
-                    }
-
-                    // PROCESS: validating SIN
-                    if (isNaN(sin.value) || sin.value.length !== 9) { //invalid chars or length
-                        alert("Please enter a valid SIN (9 digits)!") //error-handling
 
                         // OUTPUT
                         return false;
