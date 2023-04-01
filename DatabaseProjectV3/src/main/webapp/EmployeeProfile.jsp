@@ -8,7 +8,7 @@
         <link rel = "stylesheet" href="css/user-profile.css">
 
         <!--TITLE-->
-        <title>Customer Profile</title>
+        <title>Employee Profile</title>
 
         <!--HEADER BUTTONS-->
         <button id="logout_button" class="header-buttons"
@@ -25,19 +25,16 @@
                 // VARIABLE DECLARATION: login vars
                 let fName = document.getElementById("fname");
                 let lName = document.getElementById("lname");
-                let email = document.getElementById("email");
                 let phoneNum = document.getElementById("phone_num");
                 let street = document.getElementById("street_address");
                 let city = document.getElementById("city");
                 let province = document.getElementById("province_state");
                 let country = document.getElementById("country");
                 let sin = document.getElementById("sin");
-                let ccNum = document.getElementById("cc_num");
 
                 // PROCESS: checking for null registration forms
-                if(fName.value === "" || lName.value === "" || email.value === ""
-                    || phoneNum.value === "" || street.value === ""
-                    || sin.value === "" || ccNum.value === "") { //has null
+                if(fName.value === "" || lName.value === "" || phoneNum.value === ""
+                    || street.value === "" || sin.value === "") { //has null
                     alert("Please fill out all forms!"); //error-handling
 
                     // OUTPUT
@@ -55,14 +52,6 @@
                     // PROCESS: validating last name
                     if (!/^[a-zA-Z]/.test(lName.value) || lName.value.length > 25) { //invalid chars or length
                         alert("Please enter a valid last name (25 characters max)!") //error-handling
-
-                        // OUTPUT
-                        return false;
-                    }
-
-                    // PROCESS: validating email
-                    if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email.value)) { //invalid chars
-                        alert("Please enter a valid email address!") //error-handling
 
                         // OUTPUT
                         return false;
@@ -110,14 +99,6 @@
                         return false;
                     }
 
-                    // PROCESS: validating credit card
-                    if (isNaN(ccNum.value) || ccNum.value.length < 16) { //invalid chars or length
-                        alert("Please enter a valid credit card number (16 digits)!") //error-handling
-
-                        // OUTPUT
-                        return false;
-                    }
-
                     // THERE SHOULD BE SOME JAVA CALL HERE WHERE THE DATABASE ACTUALLY UPDATES!!
 
                     // VARIABLE DECLARATION: save success snackbar
@@ -128,7 +109,7 @@
                     // PROCESS: removing show class from element after 3 secs
                     setTimeout(function() {
                         success.className = success.className.replace("show", "");
-                        }, 3000);
+                    }, 3000);
 
                     // OUTPUT
                     return true;
@@ -139,12 +120,15 @@
 
     <body>
         <!--HEADINGS-->
-        <h1>Customer Profile</h1>
+        <h1>Employee Profile</h1>
         <hr style="background-color: rosybrown; height: 1.5px">
 
         <!--INFORMATION FORMS-->
         <form method="post" action="SERVLETHERE" id="signUpForms"
               style="font-size: 20px; text-align: center; display: block">
+            <label class="labels" for="uid">EMPLOYEE ID: </label>
+            <input class="labels" type="text" id="uid" name="user id" value="RETRIEVE EMPLOYEE ID HERE" disabled>
+            <br><br>
             <label class="labels" for="fname">FIRST NAME: </label>
             <input class="labels" type="text" id="fname" name="first name" value="RETRIEVE FIRST NAME HERE">
             <br><br>
@@ -152,15 +136,15 @@
             <input class="labels" type="text" id="lname" name="last name" value="RETRIEVE LAST NAME HERE">
             <br><br>
             <label class="labels" for="email">EMAIL: </label>
-            <input class="labels" type="email" id="email" name="email" value="RETRIEVE EMAIL HERE">
+            <input class="labels" type="email" id="email" name="email" value="RETRIEVE EMAIL HERE" disabled>
             <br><br>
             <label class="labels" for="phone_num">PHONE NUMBER: </label>
             <input class="labels" type="tel" id="phone_num" name="phone number"
-                                 value="RETRIEVE PHONE NUMBER">
+                   value="RETRIEVE PHONE NUMBER">
             <br><br>
             <label class="labels" for="street_address">STREET ADDRESS: </label>
             <input class="labels" type="text" id="street_address" name="street address"
-                                   value="RETRIEVE ADDRESS HERE">
+                   value="RETRIEVE ADDRESS HERE">
             <br><br>
             <label class="labels" for="city">CITY: </label>
             <select name="city" id="city" style="font-size: 18px">
@@ -208,16 +192,12 @@
             <br><br>
             <label class="labels" for="sin">SOCIAL SECURITY NUMBER (SIN): </label>
             <input class="labels" type="password" id="sin" name="sin"
-                                                 value="RETRIEVE SIN # HERE">
-            <br><br>
-            <label class="labels" for="cc_num">CREDIT CARD NUMBER: </label>
-            <input class="labels" type="text" id="cc_num" name="credit card number"
-                                       value="RETRIEVE CARD # HERE">
+                   value="RETRIEVE SIN # HERE" disabled>
             <br><br>
 
             <!--BUTTONS-->
             <button type="button" class="buttons" value="save-changes" style="margin-right: 2px"
-                    onclick="return validateProfileSave()">SAVE CHANGES</button>
+                    onclick="validateProfileSave()">SAVE CHANGES</button>
             <button type="reset" class="buttons" value="reset"
                     style="margin-left: 2px">RESET CHANGES</button>
         </form>

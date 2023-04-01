@@ -15,14 +15,12 @@
         <!--HEADER BUTTONS-->
         <button id="profile_button" class="header-buttons"
                 onclick="window.location.href='CustomerProfile.jsp'"
-                style="float: left; padding: 20px; border-radius: 50%; background-color: burlywood;
-                background-image: url('css/resources/profileicon.png');
-                background-size: contain; background-repeat: no-repeat;"></button>
+                style="float: left; border-radius: 50%;
+                background-image: url('css/resources/profileicon.png');"></button>
         <button id="logout_button" class="header-buttons"
                 onclick="window.location.href='index.jsp'"
-                style="float: right; padding: 20px; border-radius: 30%; background-color: burlywood;
-                background-image: url('css/resources/logouticon.png');
-                background-size: contain; background-repeat: no-repeat;"></button>
+                style="float: right; border-radius: 30%;
+                background-image: url('css/resources/logouticon.png');"></button>
     </head>
 
     <script>
