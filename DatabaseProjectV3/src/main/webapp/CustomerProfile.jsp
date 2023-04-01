@@ -5,7 +5,7 @@
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <meta http-equiv="Content-Language" content="ch-cn">
         <link rel = "stylesheet" href="css/styles.css">
-        <link rel = "stylesheet" href="css/customerprofile.css">
+        <link rel = "stylesheet" href="css/customer-profile.css">
 
         <!--TITLE-->
         <title>Customer Profile</title>
@@ -23,14 +23,15 @@
                 let phoneNum = document.getElementById("phone_num");
                 let street = document.getElementById("street_address");
                 let city = document.getElementById("city");
+                let province = document.getElementById("province_state");
+                let country = document.getElementById("country");
                 let sin = document.getElementById("sin");
                 let ccNum = document.getElementById("cc_num");
-                let pwd = document.getElementById("new_upwd");
 
                 // PROCESS: checking for null registration forms
-                if(fName.value == "" || lName.value == "" || email.value == ""
-                    || phoneNum.value == "" || street.value == "" || city.value == ""
-                    || sin.value == "" || ccNum.value == "" || pwd.value == "") { //has null
+                if(fName.value === "" || lName.value === "" || email.value === ""
+                    || phoneNum.value === "" || street.value === ""
+                    || sin.value === "" || ccNum.value === "") { //has null
                     alert("Please fill out all forms!"); //error-handling
 
                     // OUTPUT
@@ -53,6 +54,14 @@
                         return false;
                     }
 
+                    // PROCESS: validating email
+                    if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email.value)) { //invalid chars
+                        alert("Please enter a valid email address!") //error-handling
+
+                        // OUTPUT
+                        return false;
+                    }
+
                     // PROCESS: validating phone number
                     if (isNaN(phoneNum.value)) { //contains invalid chars
                         alert("Please enter a valid phone number (ex: 123-123-1234)!") //error-handling
@@ -68,9 +77,27 @@
                         // OUTPUT
                         return false;
                     }
+                    if (city.options[city.selectedIndex].value === "default") { //invalid selection
+                        alert("Please select a city!") //error-handling
+
+                        // OUTPUT
+                        return false;
+                    }
+                    if (province.options[province.selectedIndex].value === "default") { //invalid selection
+                        alert("Please select a province!") //error-handling
+
+                        // OUTPUT
+                        return false;
+                    }
+                    if (country.options[country.selectedIndex].value === "default") { //invalid selection
+                        alert("Please select a country!") //error-handling
+
+                        // OUTPUT
+                        return false;
+                    }
 
                     // PROCESS: validating SIN
-                    if (isNaN(sin.value) || sin.value.length != 9) { //invalid chars or length
+                    if (isNaN(sin.value) || sin.value.length !== 9) { //invalid chars or length
                         alert("Please enter a valid SIN (9 digits)!") //error-handling
 
                         // OUTPUT
@@ -78,7 +105,7 @@
                     }
 
                     // PROCESS: validating credit card
-                    if (isNaN(ccNum.value) || ccNum.value.length != 16) { //invalid chars or length
+                    if (isNaN(ccNum.value) || ccNum.value.length < 16) { //invalid chars or length
                         alert("Please enter a valid credit card number (16 digits)!") //error-handling
 
                         // OUTPUT
@@ -112,19 +139,21 @@
         <!--INFORMATION FORMS-->
         <form method="post" action="CustomerProfile.jsp" id="signUpForms"
               style="font-size: 20px; text-align: center; display: block">
-            FIRST NAME: <input class="labels" type="text" id="fname" name="first name"
-                               value="RETRIEVE FIRST NAME HERE">
+            <label class="labels" for="fname">FIRST NAME: </label>
+            <input class="labels" type="text" id="fname" name="first name" value="RETRIEVE FIRST NAME HERE">
             <br><br>
-            LAST NAME: <input class="labels" type="text" id="lname" name="last name"
-                              value="RETRIEVE LAST NAME HERE">
+            <label class="labels" for="lname">LAST NAME: </label>
+            <input class="labels" type="text" id="lname" name="last name" value="RETRIEVE LAST NAME HERE">
             <br><br>
-            EMAIL: <input class="labels" type="email" id="email" name="email"
-                          value="RETRIEVE EMAIL HERE">
+            <label class="labels" for="email">EMAIL: </label>
+            <input class="labels" type="email" id="email" name="email" value="RETRIEVE EMAIL HERE">
             <br><br>
-            PHONE NUMBER: <input class="labels" type="tel" id="phone_num" name="phone number"
+            <label class="labels" for="phone_num">PHONE NUMBER: </label>
+            <input class="labels" type="tel" id="phone_num" name="phone number"
                                  value="RETRIEVE PHONE NUMBER">
             <br><br>
-            STREET ADDRESS: <input class="labels" type="text" id="street_address" name="street address"
+            <label class="labels" for="street_address">STREET ADDRESS: </label>
+            <input class="labels" type="text" id="street_address" name="street address"
                                    value="RETRIEVE ADDRESS HERE">
             <br><br>
             <label class="labels" for="city">CITY: </label>
@@ -147,19 +176,42 @@
                 <option value="vancouver">Vancouver</option>
             </select>
             <br><br>
-            SOCIAL SECURITY NUMBER (SIN): <input class="labels" type="password" id="sin" name="sin"
+            <label class="labels" for="province_state">PROVINCE/STATE: </label>
+            <select name="province-state" id="province_state" style="font-size: 18px">
+                <option value="RETRIEVE PROVINCE/STATE HERE">RETRIEVE PROVINCE/STATE HERE</option>
+                <option value="alberta">Alberta</option>
+                <option value="bajacalifornia">Baja California</option>
+                <option value="britishcolumbia">British Columbia</option>
+                <option value="chihuahua">Chihuahua</option>
+                <option value="hawaii">Hawaii</option>
+                <option value="mexicocity_city">Mexico City</option>
+                <option value="newyork">New York</option>
+                <option value="ohio">Ohio</option>
+                <option value="ontario">Ontario</option>
+                <option value="quebec">Quebec</option>
+                <option value="wisconsin">Wisconsin</option>
+            </select>
+            <br><br>
+            <label class="labels" for="country">COUNTRY: </label>
+            <select name="country" id="country" style="font-size: 18px">
+                <option value="RETRIEVE COUNTRY HERE">RETRIEVE COUNTRY HERE</option>
+                <option value="canada">Canada</option>
+                <option value="mexico">Mexico</option>
+                <option value="usa">United States of America</option>
+            </select>
+            <br><br>
+            <label class="labels" for="sin">SOCIAL SECURITY NUMBER (SIN): </label>
+            <input class="labels" type="password" id="sin" name="sin"
                                                  value="RETRIEVE SIN # HERE">
             <br><br>
-            CREDIT CARD NUMBER: <input class="labels" type="text" id="cc_num" name="credit card number"
+            <label class="labels" for="cc_num">CREDIT CARD NUMBER: </label>
+            <input class="labels" type="text" id="cc_num" name="credit card number"
                                        value="RETRIEVE CARD # HERE">
-            <br><br>
-            PASSWORD: <input class="labels" type="password" id="new_upwd" name="new password"
-                                        value="RETRIEVE PW HERE">
             <br><br>
 
             <!--BUTTONS-->
-            <button type="button" class="buttons" value="savechanges" style="margin-right: 2px"
-                    onclick="return validateProfileSave()">SAVE CHANGES</button>
+            <button type="button" class="buttons" value="save-changes" style="margin-right: 2px"
+                    onclick="validateProfileSave()">SAVE CHANGES</button>
             <button type="reset" class="buttons" value="reset"
                     style="margin-left: 2px">RESET CHANGES</button>
         </form>

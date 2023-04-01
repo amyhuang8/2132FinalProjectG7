@@ -20,13 +20,13 @@
                 let password = document.getElementById("upwd");
 
                 // PROCESS: checking for null logins
-                if(username.value == "") { //null username
+                if(username.value === "") { //null username
                     alert("Employee ID cannot be null!"); //error-handling
 
                     // OUTPUT
                     return false;
                 }
-                else if(password.value == "") { //null password
+                else if(password.value === "") { //null password
                     alert("Password cannot be null!"); //error-handling
 
                     // OUTPUT
@@ -37,7 +37,7 @@
                         alert("Invalid employee ID!"); //error-handling
                         return false;
                     }
-                    else if (isNaN(password.value) || (password.value.length != 9)) {
+                    else if (isNaN(password.value) || (password.value.length !== 9)) {
                         alert("Invalid SIN number (9 digits)!"); //error-handling
                         return false;
                     }
@@ -56,9 +56,11 @@
 
         <!--LOGIN FORMS-->
         <form method="post" action="employee-login-servlet" style="font-size: 20px; text-align: center">
-            EMPLOYEE ID: <input class="labels" type="text" id="uid" name="user id">
+            <label class="labels" for="uid">EMPLOYEE ID: </label>
+            <input class="labels" type="text" id="uid" name="user id">
             <br><br>
-            PASSWORD (SIN #): <input class="labels" type="password" id="upwd" name="password">
+            <label class="labels" for="upwd">PASSWORD (SIN #): </label>
+            <input class="labels" type="password" id="upwd" name="password">
             <br><br>
 
             <!--BUTTONS-->

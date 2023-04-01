@@ -28,8 +28,8 @@ public class CustomerRegistrationServlet extends HttpServlet {
         String streetAddress = req.getParameter("street address");
         String city = req.getParameter("city").substring(0, 1).toUpperCase()
                 + req.getParameter("city").substring(1);
-        String province = req.getParameter("provincestate").substring(0, 1).toUpperCase()
-                + req.getParameter("provincestate").substring(1);
+        String province = req.getParameter("province-state").substring(0, 1).toUpperCase()
+                + req.getParameter("province-state").substring(1);
         String country = req.getParameter("country").substring(0, 1).toUpperCase()
                 + req.getParameter("country").substring(1);
         long ccNum = Long.parseLong(req.getParameter("credit card number"));

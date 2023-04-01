@@ -23,7 +23,7 @@
                 let phoneNum = document.getElementById("phone_num");
                 let street = document.getElementById("street_address");
                 let city = document.getElementById("city");
-                let province = document.getElementById("provincestate");
+                let province = document.getElementById("province_state");
                 let country = document.getElementById("country");
                 let sin = document.getElementById("sin");
                 let ccNum = document.getElementById("cc_num");
@@ -126,20 +126,20 @@
                 let password = document.getElementById("upwd");
 
                 // PROCESS: checking for null logins
-                if(username.value == "") { //null username
+                if(username.value === "") { //null username
                     alert("Customer email cannot be null!"); //error-handling
 
                     // OUTPUT
                     return false;
                 }
-                else if(password.value == "") { //null password
+                else if(password.value === "") { //null password
                     alert("Password cannot be null!"); //error-handling
 
                     // OUTPUT
                     return false;
                 }
                 else { //non-null login
-                    if (isNaN(password.value) || (password.value.length != 9)) {
+                    if (isNaN(password.value) || (password.value.length !== 9)) {
                         alert("Invalid SIN number (9 digits)!"); //error-handling
                         return false;
                     }
@@ -200,15 +200,20 @@
         <!--REGISTRATION FORMS-->
         <form method="post" action="customer-registration-servlet" id="signUpForms"
               style="font-size: 20px; text-align: center; display: none">
-            FIRST NAME: <input class="labels" type="text" id="fname" name="first name">
+            <label class="labels" for="fname">FIRST NAME: </label>
+            <input class="labels" type="text" id="fname" name="first name">
             <br><br>
-            LAST NAME: <input class="labels" type="text" id="lname" name="last name">
+            <label class="labels" for="lname">LAST NAME: </label>
+            <input class="labels" type="text" id="lname" name="last name">
             <br><br>
-            EMAIL: <input class="labels" type="email" id="email" name="email">
+            <label class="labels" for="email">EMAIL: </label>
+            <input class="labels" type="email" id="email" name="email">
             <br><br>
-            PHONE NUMBER: <input class="labels" type="tel" id="phone_num" name="phone number">
+            <label class="labels" for="phone_num">PHONE NUMBER: </label>
+            <input class="labels" type="tel" id="phone_num" name="phone number">
             <br><br>
-            STREET ADDRESS: <input class="labels" type="text" id="street_address" name="street address">
+            <label class="labels" for="street_address">STREET ADDRESS: </label>
+            <input class="labels" type="text" id="street_address" name="street address">
             <br><br>
             <label class="labels" for="city">CITY: </label>
             <select name="city" id="city" style="font-size: 18px">
@@ -231,7 +236,7 @@
             </select>
             <br><br>
             <label class="labels" for="province_state">PROVINCE/STATE: </label>
-            <select name="provincestate" id="province_state" style="font-size: 18px">
+            <select name="province-state" id="province_state" style="font-size: 18px">
                 <option value="default">SELECT...</option>
                 <option value="alberta">Alberta</option>
                 <option value="bajacalifornia">Baja California</option>
@@ -254,9 +259,11 @@
                 <option value="usa">United States of America</option>
             </select>
             <br><br>
-            SOCIAL SECURITY NUMBER (SIN): <input class="labels" type="password" id="sin" name="sin">
+            <label class="labels" for="sin">SOCIAL SECURITY NUMBER (SIN): </label>
+            <input class="labels" type="password" id="sin" name="sin">
             <br><br>
-            CREDIT CARD NUMBER: <input class="labels" type="text" id="cc_num" name="credit card number">
+            <label class="labels" for="cc_num">CREDIT CARD NUMBER: </label>
+            <input class="labels" type="text" id="cc_num" name="credit card number">
             <br><br>
 
             <!--BUTTONS-->
@@ -269,9 +276,11 @@
         <!--LOGIN FORMS-->
         <form method="post" action="customer-login-servlet" id="loginForms"
               style="font-size: 20px; text-align: center; display: none">
-            CUSTOMER EMAIL: <input class="labels" type="text" id="uid" name="email">
+            <label class="labels" for="uid">CUSTOMER EMAIL: </label>
+            <input class="labels" type="text" id="uid" name="email">
             <br><br>
-            PASSWORD (SIN #): <input class="labels" type="password" id="upwd" name="password">
+            <label class="labels" for="upwd">PASSWORD (SIN #): </label>
+            <input class="labels" type="password" id="upwd" name="password">
             <br><br>
 
             <!--BUTTONS-->
