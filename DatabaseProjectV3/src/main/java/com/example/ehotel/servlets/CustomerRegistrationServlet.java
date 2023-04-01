@@ -42,12 +42,13 @@ public class CustomerRegistrationServlet extends HttpServlet {
         // PROCESS: inserting new customer to database
         if (con.insertNewCustomer(fName, lName, SIN, streetAddress, city, province, country, ccNum,
                 phoneNum, email)) { //success
+            session.setAttribute("uid", email); //updating session's user id to customer email
             resp.sendRedirect("ViewRooms.jsp"); //redirecting to rooms page
         }
         else { //failure
             resp.setStatus(400); //setting error status
             req.setAttribute("status", "CREG-DB-400"); //setting error status attribute
-            req.setAttribute("heading", "REGISTRATION ERROR");
+            req.setAttribute("heading", "REGISTRATION ERROR"); //setting heading attribute
             req.setAttribute("error_msg", "An account with either this email or SIN already exists. " +
                     "Please return to the previous page, and try again."); //setting error msg attribute
             req.getRequestDispatcher("AccessError.jsp").forward(req, resp); //forwarding response attributes to error page

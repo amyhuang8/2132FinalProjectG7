@@ -44,13 +44,13 @@ public class EmployeeLoginServlet extends HttpServlet {
 
         // PROCESS: checking if given password matches SIN from db
         if (pwd == sinFromDB) { //success
-            //req.setAttribute("employee_id", username);
+            session.setAttribute("uid", username); //updating session's user id to employee id
             resp.sendRedirect("ViewBookings.jsp"); //redirecting to bookings page
         }
         else { //failure
             resp.setStatus(401); //setting error status
             req.setAttribute("status", "ELOG-DB-401"); //setting error status to title attribute
-            req.setAttribute("heading", "LOGIN ERROR");
+            req.setAttribute("heading", "LOGIN ERROR"); //setting heading attribute
             req.setAttribute("error_msg", "Your login information is incorrect. Please return to the previous page, and try again."); //setting error msg attribute
             req.getRequestDispatcher("AccessError.jsp").forward(req, resp); //forwarding response attributes to error page
             resp.sendRedirect("AccessError.jsp"); //redirecting to error page

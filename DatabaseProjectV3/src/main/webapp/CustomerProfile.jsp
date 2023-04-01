@@ -143,28 +143,27 @@
         <hr style="background-color: rosybrown; height: 1.5px">
 
         <!--INFORMATION FORMS-->
-        <form method="post" action="SERVLETHERE" id="signUpForms"
+        <form method="post" id="signUpForms"
               style="font-size: 20px; text-align: center; display: block">
             <label class="labels" for="fname">FIRST NAME: </label>
-            <input class="labels" type="text" id="fname" name="first name" value="RETRIEVE FIRST NAME HERE">
+            <input class="labels" type="text" id="fname" name="first name" value=${sessionScope.fname}>
             <br><br>
             <label class="labels" for="lname">LAST NAME: </label>
-            <input class="labels" type="text" id="lname" name="last name" value="RETRIEVE LAST NAME HERE">
+            <input class="labels" type="text" id="lname" name="last name" value=${sessionScope.lname}>
             <br><br>
             <label class="labels" for="email">EMAIL: </label>
-            <input class="labels" type="email" id="email" name="email" value="RETRIEVE EMAIL HERE">
+            <input class="labels" type="email" id="email" name="email" value="${sessionScope.email}">
             <br><br>
             <label class="labels" for="phone_num">PHONE NUMBER: </label>
-            <input class="labels" type="tel" id="phone_num" name="phone number"
-                                 value="RETRIEVE PHONE NUMBER">
+            <input class="labels" type="tel" id="phone_num" name="phone number" value=${sessionScope.phone_num}>
             <br><br>
             <label class="labels" for="street_address">STREET ADDRESS: </label>
             <input class="labels" type="text" id="street_address" name="street address"
-                                   value="RETRIEVE ADDRESS HERE">
+                   value=${sessionScope.street_address}>
             <br><br>
             <label class="labels" for="city">CITY: </label>
             <select name="city" id="city" style="font-size: 18px">
-                <option value="RETRIEVE CITY HERE">RETRIEVE CITY HERE</option>
+                <option value=${sessionScope.city}>${sessionScope.city}</option>
                 <option value="calgary">Calgary</option>
                 <option value="cancun">Cancun</option>
                 <option value="chihuahua-city">Chihuahua City</option>
@@ -184,7 +183,7 @@
             <br><br>
             <label class="labels" for="province_state">PROVINCE/STATE: </label>
             <select name="province-state" id="province_state" style="font-size: 18px">
-                <option value="RETRIEVE PROVINCE/STATE HERE">RETRIEVE PROVINCE/STATE HERE</option>
+                <option value=${sessionScope.province_state}>${sessionScope.province_state}</option>
                 <option value="alberta">Alberta</option>
                 <option value="baja-california">Baja California</option>
                 <option value="british-columbia">British Columbia</option>
@@ -200,19 +199,17 @@
             <br><br>
             <label class="labels" for="country">COUNTRY: </label>
             <select name="country" id="country" style="font-size: 18px">
-                <option value="RETRIEVE COUNTRY HERE">RETRIEVE COUNTRY HERE</option>
+                <option value=${sessionScope.country}>${sessionScope.country}</option>
                 <option value="canada">Canada</option>
                 <option value="mexico">Mexico</option>
                 <option value="usa">United States of America</option>
             </select>
             <br><br>
             <label class="labels" for="sin">SOCIAL SECURITY NUMBER (SIN): </label>
-            <input class="labels" type="password" id="sin" name="sin"
-                                                 value="RETRIEVE SIN # HERE">
+            <input class="labels" type="password" id="sin" name="sin" value=${sessionScope.sin}>
             <br><br>
             <label class="labels" for="cc_num">CREDIT CARD NUMBER: </label>
-            <input class="labels" type="text" id="cc_num" name="credit card number"
-                                       value="RETRIEVE CARD # HERE">
+            <input class="labels" type="text" id="cc_num" name="credit card number" value=${sessionScope.cc_num}>
             <br><br>
 
             <!--BUTTONS-->
