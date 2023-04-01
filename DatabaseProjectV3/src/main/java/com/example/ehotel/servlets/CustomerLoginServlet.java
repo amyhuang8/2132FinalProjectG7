@@ -3,7 +3,6 @@ package com.example.ehotel.servlets;
 import com.example.ehotel.connections.CustomerServer;
 
 import java.io.*;
-import java.sql.*;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
