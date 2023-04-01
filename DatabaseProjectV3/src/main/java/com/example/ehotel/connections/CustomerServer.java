@@ -10,6 +10,7 @@ public class CustomerServer {
     String sql;
     Statement st = null;
     PreparedStatement ps = null;
+
     private static final Logger LOGGER = Logger.getLogger(CustomerServer.class.getName()); //logger
 
     // GETTER METHODS --------------------------------------------------------------------------------------------------

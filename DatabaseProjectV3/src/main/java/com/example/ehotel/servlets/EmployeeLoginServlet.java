@@ -1,9 +1,11 @@
 package com.example.ehotel.servlets;
 
+import com.example.ehotel.connections.CustomerServer;
 import com.example.ehotel.connections.EmployeeServer;
 
 import java.io.*;
 
+import com.example.ehotel.entities.Employee;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -45,6 +47,9 @@ public class EmployeeLoginServlet extends HttpServlet {
         // PROCESS: checking if given password matches SIN from db
         if (pwd == sinFromDB) { //success
             session.setAttribute("uid", username); //updating session's user id to employee id
+
+            setSessionAttributes(req, session, con, username); //setting session attributes
+
             resp.sendRedirect("ViewBookings.jsp"); //redirecting to bookings page
         }
         else { //failure
@@ -57,4 +62,54 @@ public class EmployeeLoginServlet extends HttpServlet {
         }
 
     }
+
+    /**
+     * This helper method sets all the session attributes once the user logs in.
+     * @param req the request sent from the JSP file
+     * @param session the current session
+     * @param con the current database connection
+     * @param uid the current user ID
+     */
+    private void setSessionAttributes(HttpServletRequest req, HttpSession session,
+                                      EmployeeServer con, String uid) {
+
+        // VARIABLE DECLARATION: form vars. to hold values from db
+        String fName, lName, managerID, hotelID, street, city, province, country, position;
+        long sin;
+        double salary;
+
+        // PROCESS: retrieving form values from db using uid
+        // INITIALIZATION
+        fName = (String) con.getFieldByID("first_name", uid);
+        lName = (String) con.getFieldByID("last_name", uid);
+        managerID = (String) con.getFieldByID("manager_id", uid);
+        hotelID = (String) con.getFieldByID("hotel_id", uid);
+        street = (String) con.getFieldByID("street", uid);
+        city = (String) con.getFieldByID("city", uid);
+        province = (String) con.getFieldByID("province", uid);
+        country = (String) con.getFieldByID("country", uid);
+        position = (String) con.getFieldByID("position", uid);
+        sin = Long.parseLong((String) con.getFieldByID("sin", uid));
+        salary = Double.parseDouble((String) con.getFieldByID("salary", uid));
+
+        // PROCESS: setting form values to the ones retrieved
+        session.setAttribute("fname", fName);
+        session.setAttribute("lname", lName);
+
+        if (managerID == null) { //not manager
+            managerID = "N/A"; //updating manager ID
+        }
+
+        session.setAttribute("manager_id", managerID);
+        session.setAttribute("hotel_id", hotelID);
+        session.setAttribute("street_address", street);
+        session.setAttribute("city", city);
+        session.setAttribute("province_state", province);
+        session.setAttribute("country", country);
+        session.setAttribute("position", position);
+        session.setAttribute("sin", sin);
+        session.setAttribute("salary", salary);
+
+    }
+
 }

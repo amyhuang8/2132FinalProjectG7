@@ -152,7 +152,7 @@
             <input class="labels" type="text" id="lname" name="last name" value=${sessionScope.lname}>
             <br><br>
             <label class="labels" for="email">EMAIL: </label>
-            <input class="labels" type="email" id="email" name="email" value="${sessionScope.email}">
+            <input class="labels" type="email" id="email" name="email" value=${sessionScope.email}>
             <br><br>
             <label class="labels" for="phone_num">PHONE NUMBER: </label>
             <input class="labels" type="tel" id="phone_num" name="phone number" value=${sessionScope.phone_num}>
