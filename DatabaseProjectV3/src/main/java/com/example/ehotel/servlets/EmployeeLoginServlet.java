@@ -5,6 +5,7 @@ import com.example.ehotel.connections.ConnectionDB;
 import java.io.*;
 import java.sql.*;
 
+import com.example.ehotel.connections.EmployeeServer;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
@@ -33,7 +34,7 @@ public class EmployeeLoginServlet extends HttpServlet {
         int pwd = Integer.parseInt(req.getParameter("password"));
 
         // VARIABLE DECLARATION: new connection
-        ConnectionDB con = new ConnectionDB();
+        EmployeeServer con = new EmployeeServer();
 
         // VARIABLE DECLARATION: new SIN var. to hold SIN retrieved from db
         int sinFromDB;

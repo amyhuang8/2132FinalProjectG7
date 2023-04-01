@@ -18,7 +18,7 @@ public class ConnectionDB {
     /**
      * This method gets the connection to the database.
      */
-    public void getConn() {
+    public Connection getConn() {
 
         // PROCESS: getting driver connection to database
         try {
@@ -28,7 +28,7 @@ public class ConnectionDB {
         catch (Exception e) { //error-handling
             System.out.print("Couldn't connect to database");
         }
-
+        return db;
     }
 
     /**
@@ -59,47 +59,7 @@ public class ConnectionDB {
     }
 
     // GETTER METHODS------------------------------------------------------------------------------------
-    /**
-     * This method retrieves the employee SIN from the database, given the employee ID.
-     * @param id the employee ID provided at login time
-     * @return SIN of employee
-     */
-    public int getESINByUser(String id) {
 
-        // PROCESS: connecting to db
-        getConn();
-
-        // VARIABLE DECLARATION: setting SIN to initial 0
-        int SIN = 0;
-
-        // PROCESS: setting params to query reqs.
-        try {
-
-            // INITIALIZATION
-            ps = db.prepareStatement("select SIN from ehotels.employee where cast(employee_id as varchar)=?");
-            ps.setString(1, id);
-
-            // PROCESS: executing SQL query
-            rs = ps.executeQuery();
-
-            while (rs.next()) { //looping while RS still has conditions
-                // INITIALIZATION
-                SIN = Integer.parseInt(rs.getString(1));
-            }
-
-        }
-        catch (SQLException e) { //error-handling
-            // OUTPUT
-            e.printStackTrace();
-        }
-        finally { //closing connection after querying
-            closeDB();
-        }
-
-        // OUTPUT
-        return SIN;
-
-    }
 
     /**
      * This method retrieves the customer SIN from the database, given the customer email
@@ -109,7 +69,7 @@ public class ConnectionDB {
     public int getCSINByEmail(String email) {
 
         // PROCESS: connecting to db
-        getConn();
+        db = getConn();
 
         // VARIABLE DECLARATION: setting SIN to initial 0
         int SIN = 0;
