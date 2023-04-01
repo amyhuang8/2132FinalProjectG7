@@ -11,9 +11,17 @@
 
         <!--TITLE-->
         <title>eHotels Room Search</title>
-        <button id="profile_button" onclick="window.location.href='CustomerProfile.jsp'"
-                style="float: right; padding: 20px; border-radius: 50%; background-color: burlywood;
+
+        <!--HEADER BUTTONS-->
+        <button id="profile_button" class="header-buttons"
+                onclick="window.location.href='CustomerProfile.jsp'"
+                style="float: left; padding: 20px; border-radius: 50%; background-color: burlywood;
                 background-image: url('css/resources/profileicon.png');
+                background-size: contain; background-repeat: no-repeat;"></button>
+        <button id="logout_button" class="header-buttons"
+                onclick="window.location.href='index.jsp'"
+                style="float: right; padding: 20px; border-radius: 30%; background-color: burlywood;
+                background-image: url('css/resources/logouticon.png');
                 background-size: contain; background-repeat: no-repeat;"></button>
     </head>
 

@@ -1,7 +1,3 @@
-#profile_button:hover, :focus {
-    background-color: lightyellow!important;
-}
-
 /* DESIGN: Search Menu <div> containers */
 .searchMenu {
     display: inline-block;

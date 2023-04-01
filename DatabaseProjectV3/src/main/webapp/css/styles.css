@@ -30,12 +30,26 @@ body {
     cursor: pointer;
 }
 
+/* FUNCTIONAL DESIGN: Buttons on hover & focus */
+.buttons:hover, focus {
+    background-color: orange!important;
+}
+
+/* DESIGN: Header Buttons */
+.header-buttons {
+    padding: 20px;
+    background-color: burlywood;
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+/* FUNCTIONAL DESIGN: Header buttons on hover & focus */
+.header-buttons:hover, focus {
+    background-color: lightyellow!important;
+}
+
 /* DESIGN: Labels */
 .labels {
     font-size: 20px;
-}
-
-/* FUNCTIONAL DESIGN: Buttons on hover & focus */
-.buttons:hover, .buttons:focus {
-    background-color: orange!important;
 }
