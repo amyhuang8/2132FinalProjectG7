@@ -4,13 +4,14 @@ import java.sql.*;
 import java.util.logging.Logger;
 
 public class CustomerServer {
+    // VARIABLE DECLARATION: INSTANCE VARS. FOR CONNECTION
     ResultSet rs = null;
     String sql;
     Statement st = null;
     PreparedStatement ps = null;
     private static final Logger LOGGER = Logger.getLogger(CustomerServer.class.getName()); //logger
 
-    // GETTER METHODS------------------------------------------------------------------------------------
+    // GETTER METHODS --------------------------------------------------------------------------------------------------
     /**
      * This method retrieves the customer SIN from the database, given the customer email
      * @param email the customer email provided at login time
@@ -45,7 +46,7 @@ public class CustomerServer {
             // OUTPUT
             e.printStackTrace();
         }
-        finally { //closing connection after querying
+        finally { // closing connection after querying
             db.closeDB();
         }
 
@@ -53,7 +54,7 @@ public class CustomerServer {
         return SIN;
     }
 
-    // INSERTION METHODS---------------------------------------------------------------------------------
+    // INSERTION METHODS------------------------------------------------------------------------------------------------
     /**
      * This method inserts a new customer into the database, given the user information at registration.
      * @param fName the first name
@@ -79,7 +80,7 @@ public class CustomerServer {
         try {
 
             // PROCESS: calling helper method to insert new address
-            if (insertNewAddress(streetAddress, city, province, country)) { //success
+            if (insertNewAddress(streetAddress, city, province, country)) { // success
 
                 // VARIABLE DECLARATION:
                 int address_id = 0;                                     // setting address ID to initial 0
@@ -95,13 +96,13 @@ public class CustomerServer {
                     // PROCESS: executing SQL query
                     rs = ps.executeQuery();
 
-                    while (rs.next()) { //looping while RS still has conditions
+                    while (rs.next()) { // looping while RS still has conditions
                         // INITIALIZATION
                         address_id = Integer.parseInt(rs.getString(1));
                     }
 
                 }
-                catch (SQLException e) { //error-handling
+                catch (SQLException e) { // error-handling
                     // OUTPUT
                     e.printStackTrace();
                 }
@@ -109,13 +110,14 @@ public class CustomerServer {
                 // INITIALIZATION
                 st = db.getConn().createStatement();
 
+                // updating query statement
                 sql = "insert into ehotels.customer(first_name, last_name, SIN, customer_address_id," +
                         "registration_date, credit_card_num, customer_phone_number, customer_email)" +
                         "values('" + fName + "','" + lName + "','" + SIN + "','"
                         + address_id + "','" + new java.sql.Date(new java.util.Date().getTime()) + "','"
-                        + ccNum + "','" + phoneNum + "','" + email + "')"; //updating quire statement
+                        + ccNum + "','" + phoneNum + "','" + email + "')";
 
-                LOGGER.info(sql); //log msg
+                LOGGER.info(sql); // log msg
 
                 // PROCESS: executing insertion
                 st.executeUpdate(sql);
@@ -126,24 +128,24 @@ public class CustomerServer {
                 return true;
 
             }
-            else { //failed address insertion
+            else { // failed address insertion
                 // OUTPUT
                 return false;
             }
 
         }
-        catch(SQLException e){ //error-handling
+        catch(SQLException e){ // error-handling
 
             // OUTPUT
             e.printStackTrace();
 
-            LOGGER.info("CUSTOMER INSERTION IN DB FAILED"); //log msg
+            LOGGER.info("CUSTOMER INSERTION IN DB FAILED"); // log msg
 
             // OUTPUT
             return false;
 
         }
-        finally { //closing connection after querying
+        finally { // closing connection after querying
             db.closeDB();
         }
 
