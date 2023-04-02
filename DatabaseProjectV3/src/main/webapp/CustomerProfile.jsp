@@ -69,8 +69,8 @@
                     }
 
                     // PROCESS: validating phone number
-                    if (isNaN(phoneNum.value)) { //contains invalid chars
-                        alert("Please enter a valid phone number (ex: 123-123-1234)!") //error-handling
+                    if (isNaN(phoneNum.value) || phoneNum.value.length !== 10) { //contains invalid chars
+                        alert("Please enter a valid phone number (10 digits)!") //error-handling
 
                         // OUTPUT
                         return false;
@@ -111,7 +111,7 @@
                     }
 
                     // PROCESS: validating credit card
-                    if (isNaN(ccNum.value) || ccNum.value.length < 16) { //invalid chars or length
+                    if (isNaN(ccNum.value) || ccNum.value.length !== 16) { //invalid chars or length
                         alert("Please enter a valid credit card number (16 digits)!") //error-handling
 
                         // OUTPUT
@@ -143,7 +143,7 @@
         <hr style="background-color: rosybrown; height: 1.5px">
 
         <!--INFORMATION FORMS-->
-        <form method="post" id="signUpForms"
+        <form method="post" action="customer-update-profile-servlet" id="profileForms"
               style="font-size: 20px; text-align: center; display: block">
             <label class="labels" for="fname">FIRST NAME: </label>
             <input class="labels" type="text" id="fname" name="first name" value=${sessionScope.fname}>
@@ -164,45 +164,46 @@
             <label class="labels" for="city">CITY: </label>
             <select name="city" id="city" style="font-size: 18px">
                 <option value=${sessionScope.city}>${sessionScope.city}</option>
-                <option value="calgary">Calgary</option>
-                <option value="cancun">Cancun</option>
-                <option value="chihuahua-city">Chihuahua City</option>
-                <option value="columbus">Columbus</option>
-                <option value="gatineau">Gatineau</option>
-                <option value="mexico-city">Mexico City</option>
-                <option value="milwaukee">Milwaukee</option>
-                <option value="montreal">Montreal</option>
-                <option value="nyc">New York City</option>
-                <option value="ottawa">Ottawa</option>
-                <option value="tijuana">Tijuana</option>
-                <option value="toronto">Toronto</option>
-                <option value="volcano">Volcano</option>
-                <option value="winnipeg">Winnipeg</option>
-                <option value="vancouver">Vancouver</option>
+                <option value="Calgary">Calgary</option>
+                <option value="Cancun">Cancun</option>
+                <option value="Chihuahua City">Chihuahua City</option>
+                <option value="Columbus">Columbus</option>
+                <option value="Gatineau">Gatineau</option>
+                <option value="Mexico City">Mexico City</option>
+                <option value="Milwaukee">Milwaukee</option>
+                <option value="Montreal">Montreal</option>
+                <option value="New York City">New York City</option>
+                <option value="Ottawa">Ottawa</option>
+                <option value="Tijuana">Tijuana</option>
+                <option value="Toronto">Toronto</option>
+                <option value="Volcano">Volcano</option>
+                <option value="Winnipeg">Winnipeg</option>
+                <option value="Vancouver">Vancouver</option>
             </select>
             <br><br>
             <label class="labels" for="province_state">PROVINCE/STATE: </label>
             <select name="province-state" id="province_state" style="font-size: 18px">
                 <option value=${sessionScope.province_state}>${sessionScope.province_state}</option>
-                <option value="alberta">Alberta</option>
-                <option value="baja-california">Baja California</option>
-                <option value="british-columbia">British Columbia</option>
-                <option value="chihuahua">Chihuahua</option>
-                <option value="hawaii">Hawaii</option>
-                <option value="mexico-city-province">Mexico City</option>
-                <option value="new-york">New York</option>
-                <option value="ohio">Ohio</option>
-                <option value="ontario">Ontario</option>
-                <option value="quebec">Quebec</option>
-                <option value="wisconsin">Wisconsin</option>
+                <option value="Alberta">Alberta</option>
+                <option value="Baja California">Baja California</option>
+                <option value="British Columbia">British Columbia</option>
+                <option value="Chihuahua">Chihuahua</option>
+                <option value="Hawaii">Hawaii</option>
+                <option value="Manitoba">Manitoba</option>
+                <option value="Mexico City">Mexico City</option>
+                <option value="New York">New York</option>
+                <option value="Ohio">Ohio</option>
+                <option value="Ontario">Ontario</option>
+                <option value="Quebec">Quebec</option>
+                <option value="Wisconsin">Wisconsin</option>
             </select>
             <br><br>
             <label class="labels" for="country">COUNTRY: </label>
             <select name="country" id="country" style="font-size: 18px">
                 <option value=${sessionScope.country}>${sessionScope.country}</option>
-                <option value="canada">Canada</option>
-                <option value="mexico">Mexico</option>
-                <option value="usa">United States of America</option>
+                <option value="Canada">Canada</option>
+                <option value="Mexico">Mexico</option>
+                <option value="United States of America">United States of America</option>
             </select>
             <br><br>
             <label class="labels" for="sin">SOCIAL SECURITY NUMBER (SIN): </label>
@@ -213,7 +214,7 @@
             <br><br>
 
             <!--BUTTONS-->
-            <button type="button" class="buttons" value="save-changes" style="margin-right: 2px"
+            <button type="submit" class="buttons" value="save-changes" style="margin-right: 2px"
                     onclick="return validateProfileSave()">SAVE CHANGES</button>
             <button type="reset" class="buttons" value="reset"
                     style="margin-left: 2px">RESET CHANGES</button>

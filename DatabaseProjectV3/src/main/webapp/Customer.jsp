@@ -63,8 +63,8 @@
                     }
 
                     // PROCESS: validating phone number
-                    if (isNaN(phoneNum.value)) { //contains invalid chars
-                        alert("Please enter a valid phone number (ex: 123-123-1234)!") //error-handling
+                    if (isNaN(phoneNum.value) || phoneNum.value.length !== 10) { //contains invalid chars
+                        alert("Please enter a valid phone number (10 digits)!") //error-handling
 
                         // OUTPUT
                         return false;

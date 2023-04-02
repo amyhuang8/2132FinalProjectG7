@@ -3,13 +3,14 @@ package com.example.ehotel.servlets;
 import com.example.ehotel.connections.CustomerServer;
 
 import java.io.*;
+import java.util.logging.Logger;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
-@WebServlet(name = "customerLoginServlet", value = "/customer-login-servlet")
-public class CustomerLoginServlet extends HttpServlet {
+@WebServlet(name = "customerUpdateProfileServlet", value = "/customer-update-profile-servlet")
+public class CustomerUpdateProfileServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         doPost(req, resp);
@@ -25,40 +26,48 @@ public class CustomerLoginServlet extends HttpServlet {
      */
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
-        // VARIABLE DECLARATION: new session
-        HttpSession session = req.getSession();
+        // VARIABLE DECLARATION
+        HttpSession session = req.getSession(); //new session
+        CustomerServer con = new CustomerServer(); //new connection
 
-        // VARIABLE DECLARATION: email and password from user input
-        String email = req.getParameter("email");
-        int password = Integer.parseInt(req.getParameter("password"));
+        // VARIABLE DECLARATION: user input parameters
+        String fName = req.getParameter("first name");
+        String lName = req.getParameter("last name");
+        String currentEmail = (String) session.getAttribute("email");
+        String newEmail = req.getParameter("email");
+        String street = req.getParameter("street address");
+        String city = req.getParameter("city");
+        String province = req.getParameter("province-state");
+        String country = req.getParameter("country");
+        long phoneNum = Long.parseLong(req.getParameter("phone number"));
+        long sin = Long.parseLong(req.getParameter("sin"));
+        long ccNum = Long.parseLong(req.getParameter("credit card number"));
 
-        // VARIABLE DECLARATION: new connection
-        CustomerServer con = new CustomerServer();
+        // PROCESS: updating fields
+        if (con.updateFieldByID("first_name", currentEmail, fName) &&
+                con.updateFieldByID("last_name", currentEmail, lName) &&
+                con.updateFieldByID("street", currentEmail, street) &&
+                con.updateFieldByID("city", currentEmail, city) &&
+                con.updateFieldByID("province", currentEmail, province) &&
+                con.updateFieldByID("country", currentEmail, country) &&
+                con.updateFieldByID("customer_phone_number", currentEmail, phoneNum) &&
+                con.updateFieldByID("sin", currentEmail, sin) &&
+                con.updateFieldByID("credit_card_num", currentEmail, ccNum) &&
+                con.updateFieldByID("customer_email", currentEmail, newEmail)) { //success
+            session.setAttribute("uid", newEmail); //updating session's user id to customer email
 
-        // VARIABLE DECLARATION: new SIN var. to hold SIN retrieved from db
-        int sinFromDB;
+            setSessionAttributes(session, con, newEmail); //updating session attributes
 
-        // PROCESS: retrieving customer SIN from given username (email)
-        // INITIALIZATION
-        sinFromDB = con.getCSINByEmail(email);
-
-        // PROCESS: checking if given password matches SIN from db
-        if (password == sinFromDB) { //success
-            session.setAttribute("uid", email); //updating session's user id to customer email
-
-            setSessionAttributes(session, con, email); //setting session attributes
-
-            resp.sendRedirect("ViewRooms.jsp"); //redirecting to rooms page
+            resp.setHeader("refresh", "1;url=CustomerProfile.jsp"); //refreshing page
         }
         else { //failure
-            resp.setStatus(401); //setting error status
-            req.setAttribute("status", "CLOG-DB-401"); //setting error status attribute
-            req.setAttribute("heading", "LOGIN ERROR"); //setting heading attribute
-            req.setAttribute("error_msg", "Your login information is incorrect. Please return to the previous page, and try again."); //setting error msg attribute
+            resp.setStatus(500); //setting error status
+            req.setAttribute("status", "CPRO-DB-500"); //setting error status attribute
+            req.setAttribute("heading", "PROFILE SAVE ERROR"); //setting heading attribute
+            req.setAttribute("error_msg", "The changes in your information could not be saved. Please return to the previous page, and try again."); //setting error msg attribute
             req.getRequestDispatcher("ErrorPage.jsp").forward(req, resp); //forwarding response attributes to error page
             resp.sendRedirect("ErrorPage.jsp"); //redirecting to error page
         }
-
     }
 
     /**

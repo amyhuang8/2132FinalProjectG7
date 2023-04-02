@@ -128,12 +128,15 @@ public class CustomerServer {
 
         }
         catch (SQLException e) { //error-handling
+            LOGGER.severe("CUSTOMER " + fieldName + " RETRIEVAL FAILED"); //log msg
             // OUTPUT
             e.printStackTrace();
         }
         finally { // closing connection after querying
             db.closeDB();
         }
+
+        LOGGER.info("CUSTOMER " + fieldName + " RETRIEVAL SUCCESS"); //log msg
 
         // OUTPUT
         return value;
@@ -195,12 +198,151 @@ public class CustomerServer {
 
         }
         catch (SQLException e) { //error-handling
+            LOGGER.severe("ADDRESS " + fieldName + " RETRIEVAL FAILED"); //log msg
             // OUTPUT
             e.printStackTrace();
         }
 
+        LOGGER.info("ADDRESS " + fieldName + " RETRIEVAL SUCCESS"); //log msg
+
         // OUTPUT
         return value;
+
+    }
+
+    // UPDATE METHODS------------------------------------------------------------------------------------
+    /**
+     * This method updates the value of a specific field from the customer table,
+     * given the column name, attribute value, and UID
+     * @param fieldName the name of the table column
+     * @param email the customer email from which we will query other attributes
+     * @param value the value of the field to be set
+     * @return whether the update was a success
+     */
+    public boolean updateFieldByID(String fieldName, String email, Object value) {
+
+        // PROCESS: connecting to db
+        ConnectionDB db = new ConnectionDB();
+
+        // VARIABLE DECLARATION
+        boolean isAddressField; //flag for calling helper method
+        //flag for calling helper method
+
+        // PROCESS: updating SQL query statement to find the appropriate field value
+        switch (fieldName) {
+
+            case "first_name" :
+                sql = "update ehotels.customer set first_name=? where customer_email=?"; //updating query
+                isAddressField = false; //updating flag
+                break;
+            case "last_name" :
+                sql = "update ehotels.customer set last_name=? where customer_email=?"; //updating query
+                isAddressField = false; //updating flag
+                break;
+            case "customer_email" :
+                sql = "update ehotels.customer set customer_email=? where customer_email=?"; //updating query
+                isAddressField = false; //updating flag
+                break;
+            case "customer_phone_number" :
+                value = Long.parseLong(String.valueOf(value)); //type cast
+                sql = "update ehotels.customer set customer_phone_number=? where customer_email=?"; //updating query
+                isAddressField = false; //updating flag
+                break;
+            case "sin" :
+                value = Long.parseLong(String.valueOf(value)); //type cast
+                sql = "update ehotels.customer set sin=? where customer_email=?";
+                isAddressField = false; //updating flag
+                break;
+            case "credit_card_num" :
+                value = Long.parseLong(String.valueOf(value)); //type cast
+                sql = "update ehotels.customer set credit_card_num=? where customer_email=?";
+                isAddressField = false; //updating flag
+                break;
+            default : //address field
+                sql = "select customer_address_id from ehotels.customer where customer_email=?"; //updating query
+                isAddressField = true; //updating flag
+
+        }
+
+        // PROCESS: setting params to query reqs.
+        try (Connection con = db.getConn()){
+
+            // INITIALIZATION
+            ps = con.prepareStatement(sql);
+
+            // PROCESS: checking for address field to set query params
+            if (isAddressField) {
+
+                // VARIABLE DECLARATION
+                String address_id = "";
+
+                ps.setString(1, email);
+
+                rs = ps.executeQuery(); //executing query
+
+                while (rs.next()) { //looping while RS still has conditions
+
+                    // VARIABLE DECLARATION
+                    address_id = rs.getString(1);
+
+                }
+
+                // PROCESS: updating SQL query statement to find the appropriate field value
+                switch (fieldName) {
+
+                    case "street" :
+                        sql = "update ehotels.address set street=? where cast(id as varchar)=?"; //updating query
+                        break;
+                    case "city" :
+                        sql = "update ehotels.address set city=? where cast(id as varchar)=?"; //updating query
+                        break;
+                    case "province" :
+                        sql = "update ehotels.address set province=? where cast(id as varchar)=?"; //updating query
+                        break;
+                    case "country" :
+                        sql = "update ehotels.address set country=? where cast(id as varchar)=?"; //updating query
+                        break;
+
+                }
+
+                // INITIALIZATION
+                ps = con.prepareStatement(sql);
+                ps.setString(1, (String) value);
+                ps.setString(2, address_id);
+
+                // PROCESS: executing SQL update
+                ps.executeUpdate();
+            }
+            else if (fieldName.equals("customer_phone_number") || fieldName.equals("sin") ||
+                    fieldName.equals("credit_card_num")) { //long value needed
+                ps.setLong(1, (Long) value);
+                ps.setString(2, email);
+
+                // PROCESS: executing SQL update
+                ps.executeUpdate();
+            }
+            else {
+                ps.setString(1, String.valueOf(value));
+                ps.setString(2, email);
+
+                // PROCESS: executing SQL update
+                ps.executeUpdate();
+            }
+
+        }
+        catch (SQLException e) { //error-handling
+            LOGGER.severe("FAILED TO UPDATE CUSTOMER " + fieldName); //log msg
+            // OUTPUT
+            e.printStackTrace();
+        }
+        finally { // closing connection after querying
+            db.closeDB();
+        }
+
+        LOGGER.info("UPDATED CUSTOMER " + fieldName); //log msg
+
+        // OUTPUT
+        return true;
 
     }
 

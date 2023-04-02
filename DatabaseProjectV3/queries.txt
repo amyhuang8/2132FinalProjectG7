@@ -3,7 +3,7 @@ SET search_path = ehotels;
 -- ---------------------------------------------------------------------------------------------------------------------
 -- Deletion for any table
 -- ---------------------------------------------------------------------------------------------------------------------
-/*drop table archive;
+drop table archive;
 drop table rental;
 drop table booking;
 drop table customer;
@@ -11,7 +11,7 @@ drop table employee;
 drop table room;
 drop table hotel;
 drop table hotel_chain;
-drop table address;*/
+drop table address;
 
 -- ---------------------------------------------------------------------------------------------------------------------
 -- Table structure for address
@@ -23,7 +23,7 @@ CREATE TABLE address
     street   VARCHAR(50) NOT NULL,
     city     VARCHAR(25) NOT NULL,
     province VARCHAR(25) NOT NULL,
-    country  VARCHAR(7)  NOT NULL,
+    country  VARCHAR(25)  NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -43,10 +43,10 @@ VALUES ('123 Laurier Ave', 'Ottawa', 'Ontario', 'Canada'),
 INSERT INTO address (street, city, province, country)
 VALUES ('361 Queen St', 'Ottawa', 'Ontario', 'Canada'),  -- hilton
        ('380 Sherbrooke St W', 'Montreal', 'Quebec', 'Canada'),
-       ('1335 6th Ave', 'New York City', 'New York', 'America'),
-       ('8700 Lyra Dr', 'Columbus', 'Ohio', 'America'),
-       ('3900 Chagrin Dr', 'Columbus', 'Ohio', 'America'),
-       ('509 W Wisconsin Ave', 'Milwaukee', 'Wisconsin', 'America'),
+       ('1335 6th Ave', 'New York City', 'New York', 'United States of America'),
+       ('8700 Lyra Dr', 'Columbus', 'Ohio', 'United States of America'),
+       ('3900 Chagrin Dr', 'Columbus', 'Ohio', 'United States of America'),
+       ('509 W Wisconsin Ave', 'Milwaukee', 'Wisconsin', 'United States of America'),
        ('Ave Juarez 70', 'Mexico City', 'Mexico City', 'Mexico'),
        ('Carr Federal Libre 307 Cancun-Tulum 248-868', 'Cancun', 'Quintana Roo', 'Mexico'),
 
@@ -54,8 +54,8 @@ VALUES ('361 Queen St', 'Ottawa', 'Ontario', 'Canada'),  -- hilton
        ('2727 West Club Dr', 'Toronto', 'Ontario', 'Canada'),
        ('1050 Sherbrooke Street W', 'Montreal', 'Quebec', 'Canada'),
        ('100 South 12th St', 'Calgary', 'Alberta', 'Canada'),
-       ('7696 Sam Snead Hwy', 'Volcano', 'Hawaii', 'America'),
-       ('21 E 52nd St', 'New York City', 'New York', 'America'),
+       ('7696 Sam Snead Hwy', 'Volcano', 'Hawaii', 'United States of America'),
+       ('21 E 52nd St', 'New York City', 'New York', 'United States of America'),
        ('23 Ocean Lane', 'Tijuana', 'Baja California', 'Mexico'),
        ('555 S Lamar', 'Tijuana', 'Baja California', 'Mexico'),
 
@@ -64,7 +64,7 @@ VALUES ('361 Queen St', 'Ottawa', 'Ontario', 'Canada'),  -- hilton
        ('48898 La Huerta', 'Chihuahua City', 'Chihuahua', 'Mexico'),
        ('63734 Corral del Risco', 'Chihuahua City', 'Chihuahua', 'Mexico'),
        ('Paseo de la Reforma #500', 'Mexico City', 'Mexico City', 'Mexico'),
-       ('27 Barclay St', 'New York City', 'New York', 'America'),
+       ('27 Barclay St', 'New York City', 'New York', 'United States of America'),
        ('60 Yorkville Ave', 'Toronto', 'Ontario', 'Canada'),
        ('1440 Rue de la Montagne', 'Montreal', 'Quebec', 'Canada'),
 
@@ -73,16 +73,16 @@ VALUES ('361 Queen St', 'Ottawa', 'Ontario', 'Canada'),  -- hilton
        ('931 Main St', 'Winnipeg', 'Manitoba', 'Canada'),
        ('1140 10 Ave SW', 'Calgary', 'Alberta', 'Canada'),
        ('Margaritas 2 LOC-10 SM-22, SM 22, 77500', 'Cancun', 'Quintana Roo', 'Mexico'),
-       ('9100 W Oklahoma Ave', 'Milwaukee', 'Wisconsin', 'America'),
+       ('9100 W Oklahoma Ave', 'Milwaukee', 'Wisconsin', 'United States of America'),
        ('Isabel La Católica 30', 'Mexico City', 'Mexico City', 'Mexico'),
-       ('19-3820 Old Volcano Rd', 'Volcano', 'Hawaii', 'America'),
+       ('19-3820 Old Volcano Rd', 'Volcano', 'Hawaii', 'United States of America'),
 
        ('80 St Marys Rd', 'Winnipeg', 'Manitoba', 'Canada'),
        ('2 Lombard Place', 'Winnipeg', 'Manitoba', 'Canada'),
        ('86 Freeport Blvd NE', 'Calgary', 'Alberta', 'Canada'),
        ('1274 Carling Ave', 'Ottawa', 'Ontario', 'Canada'),
        ('131 Laurier St', 'Gatineau', 'Quebec', 'Canada'),
-       ('1450 Airpointe Dr', 'Columbus', 'Ohio', 'America'),
+       ('1450 Airpointe Dr', 'Columbus', 'Ohio', 'United States of America'),
        ('Vialidad Ch-P 8800', 'Chihuahua City', 'Chihuahua', 'Mexico'),
        ('Blvd Agua Caliente 4558', 'Tijuana', 'Baja California', 'Mexico');
 
@@ -94,17 +94,17 @@ VALUES ('56 Wellington St', 'Ottawa', 'Ontario', 'Canada'),
        ('55 Blvd Saint-Charles', 'Montreal', 'Quebec', 'Canada'),
        ('189 Blvd Saint-Jean', 'Montreal', 'Quebec', 'Canada'),
 
-       ('2007 Waverly Place', 'New York City', 'New York', 'America'),
-       ('56 Greenwich Village', 'New York City', 'New York', 'America'),
+       ('2007 Waverly Place', 'New York City', 'New York', 'United States of America'),
+       ('56 Greenwich Village', 'New York City', 'New York', 'United States of America'),
 
-       ('986 Aaron Dr', 'Columbus', 'Ohio', 'America'),
-       ('5698 Abbey Rd', 'Columbus', 'Ohio', 'America'),
+       ('986 Aaron Dr', 'Columbus', 'Ohio', 'United States of America'),
+       ('5698 Abbey Rd', 'Columbus', 'Ohio', 'United States of America'),
 
-       ('1234 Acarie Dr', 'Columbus', 'Ohio', 'America'),
-       ('3421 Adell Court', 'Columbus', 'Ohio', 'America'),
+       ('1234 Acarie Dr', 'Columbus', 'Ohio', 'United States of America'),
+       ('3421 Adell Court', 'Columbus', 'Ohio', 'United States of America'),
 
-       ('2023 Airport Fwy', 'Milwaukee', 'Wisconsin', 'America'),
-       ('98 Alice St', 'Milwaukee', 'Wisconsin', 'America'),
+       ('2023 Airport Fwy', 'Milwaukee', 'Wisconsin', 'United States of America'),
+       ('98 Alice St', 'Milwaukee', 'Wisconsin', 'United States of America'),
 
        ('506-8 Madero St', 'Mexico City', 'Mexico City', 'Mexico'),
        ('58-4 Genova St', 'Mexico City', 'Mexico City', 'Mexico'),
@@ -126,11 +126,11 @@ VALUES ('185 Warden Ave', 'Toronto', 'Ontario', 'Canada'),
        ('164 Harvest Hills Blvd', 'Calgary', 'Alberta', 'Canada'),
        ('101 Centre St', 'Calgary', 'Alberta', 'Canada'),
 
-       ('12 Anuhea Circle Dr', 'Volcano', 'Hawaii', 'America'),
-       ('342 Hapu Lane', 'Volcano', 'Hawaii', 'America'),
+       ('12 Anuhea Circle Dr', 'Volcano', 'Hawaii', 'United States of America'),
+       ('342 Hapu Lane', 'Volcano', 'Hawaii', 'United States of America'),
 
-       ('20 Park Ave', 'New York City', 'New York', 'America'),
-       ('1246 Crosby St', 'New York City', 'New York', 'America'),
+       ('20 Park Ave', 'New York City', 'New York', 'United States of America'),
+       ('1246 Crosby St', 'New York City', 'New York', 'United States of America'),
 
        ('103-4 Calle Sexta', 'Tijuana', 'Baja California', 'Mexico'),
        ('103-4 Calle Sexta', 'Tijuana', 'Baja California', 'Mexico'),
@@ -155,8 +155,8 @@ VALUES ('1111 Burrard St', 'Vancouver', 'British Columbia', 'Canada'),
        ('5347 Madero St', 'Mexico City', 'Mexico City', 'Mexico'),
        ('649 Regina S', 'Mexico City', 'Mexico City', 'Mexico'),
 
-       ('324 Washington St', 'New York City', 'New York', 'America'),
-       ('115 Wall St', 'New York City', 'New York', 'America'),
+       ('324 Washington St', 'New York City', 'New York', 'United States of America'),
+       ('115 Wall St', 'New York City', 'New York', 'United States of America'),
 
        ('1992 Front St', 'Toronto', 'Ontario', 'Canada'),
        ('1 W Front St', 'Toronto', 'Ontario', 'Canada'),
@@ -181,14 +181,14 @@ VALUES ('1128 West Georgia St', 'Vancouver', 'British Columbia', 'Canada'),
        ('Margaritas 2 LOC-10 SM-22, SM 22, 77500', 'Cancun', 'Quintana Roo', 'Mexico'),
        ('Margaritas 2 LOC-10 SM-22, SM 22, 77500', 'Cancun', 'Quintana Roo', 'Mexico'),
 
-       ('9100 W Oklahoma Ave', 'Milwaukee', 'Wisconsin', 'America'),
-       ('9100 W Oklahoma Ave', 'Milwaukee', 'Wisconsin', 'America'),
+       ('9100 W Oklahoma Ave', 'Milwaukee', 'Wisconsin', 'United States of America'),
+       ('9100 W Oklahoma Ave', 'Milwaukee', 'Wisconsin', 'United States of America'),
 
        ('Isabel La Católica 30', 'Mexico City', 'Mexico City', 'Mexico'),
        ('Isabel La Católica 30', 'Mexico City', 'Mexico City', 'Mexico'),
 
-       ('19-3820 Old Volcano Rd', 'Volcano', 'Hawaii', 'America'),
-       ('19-3820 Old Volcano Rd', 'Volcano', 'Hawaii', 'America');
+       ('19-3820 Old Volcano Rd', 'Volcano', 'Hawaii', 'United States of America'),
+       ('19-3820 Old Volcano Rd', 'Volcano', 'Hawaii', 'United States of America');
 
 -- for employees working at best western (id #: 110-125)
 INSERT INTO address (street, city, province, country)
@@ -207,8 +207,8 @@ VALUES ('80 St Marys Rd', 'Winnipeg', 'Manitoba', 'Canada'),
        ('131 Laurier St', 'Gatineau', 'Quebec', 'Canada'),
        ('131 Laurier St', 'Gatineau', 'Quebec', 'Canada'),
 
-       ('1450 Airpointe Dr', 'Columbus', 'Ohio', 'America'),
-       ('1450 Airpointe Dr', 'Columbus', 'Ohio', 'America'),
+       ('1450 Airpointe Dr', 'Columbus', 'Ohio', 'United States of America'),
+       ('1450 Airpointe Dr', 'Columbus', 'Ohio', 'United States of America'),
 
        ('Vialidad Ch-P 8800', 'Chihuahua City', 'Chihuahua', 'Mexico'),
        ('Vialidad Ch-P 8800', 'Chihuahua City', 'Chihuahua', 'Mexico'),
@@ -219,7 +219,7 @@ VALUES ('80 St Marys Rd', 'Winnipeg', 'Manitoba', 'Canada'),
 -- for customers (id #: 126-128)
 INSERT INTO address (street, city, province, country)
 VALUES ('147 Mehico', 'Tijuana', 'Baja California', 'Mexico'),
-       ('896 Broadway', 'New York City', 'New York', 'America'),
+       ('896 Broadway', 'New York City', 'New York', 'United States of America'),
        ('468 Cordova St', 'Vancouver', 'British Columbia', 'Canada');
 
 -- -------------------------------

@@ -51,8 +51,8 @@ public class CustomerRegistrationServlet extends HttpServlet {
             req.setAttribute("heading", "REGISTRATION ERROR"); //setting heading attribute
             req.setAttribute("error_msg", "An account with either this email or SIN already exists. " +
                     "Please return to the previous page, and try again."); //setting error msg attribute
-            req.getRequestDispatcher("AccessError.jsp").forward(req, resp); //forwarding response attributes to error page
-            resp.sendRedirect("AccessError.jsp"); //redirecting to error page
+            req.getRequestDispatcher("ErrorPage.jsp").forward(req, resp); //forwarding response attributes to error page
+            resp.sendRedirect("ErrorPage.jsp"); //redirecting to error page
         }
 
     }

@@ -105,7 +105,7 @@
         <hr style="background-color: rosybrown; height: 1.5px">
 
         <!--INFORMATION FORMS-->
-        <form method="post" id="signUpForms"
+        <form method="post" id="profileForms"
               style="font-size: 20px; text-align: center; display: block">
             <label class="labels" for="manager_id">MANAGER ID: </label>
             <input class="labels" type="text" id="manager_id" name="manager id"
