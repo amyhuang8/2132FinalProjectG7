@@ -14,10 +14,12 @@
                 onclick="window.location.href='EmployeeProfile.jsp'"
                 style="float: left; border-radius: 50%;
                 background-image: url('css/resources/profileicon.png');"></button>
-        <button id="logout_button" class="header-buttons"
-                onclick="window.location.href='index.jsp'"
-                style="float: right; border-radius: 30%;
+        <!--HEADER BUTTONS-->
+        <form action="logout-servlet">
+            <button type="submit" id="logout_button" class="header-buttons"
+                    style="float: right; border-radius: 30%;
                 background-image: url('css/resources/logouticon.png');"></button>
+        </form>
     </head>
 
     <body>

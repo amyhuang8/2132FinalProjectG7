@@ -11,10 +11,11 @@
         <title>Employee Profile</title>
 
         <!--HEADER BUTTONS-->
-        <button id="logout_button" class="header-buttons"
-                onclick="window.location.href='index.jsp'"
-                style="float: right; border-radius: 30%;
+        <form action="logout-servlet">
+            <button type="submit" id="logout_button" class="header-buttons"
+                    style="float: right; border-radius: 30%;
                 background-image: url('css/resources/logouticon.png');"></button>
+        </form>
 
         <!--SCRIPT CODE-->
         <script>
