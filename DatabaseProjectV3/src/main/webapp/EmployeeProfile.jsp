@@ -26,7 +26,7 @@
                 let fName = document.getElementById("fname");
                 let lName = document.getElementById("lname");
                 let street = document.getElementById("street_address");
-                
+
                 // PROCESS: checking for null registration forms
                 if(fName.value === "" || lName.value === "" || street.value === "") { //has null
                     alert("Please fill out all forms!"); //error-handling
@@ -82,7 +82,7 @@
         <hr style="background-color: rosybrown; height: 1.5px">
 
         <!--INFORMATION FORMS-->
-        <form method="post" id="profileForms"
+        <form method="post" action="employee-update-profile-servlet" id="profileForms"
               style="font-size: 20px; text-align: center; display: block">
             <label class="labels" for="manager_id">MANAGER ID: </label>
             <input class="labels" type="text" id="manager_id" name="manager id"
@@ -165,7 +165,7 @@
             <br><br>
 
             <!--BUTTONS-->
-            <button type="button" class="buttons" value="save-changes" style="margin-right: 2px"
+            <button type="submit" class="buttons" value="save-changes" style="margin-right: 2px"
                     onclick="validateProfileSave()">SAVE CHANGES</button>
             <button type="reset" class="buttons" value="reset"
                     style="margin-left: 2px">RESET CHANGES</button>

@@ -226,7 +226,6 @@ public class CustomerServer {
 
         // VARIABLE DECLARATION
         boolean isAddressField; //flag for calling helper method
-        //flag for calling helper method
 
         // PROCESS: updating SQL query statement to find the appropriate field value
         switch (fieldName) {

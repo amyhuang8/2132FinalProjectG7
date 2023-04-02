@@ -207,4 +207,112 @@ public class EmployeeServer {
 
     }
 
+    // UPDATE METHODS------------------------------------------------------------------------------------
+    /**
+     * This method updates the value of a specific field from the employee table,
+     * given the column name, attribute value, and UID
+     * @param fieldName the name of the table column
+     * @param employee_id the employee ID from which we will query other attributes
+     * @param value the value of the field to be set
+     * @return whether the update was a success
+     */
+    public boolean updateFieldByID(String fieldName, String employee_id, Object value) {
+
+        // PROCESS: connecting to db
+        ConnectionDB db = new ConnectionDB();
+
+        // VARIABLE DECLARATION
+        boolean isAddressField; //flag for calling helper method
+
+        // PROCESS: updating SQL query statement to find the appropriate field value
+        switch (fieldName) {
+
+            case "first_name" :
+                sql = "update ehotels.employee set first_name=? where cast(employee_id as varchar)=?"; //updating query
+                isAddressField = false; //updating flag
+                break;
+            case "last_name" :
+                sql = "update ehotels.employee set last_name=? where cast(employee_id as varchar)=?"; //updating query
+                isAddressField = false; //updating flag
+                break;
+            default : //address field
+                sql = "select employee_address_id from ehotels.employee where cast(employee_id as varchar)=?"; //updating query
+                isAddressField = true; //updating flag
+
+        }
+
+        // PROCESS: setting params to query reqs.
+        try (Connection con = db.getConn()){
+
+            // INITIALIZATION
+            ps = con.prepareStatement(sql);
+
+            // PROCESS: checking for address field to set query params
+            if (isAddressField) {
+
+                // VARIABLE DECLARATION
+                String address_id = "";
+
+                ps.setString(1, employee_id);
+
+                rs = ps.executeQuery(); //executing query
+
+                while (rs.next()) { //looping while RS still has conditions
+
+                    // VARIABLE DECLARATION
+                    address_id = rs.getString(1);
+
+                }
+
+                // PROCESS: updating SQL query statement to find the appropriate field value
+                switch (fieldName) {
+
+                    case "street" :
+                        sql = "update ehotels.address set street=? where cast(id as varchar)=?"; //updating query
+                        break;
+                    case "city" :
+                        sql = "update ehotels.address set city=? where cast(id as varchar)=?"; //updating query
+                        break;
+                    case "province" :
+                        sql = "update ehotels.address set province=? where cast(id as varchar)=?"; //updating query
+                        break;
+                    case "country" :
+                        sql = "update ehotels.address set country=? where cast(id as varchar)=?"; //updating query
+                        break;
+
+                }
+
+                // INITIALIZATION
+                ps = con.prepareStatement(sql);
+                ps.setString(1, (String) value);
+                ps.setString(2, address_id);
+
+                // PROCESS: executing SQL update
+                ps.executeUpdate();
+            }
+            else {
+                ps.setString(1, String.valueOf(value));
+                ps.setString(2, employee_id);
+
+                // PROCESS: executing SQL update
+                ps.executeUpdate();
+            }
+
+        }
+        catch (SQLException e) { //error-handling
+            LOGGER.severe("FAILED TO UPDATE EMPLOYEE " + fieldName); //log msg
+            // OUTPUT
+            e.printStackTrace();
+        }
+        finally { // closing connection after querying
+            db.closeDB();
+        }
+
+        LOGGER.info("UPDATED EMPLOYEE " + fieldName); //log msg
+
+        // OUTPUT
+        return true;
+
+    }
+
 }

@@ -2,7 +2,6 @@ package com.example.ehotel.servlets;
 
 import java.io.*;
 
-import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
@@ -14,11 +13,9 @@ public class LogoutServlet extends HttpServlet {
     }
 
     /**
-     * This method takes the customer email and password (SIN) from the user input on the
-     * login page and retrieves the corresponding fields from the database. It then compares
-     * the login information and redirects the user to the appropriate page.
+     * This method takes destroys the current session and redirects the user to the homepage.
      *
-     * @param req  the request sent from the JSP file
+     * @param req the request sent from the JSP file
      * @param resp the response to be sent to the JSP file
      * @throws IOException
      */
