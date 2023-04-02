@@ -26,10 +26,7 @@
                 let fName = document.getElementById("fname");
                 let lName = document.getElementById("lname");
                 let street = document.getElementById("street_address");
-                let city = document.getElementById("city");
-                let province = document.getElementById("province_state");
-                let country = document.getElementById("country");
-
+                
                 // PROCESS: checking for null registration forms
                 if(fName.value === "" || lName.value === "" || street.value === "") { //has null
                     alert("Please fill out all forms!"); //error-handling

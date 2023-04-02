@@ -40,6 +40,7 @@ public class CustomerRegistrationServlet extends HttpServlet {
         if (con.insertNewCustomer(fName, lName, SIN, streetAddress, city, province, country, ccNum,
                 phoneNum, email)) { //success
             session.setAttribute("uid", email); //updating session's user id to customer email
+            setSessionAttributes(session, con, email); //setting session attributes
             resp.sendRedirect("ViewRooms.jsp"); //redirecting to rooms page
         }
         else { //failure
@@ -51,6 +52,45 @@ public class CustomerRegistrationServlet extends HttpServlet {
             req.getRequestDispatcher("ErrorPage.jsp").forward(req, resp); //forwarding response attributes to error page
             resp.sendRedirect("ErrorPage.jsp"); //redirecting to error page
         }
+
+    }
+
+    /**
+     * This helper method sets all the session attributes once the user logs in.
+     * @param session the current session
+     * @param con the current database connection
+     * @param uid the current user ID
+     */
+    private void setSessionAttributes(HttpSession session, CustomerServer con, String uid) {
+
+        // VARIABLE DECLARATION: form vars. to hold values from db
+        String fName, lName, email, street, city, province, country;
+        long phoneNum, sin, ccNum;
+
+        // PROCESS: retrieving form values from db using uid
+        // INITIALIZATION
+        fName = (String) con.getFieldByID("first_name", uid);
+        lName = (String) con.getFieldByID("last_name", uid);
+        email = (String) con.getFieldByID("customer_email", uid);
+        street = (String) con.getFieldByID("street", uid);
+        city = (String) con.getFieldByID("city", uid);
+        province = (String) con.getFieldByID("province", uid);
+        country = (String) con.getFieldByID("country", uid);
+        phoneNum = Long.parseLong((String) con.getFieldByID("customer_phone_number", uid));
+        sin = Long.parseLong((String) con.getFieldByID("sin", uid));
+        ccNum = Long.parseLong((String) con.getFieldByID("credit_card_num", uid));
+
+        // PROCESS: setting form values to the ones retrieved
+        session.setAttribute("fname", fName);
+        session.setAttribute("lname", lName);
+        session.setAttribute("email", email);
+        session.setAttribute("phone_num", phoneNum);
+        session.setAttribute("street_address", street);
+        session.setAttribute("city", city);
+        session.setAttribute("province_state", province);
+        session.setAttribute("country", country);
+        session.setAttribute("sin", sin);
+        session.setAttribute("cc_num", ccNum);
 
     }
 

@@ -11,10 +11,11 @@
         <title>Customer Profile</title>
 
         <!--HEADER BUTTONS-->
-        <button id="logout_button" class="header-buttons"
-                onclick="window.location.href='index.jsp'"
-                style="float: right; border-radius: 30%;
+        <form action="logout-servlet">
+            <button type="submit" id="logout_button" class="header-buttons"
+                    style="float: right; border-radius: 30%;
                 background-image: url('css/resources/logouticon.png');"></button>
+        </form>
 
         <!--SCRIPT CODE-->
         <script>
@@ -28,9 +29,6 @@
                 let email = document.getElementById("email");
                 let phoneNum = document.getElementById("phone_num");
                 let street = document.getElementById("street_address");
-                let city = document.getElementById("city");
-                let province = document.getElementById("province_state");
-                let country = document.getElementById("country");
                 let sin = document.getElementById("sin");
                 let ccNum = document.getElementById("cc_num");
 
