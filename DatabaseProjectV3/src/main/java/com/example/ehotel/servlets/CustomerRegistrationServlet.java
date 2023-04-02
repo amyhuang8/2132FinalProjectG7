@@ -26,12 +26,9 @@ public class CustomerRegistrationServlet extends HttpServlet {
         String lName = req.getParameter("last name");
         int SIN = Integer.parseInt(req.getParameter("sin"));
         String streetAddress = req.getParameter("street address");
-        String city = req.getParameter("city").substring(0, 1).toUpperCase()
-                + req.getParameter("city").substring(1);
-        String province = req.getParameter("province-state").substring(0, 1).toUpperCase()
-                + req.getParameter("province-state").substring(1);
-        String country = req.getParameter("country").substring(0, 1).toUpperCase()
-                + req.getParameter("country").substring(1);
+        String city = req.getParameter("city");
+        String province = req.getParameter("province-state");
+        String country = req.getParameter("country");
         long ccNum = Long.parseLong(req.getParameter("credit card number"));
         long phoneNum = Long.parseLong(req.getParameter("phone number"));
         String email = req.getParameter("email");

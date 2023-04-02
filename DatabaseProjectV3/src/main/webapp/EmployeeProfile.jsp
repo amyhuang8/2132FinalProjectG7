@@ -61,26 +61,6 @@
                         // OUTPUT
                         return false;
                     }
-                    if (city.options[city.selectedIndex].value === "default") { //invalid selection
-                        alert("Please select a city!") //error-handling
-
-                        // OUTPUT
-                        return false;
-                    }
-                    if (province.options[province.selectedIndex].value === "default") { //invalid selection
-                        alert("Please select a province!") //error-handling
-
-                        // OUTPUT
-                        return false;
-                    }
-                    if (country.options[country.selectedIndex].value === "default") { //invalid selection
-                        alert("Please select a country!") //error-handling
-
-                        // OUTPUT
-                        return false;
-                    }
-
-                    // THERE SHOULD BE SOME JAVA CALL HERE WHERE THE DATABASE ACTUALLY UPDATES!!
 
                     // VARIABLE DECLARATION: save success snackbar
                     let success = document.getElementById("changes_snackbar");
@@ -132,45 +112,46 @@
             <label class="labels" for="city">CITY: </label>
             <select name="city" id="city" style="font-size: 18px">
                 <option value=${sessionScope.city}>${sessionScope.city}</option>
-                <option value="calgary">Calgary</option>
-                <option value="cancun">Cancun</option>
-                <option value="chihuahua-city">Chihuahua City</option>
-                <option value="columbus">Columbus</option>
-                <option value="gatineau">Gatineau</option>
-                <option value="mexico-city">Mexico City</option>
-                <option value="milwaukee">Milwaukee</option>
-                <option value="montreal">Montreal</option>
-                <option value="nyc">New York City</option>
-                <option value="ottawa">Ottawa</option>
-                <option value="tijuana">Tijuana</option>
-                <option value="toronto">Toronto</option>
-                <option value="volcano">Volcano</option>
-                <option value="winnipeg">Winnipeg</option>
-                <option value="vancouver">Vancouver</option>
+                <option value="Calgary">Calgary</option>
+                <option value="Cancun">Cancun</option>
+                <option value="Chihuahua City">Chihuahua City</option>
+                <option value="Columbus">Columbus</option>
+                <option value="Gatineau">Gatineau</option>
+                <option value="Mexico City">Mexico City</option>
+                <option value="Milwaukee">Milwaukee</option>
+                <option value="Montreal">Montreal</option>
+                <option value="New York City">New York City</option>
+                <option value="Ottawa">Ottawa</option>
+                <option value="Tijuana">Tijuana</option>
+                <option value="Toronto">Toronto</option>
+                <option value="Volcano">Volcano</option>
+                <option value="Winnipeg">Winnipeg</option>
+                <option value="Vancouver">Vancouver</option>
             </select>
             <br><br>
             <label class="labels" for="province_state">PROVINCE/STATE: </label>
             <select name="province-state" id="province_state" style="font-size: 18px">
                 <option value=${sessionScope.province_state}>${sessionScope.province_state}</option>
-                <option value="alberta">Alberta</option>
-                <option value="baja-california">Baja California</option>
-                <option value="british-columbia">British Columbia</option>
-                <option value="chihuahua">Chihuahua</option>
-                <option value="hawaii">Hawaii</option>
-                <option value="mexico-city-province">Mexico City</option>
-                <option value="new-york">New York</option>
-                <option value="ohio">Ohio</option>
-                <option value="ontario">Ontario</option>
-                <option value="quebec">Quebec</option>
-                <option value="wisconsin">Wisconsin</option>
+                <option value="Alberta">Alberta</option>
+                <option value="Baja California">Baja California</option>
+                <option value="British Columbia">British Columbia</option>
+                <option value="Chihuahua">Chihuahua</option>
+                <option value="Hawaii">Hawaii</option>
+                <option value="Manitoba">Manitoba</option>
+                <option value="Mexico City">Mexico City</option>
+                <option value="New York">New York</option>
+                <option value="Ohio">Ohio</option>
+                <option value="Ontario">Ontario</option>
+                <option value="Quebec">Quebec</option>
+                <option value="Wisconsin">Wisconsin</option>
             </select>
             <br><br>
             <label class="labels" for="country">COUNTRY: </label>
             <select name="country" id="country" style="font-size: 18px">
                 <option value=${sessionScope.country}>${sessionScope.country}</option>
-                <option value="canada">Canada</option>
-                <option value="mexico">Mexico</option>
-                <option value="usa">United States of America</option>
+                <option value="Canada">Canada</option>
+                <option value="Mexico">Mexico</option>
+                <option value="United States of America">United States of America</option>
             </select>
             <br><br>
             <label class="labels" for="sin">SOCIAL SECURITY NUMBER (SIN): </label>

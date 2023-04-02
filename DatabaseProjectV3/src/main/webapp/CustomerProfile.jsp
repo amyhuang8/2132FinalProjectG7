@@ -83,24 +83,6 @@
                         // OUTPUT
                         return false;
                     }
-                    if (city.options[city.selectedIndex].value === "default") { //invalid selection
-                        alert("Please select a city!") //error-handling
-
-                        // OUTPUT
-                        return false;
-                    }
-                    if (province.options[province.selectedIndex].value === "default") { //invalid selection
-                        alert("Please select a province!") //error-handling
-
-                        // OUTPUT
-                        return false;
-                    }
-                    if (country.options[country.selectedIndex].value === "default") { //invalid selection
-                        alert("Please select a country!") //error-handling
-
-                        // OUTPUT
-                        return false;
-                    }
 
                     // PROCESS: validating SIN
                     if (isNaN(sin.value) || sin.value.length !== 9) { //invalid chars or length
@@ -117,9 +99,6 @@
                         // OUTPUT
                         return false;
                     }
-
-                    // THERE SHOULD BE SOME JAVA CALL HERE WHERE THE DATABASE ACTUALLY UPDATES!!
-
                     // VARIABLE DECLARATION: save success snackbar
                     let success = document.getElementById("changes_snackbar");
 

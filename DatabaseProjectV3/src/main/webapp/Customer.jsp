@@ -217,46 +217,47 @@
             <br><br>
             <label class="labels" for="city">CITY: </label>
             <select name="city" id="city" style="font-size: 18px">
-                <option value="default">SELECT...</option>
-                <option value="calgary">Calgary</option>
-                <option value="cancun">Cancun</option>
-                <option value="chihuahuacity">Chihuahua City</option>
-                <option value="columbus">Columbus</option>
-                <option value="gatineau">Gatineau</option>
-                <option value="mexicocity">Mexico City</option>
-                <option value="milwaukee">Milwaukee</option>
-                <option value="montreal">Montreal</option>
-                <option value="nyc">New York City</option>
-                <option value="ottawa">Ottawa</option>
-                <option value="tijuana">Tijuana</option>
-                <option value="toronto">Toronto</option>
-                <option value="volcano">Volcano</option>
-                <option value="winnipeg">Winnipeg</option>
-                <option value="vancouver">Vancouver</option>
+                <option value="default">SELECT CITY...</option>
+                <option value="Calgary">Calgary</option>
+                <option value="Cancun">Cancun</option>
+                <option value="Chihuahua City">Chihuahua City</option>
+                <option value="Columbus">Columbus</option>
+                <option value="Gatineau">Gatineau</option>
+                <option value="Mexico City">Mexico City</option>
+                <option value="Milwaukee">Milwaukee</option>
+                <option value="Montreal">Montreal</option>
+                <option value="New York City">New York City</option>
+                <option value="Ottawa">Ottawa</option>
+                <option value="Tijuana">Tijuana</option>
+                <option value="Toronto">Toronto</option>
+                <option value="Volcano">Volcano</option>
+                <option value="Winnipeg">Winnipeg</option>
+                <option value="Vancouver">Vancouver</option>
             </select>
             <br><br>
             <label class="labels" for="province_state">PROVINCE/STATE: </label>
             <select name="province-state" id="province_state" style="font-size: 18px">
-                <option value="default">SELECT...</option>
-                <option value="alberta">Alberta</option>
-                <option value="bajacalifornia">Baja California</option>
-                <option value="britishcolumbia">British Columbia</option>
-                <option value="chihuahua">Chihuahua</option>
-                <option value="hawaii">Hawaii</option>
-                <option value="mexicocity_city">Mexico City</option>
-                <option value="newyork">New York</option>
-                <option value="ohio">Ohio</option>
-                <option value="ontario">Ontario</option>
-                <option value="quebec">Quebec</option>
-                <option value="wisconsin">Wisconsin</option>
+                <option value="default">SELECT PROVINCE/STATE...</option>
+                <option value="Alberta">Alberta</option>
+                <option value="Baja California">Baja California</option>
+                <option value="British Columbia">British Columbia</option>
+                <option value="Chihuahua">Chihuahua</option>
+                <option value="Hawaii">Hawaii</option>
+                <option value="Manitoba">Manitoba</option>
+                <option value="Mexico City">Mexico City</option>
+                <option value="New York">New York</option>
+                <option value="Ohio">Ohio</option>
+                <option value="Ontario">Ontario</option>
+                <option value="Quebec">Quebec</option>
+                <option value="Wisconsin">Wisconsin</option>
             </select>
             <br><br>
             <label class="labels" for="country">COUNTRY: </label>
             <select name="country" id="country" style="font-size: 18px">
-                <option value="default">SELECT...</option>
-                <option value="canada">Canada</option>
-                <option value="mexico">Mexico</option>
-                <option value="usa">United States of America</option>
+                <option value="default">SELECT COUNTRY...</option>
+                <option value="Canada">Canada</option>
+                <option value="Mexico">Mexico</option>
+                <option value="United States of America">United States of America</option>
             </select>
             <br><br>
             <label class="labels" for="sin">SOCIAL SECURITY NUMBER (SIN): </label>
