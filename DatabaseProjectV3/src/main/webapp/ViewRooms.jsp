@@ -56,6 +56,7 @@
         <hr style="background-color: rosybrown; height: 1.5px">
         <br>
 
+        <form action="create-booking-servlet" style="display: inline">
         <!--HOTEL CHAIN SEARCH BAR-->
         <div class="searchMenu" style="padding-right: 20px">
             <!--SEARCH BUTTON-->
@@ -111,7 +112,6 @@
 
         <br><br><br>
 
-        <form action="ACTIONHERE" style="display: inline">
             <!--BOOKING DATE PICKERS-->
             <div class="date-booking">
 
@@ -153,7 +153,7 @@
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
-                <label for="five-stars-and-up" class="labels">& up</label>
+                <small>& up</small>
                 <br><br>
                 <input type="radio" id="four-stars-and-up" name="category" value="four-stars-and-up">
                 <span class="fa fa-star checked"></span>
@@ -161,15 +161,15 @@
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star"></span>
-                <label for="four-stars-and-up" class="labels">& up</label>
+                <small>& up</small>
                 <br><br>
-                <input type="radio" id="three-stars-and-up" name="category" value="four-stars-and-up">
+                <input type="radio" id="three-stars-and-up" name="category" value="three-stars-and-up">
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star"></span>
                 <span class="fa fa-star"></span>
-                <label for="three-stars-and-up" class="labels">& up</label>
+                <small>& up</small>
             </div>
 
             <!-- VIEW TYPE INPUT -->
@@ -177,14 +177,14 @@
                 <br><br>
                 <small>View Type:</small>
                 <br><br>
-                <input type="checkbox" id="city-view" name="city-view" value="city-view">
-                <label for="city-view" class="labels">Cityscape View</label>
-                <input type="checkbox" id="sea-view" name="sea-view" value="sea-view">
-                <label for="sea-view" class="labels">Sea View</label>
-                <input type="checkbox" id="mountain-view" name="mountain-view" value="mountain-view">
-                <label for="mountain-view" class="labels">Mountain View</label>
-                <input type="checkbox" id="river-view" name="river-view" value="river-view">
-                <label for="river-view" class="labels">Garden View</label>
+                <input type="checkbox" id="city-view" name="view type" value="city-view">
+                <small>Cityscape View</small>
+                <input type="checkbox" id="sea-view" name="view type" value="sea-view">
+                <small>Sea View</small>
+                <input type="checkbox" id="mountain-view" name="view type" value="mountain-view">
+                <small>Mountain View</small>
+                <input type="checkbox" id="river-view" name="view type" value="river-view">
+                <small>Garden View</small>
                 <br><br>
             </div>
 
@@ -192,11 +192,11 @@
             <div class="price-range-container">
                 <br>
                 <div class="prices">
-                    <small>Price per night:</small>
+                    <small>Max price per night:</small>
                     <small>$ <span id="price"></span></small>
                 </div>
                 <br>
-                <input type="range" class="slider" value="100" id="slider-range" min="100" max="750" step="1">
+                <input type="range" class="slider" value="100" id="slider-range" name = "price" min="100" max="750" step="1">
                 <br><br>
             </div>
 
