@@ -145,10 +145,10 @@
         <form method="post" action="customer-update-profile-servlet" id="profileForms"
               style="font-size: 20px; text-align: center; display: block">
             <label class="labels" for="fname">FIRST NAME: </label>
-            <input class="labels" type="text" id="fname" name="first name" value=${sessionScope.fname}>
+            <input class="labels" type="text" id="fname" name="first name" value='<%= session.getAttribute("fname") %>'>
             <br><br>
             <label class="labels" for="lname">LAST NAME: </label>
-            <input class="labels" type="text" id="lname" name="last name" value=${sessionScope.lname}>
+            <input class="labels" type="text" id="lname" name="last name" value='<%= session.getAttribute("lname") %>'>
             <br><br>
             <label class="labels" for="email">EMAIL: </label>
             <input class="labels" type="email" id="email" name="email" value=${sessionScope.email}>
@@ -158,11 +158,11 @@
             <br><br>
             <label class="labels" for="street_address">STREET ADDRESS: </label>
             <input class="labels" type="text" id="street_address" name="street address"
-                   value=${sessionScope.street_address}>
+                   value='<%= session.getAttribute("street_address") %>'>
             <br><br>
             <label class="labels" for="city">CITY: </label>
             <select name="city" id="city" style="font-size: 18px">
-                <option value=${sessionScope.city}>${sessionScope.city}</option>
+                <option value='<%= session.getAttribute("city") %>'><%= session.getAttribute("city") %></option>
                 <option value="Calgary">Calgary</option>
                 <option value="Cancun">Cancun</option>
                 <option value="Chihuahua City">Chihuahua City</option>
@@ -182,7 +182,7 @@
             <br><br>
             <label class="labels" for="province_state">PROVINCE/STATE: </label>
             <select name="province-state" id="province_state" style="font-size: 18px">
-                <option value=${sessionScope.province_state}>${sessionScope.province_state}</option>
+                <option value='<%= session.getAttribute("province_state") %>'><%= session.getAttribute("province_state") %></option>
                 <option value="Alberta">Alberta</option>
                 <option value="Baja California">Baja California</option>
                 <option value="British Columbia">British Columbia</option>
@@ -199,7 +199,7 @@
             <br><br>
             <label class="labels" for="country">COUNTRY: </label>
             <select name="country" id="country" style="font-size: 18px">
-                <option value=${sessionScope.country}>${sessionScope.country}</option>
+                <option value='<%= session.getAttribute("country") %>'><%= session.getAttribute("country") %></option>
                 <option value="Canada">Canada</option>
                 <option value="Mexico">Mexico</option>
                 <option value="United States of America">United States of America</option>
