@@ -1,3 +1,9 @@
+<!--NOT STORING CACHE-->
+<%
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+    response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+    response.setDateHeader("Expires", 0); // Proxies.
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -111,10 +117,26 @@
                     return true;
                 }
             }
+
+            /**
+             * LOGIN CHECK: This function checks whether the user is still logged in
+             * and displays the page normally if so. Otherwise, it takes the user to the homepage.
+             */
+            function checkLogin() {
+                // VARIABLE DECLARATION
+                let uid = '<%= session.getAttribute("uid") %>'; //retrieving session user ID
+
+                // PROCESS: checking if id is null
+                if (uid === "null") { //no longer logged in
+                    if (confirm("You have been logged out. Please log in again.")) {
+                        window.location.href = 'index.jsp'; //redirecting to homepage
+                    }
+                }
+            }
         </script>
     </head>
 
-    <body>
+    <body onload="checkLogin()">
         <!--HEADINGS-->
         <h1>Customer Profile</h1>
         <hr style="background-color: rosybrown; height: 1.5px">
