@@ -122,7 +122,9 @@
                 <!--END DATE-->
                 <label for="checkout" class="labels" style="padding-left: 20px">Check out:</label>
                 <input type="date" id="checkout" name="check out date" style="font-size: 18px">
-                <input type="submit" class="buttons" value="SEARCH" style="margin-left: 20px">
+
+                <!-- SEARCH BUTTON -->
+                <input type="submit" class="buttons" value="SEARCH" onclick="checkDate('checkin', 'checkout')" style="margin-left: 20px">
             </div>
 
             <br><br>
@@ -198,7 +200,7 @@
                 <br><br>
             </div>
 
-            <!-- JS for price slider -->
+            <!-- JavaScript for price slider -->
             <script>
                 let slider = document.getElementById("slider-range");
                 let output = document.getElementById("price");
@@ -208,6 +210,7 @@
                 slider.oninput = function () {
                     output.innerHTML = this.value;
                 }
+
             </script>
 
         </form>

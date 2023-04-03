@@ -31,3 +31,19 @@ function filterSearchInput(input, dropdownList) {
         }
     }
 }
+
+/**
+ * This function checks if the start date is before the end date.
+ * @param checkin
+ * @param checkout
+ * @returns {boolean}
+ */
+function checkDate(checkin, checkout) {
+    let startDate = document.getElementById(checkin);
+    let endDate = document.getElementById(checkout);
+    if (startDate.valueOf() > endDate.valueOf()) {
+        alert("Start date must be before end date.");
+        return false;
+    }
+    return true;
+}
