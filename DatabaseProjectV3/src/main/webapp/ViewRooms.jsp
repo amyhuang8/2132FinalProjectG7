@@ -205,7 +205,7 @@
                 <br><br>
             </div>
 
-            <!-- NUMBER OF ROOMS IN HOTEL -->
+            <!-- NUMBER OF ROOMS IN HOTEL INPUT -->
             <div class="num of rooms">
                 <br>
                 <small>Number of rooms:</small>
