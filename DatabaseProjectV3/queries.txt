@@ -239,7 +239,7 @@ CREATE TABLE hotel_chain
     num_of_hotels          INT          NOT NULL,
     email                  VARCHAR(100) NOT NULL,
     central_phone_number   CHAR(10)     NOT NULL,
-    FOREIGN KEY (hotel_chain_address_id) REFERENCES address (id),
+    FOREIGN KEY (hotel_chain_address_id) REFERENCES address (id) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (name)
 );
 
@@ -277,7 +277,7 @@ CREATE TABLE hotel
     hotel_phone_number CHAR(10)      NOT NULL,
     rating             int NOT NULL,
     FOREIGN KEY (name) REFERENCES hotel_chain (name) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (hotel_address_id) REFERENCES address (id),
+    FOREIGN KEY (hotel_address_id) REFERENCES address (id) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (hotel_id)
 );
 
@@ -287,58 +287,58 @@ CREATE TABLE hotel
 
 -- insertion statements for hilton hotels worldwide
 INSERT INTO hotel (name, num_of_rooms, hotel_address_id, email, hotel_phone_number, rating)
-VALUES ('Hilton Worldwide', 313, 6, 'hiltonworldwide1@email.com', 3432904580, 4),
-       ('Hilton Worldwide', 210, 7, 'hiltonworldwide2@email.com', 5143267892, 3),
-       ('Hilton Worldwide', 456, 8, 'hiltonworldwide3@email.com', 2123134141, 4),
-       ('Hilton Worldwide', 300, 9, 'hiltonworldwide4@email.com', 6145687234, 3),
-       ('Hilton Worldwide', 333, 10, 'hiltonworldwide5@email.com', 6144967982, 3),
-       ('Hilton Worldwide', 101, 11, 'hiltonworldwide6@email.com', 4142120101, 4),
-       ('Hilton Worldwide', 456, 12, 'hiltonworldwide7@email.com', 5253545556, 4),
-       ('Hilton Worldwide', 300, 13, 'hiltonworldwide8@email.com', 9988860073, 5);
+VALUES ('Hilton Worldwide', 5, 6, 'hiltonworldwide1@email.com', 3432904580, 4),
+       ('Hilton Worldwide', 5, 7, 'hiltonworldwide2@email.com', 5143267892, 3),
+       ('Hilton Worldwide', 5, 8, 'hiltonworldwide3@email.com', 2123134141, 4),
+       ('Hilton Worldwide', 5, 9, 'hiltonworldwide4@email.com', 6145687234, 3),
+       ('Hilton Worldwide', 5, 10, 'hiltonworldwide5@email.com', 6144967982, 3),
+       ('Hilton Worldwide', 5, 11, 'hiltonworldwide6@email.com', 4142120101, 4),
+       ('Hilton Worldwide', 5, 12, 'hiltonworldwide7@email.com', 5253545556, 4),
+       ('Hilton Worldwide', 5, 13, 'hiltonworldwide8@email.com', 9988860073, 5);
 
 -- insertion statements for omni hotels & resorts
 INSERT INTO hotel (name, num_of_rooms, hotel_address_id, email, hotel_phone_number, rating)
-VALUES ('Omni Hotels & Resorts', 306, 14, 'omnihotels1@email.com', 4168639700, 4),
-       ('Omni Hotels & Resorts', 265, 15, 'omnihotels2@email.com', 6472972271, 3),
-       ('Omni Hotels & Resorts', 250, 16, 'omnihotels3@email.com', 5142841110, 3),
-       ('Omni Hotels & Resorts', 169, 17, 'omnihotels4@email.com', 4033447000, 4),
-       ('Omni Hotels & Resorts', 89, 18, 'omnihotels5@email.com', 8088381766, 4),
-       ('Omni Hotels & Resorts', 279, 19, 'omnihotels6@email.com', 2127535800, 3),
-       ('Omni Hotels & Resorts', 99, 20, 'omnihotels7@email.com', 8088428000, 5),
-       ('Omni Hotels & Resorts', 143, 21, 'omnihotels8@email.com', 8087446664, 4);
+VALUES ('Omni Hotels & Resorts', 5, 14, 'omnihotels1@email.com', 4168639700, 4),
+       ('Omni Hotels & Resorts', 5, 15, 'omnihotels2@email.com', 6472972271, 3),
+       ('Omni Hotels & Resorts', 5, 16, 'omnihotels3@email.com', 5142841110, 3),
+       ('Omni Hotels & Resorts', 5, 17, 'omnihotels4@email.com', 4033447000, 4),
+       ('Omni Hotels & Resorts', 5, 18, 'omnihotels5@email.com', 8088381766, 4),
+       ('Omni Hotels & Resorts', 5, 19, 'omnihotels6@email.com', 2127535800, 3),
+       ('Omni Hotels & Resorts', 5, 20, 'omnihotels7@email.com', 8088428000, 5),
+       ('Omni Hotels & Resorts', 5, 21, 'omnihotels8@email.com', 8087446664, 4);
 
 -- insertion statements for four seasons hotels & resorts
 INSERT INTO hotel (name, num_of_rooms, hotel_address_id, email, hotel_phone_number, rating)
-VALUES ('Four Seasons Hotels & Resorts', 343, 22, 'fourseasonshotels1@email.com', 6046105195, 4),
-       ('Four Seasons Hotels & Resorts', 152, 23, 'fourseasonshotels2@email.com', 3119353400, 3),
-       ('Four Seasons Hotels & Resorts', 203, 24, 'fourseasonshotels3@email.com', 6211642163, 3),
-       ('Four Seasons Hotels & Resorts', 178, 25, 'fourseasonshotels4@email.com', 6212916000, 4),
-       ('Four Seasons Hotels & Resorts', 167, 26, 'fourseasonshotels5@email.com', 5552301818, 5),
-       ('Four Seasons Hotels & Resorts', 420, 27, 'fourseasonshotels6@email.com', 6468801999, 5),
-       ('Four Seasons Hotels & Resorts', 237, 28, 'fourseasonshotels7@email.com', 4169640411, 4),
-       ('Four Seasons Hotels & Resorts', 168, 29, 'fourseasonshotels8@email.com', 5148432500, 4);
+VALUES ('Four Seasons Hotels & Resorts', 5, 22, 'fourseasonshotels1@email.com', 6046105195, 4),
+       ('Four Seasons Hotels & Resorts', 5, 23, 'fourseasonshotels2@email.com', 3119353400, 3),
+       ('Four Seasons Hotels & Resorts', 5, 24, 'fourseasonshotels3@email.com', 6211642163, 3),
+       ('Four Seasons Hotels & Resorts', 5, 25, 'fourseasonshotels4@email.com', 6212916000, 4),
+       ('Four Seasons Hotels & Resorts', 5, 26, 'fourseasonshotels5@email.com', 5552301818, 5),
+       ('Four Seasons Hotels & Resorts', 5, 27, 'fourseasonshotels6@email.com', 6468801999, 5),
+       ('Four Seasons Hotels & Resorts', 5, 28, 'fourseasonshotels7@email.com', 4169640411, 4),
+       ('Four Seasons Hotels & Resorts', 5, 29, 'fourseasonshotels8@email.com', 5148432500, 4);
 
 -- insertion statements for shangri-la hotels and resorts
 INSERT INTO hotel (name, num_of_rooms, hotel_address_id, email, hotel_phone_number, rating)
-VALUES ('Shangri-La Hotels & Resorts', 391, 30, 'shangri-lihotels1@email.com', 6046891120, 5),
-       ('Shangri-La Hotels & Resorts', 265, 31, 'shangri-lihotels2@email.com', 6042673472, 5),
-       ('Shangri-La Hotels & Resorts', 201, 32, 'shangri-lihotels3@email.com', 2046470913, 3),
-       ('Shangri-La Hotels & Resorts', 220, 33, 'shangri-lihotels4@email.com', 4034687984, 4),
-       ('Shangri-La Hotels & Resorts', 180, 34, 'shangri-lihotels5@email.com', 9988856988, 3),
-       ('Shangri-La Hotels & Resorts', 166, 35, 'shangri-lihotels6@email.com', 4149882210, 4),
-       ('Shangri-La Hotels & Resorts', 387, 36, 'shangri-lihotels7@email.com', 5551306830, 3),
-       ('Shangri-La Hotels & Resorts', 240, 37, 'shangri-lihotels8@email.com', 9988860073, 4);
+VALUES ('Shangri-La Hotels & Resorts', 5, 30, 'shangri-lihotels1@email.com', 6046891120, 5),
+       ('Shangri-La Hotels & Resorts', 5, 31, 'shangri-lihotels2@email.com', 6042673472, 5),
+       ('Shangri-La Hotels & Resorts', 5, 32, 'shangri-lihotels3@email.com', 2046470913, 3),
+       ('Shangri-La Hotels & Resorts', 5, 33, 'shangri-lihotels4@email.com', 4034687984, 4),
+       ('Shangri-La Hotels & Resorts', 5, 34, 'shangri-lihotels5@email.com', 9988856988, 3),
+       ('Shangri-La Hotels & Resorts', 5, 35, 'shangri-lihotels6@email.com', 4149882210, 4),
+       ('Shangri-La Hotels & Resorts', 5, 36, 'shangri-lihotels7@email.com', 5551306830, 3),
+       ('Shangri-La Hotels & Resorts', 5, 37, 'shangri-lihotels8@email.com', 9988860073, 4);
 
 -- insertion statements for best western hotels
 INSERT INTO hotel (name, num_of_rooms, hotel_address_id, email, hotel_phone_number, rating)
-VALUES ('Best Western', 343, 38, 'bestwestern1@email.com', 2042948568, 4),
-       ('Best Western', 247, 39, 'bestwestern2@email.com', 2049571350, 4),
-       ('Best Western', 279, 40, 'bestwestern3@email.com', 4032649650, 4),
-       ('Best Western', 269, 41, 'bestwestern4@email.com', 6137281951, 4),
-       ('Best Western', 251, 42, 'bestwestern5@email.com', 8197708550, 3),
-       ('Best Western', 164, 43, 'bestwestern6@email.com', 6143378400, 3),
-       ('Best Western', 275, 44, 'bestwestern7@email.com', 6214209000, 3),
-       ('Best Western', 367, 45, 'bestwestern8@email.com', 8086817000, 5);
+VALUES ('Best Western', 5, 38, 'bestwestern1@email.com', 2042948568, 4),
+       ('Best Western', 5, 39, 'bestwestern2@email.com', 2049571350, 4),
+       ('Best Western', 5, 40, 'bestwestern3@email.com', 4032649650, 4),
+       ('Best Western', 5, 41, 'bestwestern4@email.com', 6137281951, 4),
+       ('Best Western', 5, 42, 'bestwestern5@email.com', 8197708550, 3),
+       ('Best Western', 5, 43, 'bestwestern6@email.com', 6143378400, 3),
+       ('Best Western', 5, 44, 'bestwestern7@email.com', 6214209000, 3),
+       ('Best Western', 5, 45, 'bestwestern8@email.com', 8086817000, 5);
 
 -- -------------------------------
 -- View statements for hotel
@@ -976,7 +976,7 @@ CREATE TABLE employee
     employee_address_id INT,
     position            VARCHAR(25)   NOT NULL,
     salary              NUMERIC(7, 2) NOT NULL,
-    FOREIGN KEY (employee_address_id) REFERENCES address (id),
+    FOREIGN KEY (employee_address_id) REFERENCES address (id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (hotel_id) REFERENCES hotel (hotel_id) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (employee_id, hotel_id)
 );
@@ -1154,7 +1154,7 @@ CREATE TABLE customer
     credit_card_num       CHAR(16),
     customer_phone_number CHAR(10),
     customer_email        VARCHAR(30) NOT NULL CHECK (customer_email LIKE '_%@_%._%') UNIQUE,
-    FOREIGN KEY (customer_address_id) REFERENCES address (id),
+    FOREIGN KEY (customer_address_id) REFERENCES address (id) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (customer_id)
 );
 
@@ -1166,7 +1166,7 @@ where rating = 5;
 select *
 from room r
 join hotel h on r.hotel_id = h.hotel_id
-where h.rating = 5 and r.availability = true and r.capacity = 2 and r.view_type = 'ocean' and r.price <= 100;
+where h.rating = 5 and r.availability = true and r.capacity = 'Double' and r.view_type = 'ocean' and r.price <= 100;
 
 -- --------------------------------------
 -- Insertion statements for customers
@@ -1224,10 +1224,10 @@ CREATE TABLE rental
     room_id     INT  NOT NULL,
     employee_id INT  NOT NULL,
     customer_id INT  NOT NULL,
-    FOREIGN KEY (employee_id) REFERENCES employee (employee_id),
-    FOREIGN KEY (customer_id) REFERENCES customer (customer_id),
+    FOREIGN KEY (employee_id) REFERENCES employee (employee_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (customer_id) REFERENCES customer (customer_id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (room_id) REFERENCES room (room_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (booking_id) REFERENCES booking (booking_id),
+    FOREIGN KEY (booking_id) REFERENCES booking (booking_id) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (rental_id)
 );
 
