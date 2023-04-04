@@ -1,5 +1,6 @@
 package com.example.ehotel.servlets;
 
+import com.example.ehotel.connections.CustomerServer;
 import com.example.ehotel.connections.HotelServer;
 import com.example.ehotel.entities.Room;
 import jakarta.servlet.ServletException;
@@ -13,12 +14,16 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Logger;
 
 /**
  * This servlet is used to create a new booking in the database.
  */
 @WebServlet(name = "showAvailableRoomsServlet", value = "/show-rooms-servlet")
 public class ShowAvailableRoomsServlet extends HttpServlet {
+
+    private static final Logger LOGGER = Logger.getLogger(ShowAvailableRoomsServlet.class.getName()); //logger
+
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         doPost(req, resp);
@@ -32,11 +37,21 @@ public class ShowAvailableRoomsServlet extends HttpServlet {
 
         // READ THE FORM DATA
 
-        // hotel chain
-        String hotelChain = req.getParameter("hotel chain");
+        // hotel chain chosen
+        String hotelChain;
+        if (req.getParameter("hotel chain") == null) {
+            hotelChain = "any";
+        } else {
+            hotelChain = req.getParameter("hotel chain");
+        }
 
         // city chosen
-        String city = req.getParameter("city");
+        String city;
+        if (req.getParameter("city") == null) {
+            city = "any";
+        } else {
+            city = req.getParameter("city");
+        }
 
         // check in and check out dates
         Date checkInDate, checkOutDate = null;
@@ -50,7 +65,7 @@ public class ShowAvailableRoomsServlet extends HttpServlet {
         // room capacity
         String capacity;
         String roomType = req.getParameter("room type");
-        if (roomType == null) {
+        if (roomType == null) { // not room type was chosen
             capacity = "any";
         } else if (roomType.equals("single")) {
             capacity = "single";
@@ -63,24 +78,30 @@ public class ShowAvailableRoomsServlet extends HttpServlet {
         } else if (roomType.equals("joint")) {
             capacity = "joint";
         } else {
-            capacity = "any"; // not room type was chosen
+            capacity = "any";
         }
 
         // hotel category (number of stars)
+        LOGGER.severe("CATEGORY IS: " + req.getParameter("category"));
+
         int category;
-        if (req.getParameter("category").equals("five-stars-and-up")) {
+        if (req.getParameter("category") == null) { // not hotel category was chosen
+            category = 0;
+        } else if (Integer.parseInt(req.getParameter("category")) == 5) {
             category = 5;
-        } else if (req.getParameter("category").equals("four-stars-and-up")) {
+        } else if (Integer.parseInt(req.getParameter("category")) == 4) {
             category = 4;
-        } else if (req.getParameter("category").equals("three-stars-and-up")) {
+        } else if (Integer.parseInt(req.getParameter("category")) == 3) {
             category = 3;
         } else {
-            category = 0; // not hotel category was chosen
+            category = 0;
         }
 
         // view type of room
         String viewType;
-        if (req.getParameter("view type").equals("city-view")) {
+        if (req.getParameter("view type") == null) { // no view type was chosen
+            viewType = "any";
+        } else if (req.getParameter("view type").equals("city-view")) {
             viewType = "city";
         } else if (req.getParameter("view type").equals("sea-view")) {
             viewType = "sea";
@@ -89,18 +110,35 @@ public class ShowAvailableRoomsServlet extends HttpServlet {
         } else if (req.getParameter("view type").equals("river-view")) {
             viewType = "river";
         } else {
-            viewType = "any"; // not view type was chosen
+            viewType = "any";
+        }
+
+        // number of rooms in hotel
+        int numRooms;
+        if (req.getParameter("num of rooms") == null) { // not number of rooms was chosen
+            numRooms = 0;
+        } else if (Integer.parseInt(req.getParameter("num of rooms")) == 1) {
+            numRooms = 1;
+        } else if (Integer.parseInt(req.getParameter("num of rooms")) == 2) {
+            numRooms = 2;
+        } else if (Integer.parseInt(req.getParameter("num of rooms")) == 3) {
+            numRooms = 3;
+        } else if (Integer.parseInt(req.getParameter("num of rooms")) == 4) {
+            numRooms = 4;
+        } else if (Integer.parseInt(req.getParameter("num of rooms")) == 5) {
+            numRooms = 5;
+        } else {
+            numRooms = 0; // no number of rooms was chosen
         }
 
         // max price
         int price = Integer.parseInt(req.getParameter("price"));
 
         // PROCESS: filter booking of room available
-        ArrayList<Room> roomNum = con.filterRoom(hotelChain, city, checkInDate, checkOutDate, capacity, category, viewType, price);
+        ArrayList<Room> roomNum = con.filterRoom(hotelChain, city, checkInDate, checkOutDate, capacity, category, viewType, numRooms, price);
 
         // SEND THE DATA TO THE JSP
         req.setAttribute("roomNum", roomNum);
-        req.getRequestDispatcher("ListOfRooms.jsp").forward(req, resp);
         req.getRequestDispatcher("ListOfRooms.jsp").forward(req, resp);
         resp.sendRedirect("ListOfRooms.jsp");
     }

@@ -141,7 +141,7 @@
                 <input type="date" id="checkout" name="check out date" style="font-size: 18px">
 
                 <!-- SEARCH BUTTON -->
-                <input type="submit" class="buttons" value="SEARCH" onclick="checkDate('checkin', 'checkout')" style="margin-left: 20px">
+                <input type="submit" class="buttons" value="SEARCH" style="margin-left: 20px">
             </div>
 
             <br><br>
@@ -164,7 +164,7 @@
                 <br><br>
                 <small>Category:</small>
                 <br><br>
-                <input type="radio" id="five-stars-and-up" name="category" value="five-stars-and-up">
+                <input type="radio" id="five-stars-and-up" name="category" value=5>
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
@@ -172,7 +172,7 @@
                 <span class="fa fa-star checked"></span>
                 <small>& up</small>
                 <br><br>
-                <input type="radio" id="four-stars-and-up" name="category" value="four-stars-and-up">
+                <input type="radio" id="four-stars-and-up" name="category" value=4>
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
@@ -180,7 +180,7 @@
                 <span class="fa fa-star"></span>
                 <small>& up</small>
                 <br><br>
-                <input type="radio" id="three-stars-and-up" name="category" value="three-stars-and-up">
+                <input type="radio" id="three-stars-and-up" name="category" value=3>
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
@@ -205,9 +205,26 @@
                 <br><br>
             </div>
 
+            <!-- NUMBER OF ROOMS IN HOTEL -->
+            <div class="num of rooms">
+                <br>
+                <small>Number of rooms:</small>
+                <br><br>
+                <input type="radio" id="one-room" name="num of rooms" value=1>
+                <small>1</small>
+                <input type="radio" id="two-rooms" name="num of rooms" value=2>
+                <small>2</small>
+                <input type="radio" id="three-rooms" name="num of rooms" value=3>
+                <small>3</small>
+                <input type="radio" id="four-rooms" name="num of rooms" value=4>
+                <small>4</small>
+                <input type="radio" id="five-rooms" name="num of rooms" value=5>
+                <small>5</small>
+            </div>
+
             <!-- MAX PRICE INPUT -->
             <div class="price-range-container">
-                <br>
+                <br><br>
                 <div class="prices">
                     <small>Max price per night:</small>
                     <small>$ <span id="price"></span></small>

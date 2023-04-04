@@ -1,3 +1,10 @@
+/**
+ * Add event listener to validate date inputs
+ */
+window.addEventListener('load', function() {
+    checkDate();
+});
+
 /** REVEALING AREA DROPDOWN:
  * This function toggles the dropdown list's visibility for the search dropdowns. */
 function showDropdown(showName, hideName) {
@@ -47,12 +54,16 @@ function changeButtonNameDropdown(id, value) {
  * @param checkout
  * @returns {boolean}
  */
-function checkDate(checkin, checkout) {
-    let startDate = document.getElementById(checkin);
-    let endDate = document.getElementById(checkout);
-    if (startDate.valueOf() > endDate.valueOf()) {
-        alert("Start date must be before end date.");
-        return false;
-    }
-    return true;
+function checkDate() {
+    const startDate = document.getElementById('checkin');
+    const endDate = document.getElementById('checkout');
+
+    endDate.addEventListener('change', function() {
+        const checkInDate = new Date(startDate.value);
+        const checkOutDate = new Date(endDate.value);
+        if (checkInDate.getTime() > checkOutDate.getTime()) {
+            alert("Check out date must be after check in date");
+            endDate.value = startDate.value; // reset the end date to the start date
+        }
+    });
 }

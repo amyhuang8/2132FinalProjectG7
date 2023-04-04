@@ -2,6 +2,7 @@ package com.example.ehotel.connections;
 
 import com.example.ehotel.entities.Room;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -12,7 +13,7 @@ import java.util.logging.Logger;
 public class HotelServer {
     // VARIABLE DECLARATION: INSTANCE VARS. FOR CONNECTION
     ResultSet rs = null;
-    String sql, hotelID;
+    String sql;
     Statement st = null;
     PreparedStatement ps = null;
 
@@ -50,35 +51,48 @@ public class HotelServer {
     }
 
     /**
-     * This method is used to get all the rooms that meet the filter criteria.
-     * @param checkInDate - the check in date
-     * @param checkOutDate - the checkout date
-     * @param capacity - the capacity of the room
-     * @param rating - the rating/category of the hotel
-     * @param view_type - the view type of the room
-     * @param price - max price willing to pay
-     * @return an array of all the rooms that meet the filter criteria
+     * This method is used to get all the available rooms from the database fitting the filter criteria.
+     * @param hotelChain name of hotel chain
+     * @param city name of city (area)
+     * @param checkInDate check in date
+     * @param checkOutDate check out date
+     * @param capacity room capacity (single, double, triple, quad, joint)
+     * @param rating hotel rating
+     * @param view_type room view type (city, mountain, sea, river)
+     * @param numOfRooms number of rooms in a hotel
+     * @param price price of a room
+     * @return
      */
-    public ArrayList<Room> filterRoom (String hotelChain, String city, Date checkInDate, Date checkOutDate, String capacity, int rating, String view_type, int price) {
+    public ArrayList<Room> filterRoom (String hotelChain, String city, Date checkInDate, Date checkOutDate, String capacity, int rating, String view_type, int numOfRooms, int price) {
         // PROCESS: connecting to database
         ConnectionDB db = new ConnectionDB();
 
         // initializing the array of rooms
         ArrayList<Room> rooms = new ArrayList<>();
 
-        // PROCESS: getting the available rooms
-        try {
-            // SQL QUERY
-            //hotelID = "SELECT hotel_id FROM ehotels.hotel WHERE name = hotelChain";
-            sql = "SELECT * FROM ehotels.room r JOIN ehotels.hotel h ON r.hotel_id = h.hotel_id WHERE h.rating = ? AND r.availability = true AND r.capacity = ? AND r.view_type = ? AND r.price <= ?";
+        // SQL QUERY
+        sql = "SELECT * FROM ehotels.room r JOIN ehotels.hotel h ON r.hotel_id = h.hotel_id WHERE h.rating = ? AND r.availability = true " +
+                "AND r.capacity = ? AND r.view_type = ? AND h.num_of_rooms = ? AND r.price <= ?";
 
-            ps = db.getConn().prepareStatement(sql);
-            ps.setString(1, capacity);
-            ps.setString(2, view_type);
-            ps.setInt(3, price);
+        // PROCESS: getting the available rooms
+        try (Connection con = db.getConn()){
+
+            // SET PREPARED STATEMENT PARAMETERS
+            ps = con.prepareStatement(sql);
+            ps.setString(1, hotelChain);
+            ps.setString(2, city);
+            ps.setDate(3, (java.sql.Date) checkInDate);
+            ps.setDate(4, (java.sql.Date) checkOutDate);
+            ps.setString(5, capacity);
+            ps.setInt(6, rating);
+            ps.setString(7, view_type);
+            ps.setInt(8, numOfRooms);
+            ps.setInt(9, price);
+
+            // EXECUTE QUERY
             rs = ps.executeQuery();
 
-            // FILLING THE ARRAY OF ROOMS
+            // FILLING THE ARRAY WITH ROOMS
             while (rs.next()) {
                 rooms.add(new Room(rs.getInt("roomID"), rs.getInt("roomNumber"), rs.getInt("hotelID"),
                         rs.getDouble("price"), rs.getString("amenities"), rs.getString("capacity"),
@@ -88,7 +102,7 @@ public class HotelServer {
         } catch (Exception e) {
             LOGGER.severe("Error in filterRoom() method: " + e.getMessage());
         }
-        return rooms;
+        return rooms; // return the array of rooms fitting the filter criteria
 
     }
 }
