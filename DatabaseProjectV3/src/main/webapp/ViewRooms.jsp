@@ -63,16 +63,6 @@
                 searchResults.innerHTML = `You selected the "${filter}" filter.`;
             }
 
-            <!-- Max Price Slider -->
-            let slider = document.getElementById("slider-range");
-            let output = document.getElementById("price");
-            output.innerHTML = slider.value; // Display the default slider value
-
-            // Update the current slider value (each time you drag the slider handle)
-            slider.oninput = function () {
-                output.innerHTML = this.value;
-            }
-
         </script>
     </head>
 
@@ -82,12 +72,12 @@
         <hr style="background-color: rosybrown; height: 1.5px">
         <br>
 
-        <form action="create-booking-servlet" style="display: inline">
+        <form action="show-rooms-servlet" style="display: inline">
         <!--HOTEL CHAIN SEARCH BAR-->
         <div class="searchMenu" style="padding-right: 20px">
             <!--SEARCH BUTTON-->
             <button onclick="showDropdown('chainDropdown', 'areaDropdown')"
-                    class="buttons" id="hotel-chain" type="button">HOTEL CHAINS
+                    class="buttons" id="hotel-chain" type="button" name="hotel chain">HOTEL CHAINS
             </button>
 
             <!--SEARCH MENU-->
@@ -109,7 +99,7 @@
         <div class="searchMenu">
             <!--SEARCH BUTTON-->
             <button onclick="showDropdown('areaDropdown', 'chainDropdown')"
-                    class="buttons" id="hotel-city" type="button">HOTEL LOCATIONS
+                    class="buttons" id="hotel-city" type="button" name="city">HOTEL LOCATIONS
             </button>
 
 
@@ -226,7 +216,18 @@
                 <input type="range" class="slider" value="100" id="slider-range" name = "price" min="100" max="750" step="1">
                 <br><br>
             </div>
-
         </form>
     </body>
+
+<script>
+    <!-- Max Price Slider -->
+    let slider = document.getElementById("slider-range");
+    let output = document.getElementById("price");
+    output.innerHTML = slider.value; // Display the default slider value
+
+    // Update the current slider value (each time you drag the slider handle)
+    slider.oninput = function () {
+        output.innerHTML = this.value;
+    }
+</script>
 </html>

@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 public class HotelServer {
     // VARIABLE DECLARATION: INSTANCE VARS. FOR CONNECTION
     ResultSet rs = null;
-    String sql;
+    String sql, hotelID;
     Statement st = null;
     PreparedStatement ps = null;
 
@@ -59,7 +59,7 @@ public class HotelServer {
      * @param price - max price willing to pay
      * @return an array of all the rooms that meet the filter criteria
      */
-    public ArrayList<Room> filterRoom (Date checkInDate, Date checkOutDate, String capacity, int rating, String view_type, int price) {
+    public ArrayList<Room> filterRoom (String hotelChain, String city, Date checkInDate, Date checkOutDate, String capacity, int rating, String view_type, int price) {
         // PROCESS: connecting to database
         ConnectionDB db = new ConnectionDB();
 
@@ -69,6 +69,7 @@ public class HotelServer {
         // PROCESS: getting the available rooms
         try {
             // SQL QUERY
+            //hotelID = "SELECT hotel_id FROM ehotels.hotel WHERE name = hotelChain";
             sql = "SELECT * FROM ehotels.room r JOIN ehotels.hotel h ON r.hotel_id = h.hotel_id WHERE h.rating = ? AND r.availability = true AND r.capacity = ? AND r.view_type = ? AND r.price <= ?";
 
             ps = db.getConn().prepareStatement(sql);
