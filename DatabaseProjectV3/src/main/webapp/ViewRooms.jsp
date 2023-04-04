@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <!-- SET UP -->
         <meta charset="ISO-8859-1">
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <meta http-equiv="Content-Language" content="ch-cn">
@@ -20,50 +21,19 @@
         <title>eHotels Room Search</title>
 
         <!--HEADER BUTTONS-->
+        <!-- PROFILE BUTTON -->
         <button id="profile_button" class="header-buttons"
                 onclick="window.location.href='CustomerProfile.jsp'"
                 style="float: left; border-radius: 50%;
                     background-image: url('css/resources/profileicon.png');"></button>
 
+        <!-- LOGOUT BUTTON -->
         <form action="logout-servlet">
             <button type="submit" id="logout_button" class="header-buttons"
                     style="float: right; border-radius: 30%;
                     background-image: url('css/resources/logouticon.png');"></button>
         </form>
 
-        <script>
-            /**
-             * LOGIN CHECK: This function checks whether the user is still logged in
-             * and displays the page normally if so. Otherwise, it takes the user to the homepage.
-             */
-            function checkLogin() {
-                // VARIABLE DECLARATION
-                let uid = '<%= session.getAttribute("uid") %>'; //retrieving session user ID
-
-                // PROCESS: checking if id is null
-                if (uid === "null") { //no longer logged in
-                    if (confirm("You have been logged out. Please log in again.")) {
-                        window.location.href = 'index.jsp'; //redirecting to homepage
-                    }
-                }
-            }
-
-            const filterLinks = document.querySelectorAll('.filter-link');
-
-            filterLinks.forEach(function(link) {
-                link.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    const filter = this.getAttribute('data-filter');
-                    displayFilterSelection(filter);
-                });
-            });
-
-            function displayFilterSelection(filter) {
-                const searchResults = document.getElementById('search-results');
-                searchResults.innerHTML = `You selected the "${filter}" filter.`;
-            }
-
-        </script>
     </head>
 
     <body onload="checkLogin()">
@@ -72,7 +42,7 @@
         <hr style="background-color: rosybrown; height: 1.5px">
         <br>
 
-        <form action="show-rooms-servlet" style="display: inline">
+        <form action="show-rooms-servlet" id="search-form" style="display: inline">
         <!--HOTEL CHAIN SEARCH BAR-->
         <div class="searchMenu" style="padding-right: 20px">
             <!--SEARCH BUTTON-->
@@ -97,7 +67,7 @@
 
         <!--AREA SEARCH BAR-->
         <div class="searchMenu">
-            <!--SEARCH BUTTON-->
+            <!-- AREA SEARCH BUTTON -->
             <button onclick="showDropdown('areaDropdown', 'chainDropdown')"
                     class="buttons" id="hotel-city" type="button" name="city">HOTEL LOCATIONS
             </button>
@@ -141,13 +111,14 @@
                 <input type="date" id="checkout" name="check out date" style="font-size: 18px">
 
                 <!-- SEARCH BUTTON -->
-                <input type="submit" class="buttons" value="SEARCH" style="margin-left: 20px">
+                <input type="button" class="buttons" value="SEARCH" id="search-button" style="margin-left: 20px">
+
             </div>
 
             <br><br>
 
+            <!--CAPACITY DROPDOWN MENU-->
             <div class="capacity">
-                <!--CAPACITY DROPDOWN MENU-->
                 <label for="capacity" class="labels">Capacity:</label>
                 <select name="capacity" id="capacity" style="font-size: 18px">
                     <option value="default">SELECT...</option>
@@ -225,26 +196,62 @@
             <!-- MAX PRICE INPUT -->
             <div class="price-range-container">
                 <br><br>
+                <!-- Output price text -->
                 <div class="prices">
                     <small>Max price per night:</small>
                     <small>$ <span id="price"></span></small>
                 </div>
                 <br>
+                <!-- Slider -->
                 <input type="range" class="slider" value="100" id="slider-range" name = "price" min="100" max="750" step="1">
                 <br><br>
             </div>
         </form>
     </body>
 
-<script>
-    <!-- Max Price Slider -->
-    let slider = document.getElementById("slider-range");
-    let output = document.getElementById("price");
-    output.innerHTML = slider.value; // Display the default slider value
+    <!-- JAVASCRIPT -->
+    <script>
+        /**
+         * LOGIN CHECK: This function checks whether the user is still logged in
+         * and displays the page normally if so. Otherwise, it takes the user to the homepage.
+         */
+        function checkLogin() {
+            // VARIABLE DECLARATION
+            let uid = '<%= session.getAttribute("uid") %>'; //retrieving session user ID
 
-    // Update the current slider value (each time you drag the slider handle)
-    slider.oninput = function () {
-        output.innerHTML = this.value;
-    }
-</script>
+            // PROCESS: checking if id is null
+            if (uid === "null") { //no longer logged in
+                if (confirm("You have been logged out. Please log in again.")) {
+                window.location.href = 'index.jsp'; //redirecting to homepage
+                }
+            }
+        }
+
+            const filterLinks = document.querySelectorAll('.filter-link');
+
+            filterLinks.forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const filter = this.getAttribute('data-filter');
+                displayFilterSelection(filter);
+            });
+        });
+
+
+        function displayFilterSelection(filter) {
+            const searchResults = document.getElementById('search-results');
+            searchResults.innerHTML = `You selected the "${filter}" filter.`;
+        }
+
+
+        <!-- Max Price Slider -->
+        let slider = document.getElementById("slider-range");
+        let output = document.getElementById("price");
+        output.innerHTML = slider.value; // Display the default slider value
+
+        // Update the current slider value (each time you drag the slider handle)
+        slider.oninput = function () {
+            output.innerHTML = this.value;
+        }
+    </script>
 </html>
