@@ -1,6 +1,5 @@
 package com.example.ehotel.servlets;
 
-import com.example.ehotel.connections.CustomerServer;
 import com.example.ehotel.connections.HotelServer;
 import com.example.ehotel.entities.Room;
 import jakarta.servlet.ServletException;
@@ -39,7 +38,7 @@ public class ShowAvailableRoomsServlet extends HttpServlet {
 
         // hotel chain chosen
         String hotelChain;
-        if (req.getParameter("hotel chain") == null) {
+        if (req.getParameter("hotel chain") == null) { // no hotel chain was chosen
             hotelChain = "any";
         } else {
             hotelChain = req.getParameter("hotel chain");
@@ -47,14 +46,14 @@ public class ShowAvailableRoomsServlet extends HttpServlet {
 
         // city chosen
         String city;
-        if (req.getParameter("city") == null) {
+        if (req.getParameter("city") == null) { // no city was chosen
             city = "any";
         } else {
             city = req.getParameter("city");
         }
 
         // check in and check out dates
-        Date checkInDate, checkOutDate = null;
+        Date checkInDate, checkOutDate;
         try { // parse the dates
             checkInDate = dateFormat.parse(req.getParameter("check in date"));
             checkOutDate = dateFormat.parse(req.getParameter("check out date"));
@@ -65,7 +64,7 @@ public class ShowAvailableRoomsServlet extends HttpServlet {
         // room capacity
         String capacity;
         String roomType = req.getParameter("room type");
-        if (roomType == null) { // not room type was chosen
+        if (roomType == null) { // no room type was chosen
             capacity = "any";
         } else if (roomType.equals("single")) {
             capacity = "single";
@@ -82,10 +81,8 @@ public class ShowAvailableRoomsServlet extends HttpServlet {
         }
 
         // hotel category (number of stars)
-        LOGGER.severe("CATEGORY IS: " + req.getParameter("category"));
-
         int category;
-        if (req.getParameter("category") == null) { // not hotel category was chosen
+        if (req.getParameter("category") == null) { // no hotel category was chosen
             category = 0;
         } else if (Integer.parseInt(req.getParameter("category")) == 5) {
             category = 5;
@@ -115,7 +112,7 @@ public class ShowAvailableRoomsServlet extends HttpServlet {
 
         // number of rooms in hotel
         int numRooms;
-        if (req.getParameter("num of rooms") == null) { // not number of rooms was chosen
+        if (req.getParameter("num of rooms") == null) { // no number of rooms was chosen
             numRooms = 0;
         } else if (Integer.parseInt(req.getParameter("num of rooms")) == 1) {
             numRooms = 1;
