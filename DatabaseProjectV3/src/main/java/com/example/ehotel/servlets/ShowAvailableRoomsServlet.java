@@ -32,22 +32,22 @@ public class ShowAvailableRoomsServlet extends HttpServlet {
 
         // VARIABLE DECLARATION
         HotelServer con = new HotelServer(); //new connection
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // date format
 
         // READ THE FORM DATA
 
         // hotel chain chosen
-        String hotelChain;
+        String hotelChain = null;
         if (req.getParameter("hotel chain") == null) { // no hotel chain was chosen
-            hotelChain = "any";
+            hotelChain = null;
         } else {
             hotelChain = req.getParameter("hotel chain");
         }
 
         // city chosen
-        String city;
+        String city = null;
         if (req.getParameter("city") == null) { // no city was chosen
-            city = "any";
+            city = null;
         } else {
             city = req.getParameter("city");
         }
@@ -62,10 +62,10 @@ public class ShowAvailableRoomsServlet extends HttpServlet {
         }
 
         // room capacity
-        String capacity;
+        String capacity = null;
         String roomType = req.getParameter("room type");
         if (roomType == null) { // no room type was chosen
-            capacity = "any";
+            capacity = null;
         } else if (roomType.equals("single")) {
             capacity = "single";
         } else if (roomType.equals("double")) {
@@ -76,12 +76,10 @@ public class ShowAvailableRoomsServlet extends HttpServlet {
             capacity = "quad";
         } else if (roomType.equals("joint")) {
             capacity = "joint";
-        } else {
-            capacity = "any";
         }
 
         // hotel category (number of stars)
-        int category;
+        int category = 0;
         if (req.getParameter("category") == null) { // no hotel category was chosen
             category = 0;
         } else if (Integer.parseInt(req.getParameter("category")) == 5) {
@@ -90,14 +88,12 @@ public class ShowAvailableRoomsServlet extends HttpServlet {
             category = 4;
         } else if (Integer.parseInt(req.getParameter("category")) == 3) {
             category = 3;
-        } else {
-            category = 0;
         }
 
         // view type of room
-        String viewType;
+        String viewType = null;
         if (req.getParameter("view type") == null) { // no view type was chosen
-            viewType = "any";
+            viewType = null;
         } else if (req.getParameter("view type").equals("city-view")) {
             viewType = "city";
         } else if (req.getParameter("view type").equals("sea-view")) {
@@ -106,12 +102,10 @@ public class ShowAvailableRoomsServlet extends HttpServlet {
             viewType = "mountain";
         } else if (req.getParameter("view type").equals("river-view")) {
             viewType = "river";
-        } else {
-            viewType = "any";
         }
 
         // number of rooms in hotel
-        int numRooms;
+        int numRooms = 0;
         if (req.getParameter("num of rooms") == null) { // no number of rooms was chosen
             numRooms = 0;
         } else if (Integer.parseInt(req.getParameter("num of rooms")) == 1) {
@@ -124,15 +118,13 @@ public class ShowAvailableRoomsServlet extends HttpServlet {
             numRooms = 4;
         } else if (Integer.parseInt(req.getParameter("num of rooms")) == 5) {
             numRooms = 5;
-        } else {
-            numRooms = 0; // no number of rooms was chosen
         }
 
         // max price
         int price = Integer.parseInt(req.getParameter("price"));
 
         // PROCESS: filter booking of room available
-        ArrayList<Room> roomNum = con.filterRoom(hotelChain, city, checkInDate, checkOutDate, capacity, category, viewType, numRooms, price);
+        ArrayList<Room> roomNum = con.filterRoom(hotelChain, city, new java.sql.Date(checkInDate.getTime()), new java.sql.Date(checkOutDate.getTime()), capacity, category, viewType, numRooms, price);
 
         // SEND THE DATA TO THE JSP
         req.setAttribute("roomNum", roomNum);

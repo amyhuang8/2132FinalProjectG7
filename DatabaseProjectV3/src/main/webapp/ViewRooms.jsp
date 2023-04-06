@@ -4,6 +4,13 @@
     response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
     response.setDateHeader("Expires", 0); // Proxies.
 %>
+<!--
+<%@ page import="java.sql.*" %>
+<% Class.forName("org.postgresql.Driver");%>
+<% ResultSet rs = null; %> -->
+
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -36,11 +43,18 @@
 
     </head>
 
+    <!-- THE SCREEN -->
     <body onload="checkLogin()">
         <!--HEADING-->
         <h1>Deals from your favourite hotels!</h1>
         <hr style="background-color: rosybrown; height: 1.5px">
         <br>
+
+        <form action="show-view1-servlet" id="view-1-form" style="display: inline">
+        <!--VIEW 1 BUTTON-->
+            <button class="buttons" id="vie`w-1" type="submit" name="view-1">VIEW ALL AVAILABLE ROOMS IN ANY AREA</button>
+            <br><br>
+        </form>
 
         <form action="show-rooms-servlet" id="search-form" style="display: inline">
         <!--HOTEL CHAIN SEARCH BAR-->
