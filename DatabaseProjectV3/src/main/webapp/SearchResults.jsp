@@ -1,5 +1,3 @@
-LIST OF ROOMS JSP
-
 <%@ page import="com.example.ehotel.entities.Room" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.lang.reflect.Array" %><%--

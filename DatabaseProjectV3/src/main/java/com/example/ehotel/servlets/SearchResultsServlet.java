@@ -18,10 +18,10 @@ import java.util.logging.Logger;
 /**
  * This servlet is used to create a new booking in the database.
  */
-@WebServlet(name = "showAvailableRoomsServlet", value = "/show-rooms-servlet")
-public class ShowAvailableRoomsServlet extends HttpServlet {
+@WebServlet(name = "searchResultsServlet", value = "/show-rooms-servlet")
+public class SearchResultsServlet extends HttpServlet {
 
-    private static final Logger LOGGER = Logger.getLogger(ShowAvailableRoomsServlet.class.getName()); //logger
+    private static final Logger LOGGER = Logger.getLogger(SearchResultsServlet.class.getName()); //logger
 
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
@@ -132,7 +132,7 @@ public class ShowAvailableRoomsServlet extends HttpServlet {
 
         // SEND THE DATA TO THE JSP
         req.setAttribute("rooms", rooms);
-        req.getRequestDispatcher("ListOfRooms.jsp").forward(req, resp);
-        resp.sendRedirect("ListOfRooms.jsp");
+        req.getRequestDispatcher("SearchResults.jsp").forward(req, resp);
+        resp.sendRedirect("SearchResults.jsp");
     }
 }

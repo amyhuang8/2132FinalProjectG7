@@ -1,7 +1,5 @@
 package com.example.ehotel.entities;
 
-import java.util.ArrayList;
-
 public class Room {
     private int roomNumber;
     private int hotelID;
