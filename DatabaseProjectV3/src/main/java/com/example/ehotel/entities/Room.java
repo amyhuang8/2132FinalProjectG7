@@ -3,7 +3,6 @@ package com.example.ehotel.entities;
 import java.util.ArrayList;
 
 public class Room {
-    private int roomID;
     private int roomNumber;
     private int hotelID;
     private double price;
@@ -15,8 +14,7 @@ public class Room {
     private boolean availability; // true if available, false if not
 
     // CONSTRUCTOR -----------------------------------------------------------------------------------------------------
-    public Room (int roomID, int roomNumber, int hotelID, double price, String amenities, String capacity, String viewType, boolean extendable, double damages, boolean availability) {
-        this.roomID = roomID;
+    public Room ( int roomNumber, int hotelID, double price, String amenities, String capacity, String viewType, boolean extendable, double damages, boolean availability) {
         this.roomNumber = roomNumber;
         this.hotelID = hotelID;
         this.price = price;
@@ -29,9 +27,6 @@ public class Room {
     }
 
     // GETTERS ---------------------------------------------------------------------------------------------------------
-    public int getRoomID() {
-        return roomID;
-    }
     public int getRoomNumber() {
         return roomNumber;
     }
@@ -61,9 +56,6 @@ public class Room {
     }
 
     // SETTERS ---------------------------------------------------------------------------------------------------------
-    public void setRoomID(int roomID) {
-        this.roomID = roomID;
-    }
     public void setRoomNumber(int roomNumber) {
         this.roomNumber = roomNumber;
     }

@@ -9,17 +9,19 @@ import java.util.List;
 import java.util.logging.Logger;
 
 public class HotelServer {
-    // VARIABLE DECLARATION: INSTANCE VARS. FOR CONNECTION
+
+    // VARIABLE DECLARATION: INSTANCE VARS. FOR CONNECTION -------------------------------------------------------------
     ResultSet rs = null;
     String sql;
     Statement st = null;
     PreparedStatement ps = null;
+    private static final Logger LOGGER = Logger.getLogger(CustomerServer.class.getName()); // logger
 
-    private static final Logger LOGGER = Logger.getLogger(CustomerServer.class.getName()); //logger
-
+    // METHODS ---------------------------------------------------------------------------------------------------------
     /**
      * This method retrieves all the data from view 1 in the database
-     *
+     * and saves it in an array list.
+     * @return an array list with all the data from view 1
      */
     public ArrayList<String> getView1() {
 
@@ -66,9 +68,9 @@ public class HotelServer {
 
             // FILLING THE ARRAY OF ROOMS
             while (rs.next()) {
-                rooms.add(new Room(rs.getInt("roomID"), rs.getInt("roomNumber"), rs.getInt("hotelID"),
+                rooms.add(new Room(rs.getInt("room_num"), rs.getInt("hotel_id"),
                         rs.getDouble("price"), rs.getString("amenities"), rs.getString("capacity"),
-                        rs.getString("viewType"), rs.getBoolean("extendable"), rs.getDouble("damages"),
+                        rs.getString("view_type"), rs.getBoolean("extendable"), rs.getDouble("damages"),
                         rs.getBoolean("availability")));
             }
         } catch (Exception e) {
@@ -103,30 +105,24 @@ public class HotelServer {
         // PROCESS: getting the available rooms
         try (Connection con = db.getConn()){
 
-            // SET PREPARED STATEMENT PARAMETERS
+            // SET PREPARED STATEMENT
             ps = con.prepareStatement(sql);
-            ps.setString(1, hotelChain);
-            ps.setString(2, city);
-            ps.setDate(3, (java.sql.Date) checkInDate);
-            ps.setDate(4, (java.sql.Date) checkOutDate);
-            ps.setString(5, capacity);
-
-            /*
-            ps.setInt(6, rating);
-            ps.setString(7, view_type);
-            ps.setInt(8, numOfRooms);
-            ps.setInt(9, price);
-
-             */
+            // SET EVERY ? IN THE QUERY
+            ps.setInt(1, rating);
+            ps.setString(2, capacity);
+            ps.setString(3, view_type);
+            ps.setInt(4, numOfRooms);
+            ps.setInt(5, price);
+            //ps.setDate(3, (java.sql.Date) checkInDate);
 
             // EXECUTE QUERY
             rs = ps.executeQuery();
 
             // FILLING THE ARRAY WITH ROOMS
             while (rs.next()) {
-                rooms.add(new Room(rs.getInt("roomID"), rs.getInt("roomNumber"), rs.getInt("hotelID"),
+                rooms.add(new Room(rs.getInt("room_num"), rs.getInt("hotel_id"),
                         rs.getDouble("price"), rs.getString("amenities"), rs.getString("capacity"),
-                        rs.getString("viewType"), rs.getBoolean("extendable"), rs.getDouble("damages"),
+                        rs.getString("view_type"), rs.getBoolean("extendable"), rs.getDouble("damages"),
                         rs.getBoolean("availability")));
             }
         } catch (Exception e) {

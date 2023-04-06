@@ -124,10 +124,14 @@ public class ShowAvailableRoomsServlet extends HttpServlet {
         int price = Integer.parseInt(req.getParameter("price"));
 
         // PROCESS: filter booking of room available
-        ArrayList<Room> roomNum = con.filterRoom(hotelChain, city, new java.sql.Date(checkInDate.getTime()), new java.sql.Date(checkOutDate.getTime()), capacity, category, viewType, numRooms, price);
+        ArrayList<Room> rooms = con.filterRoom(hotelChain, city, new java.sql.Date(checkInDate.getTime()), new java.sql.Date(checkOutDate.getTime()), capacity, category, viewType, numRooms, price);
+
+        //ArrayList<Room> rooms = con.getAvailableRooms();
+
+        LOGGER.severe("rooms" + rooms.toString() );
 
         // SEND THE DATA TO THE JSP
-        req.setAttribute("roomNum", roomNum);
+        req.setAttribute("rooms", rooms);
         req.getRequestDispatcher("ListOfRooms.jsp").forward(req, resp);
         resp.sendRedirect("ListOfRooms.jsp");
     }
