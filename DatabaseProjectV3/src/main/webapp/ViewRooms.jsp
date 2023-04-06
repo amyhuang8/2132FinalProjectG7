@@ -51,7 +51,7 @@
 
 <form action="show-view1-servlet" id="view-1-form" style="display: inline">
     <!--VIEW 1 BUTTON-->
-    <button class="buttons" id="vie`w-1" type="submit" name="view-1">View All Available Rooms In Any Area</button>
+    <button class="buttons" id="vie`w-1" type="submit" name="view-1">View All Currently Available Rooms In Any Area</button>
     <br><br>
 </form>
 
@@ -173,26 +173,10 @@
         <small>& up</small>
     </div>
 
-    <!-- VIEW TYPE INPUT -->
-    <div class="view-type">
-        <br><br>
-        <small>View Type:</small>
-        <br><br>
-        <input type="checkbox" id="city-view" name="view type" value="city-view">
-        <small>Cityscape View</small>
-        <input type="checkbox" id="sea-view" name="view type" value="sea-view">
-        <small>Sea View</small>
-        <input type="checkbox" id="mountain-view" name="view type" value="mountain-view">
-        <small>Mountain View</small>
-        <input type="checkbox" id="river-view" name="view type" value="river-view">
-        <small>Garden View</small>
-        <br><br>
-    </div>
-
     <!-- NUMBER OF ROOMS IN HOTEL INPUT -->
     <div class="num of rooms">
         <br>
-        <small>Number of rooms:</small>
+        <small>Number of Rooms In Hotel:</small>
         <br><br>
         <input type="radio" id="one-room" name="num of rooms" value=1>
         <small>1</small>

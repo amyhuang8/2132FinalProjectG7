@@ -5,10 +5,9 @@ import com.example.ehotel.entities.Room;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.logging.Logger;
 
-public class HotelServer {
+public class RoomServer {
 
     // VARIABLE DECLARATION: INSTANCE VARS. FOR CONNECTION -------------------------------------------------------------
     ResultSet rs = null;
@@ -87,12 +86,11 @@ public class HotelServer {
      * @param checkOutDate check out date
      * @param capacity room capacity (single, double, triple, quad, joint)
      * @param rating hotel rating
-     * @param view_type room view type (city, mountain, sea, river)
      * @param numOfRooms number of rooms in a hotel
      * @param price price of a room
      * @return an array of all the available rooms in the database fitting the filter criteria
      */
-    public ArrayList<Room> filterRoom (String hotelChain, String city, Date checkInDate, Date checkOutDate, String capacity, int rating, String view_type, int numOfRooms, int price) {
+    public ArrayList<Room> filterRoom (String hotelChain, String city, Date checkInDate, Date checkOutDate, String capacity, String rating, String numOfRooms, int price) {
         // PROCESS: connecting to database
         ConnectionDB db = new ConnectionDB();
 
@@ -102,17 +100,23 @@ public class HotelServer {
         // SQL QUERY
         sql = "SELECT * FROM ehotels.room r JOIN ehotels.hotel h ON r.hotel_id = h.hotel_id WHERE h.rating = ? AND r.availability = true AND r.capacity = ? AND r.view_type = ? AND h.num_of_rooms = ? AND r.price <= ?";
 
+        /*
+        sql = "SELECT * FROM hotel NATURAL JOIN address NATURAL JOIN room WHERE " +
+                (city != null ? "province = '" + city + "'" : " ") +
+                ()
+
+         */
+
         // PROCESS: getting the available rooms
         try (Connection con = db.getConn()){
 
             // SET PREPARED STATEMENT
             ps = con.prepareStatement(sql);
             // SET EVERY ? IN THE QUERY
-            ps.setInt(1, rating);
+            ps.setString(1, rating);
             ps.setString(2, capacity);
-            ps.setString(3, view_type);
-            ps.setInt(4, numOfRooms);
-            ps.setInt(5, price);
+            ps.setString(3, numOfRooms);
+            ps.setInt(4, price);
             //ps.setDate(3, (java.sql.Date) checkInDate);
 
             // EXECUTE QUERY

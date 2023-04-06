@@ -1,6 +1,5 @@
 <%@ page import="com.example.ehotel.entities.Room" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.lang.reflect.Array" %><%--
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: kkris
   Date: 4/4/2023
@@ -10,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
-    ArrayList<Room> rooms;
+    ArrayList<Room> rooms = (ArrayList<Room>) request.getAttribute("rooms");
 
 %>
 
@@ -34,25 +33,39 @@
 
 <!-- SEARCH RESULTS -->
 <div id="results-table" style="margin-top: 30px">
-    <table styles="width: 100%;">
+    <table border="1" >
         <!-- TABLE HEADERS -->
+
+        <thead>
         <tr>
             <th>Hotel</th>
             <th>Category</th>
             <th>Location</th>
             <th>View Type</th>
             <th>Amenities</th>
-            <th>Price</th>
+            <th>Price (CAD)</th>
             <th>Extendable?</th>
+            <th>Damages(Reduction on Final Price)</th>
         </tr>
+        </thead>
+
+        <tbody>
+        <%
+            for (Room room : rooms) { %>
         <!-- TABLE ROWS -->
         <tr>
-            <td>
-                <!-- WILL CHANGE LINK LATER (but will keep a link? that when clicked will create a booking) -->
-                <!-- TO DO: ITERATE THROUGH ARRAY LIST CONTAINING THE ROOMS THAT FIT THE FILTER CRITERIA FROM PREVIOUS PAGE -->
-                <a href="hotel.html">Hotel 1</a>
-            </td>
+            <td><a href="#clicked"><%= room.getHotelID() %></a></td> <!-- CHANGE THIS TO HOTEL NAME -->
+            <td><%=room.getCapacity()%></td> <!-- CHANGE THIS TO HOTEL RATING -->
+            <td><%= room.getRoomNumber() %></td> <!-- CHANGE THIS TO ADDRESS OF HOTEL -->
+            <td><%= room.getViewType() %></td>
+            <td><%= room.getAmenities() %></td>
+            <td>$ <%= room.getPrice() %></td>
+            <td><%= room.isExtendable() %></td>
+            <td>-$<%= room.getDamages() %></td>
         </tr>
+        <% } %>
+        </tbody>
+
     </table>
 </div>
 </body>

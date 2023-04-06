@@ -1,6 +1,6 @@
 package com.example.ehotel.servlets;
 
-import com.example.ehotel.connections.HotelServer;
+import com.example.ehotel.connections.RoomServer;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -24,7 +24,7 @@ public class View1Servlet extends HttpServlet  {
      * @throws IOException
      */
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        HotelServer con = new HotelServer(); //new connection
+        RoomServer con = new RoomServer(); //new connection
 
         ArrayList<String> numOfRooms = con.getView1(); //calling the view1 method
 

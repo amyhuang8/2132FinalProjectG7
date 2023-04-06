@@ -1,6 +1,6 @@
 package com.example.ehotel.servlets;
 
-import com.example.ehotel.connections.HotelServer;
+import com.example.ehotel.connections.RoomServer;
 import com.example.ehotel.entities.Room;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -31,7 +31,7 @@ public class SearchResultsServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         // VARIABLE DECLARATION
-        HotelServer con = new HotelServer(); //new connection
+        RoomServer con = new RoomServer(); //new connection
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // date format
 
         // READ THE FORM DATA
@@ -79,56 +79,42 @@ public class SearchResultsServlet extends HttpServlet {
         }
 
         // hotel category (number of stars)
-        int category = 0;
+        String category = null;
         if (req.getParameter("category") == null) { // no hotel category was chosen
-            category = 0;
-        } else if (Integer.parseInt(req.getParameter("category")) == 5) {
-            category = 5;
-        } else if (Integer.parseInt(req.getParameter("category")) == 4) {
-            category = 4;
-        } else if (Integer.parseInt(req.getParameter("category")) == 3) {
-            category = 3;
-        }
-
-        // view type of room
-        String viewType = null;
-        if (req.getParameter("view type") == null) { // no view type was chosen
-            viewType = null;
-        } else if (req.getParameter("view type").equals("city-view")) {
-            viewType = "city";
-        } else if (req.getParameter("view type").equals("sea-view")) {
-            viewType = "sea";
-        } else if (req.getParameter("view type").equals("mountain-view")) {
-            viewType = "mountain";
-        } else if (req.getParameter("view type").equals("river-view")) {
-            viewType = "river";
+            category = null;
+        } else if (req.getParameter("category").equals("5")) {
+            category = "5";
+        } else if (req.getParameter("category").equals("4")) {
+            category = "4";
+        } else if (req.getParameter("category").equals("3")) {
+            category = "3";
         }
 
         // number of rooms in hotel
-        int numRooms = 0;
+        String numRooms = null;
         if (req.getParameter("num of rooms") == null) { // no number of rooms was chosen
-            numRooms = 0;
-        } else if (Integer.parseInt(req.getParameter("num of rooms")) == 1) {
-            numRooms = 1;
-        } else if (Integer.parseInt(req.getParameter("num of rooms")) == 2) {
-            numRooms = 2;
-        } else if (Integer.parseInt(req.getParameter("num of rooms")) == 3) {
-            numRooms = 3;
-        } else if (Integer.parseInt(req.getParameter("num of rooms")) == 4) {
-            numRooms = 4;
-        } else if (Integer.parseInt(req.getParameter("num of rooms")) == 5) {
-            numRooms = 5;
+            numRooms = null;
+        } else if (req.getParameter("num of rooms").equals("1")) {
+            numRooms = "1";
+        } else if (req.getParameter("num of rooms").equals("2")) {
+            numRooms = "2";
+        } else if (req.getParameter("num of rooms").equals("3")) {
+            numRooms = "3";
+        } else if (req.getParameter("num of rooms").equals("4")) {
+            numRooms = "4";
+        } else if (req.getParameter("num of rooms").equals("5")) {
+            numRooms = "5";
         }
 
         // max price
         int price = Integer.parseInt(req.getParameter("price"));
 
         // PROCESS: filter booking of room available
-        ArrayList<Room> rooms = con.filterRoom(hotelChain, city, new java.sql.Date(checkInDate.getTime()), new java.sql.Date(checkOutDate.getTime()), capacity, category, viewType, numRooms, price);
+        //ArrayList<Room> rooms = con.filterRoom(hotelChain, city, new java.sql.Date(checkInDate.getTime()), new java.sql.Date(checkOutDate.getTime()), capacity, category, numRooms, price);
 
-        //ArrayList<Room> rooms = con.getAvailableRooms();
+        ArrayList<Room> rooms = con.getAvailableRooms();
 
-        LOGGER.severe("rooms" + rooms.toString() );
+        LOGGER.severe("PRICE: " + price);
 
         // SEND THE DATA TO THE JSP
         req.setAttribute("rooms", rooms);
