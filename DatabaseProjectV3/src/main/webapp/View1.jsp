@@ -19,7 +19,7 @@
 <br>
 
 <!-- TABLE (VIEW 1) -->
-<table for="view_1" border=" 1" style="margin: 0px auto; background: beige">
+<table for="view_1" border=" 1" style="margin: 0px auto; background: lightyellow">
   <tr style="text-align: center">
     <th>Number of Rooms Available</th>
     <th>Area</th>

@@ -6,6 +6,7 @@
 %>
 <!--
 <%@ page import="java.sql.*" %>
+<%@ page import="java.time.LocalDate" %>
 <% Class.forName("org.postgresql.Driver");%>
 <% ResultSet rs = null; %> -->
 
@@ -52,7 +53,7 @@
 
         <form action="show-view1-servlet" id="view-1-form" style="display: inline">
         <!--VIEW 1 BUTTON-->
-            <button class="buttons" id="vie`w-1" type="submit" name="view-1">VIEW ALL AVAILABLE ROOMS IN ANY AREA</button>
+            <button class="buttons" id="vie`w-1" type="submit" name="view-1">View All Available Rooms In Any Area</button>
             <br><br>
         </form>
 
@@ -118,11 +119,11 @@
 
                 <!--START DATE-->
                 <label for="checkin" class="labels">Check in:</label>
-                <input type="date" id="checkin" name="check in date" style="font-size: 18px">
+                <input type="date" id="checkin" name="check in date" min="<%= LocalDate.now() %>" style="font-size: 18px">
 
                 <!--END DATE-->
                 <label for="checkout" class="labels" style="padding-left: 20px">Check out:</label>
-                <input type="date" id="checkout" name="check out date" style="font-size: 18px">
+                <input type="date" id="checkout" name="check out date" min="<%= LocalDate.now() %>" style="font-size: 18px">
 
                 <!-- SEARCH BUTTON -->
                 <input type="button" class="buttons" value="SEARCH" id="search-button" style="margin-left: 20px">
@@ -256,7 +257,6 @@
             const searchResults = document.getElementById('search-results');
             searchResults.innerHTML = `You selected the "${filter}" filter.`;
         }
-
 
         <!-- Max Price Slider -->
         let slider = document.getElementById("slider-range");
