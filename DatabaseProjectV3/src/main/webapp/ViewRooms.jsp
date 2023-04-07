@@ -89,11 +89,11 @@
         <!--SEARCH MENU-->
         <div id="areaDropdown" class="dropdown-content">
             <input type="text" placeholder="Search Cities..."
-                   class="dropdown-list" id="areaSearchInput" name="location" value="myValue"
+                   class="dropdown-list" id="areaSearchInput" name="location"
                    onkeyup="filterSearchInput('areaSearchInput', 'areaDropdown')">
 
             <!--CITIES LIST (may need to become buttons to enable SQL querying later)-->
-            <a href="#" onclick="changeButtonNameDropdown('hotel-city','Calgary')">Calgary</a>
+            <a href="#calgaryhotels" onclick="changeButtonNameDropdown('hotel-city','Calgary')">Calgary</a>
             <a href="#cancunhotels" onclick="changeButtonNameDropdown('hotel-city','Cancun')">Cancun</a>
             <a href="#chihuahuacityhotels" onclick="changeButtonNameDropdown('hotel-city','Chihuahua City')">Chihuahua City</a>
             <a href="#columbushotels" onclick="changeButtonNameDropdown('hotel-city','Columbus')">Columbus</a>
