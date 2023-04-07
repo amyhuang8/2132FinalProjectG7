@@ -1,3 +1,5 @@
+SET search_path = ehotels;
+
 SELECT * FROM hotel NATURAL JOIN address NATURAL JOIN room
 WHERE name = 'Hilton Worldwide'
   AND city = 'Calgary'
@@ -6,8 +8,9 @@ WHERE name = 'Hilton Worldwide'
   AND num_of_rooms >= 5
   AND price <= 250;
 
-insert into booking (check_in, check_out, confirmation_date, room_id, customer_id)
-values ('2020-01-01', '2020-01-02', CURRENT_DATE, 1, 1);
+insert into booking (check_in, check_out, confirmation_date, room_id, customer_email)
+values ('2023-04-07', '2023-04-12', CURRENT_DATE, 1, 'bobthebuilder@email.com');
+values ('2023-04-07', '2023-04-12', CURRENT_DATE, 2, 'johnsmith@email.com');
 
 select  * from booking;
 

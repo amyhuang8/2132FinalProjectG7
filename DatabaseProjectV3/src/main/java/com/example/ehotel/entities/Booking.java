@@ -7,7 +7,7 @@ public class Booking {
     private Date checkIn;
     private Date checkOut;
     private Date confirmationDate;
-    private int customerID;
+    private String email;
     private int roomNum;
 
     /**
@@ -16,15 +16,15 @@ public class Booking {
      * @param checkIn check in date of customer's booking
      * @param checkOut check out date of customer's booking
      * @param confirmationDate confirmation date of customer's booking
-     * @param customerID id of customer's booking
+     * @param email the customer email
      * @param roomNum room number of booking
      */
-    public Booking(int id, Date checkIn, Date checkOut, Date confirmationDate, int customerID, int roomNum) {
+    public Booking(int id, Date checkIn, Date checkOut, Date confirmationDate, String email, int roomNum) {
         this.id = id;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.confirmationDate = confirmationDate;
-        this.customerID = customerID;
+        this.email = email;
         this.roomNum = roomNum;
     }
 
@@ -41,8 +41,8 @@ public class Booking {
     public Date getConfirmationDate() {
         return this.confirmationDate;
     }
-    public int getCustomerID() {
-        return this.customerID;
+    public String getCustomerID() {
+        return this.email;
     }
     public int getRoomNum() {
         return this.roomNum;
@@ -59,8 +59,8 @@ public class Booking {
     public void setConfirmationDate(Date confirmationDate) {
         this.confirmationDate = confirmationDate;
     }
-    public void setCustomerID(int customerID) {
-        this.customerID = customerID;
+    public void setCustomerID(String customerID) {
+        this.email = email;
     }
     public void setRoomNum(int roomNum) {
         this.roomNum = roomNum;

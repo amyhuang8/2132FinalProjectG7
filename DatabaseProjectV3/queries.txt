@@ -3,7 +3,7 @@ SET search_path = ehotels;
 -- ---------------------------------------------------------------------------------------------------------------------
 -- Deletion for any table
 -- ---------------------------------------------------------------------------------------------------------------------
-/*drop table archive;
+drop table archive;
 drop table rental;
 drop table booking;
 drop table customer;
@@ -11,7 +11,7 @@ drop table employee;
 drop table room;
 drop table hotel;
 drop table hotel_chain;
-drop table address;*/
+drop table address;
 
 -- ---------------------------------------------------------------------------------------------------------------------
 -- Table structure for address
@@ -1197,9 +1197,8 @@ CREATE TABLE booking
     check_in          DATE NOT NULL,
     check_out         DATE NOT NULL,
     confirmation_date DATE NOT NULL,
-    customer_id       INT  NOT NULL,
+    customer_email    VARCHAR(30) NOT NULL,
     room_id           INT,
-    FOREIGN KEY (customer_id) REFERENCES customer (customer_id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (room_id) REFERENCES room (room_id) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (booking_id)
 );
@@ -1235,8 +1234,7 @@ CREATE TABLE archive
     check_out   DATE          NOT NULL,
     room_num    INT           NOT NULL,
     final_price NUMERIC(8, 2) NOT NULL,
-    customer_id INT           NOT NULL,
-    customer_email VARCHAR(30),
+    customer_email VARCHAR(30)NOT NULL,
     employee_id INT           NOT NULL,
     PRIMARY KEY (archive_id)
 );
@@ -1271,7 +1269,7 @@ SELECT * FROM capacity_of_all_rooms;
 -- INDEXES
 ------------------------------------------------------------------------------------------------------------------------
 CREATE INDEX hotel_address_index ON hotel (hotel_address_id);
-CREATE INDEX booking_customer_index ON booking (customer_id);
+CREATE INDEX booking_customer_index ON booking (customer_email);
 CREATE INDEX room_hotel_index ON room (hotel_id);
 CREATE INDEX customer_email_index ON customer(customer_email);
 
@@ -1306,8 +1304,8 @@ AS
 $$
 BEGIN
     IF (TG_OP = 'INSERT') THEN
-        INSERT INTO archive (booking_id, check_in, check_out, room_num, final_price, customer_email, customer_id, employee_id)
-        VALUES (NEW.booking_id, NEW.check_in, NEW.check_out, NEW.room_id, NEW.final_price, NEW.customer_email, NEW.customer_id, NEW.employee_id);
+        INSERT INTO archive (booking_id, check_in, check_out, room_num, final_price, customer_email, employee_id)
+        VALUES (NEW.booking_id, NEW.check_in, NEW.check_out, NEW.room_id, NEW.final_price, NEW.customer_email, NEW.employee_id);
     END IF;
     RETURN NULL;
 END

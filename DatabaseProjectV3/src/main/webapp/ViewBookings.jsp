@@ -84,11 +84,14 @@
              *
              */
             function fillForms(booking) {
-                let fname = document.getElementById("fname");
-                let lname = document.getElementById("lname");
+                // VARIABLE DECLARATION: the forms
                 let email = document.getElementById("email");
-                let fname = document.getElementById("fname");
-                let fname = document.getElementById("fname");
+                let roomID = document.getElementById("room_id");
+                let checkInDate = document.getElementById("check_in_date");
+                let checkOutDate = document.getElementById("check_out_date");
+
+                // INITIALIZATION: setting form values to booking info
+                email.value = booking.
             }
         </script>
     </head>
@@ -146,7 +149,10 @@
                                     <td><%=booking.getRoomNum()%></td>
                                     <td><button class="buttons"
                                                 style="padding: 2px; background-color: indianred"
-                                                onclick="fillForms(booking)">FILL RENTAL FORM</button></td>
+                                                onclick="fillForms(<%=booking.getCustomerID()%>,
+                                                    <%=booking.getRoomNum()%>,
+                                                    <%=booking.getCheckIn()%>,
+                                                    <%=booking.getCheckOut()%>)">FILL RENTAL FORM</button></td>
                                 </tr>
                                 <%
                                         }

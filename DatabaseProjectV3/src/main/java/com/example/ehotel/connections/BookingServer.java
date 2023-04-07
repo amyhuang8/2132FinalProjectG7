@@ -55,7 +55,7 @@ public class BookingServer {
                 // PROCESS: creating new Booking objects w/ the retrieved data
                 bookings.add(new Booking(rs.getInt("booking_id"), rs.getDate("check_in"),
                         rs.getDate("check_out"), rs.getDate("confirmation_date"),
-                        rs.getInt("customer_id"), rs.getInt("room_id")));
+                        rs.getString("customer_email"), rs.getInt("room_id")));
 
             }
         } catch (SQLException e) { //error-handling
