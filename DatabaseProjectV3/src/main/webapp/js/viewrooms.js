@@ -44,12 +44,12 @@ function filterSearchInput(input, dropdownList) {
 /**
  * This function check what city the user selects, and changes the hotel name dropdown to it
  */
-function changeButtonNameDropdown(id, value) {
+function changeButtonNameDropdown(id, value, search_id) {
     let userInput = document.getElementById(id);
     userInput.innerText = value;
     userInput.value = value;
 
-    document.getElementById("areaSearchInput").value = value;
+    document.getElementById(search_id).value = value;
 }
 
 /**

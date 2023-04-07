@@ -48,8 +48,8 @@ public class SearchResultsServlet extends HttpServlet {
         String city = null;
         if (req.getParameter("location") == null) { // no city was chosen
             city = null;
-        } else if (req.getParameter("location").equals("Calgary")) {
-            city = "Calgary";
+        } else {
+            city = req.getParameter("location");
         }
 
         String location = req.getParameter("location");
@@ -70,44 +70,24 @@ public class SearchResultsServlet extends HttpServlet {
         String roomType = req.getParameter("capacity");
         if (roomType == null) { // no room type was chosen
             capacity = null;
-        } else if (roomType.equals("single")) {
-            capacity = "single";
-        } else if (roomType.equals("double")) {
-            capacity = "double";
-        } else if (roomType.equals("triple")) {
-            capacity = "triple";
-        } else if (roomType.equals("quad")) {
-            capacity = "quad";
-        } else if (roomType.equals("joint")) {
-            capacity = "joint";
+        } else {
+            capacity = roomType;
         }
 
         // hotel category (number of stars)
         String category = null;
         if (req.getParameter("category") == null) { // no hotel category was chosen
             category = null;
-        } else if (req.getParameter("category").equals("5")) {
-            category = "5";
-        } else if (req.getParameter("category").equals("4")) {
-            category = "4";
-        } else if (req.getParameter("category").equals("3")) {
-            category = "3";
+        } else {
+            category = req.getParameter("category");
         }
 
         // number of rooms in hotel
         String numRooms = null;
         if (req.getParameter("num of rooms") == null) { // no number of rooms was chosen
             numRooms = null;
-        } else if (req.getParameter("num of rooms").equals("1")) {
-            numRooms = "1";
-        } else if (req.getParameter("num of rooms").equals("2")) {
-            numRooms = "2";
-        } else if (req.getParameter("num of rooms").equals("3")) {
-            numRooms = "3";
-        } else if (req.getParameter("num of rooms").equals("4")) {
-            numRooms = "4";
-        } else if (req.getParameter("num of rooms").equals("5")) {
-            numRooms = "5";
+        } else {
+            numRooms = req.getParameter("num of rooms");
         }
 
         // max price
@@ -118,6 +98,7 @@ public class SearchResultsServlet extends HttpServlet {
 
         //ArrayList<Room> rooms = con.getAvailableRooms();
 
+        LOGGER.info("HOTEL CHAIN: " + hotelChain);
         LOGGER.severe("CITY: " + city);
         LOGGER.severe("CAPACITY: " + capacity);
         LOGGER.severe("CATEGORY: " + category);
