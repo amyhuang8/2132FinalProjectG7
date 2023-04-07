@@ -98,37 +98,39 @@ public class RoomServer {
         ArrayList<Room> rooms = new ArrayList<>();
 
         // SQL QUERY
-        //sql = "SELECT * FROM hotel NATURAL JOIN address a  NATURAL JOIN "
+        sql = "SELECT * FROM ehotels.hotel NATURAL JOIN ehotels.address NATURAL JOIN ehotels.room";
+        if (hotelChain != null) {
+            sql += " WHERE name = '" + hotelChain + "'";
+        }
+        if (city != null) {
+            sql += (hotelChain != null ? " AND " : " WHERE ") + "city = '" + city + "'";
+        }
+        if (capacity != null) {
+            sql += (hotelChain != null || city != null ? " AND " : " WHERE ") + "capacity = '" + capacity + "'";
+        }
+        if (rating != null) {
+            sql += (hotelChain != null || city != null || capacity != null ? " AND " : " WHERE ") + "rating <= '" + rating + "'";
+        }
+        if (numOfRooms != null) {
+            sql += (hotelChain != null || city != null || capacity != null || rating != null ? " AND " : " WHERE ") + "num_of_rooms >= '" + numOfRooms + "'";
+        }
+        if (price != 0) {
+            sql += (hotelChain != null || city != null || capacity != null || rating != null || numOfRooms != null ? " AND " : " WHERE ") + "price <= '" + price + "'";
+        }
+        if (hotelChain != null || city != null || capacity != null || rating != null || numOfRooms != null || price != 0) {
+            sql += " AND (name, hotel_id, room_num) NOT IN (SELECT name, hotel_id, room_num FROM ehotels.name_of_hotel_from_rental " +
+                    "WHERE ('" + checkInDate + "' >= check_in AND '" + checkInDate + "' <= check_out) OR ('" + checkOutDate + "' >= check_in AND '" + checkOutDate + "' <= check_out)) " +
+                    "AND (name, hotel_id, room_num) NOT IN (SELECT name, hotel_id, room_num FROM ehotels.name_of_hotel_from_booking " +
+                    "WHERE ('" + checkInDate + "' >= check_in AND '" + checkInDate + "' <= check_out) OR ('" + checkOutDate + "' >= check_in AND '" + checkOutDate + "' <= check_out))";
+        }
 
-        /*
-        sql = "SELECT * FROM hotel NATURAL JOIN address NATURAL JOIN room WHERE " +
-                (hotelChain != null ? "name = '" + hotelChain + "' AND " : " ") +
-                (city != null ? "city = '" + city + "' AND " : " ") +
-                (capacity != null ? "capacity = '" + capacity + "' AND " : " ") +
-                (rating != null ? "rating = '" + rating + "' AND " : " ") +
-                (numOfRooms != null ? "num_of_rooms = '" + numOfRooms + "' AND " : " ") +
-                (price != 0 ? "price <= '" + price + "' AND " : " ") +
-                "(name, hotel_id, room_num) NOT IN " +
-                "(SELECT hotel_name, hotel_id, room_num FROM rental WHERE ('" + checkInDate + "'" +
-                " >= check_in AND '" + checkInDate + "' <= check_out) OR ('" + checkOutDate + "' >=" +
-                " check_in AND '" + checkOutDate + "' <= check_out)) AND (name, hotel_id, room_num)" +
-                " NOT IN (SELECT hotel_name, hotel_id, room_num FROM booking WHERE ('" + checkInDate +
-                "' >= check_in AND '" + checkInDate + "' <= check_out) OR ('" + checkOutDate + "'" +
-                " >= check_in AND '" + checkOutDate + "' <= check_out))";
-         */
+        LOGGER.info(sql);
 
         // PROCESS: getting the available rooms
         try (Connection con = db.getConn()){
 
             // SET PREPARED STATEMENT
             ps = con.prepareStatement(sql);
-            // SET EVERY ? IN THE QUERY
-            /*
-            ps.setString(1, hotelChain);
-            ps.setString(2, city);
-            ps.setString(3, rating);
-            ps.setString(4, numOfRooms);
-            ps.setInt(5, price);*/
 
             // EXECUTE QUERY
             rs = ps.executeQuery();
