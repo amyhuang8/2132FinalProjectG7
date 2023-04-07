@@ -100,8 +100,10 @@
                 margin-left: 3vh;
             }
             .box-2 {
-                background-color: blue;
+                width: fit-content;
+                background-color: darkolivegreen;
                 margin-right: 3vh;
+                padding-left: 3vh;
             }
         </style>
     </head>
@@ -123,7 +125,17 @@
                 </div>
                 <div class="box box-1" id="bookingsBox"></div>
             </div>
-            <div class="box box-2" id="rentalBox"></div>
+            <div class="box box-2" id="rentalBox">
+                <br>
+                <input type="text" id="fName" name="fName" placeholder="First Name..."><br><br>
+                <input type="text" id="lName" name="lName" placeholder="Last Name..."><br><br>
+                <input type="text" id="sin" name="sin" placeholder="Social Insurance Number..."><br><br>
+                <input type="text" id="email" name="email" placeholder="Email Address..."><br><br>
+                <input type="text" id="roomID" name="roomID" placeholder="Room ID..."><br><br>
+                <input type="text" id="chkIn" name="chkIn" placeholder="Check-In Date..." value=><br><br>
+                <input type="text" id="chkOut" name="chkOut" placeholder="Check-Out Date..."><br><br>
+                <button id="rentalButton">Create Rental</button>
+            </div>
         </div>
     </body>
 
@@ -134,6 +146,15 @@
         const bookingsBox = document.getElementById("bookingsBox");
         const rentalBox = document.getElementById("rentalBox");
 
+        const rentalButton = document.getElementById("rentalButton");
+        const fName = document.getElementById("fName");
+        const lName = document.getElementById("lName");
+        const sin = document.getElementById("sin");
+        const email = document.getElementById("email");
+        const roomID = document.getElementById("roomID");
+        const chkIn = document.getElementById("chkIn");
+        const chkOut = document.getElementById("chkOut");
+
         // Add event listeners to the button elements
         bookingsButton.addEventListener("click", function() {
             bookingsBox.style.backgroundColor = "red";
@@ -142,5 +163,14 @@
         availableButton.addEventListener("click", function() {
             bookingsBox.style.backgroundColor = "darkred";
         });
+
+        rentalButton.addEventListener("click", function () {
+            //query for email in customers
+            //if no match then create account
+            //if no Name / SIN then error
+            //create rental
+        }
+
+
     </script>
 </html>
