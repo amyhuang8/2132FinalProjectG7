@@ -1,0 +1,57 @@
+body {
+    margin: 1vh;
+    padding: 0;
+}
+.container {
+    display: flex;
+    height: 75vh;
+    align-items: flex-end;
+}
+.box-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    height: 100%;
+}
+.buttons-wrapper {
+    display: inline-block;
+}
+.button-box {
+    background-color: lightsalmon;
+    padding: 5px;
+    display: inline-block;
+}
+.button-box-2 {
+    background-color: lightcoral;
+    padding: 5px;
+    display: inline-block;
+}
+.buttons-wrapper .button-box:not(:last-child) {
+    margin-left: 3vh;
+}
+.buttons button {
+    margin-right: 2vh;
+}
+.box {
+    height: 100%;
+    flex:1;
+}
+.box-1 {
+    height: 95%;
+    background-color: lightsalmon;
+    margin-right: 4vh;
+    margin-left: 3vh;
+}
+.box-2 {
+    background-color: blue;
+    margin-right: 3vh;
+}
+
+.button-box:hover, focus {
+    background-color: orange;
+}
+
+.button-box-2:hover, focus {
+    background-color: orange;
+}

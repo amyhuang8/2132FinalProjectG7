@@ -20,6 +20,7 @@
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <meta http-equiv="Content-Language" content="ch-cn">
         <link rel ="stylesheet" href="css/styles.css">
+        <link rel ="stylesheet" href="css/view-bookings.css">
 
         <!--TITLE-->
         <title>Pending Bookings</title>
@@ -52,6 +53,25 @@
                     }
                 }
             }
+
+            function displayBookings() {
+                // VARIABLE DECLARATION
+                let bookingsBox = document.getElementById("bookingsBox");
+                let form = document.getElementById("display_bookings");
+
+                bookingsBox.style.backgroundColor = "lightsalmon"; //updating background style
+                form.submit(); //submitting form
+                form.style.display = "block";
+            }
+
+            function displayRooms() {
+                // VARIABLE DECLARATION
+                let bookingsBox = document.getElementById("bookingsBox");
+                let form = document.getElementById("display_bookings");
+
+                bookingsBox.style.backgroundColor = "lightcoral"; //updating background style
+                form.style.display = "none";
+            }
         </script>
     </head>
 
@@ -61,48 +81,62 @@
         <hr style="background-color: rosybrown; height: 1.5px">
         <br>
 
-        <form action="booking-servlet">
-            <!--BUTTON FOR DISPLAY-->
-            <button class="buttons" type="submit">DISPLAY TODAY'S BOOKINGS</button>
+        <div class="container">
+            <div class="box-container">
+                <div class="buttons-wrapper">
+                    <div class="button-box">
+                        <button id="bookingsButton" class="buttons"
+                                style="background-color: lightsalmon; color: black; border: none"
+                                onclick="displayBookings()">Bookings</button>
+                    </div>
+                    <div class="button-box-2">
+                        <button id="availableButton" class="buttons"
+                                style="background-color: lightcoral; color: black; border: none"
+                                onclick="displayRooms()">Available Rooms</button>
+                    </div>
+                </div>
+                <div class="box box-1" id="bookingsBox">
+                    <form id="display_bookings" action="booking-servlet">
+                        <!--TABLE FOR PENDING BOOKINGS-->
+                        <table border="1" >
+                            <!--TABLE HEADERS-->
+                            <thead>
+                            <tr>
+                                <th>Booking ID</th>
+                                <th>Check In Date</th>
+                                <th>Check Out Date</th>
+                                <th>Confirmation Date</th>
+                                <th>Customer ID</th>
+                                <th>Room ID</th>
+                            </tr>
+                            </thead>
 
-            <br><br>
+                            <!--TABLE ROWS-->
+                            <tbody>
+                            <%
+                                if ( bookings != null && !bookings.isEmpty()) { // not null and not empty
 
-            <!--TABLE FOR PENDING BOOKINGS-->
-            <table border="1" >
-                <!--TABLE HEADERS-->
-                <thead>
-                    <tr>
-                        <th>Booking ID</th>
-                        <th>Check In Date</th>
-                        <th>Check Out Date</th>
-                        <th>Confirmation Date</th>
-                        <th>Customer ID</th>
-                        <th>Room ID</th>
-                    </tr>
-                </thead>
-
-                <!--TABLE ROWS-->
-                <tbody>
-                    <%
-                        if ( bookings != null && !bookings.isEmpty()) { // not null and not empty
-
-                            // PROCESS: looping through arraylist
-                            for (Booking booking : bookings) {
-                    %>
-                        <tr>
-                            <td><%=booking.getId()%></td>
-                            <td><%=booking.getCheckIn()%></td>
-                            <td><%=booking.getCheckOut()%></td>
-                            <td><%=booking.getConfirmationDate()%></td>
-                            <td><%=booking.getCustomerID()%></td>
-                            <td><%=booking.getRoomNum()%></td>
-                        </tr>
-                    <%
-                            }
-                        }
-                    %>
-                </tbody>
-            </table>
-        </form>
+                                    // PROCESS: looping through arraylist
+                                    for (Booking booking : bookings) {
+                            %>
+                            <tr>
+                                <td><%=booking.getId()%></td>
+                                <td><%=booking.getCheckIn()%></td>
+                                <td><%=booking.getCheckOut()%></td>
+                                <td><%=booking.getConfirmationDate()%></td>
+                                <td><%=booking.getCustomerID()%></td>
+                                <td><%=booking.getRoomNum()%></td>
+                            </tr>
+                            <%
+                                    }
+                                }
+                            %>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+            <div class="box box-2" id="rentalBox"></div>
+        </div>
     </body>
 </html>
