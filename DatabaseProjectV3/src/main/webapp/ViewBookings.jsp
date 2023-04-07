@@ -144,26 +144,27 @@
                 </div>
             </div>
             <div class="box box-2" id="rentalBox">
-                <br>
-                <label class="labels" for="fname">FIRST NAME: </label>
-                <input class="labels" type="text" id="fname" name="first name">
-                <br><br>
-                <label class="labels" for="lname">LAST NAME: </label>
-                <input class="labels" type="text" id="lname" name="last name">
-                <br><br>
-                <label class="labels" for="email">EMAIL: </label>
-                <input class="labels" type="email" id="email" name="email">
-                <br><br>
-                <label class="labels" for="room_id">ROOM ID: </label>
-                <input class="labels" type="number" id="room_id" name="room id">
-                <br><br>
-                <label class="labels" for="check_in_date">CHECK-IN DATE: </label>
-                <input class="labels" type="date" id="check_in_date" name="check in date">
-                <br><br>
-                <label class="labels" for="check_out_date">CHECK-OUT DATE: </label>
-                <input class="labels" type="date" id="check_out_date" name="check out date">
-                <br><br>
-                <button class="buttons" id="rentalButton">Create Rental</button>
+                <form style="padding: 15px">
+                    <label class="labels" for="fname">FIRST NAME: </label>
+                    <input class="labels" type="text" id="fname" name="first name">
+                    <br><br>
+                    <label class="labels" for="lname">LAST NAME: </label>
+                    <input class="labels" type="text" id="lname" name="last name">
+                    <br><br>
+                    <label class="labels" for="email">EMAIL: </label>
+                    <input class="labels" type="email" id="email" name="email">
+                    <br><br>
+                    <label class="labels" for="room_id">ROOM ID: </label>
+                    <input class="labels" type="number" id="room_id" name="room id">
+                    <br><br>
+                    <label class="labels" for="check_in_date">CHECK-IN DATE: </label>
+                    <input class="labels" type="date" id="check_in_date" name="check in date">
+                    <br><br>
+                    <label class="labels" for="check_out_date">CHECK-OUT DATE: </label>
+                    <input class="labels" type="date" id="check_out_date" name="check out date">
+                    <br><br>
+                    <button class="buttons" id="rentalButton" type="submit">Create Rental</button>
+                </form>
             </div>
         </div>
 

@@ -38,13 +38,13 @@ body {
     flex:1;
 }
 .box-1 {
-    height: 95%;
     background-color: lightsalmon;
-    margin-right: 4vh;
+    margin-right: 2vh;
     margin-left: 3vh;
 }
 .box-2 {
-    background-color: blue;
+    background-color: cadetblue;
+    margin-left: 2vh;
     margin-right: 3vh;
 }
 
