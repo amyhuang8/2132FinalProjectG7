@@ -962,12 +962,8 @@ SELECT * FROM room;
 SELECT * FROM room WHERE availability = true;
 
 SELECT * FROM ehotels.room r JOIN ehotels.hotel h
-    ON r.hotel_id = h.hotel_id WHERE r.availability = true;
+ON r.hotel_id = h.hotel_id WHERE r.availability = true;
 
--- select all from room where availability = true and capacity = 2 and view_type = 'ocean' and price <= 100 and hotel category = '1';
-select * from room
-                  join hotel on room.hotel_id = hotel.hotel_id
-where rating = 5;
 
 
 -- ---------------------------------------------------------------------------------------------------------------------
@@ -1154,7 +1150,7 @@ ORDER BY e.employee_id;
 DROP TABLE IF EXISTS customer;
 CREATE TABLE customer
 (
-    customer_id           SERIAL,
+    customer_id           SERIAL UNIQUE,
     first_name            VARCHAR(25) NOT NULL,
     last_name             VARCHAR(25) NOT NULL,
     SIN                   CHAR(9)     NOT NULL UNIQUE,
@@ -1164,7 +1160,7 @@ CREATE TABLE customer
     customer_phone_number CHAR(10),
     customer_email        VARCHAR(30) NOT NULL CHECK (customer_email LIKE '_%@_%._%') UNIQUE,
     FOREIGN KEY (customer_address_id) REFERENCES address (id) ON DELETE CASCADE ON UPDATE CASCADE,
-    PRIMARY KEY (customer_id)
+    PRIMARY KEY (customer_id, customer_email)
 );
 
 -- --------------------------------------
@@ -1214,17 +1210,15 @@ CREATE TABLE booking
 DROP TABLE IF EXISTS rental;
 CREATE TABLE rental
 (
-    rental_id   SERIAL,
-    booking_id  INT  NOT NULL,
-    check_in    DATE NOT NULL,
-    check_out   DATE NOT NULL,
-    room_id     INT  NOT NULL,
-    employee_id INT  NOT NULL,
-    customer_id INT  NOT NULL,
+    rental_id       SERIAL,
+    check_in        DATE NOT NULL,
+    check_out       DATE NOT NULL,
+    room_id         INT  NOT NULL,
+    employee_id     INT  NOT NULL,
+    customer_email  VARCHAR(30)  NOT NULL,
     FOREIGN KEY (employee_id) REFERENCES employee (employee_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (customer_id) REFERENCES customer (customer_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (customer_email) REFERENCES customer (customer_email) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (room_id) REFERENCES room (room_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (booking_id) REFERENCES booking (booking_id) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (rental_id)
 );
 
@@ -1242,6 +1236,7 @@ CREATE TABLE archive
     room_num    INT           NOT NULL,
     final_price NUMERIC(8, 2) NOT NULL,
     customer_id INT           NOT NULL,
+    customer_email VARCHAR(30),
     employee_id INT           NOT NULL,
     PRIMARY KEY (archive_id)
 );
@@ -1267,7 +1262,7 @@ CREATE VIEW capacity_of_all_rooms AS
 SELECT r.room_num, r.capacity, h.name
 FROM room r, hotel h
 WHERE r.hotel_id = h.hotel_id AND
-      h.hotel_id = 1 -- replace this with a specific hotel name
+        h.hotel_id = 1 -- replace this with a specific hotel name
 ORDER BY r.room_num;
 
 SELECT * FROM capacity_of_all_rooms;
@@ -1278,15 +1273,16 @@ SELECT * FROM capacity_of_all_rooms;
 CREATE INDEX hotel_address_index ON hotel (hotel_address_id);
 CREATE INDEX booking_customer_index ON booking (customer_id);
 CREATE INDEX room_hotel_index ON room (hotel_id);
+CREATE INDEX customer_email_index ON customer(customer_email);
 
 ------------------------------------------------------------------------------------------------------------------------
 -- TRIGGERS
 ------------------------------------------------------------------------------------------------------------------------
 -- Trigger to update the availability of a room when a booking is made
 CREATE OR REPLACE FUNCTION update_room_availability()
-RETURNS TRIGGER
+    RETURNS TRIGGER
     LANGUAGE PLPGSQL
-    AS
+AS
 $$
 BEGIN
     IF (TG_OP = 'INSERT') THEN
@@ -1300,34 +1296,34 @@ BEGIN
     END IF;
     RETURN NULL;
 END
-    $$;
+$$;
 
 -- Trigger to create an archive entry when a booking is made
 CREATE OR REPLACE FUNCTION create_archive_entry()
-RETURNS TRIGGER
+    RETURNS TRIGGER
     LANGUAGE PLPGSQL
-    AS
+AS
 $$
 BEGIN
     IF (TG_OP = 'INSERT') THEN
-        INSERT INTO archive (booking_id, check_in, check_out, room_num, final_price, customer_id, employee_id)
-        VALUES (NEW.booking_id, NEW.check_in, NEW.check_out, NEW.room_id, NEW.final_price, NEW.customer_id, NEW.employee_id);
+        INSERT INTO archive (booking_id, check_in, check_out, room_num, final_price, customer_email, customer_id, employee_id)
+        VALUES (NEW.booking_id, NEW.check_in, NEW.check_out, NEW.room_id, NEW.final_price, NEW.customer_email, NEW.customer_id, NEW.employee_id);
     END IF;
     RETURN NULL;
 END
-    $$;
+$$;
 
 -- Trigger to create an archive entry when a rental is made
 CREATE OR REPLACE FUNCTION create_archive_entry_rental()
-RETURNS TRIGGER
+    RETURNS TRIGGER
     LANGUAGE PLPGSQL
-    AS
+AS
 $$
 BEGIN
     IF (TG_OP = 'INSERT') THEN
-        INSERT INTO archive (rental_id, check_in, check_out, room_num, final_price, customer_id, employee_id)
-        VALUES (NEW.rental_id, NEW.check_in, NEW.check_out, NEW.room_id, NEW.final_price, NEW.customer_id, NEW.employee_id);
+        INSERT INTO archive (rental_id, check_in, check_out, room_num, final_price, customer_email, employee_id)
+        VALUES (NEW.rental_id, NEW.check_in, NEW.check_out, NEW.room_id, NEW.final_price, NEW.customer_, NEW.employee_id);
     END IF;
     RETURN NULL;
 END
-    $$;
+$$;
