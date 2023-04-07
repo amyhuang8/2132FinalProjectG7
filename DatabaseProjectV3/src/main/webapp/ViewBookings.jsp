@@ -31,7 +31,7 @@
 
         <!-- PROFILE BUTTON -->
         <button id="profile_button" class="header-buttons"
-                onclick="window.location.href='CustomerProfile.jsp'"
+                onclick="window.location.href='EmployeeProfile.jsp'"
                 style="float: right; border-radius: 50%;
                     background-image: url('css/resources/profileicon.png');"></button>
 
