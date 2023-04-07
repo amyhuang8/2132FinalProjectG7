@@ -1,9 +1,18 @@
+<%@ page import="com.example.ehotel.entities.Booking" %>
+<%@ page import="java.util.ArrayList" %>
+
 <!--NOT STORING CACHE-->
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
     response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
     response.setDateHeader("Expires", 0); // Proxies.
 %>
+
+<%
+    // VARIABLE DECLARATION: retrieving ArrayList of bookings from servlet
+    ArrayList<Booking> bookings = (ArrayList<Booking>) request.getAttribute("bookings");
+%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -51,5 +60,49 @@
         <h1>Pending Bookings</h1>
         <hr style="background-color: rosybrown; height: 1.5px">
         <br>
+
+        <form action="booking-servlet">
+            <!--BUTTON FOR DISPLAY-->
+            <button class="buttons" type="submit">DISPLAY TODAY'S BOOKINGS</button>
+
+            <br><br>
+
+            <!--TABLE FOR PENDING BOOKINGS-->
+            <table border="1" >
+                <!--TABLE HEADERS-->
+                <thead>
+                    <tr>
+                        <th>Booking ID</th>
+                        <th>Check In Date</th>
+                        <th>Check Out Date</th>
+                        <th>Confirmation Date</th>
+                        <th>Customer ID</th>
+                        <th>Room ID</th>
+                    </tr>
+                </thead>
+
+                <!--TABLE ROWS-->
+                <tbody>
+                    <%
+                        if ( bookings != null && !bookings.isEmpty()) { // not null and not empty
+
+                            // PROCESS: looping through arraylist
+                            for (Booking booking : bookings) {
+                    %>
+                        <tr>
+                            <td><%=booking.getId()%></td>
+                            <td><%=booking.getCheckIn()%></td>
+                            <td><%=booking.getCheckOut()%></td>
+                            <td><%=booking.getConfirmationDate()%></td>
+                            <td><%=booking.getCustomerID()%></td>
+                            <td><%=booking.getRoomNum()%></td>
+                        </tr>
+                    <%
+                            }
+                        }
+                    %>
+                </tbody>
+            </table>
+        </form>
     </body>
 </html>
