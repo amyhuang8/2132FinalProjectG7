@@ -139,11 +139,11 @@
         <label for="capacity" class="labels">Capacity:</label>
         <select name="capacity" id="capacity" style="font-size: 18px">
             <option value="default">SELECT...</option>
-            <option value="single">Single</option>
-            <option value="double">Double</option>
-            <option value="triple">Triple</option>
-            <option value="quad">Quad</option>
-            <option value="joint">Joint</option>
+            <option value="Single">Single</option>
+            <option value="Double">Double</option>
+            <option value="Triple">Triple</option>
+            <option value="Quad">Quad</option>
+            <option value="Joint">Joint</option>
         </select>
     </div>
 
@@ -158,7 +158,6 @@
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
-        <small>& up</small>
         <br><br>
         <input type="radio" id="four-stars-and-up" name="category" value=4>
         <span class="fa fa-star checked"></span>

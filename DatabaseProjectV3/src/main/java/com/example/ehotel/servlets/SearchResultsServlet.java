@@ -38,7 +38,7 @@ public class SearchResultsServlet extends HttpServlet {
 
         // hotel chain chosen
         String hotelChain = null;
-        if (req.getParameter("hotel chain") == null) { // no hotel chain was chosen
+        if (req.getParameter("hotel chain").equals("")) { // no hotel chain was chosen
             hotelChain = null;
         } else {
             hotelChain = req.getParameter("hotel chain");
@@ -46,15 +46,11 @@ public class SearchResultsServlet extends HttpServlet {
 
         // city chosen
         String city = null;
-        if (req.getParameter("location") == null) { // no city was chosen
+        if (req.getParameter("location").equals("")) { // no city was chosen
             city = null;
         } else {
             city = req.getParameter("location");
         }
-
-        String location = req.getParameter("location");
-        System.out.println("User selected location: " + location);
-
 
         // check in and check out dates
         Date checkInDate, checkOutDate;
@@ -66,7 +62,7 @@ public class SearchResultsServlet extends HttpServlet {
         }
 
         // room capacity
-        String capacity = null;
+        String capacity;
         String roomType = req.getParameter("capacity");
         if (roomType == null) { // no room type was chosen
             capacity = null;
@@ -75,7 +71,7 @@ public class SearchResultsServlet extends HttpServlet {
         }
 
         // hotel category (number of stars)
-        String category = null;
+        String category;
         if (req.getParameter("category") == null) { // no hotel category was chosen
             category = null;
         } else {
@@ -98,6 +94,7 @@ public class SearchResultsServlet extends HttpServlet {
 
         ArrayList<Room> rooms = con.getAvailableRooms();
 
+        // DEBUGGING
         LOGGER.info("HOTEL CHAIN: " + hotelChain);
         LOGGER.severe("CITY: " + city);
         LOGGER.severe("CAPACITY: " + capacity);
