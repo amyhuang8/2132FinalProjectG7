@@ -160,7 +160,7 @@
             //query for email in customers
             //if no match then create account
             //if no Name / SIN then error
-            //create rental
+            //create rental (Servlet??)
         }
 
 
