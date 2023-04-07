@@ -27,7 +27,7 @@ function filterSearchInput(input, dropdownList) {
     // VARIABLE DECLARATION: user input & cities result list
     let userInput = document.getElementById(input).value.toUpperCase();
     let resultsList = document.getElementById(dropdownList).getElementsByTagName("a");
-    let cityChosen = document.getElementById("hotel-city");
+
     // PROCESS: looping through cities list
     for (let i = 0; i < resultsList.length; i++) {
         // VARIABLE DECLARATION: each city
@@ -44,9 +44,12 @@ function filterSearchInput(input, dropdownList) {
 /**
  * This function check what city the user selects, and changes the hotel name dropdown to it
  */
-function changeButtonNameDropdown(id, value) {
+function changeButtonNameDropdown(id, value, search_id) {
     let userInput = document.getElementById(id);
     userInput.innerText = value;
+    userInput.value = value;
+
+    document.getElementById(search_id).value = value;
 }
 
 /**
