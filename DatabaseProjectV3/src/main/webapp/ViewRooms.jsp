@@ -71,15 +71,15 @@
         <!--SEARCH MENU-->
         <div id="chainDropdown" class="dropdown-content">
             <input type="text" placeholder="Search Hotel Chains..."
-                   class="dropdown-list" id="chainSearchInput"
+                   class="dropdown-list" id="chainSearchInput" name="hotel chain"
                    onkeyup="filterSearchInput('chainSearchInput', 'chainDropdown')">
 
             <!--CHAINS LIST (may need to become buttons to enable SQL querying later)-->
-            <a href="#hiltonhotels" onclick="changeButtonNameDropdown('hotel-chain','Hilton Worldwide')">Hilton Worldwide</a>
-            <a href="#omnihotels" onclick="changeButtonNameDropdown('hotel-chain','Omni Hotels & Resorts')">Omni Hotels & Resorts</a>
-            <a href="#fourseasonshotels" onclick="changeButtonNameDropdown('hotel-chain','Four Seasons Hotels & Resorts')">Four Seasons Hotels & Resorts</a>
-            <a href="#shangrilahotels" onclick="changeButtonNameDropdown('hotel-chain','Shangri-La Hotels & Resorts')">Shangri-La Hotels & Resorts</a>
-            <a href="#bestwesternhotels" onclick="changeButtonNameDropdown('hotel-chain','Best Western')">Best Western</a>
+            <a href="#hiltonhotels" onclick="changeButtonNameDropdown('hotel-chain','Hilton Worldwide', 'chainSearchInput')">Hilton Worldwide</a>
+            <a href="#omnihotels" onclick="changeButtonNameDropdown('hotel-chain','Omni Hotels & Resorts', 'chainSearchInput')">Omni Hotels & Resorts</a>
+            <a href="#fourseasonshotels" onclick="changeButtonNameDropdown('hotel-chain','Four Seasons Hotels & Resorts', 'chainSearchInput')">Four Seasons Hotels & Resorts</a>
+            <a href="#shangrilahotels" onclick="changeButtonNameDropdown('hotel-chain','Shangri-La Hotels & Resorts', 'chainSearchInput')">Shangri-La Hotels & Resorts</a>
+            <a href="#bestwesternhotels" onclick="changeButtonNameDropdown('hotel-chain','Best Western', 'chainSearchInput')">Best Western</a>
         </div>
     </div>
 
@@ -98,20 +98,20 @@
                    onkeyup="filterSearchInput('areaSearchInput', 'areaDropdown')">
 
             <!--CITIES LIST (may need to become buttons to enable SQL querying later)-->
-            <a href="#calgaryhotels" onclick="changeButtonNameDropdown('hotel-city','Calgary')">Calgary</a>
-            <a href="#cancunhotels" onclick="changeButtonNameDropdown('hotel-city','Cancun')">Cancun</a>
-            <a href="#chihuahuacityhotels" onclick="changeButtonNameDropdown('hotel-city','Chihuahua City')">Chihuahua City</a>
-            <a href="#columbushotels" onclick="changeButtonNameDropdown('hotel-city','Columbus')">Columbus</a>
-            <a href="#gatineauhotels" onclick="changeButtonNameDropdown('hotel-city','Gatineau')">Gatineau</a>
-            <a href="#mexicocityhotels" onclick="changeButtonNameDropdown('hotel-city','Mexico City')">Mexico City</a>
-            <a href="#milwaukeehotels" onclick="changeButtonNameDropdown('hotel-city','Milwaukee')">Milwaukee</a>
-            <a href="#montrealhotels" onclick="changeButtonNameDropdown('hotel-city','Montreal')">Montreal</a>
-            <a href="#nychotels" onclick="changeButtonNameDropdown('hotel-city','New York City')">New York City</a>
-            <a href="#ottawahotels" onclick="changeButtonNameDropdown('hotel-city','Ottawa')">Ottawa</a>
-            <a href="#tijuanahotels" onclick="changeButtonNameDropdown('hotel-city','Tijuana')">Tijuana</a>
-            <a href="#torontohotels" onclick="changeButtonNameDropdown('hotel-city','Toronto')">Toronto</a>
-            <a href="#volcanohotels" onclick="changeButtonNameDropdown('hotel-city','Volcano')">Volcano</a>
-            <a href="#winnipeghotels" onclick="changeButtonNameDropdown('hotel-city','Winnipeg')">Winnipeg</a>
+            <a href="#calgaryhotels" onclick="changeButtonNameDropdown('hotel-city','Calgary', 'areaSearchInput')">Calgary</a>
+            <a href="#cancunhotels" onclick="changeButtonNameDropdown('hotel-city','Cancun', 'areaSearchInput')">Cancun</a>
+            <a href="#chihuahuacityhotels" onclick="changeButtonNameDropdown('hotel-city','Chihuahua City', 'areaSearchInput')">Chihuahua City</a>
+            <a href="#columbushotels" onclick="changeButtonNameDropdown('hotel-city','Columbus', 'areaSearchInput')">Columbus</a>
+            <a href="#gatineauhotels" onclick="changeButtonNameDropdown('hotel-city','Gatineau', 'areaSearchInput')">Gatineau</a>
+            <a href="#mexicocityhotels" onclick="changeButtonNameDropdown('hotel-city','Mexico City', 'areaSearchInput')">Mexico City</a>
+            <a href="#milwaukeehotels" onclick="changeButtonNameDropdown('hotel-city','Milwaukee', 'areaSearchInput')">Milwaukee</a>
+            <a href="#montrealhotels" onclick="changeButtonNameDropdown('hotel-city','Montreal', 'areaSearchInput')">Montreal</a>
+            <a href="#nychotels" onclick="changeButtonNameDropdown('hotel-city','New York City', 'areaSearchInput')">New York City</a>
+            <a href="#ottawahotels" onclick="changeButtonNameDropdown('hotel-city','Ottawa', 'areaSearchInput')">Ottawa</a>
+            <a href="#tijuanahotels" onclick="changeButtonNameDropdown('hotel-city','Tijuana', 'areaSearchInput')">Tijuana</a>
+            <a href="#torontohotels" onclick="changeButtonNameDropdown('hotel-city','Toronto', 'areaSearchInput')">Toronto</a>
+            <a href="#volcanohotels" onclick="changeButtonNameDropdown('hotel-city','Volcano', 'areaSearchInput')">Volcano</a>
+            <a href="#winnipeghotels" onclick="changeButtonNameDropdown('hotel-city','Winnipeg', 'areaSearchInput')">Winnipeg</a>
         </div>
     </div>
 
