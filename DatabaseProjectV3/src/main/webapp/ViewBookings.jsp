@@ -44,6 +44,58 @@
                 }
             }
         </script>
+
+        <style>
+            body {
+                margin: 1vh;
+                padding: 0;
+            }
+            .container {
+                display: flex;
+                height: 75vh;
+                align-items: flex-end;
+            }
+            .box-container {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                flex: 1;
+                height: 100%;
+            }
+            .buttons-wrapper {
+                display: inline-block;
+            }
+            .button-box {
+                background-color: red;
+                padding: 5px;
+                display: inline-block;
+            }
+            .button-box-2 {
+                background-color: darkred;
+                padding: 5px;
+                display: inline-block;
+            }
+            .buttons-wrapper .button-box:not(:last-child) {
+                margin-left: 3vh;
+            }
+            .buttons button {
+                margin-right: 2vh;
+            }
+            .box {
+                height: 100%;
+                flex:1;
+            }
+            .box-1 {
+                height: 95%;
+                background-color: red;
+                margin-right: 4vh;
+                margin-left: 3vh;
+            }
+            .box-2 {
+                background-color: blue;
+                margin-right: 3vh;
+            }
+        </style>
     </head>
 
     <body onload="checkLogin()">
@@ -51,5 +103,36 @@
         <h1>Pending Bookings</h1>
         <hr style="background-color: rosybrown; height: 1.5px">
         <br>
+        <div class="container">
+            <div class="box-container">
+                <div class="buttons-wrapper">
+                    <div class="button-box">
+                        <button id="bookingsButton">Bookings</button>
+                    </div>
+                    <div class="button-box-2">
+                        <button id="availableButton">Available Rooms</button>
+                    </div>
+                </div>
+                <div class="box box-1" id="bookingsBox"></div>
+            </div>
+            <div class="box box-2" id="rentalBox"></div>
+        </div>
     </body>
+
+    <script>
+        // Get references to the button elements
+        const bookingsButton = document.getElementById("bookingsButton");
+        const availableButton = document.getElementById("availableButton");
+        const bookingsBox = document.getElementById("bookingsBox");
+        const rentalBox = document.getElementById("rentalBox");
+
+        // Add event listeners to the button elements
+        bookingsButton.addEventListener("click", function() {
+            bookingsBox.style.backgroundColor = "red";
+        });
+
+        availableButton.addEventListener("click", function() {
+            bookingsBox.style.backgroundColor = "darkred";
+        });
+    </script>
 </html>
