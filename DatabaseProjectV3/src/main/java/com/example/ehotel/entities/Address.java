@@ -1,7 +1,6 @@
 package com.example.ehotel.entities;
 
 public class Address {
-    private int id;
     private String street;
     private String city;
     private String province;
@@ -13,8 +12,7 @@ public class Address {
      * @param province province of address
      * @param country country of address
      */
-    public Address (int id, String street, String city, String province, String country) {
-        this.id = id;
+    public Address (String street, String city, String province, String country) {
         this.street = street;
         this.city = city;
         this.province = province;
@@ -22,9 +20,6 @@ public class Address {
     }
 
     // GETTERS ---------------------------------------------------------------------------------------------------------
-    public int getId() {
-        return this.id;
-    }
     public String getStreet(){
         return this.street;
     }
@@ -39,9 +34,6 @@ public class Address {
     }
 
     // SETTERS ---------------------------------------------------------------------------------------------------------
-    public void setId(int id){
-        this.id = id;
-    }
     public void setStreet(String street){
         this.street = street;
     }

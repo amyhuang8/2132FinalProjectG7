@@ -1,5 +1,6 @@
 package com.example.ehotel.connections;
 
+import com.example.ehotel.entities.Address;
 import com.example.ehotel.entities.Room;
 
 import java.sql.*;
@@ -51,7 +52,7 @@ public class RoomServer {
      * This method is used to get all the available rooms in the database.
      * @return an array of all the available rooms in the database
      */
-    public ArrayList<Room> getAvailableRooms() {
+    /*public ArrayList<Room> getAvailableRooms() {
         // PROCESS: connecting to database
         ConnectionDB db = new ConnectionDB();
 
@@ -65,7 +66,7 @@ public class RoomServer {
             st = db.getConn().createStatement();
             rs = st.executeQuery(sql);
 
-            // FILLING THE ARRAY OF ROOMS
+            // FILLING THE ARRAY WITH ROOMS
             while (rs.next()) {
                 rooms.add(new Room(rs.getInt("room_num"), rs.getString("hotel_id"),
                         rs.getDouble("price"), rs.getString("amenities"), rs.getString("capacity"),
@@ -76,7 +77,8 @@ public class RoomServer {
             LOGGER.severe("Error in getAvailableRooms() method: " + e.getMessage());
         }
         return rooms;
-    }
+    }*/
+    
 
     /**
      * This method is used to get all the available rooms from the database fitting the filter criteria.
@@ -140,7 +142,9 @@ public class RoomServer {
                 rooms.add(new Room(rs.getInt("room_num"), rs.getString("name"),
                         rs.getDouble("price"), rs.getString("amenities"), rs.getString("capacity"),
                         rs.getString("view_type"), rs.getBoolean("extendable"), rs.getDouble("damages"),
-                        rs.getBoolean("availability")));
+                        rs.getBoolean("availability"),
+                        new Address(rs.getString("street"), rs.getString("city"), rs.getString("province"), rs.getString("country")),
+                        rs.getString("rating")));
             }
 
         } catch (Exception e) {

@@ -10,6 +10,8 @@ public class Room {
     private boolean extendable; // true if extendable, false if not
     private double damages; // 0 if no damages, otherwise the amount of damages
     private boolean availability; // true if available, false if not
+    private Address address;
+    private String rating;
 
     // CONSTRUCTOR -----------------------------------------------------------------------------------------------------
     public Room ( int roomNumber, String hotelName, double price, String amenities, String capacity, String viewType, boolean extendable, double damages, boolean availability) {
@@ -22,6 +24,20 @@ public class Room {
         this.extendable = extendable;
         this.damages = damages;
         this.availability = availability;
+    }
+
+    public Room (int roomNumber, String hotelName, double price, String amenities, String capacity, String viewType, boolean extendable, double damages, boolean availability, Address address, String rating) {
+        this.roomNumber = roomNumber;
+        this.hotelName = hotelName;
+        this.price = price;
+        this.amenities = amenities;
+        this.capacity = capacity;
+        this.viewType = viewType;
+        this.extendable = extendable;
+        this.damages = damages;
+        this.availability = availability;
+        this.address = address;
+        this.rating = rating;
     }
 
     // GETTERS ---------------------------------------------------------------------------------------------------------
@@ -55,6 +71,12 @@ public class Room {
     public boolean isAvailable() {
         return availability;
     }
+    public String getAddress() {
+        return address.toString();
+    }
+    public String getRating() {
+        return rating;
+    }
 
     // SETTERS ---------------------------------------------------------------------------------------------------------
     public void setRoomNumber(int roomNumber) {
@@ -83,6 +105,12 @@ public class Room {
     }
     public void setAvailability(boolean availability) {
         this.availability = availability;
+    }
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+    public void setRating(String rating) {
+        this.rating = rating;
     }
 
     // OTHER METHODS ---------------------------------------------------------------------------------------------------

@@ -55,8 +55,8 @@
         <!-- TABLE ROWS -->
         <tr>
             <td><a href="#clicked"><%= room.getHotelName() %></a></td> <!-- CHANGE THIS TO HOTEL NAME -->
-            <td><%=room.getCapacity()%></td> <!-- CHANGE THIS TO HOTEL RATING -->
-            <td><%= room.getRoomNumber() %></td> <!-- CHANGE THIS TO ADDRESS OF HOTEL -->
+            <td><%=room.getRating()%></td> <!-- CHANGE THIS TO HOTEL RATING -->
+            <td><%= room.getAddress() %></td> <!-- CHANGE THIS TO ADDRESS OF HOTEL -->
             <td><%= room.getViewType() %></td>
             <td><%= room.getAmenities() %></td>
             <td>$ <%= room.getPrice() %></td>
