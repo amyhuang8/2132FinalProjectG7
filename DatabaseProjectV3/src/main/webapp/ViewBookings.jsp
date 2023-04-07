@@ -54,6 +54,9 @@
                 }
             }
 
+            /**
+             * BOOKINGS DISPLAY: This function displays all the bookings for today's date.
+             */
             function displayBookings() {
                 // VARIABLE DECLARATION
                 let bookingsBox = document.getElementById("bookingsBox");
@@ -64,6 +67,10 @@
                 form.style.display = "block";
             }
 
+            /**
+             * AVAILABLE ROOMS DISPLAY: This function displays all the available rooms in
+             * the employee's hotel.
+             */
             function displayRooms() {
                 // VARIABLE DECLARATION
                 let bookingsBox = document.getElementById("bookingsBox");
@@ -138,14 +145,25 @@
             </div>
             <div class="box box-2" id="rentalBox">
                 <br>
-                <input type="text" id="fName" name="fName" placeholder="First Name..."><br><br>
-                <input type="text" id="lName" name="lName" placeholder="Last Name..."><br><br>
-                <input type="text" id="sin" name="sin" placeholder="Social Insurance Number..."><br><br>
-                <input type="text" id="email" name="email" placeholder="Email Address..."><br><br>
-                <input type="text" id="roomID" name="roomID" placeholder="Room ID..."><br><br>
-                <input type="text" id="chkIn" name="chkIn" placeholder="Check-In Date..." value=><br><br>
-                <input type="text" id="chkOut" name="chkOut" placeholder="Check-Out Date..."><br><br>
-                <button id="rentalButton">Create Rental</button>
+                <label class="labels" for="fname">FIRST NAME: </label>
+                <input class="labels" type="text" id="fname" name="first name">
+                <br><br>
+                <label class="labels" for="lname">LAST NAME: </label>
+                <input class="labels" type="text" id="lname" name="last name">
+                <br><br>
+                <label class="labels" for="email">EMAIL: </label>
+                <input class="labels" type="email" id="email" name="email">
+                <br><br>
+                <label class="labels" for="room_id">ROOM ID: </label>
+                <input class="labels" type="number" id="room_id" name="room id">
+                <br><br>
+                <label class="labels" for="check_in_date">CHECK-IN DATE: </label>
+                <input class="labels" type="date" id="check_in_date" name="check in date">
+                <br><br>
+                <label class="labels" for="check_out_date">CHECK-OUT DATE: </label>
+                <input class="labels" type="date" id="check_out_date" name="check out date">
+                <br><br>
+                <button class="buttons" id="rentalButton">Create Rental</button>
             </div>
         </div>
 
