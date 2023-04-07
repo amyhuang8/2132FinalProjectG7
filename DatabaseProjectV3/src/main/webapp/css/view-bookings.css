@@ -35,12 +35,13 @@ body {
 }
 .box {
     height: 100%;
-    flex:1;
 }
 .box-1 {
     background-color: lightsalmon;
     margin-right: 2vh;
     margin-left: 3vh;
+    display: flex;
+    flex: 2;
 }
 .box-2 {
     background-color: cadetblue;

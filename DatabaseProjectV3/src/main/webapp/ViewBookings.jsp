@@ -103,41 +103,42 @@
                     </div>
                 </div>
                 <div class="box box-1" id="bookingsBox">
-                    <form id="display_bookings" action="booking-servlet">
+                    <form id="display_bookings" action="booking-servlet" style="font-size: 1em">
                         <!--TABLE FOR PENDING BOOKINGS-->
                         <table border="1" >
                             <!--TABLE HEADERS-->
                             <thead>
-                            <tr>
-                                <th>Booking ID</th>
-                                <th>Check In Date</th>
-                                <th>Check Out Date</th>
-                                <th>Confirmation Date</th>
-                                <th>Customer ID</th>
-                                <th>Room ID</th>
-                            </tr>
+                                <tr>
+                                    <th>Booking ID</th>
+                                    <th>Check In Date</th>
+                                    <th>Check Out Date</th>
+                                    <th>Confirmation Date</th>
+                                    <th>Customer ID</th>
+                                    <th>Room ID</th>
+                                </tr>
                             </thead>
 
                             <!--TABLE ROWS-->
                             <tbody>
-                            <%
-                                if ( bookings != null && !bookings.isEmpty()) { // not null and not empty
+                                <%
+                                    if ( bookings != null && !bookings.isEmpty()) { // not null and not empty
 
-                                    // PROCESS: looping through arraylist
-                                    for (Booking booking : bookings) {
-                            %>
-                            <tr>
-                                <td><%=booking.getId()%></td>
-                                <td><%=booking.getCheckIn()%></td>
-                                <td><%=booking.getCheckOut()%></td>
-                                <td><%=booking.getConfirmationDate()%></td>
-                                <td><%=booking.getCustomerID()%></td>
-                                <td><%=booking.getRoomNum()%></td>
-                            </tr>
-                            <%
+                                        // PROCESS: looping through arraylist
+                                        for (Booking booking : bookings) {
+                                %>
+                                <tr>
+                                    <td><%=booking.getId()%></td>
+                                    <td><%=booking.getCheckIn()%></td>
+                                    <td><%=booking.getCheckOut()%></td>
+                                    <td><%=booking.getConfirmationDate()%></td>
+                                    <td><%=booking.getCustomerID()%></td>
+                                    <td><%=booking.getRoomNum()%></td>
+                                    <td><button class="buttons" style="padding: 0px">FILL RENTAL FORM</button></td>
+                                </tr>
+                                <%
+                                        }
                                     }
-                                }
-                            %>
+                                %>
                             </tbody>
                         </table>
                     </form>
