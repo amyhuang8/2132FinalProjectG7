@@ -6,6 +6,13 @@
 
         <!--WEBSITE TITLE-->
         <title>eHotels Logout</title>
+
+        <!--HEADER BUTTONS-->
+        <form action="index.jsp">
+            <button type="submit" id="home_button" class="header-buttons"
+                    style="float: left; border-radius: 30%;
+                background-image: url('css/resources/homeicon.png');"></button>
+        </form>
     </head>
 
     <body>
