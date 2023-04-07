@@ -46,11 +46,15 @@ public class SearchResultsServlet extends HttpServlet {
 
         // city chosen
         String city = null;
-        if (req.getParameter("city") == null) { // no city was chosen
+        if (req.getParameter("location") == null) { // no city was chosen
             city = null;
-        } else {
-            city = req.getParameter("city");
+        } else if (req.getParameter("location").equals("Calgary")) {
+            city = "Calgary";
         }
+
+        String location = req.getParameter("location");
+        System.out.println("User selected location: " + location);
+
 
         // check in and check out dates
         Date checkInDate, checkOutDate;
@@ -63,7 +67,7 @@ public class SearchResultsServlet extends HttpServlet {
 
         // room capacity
         String capacity = null;
-        String roomType = req.getParameter("room type");
+        String roomType = req.getParameter("capacity");
         if (roomType == null) { // no room type was chosen
             capacity = null;
         } else if (roomType.equals("single")) {
@@ -114,7 +118,11 @@ public class SearchResultsServlet extends HttpServlet {
 
         //ArrayList<Room> rooms = con.getAvailableRooms();
 
-        //LOGGER.severe("PRICE: " + price);
+        LOGGER.severe("CITY: " + city);
+        LOGGER.severe("CAPACITY: " + capacity);
+        LOGGER.severe("CATEGORY: " + category);
+        LOGGER.severe("NUM OF ROOMS: " + numRooms);
+        LOGGER.severe("PRICE: " + price);
 
         // SEND THE DATA TO THE JSP
         req.setAttribute("rooms", rooms);

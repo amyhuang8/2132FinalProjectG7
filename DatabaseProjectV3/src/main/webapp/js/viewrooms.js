@@ -47,6 +47,7 @@ function filterSearchInput(input, dropdownList) {
 function changeButtonNameDropdown(id, value) {
     let userInput = document.getElementById(id);
     userInput.innerText = value;
+    userInput.value = value;
 }
 
 /**

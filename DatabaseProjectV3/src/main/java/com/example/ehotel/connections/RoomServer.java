@@ -98,23 +98,24 @@ public class RoomServer {
         ArrayList<Room> rooms = new ArrayList<>();
 
         // SQL QUERY
-        //sql = "SELECT * FROM ehotels.room r JOIN ehotels.hotel h ON r.hotel_id = h.hotel_id WHERE h.rating = ? AND r.availability = true AND r.capacity = ? AND r.view_type = ? AND h.num_of_rooms = ? AND r.price <= ?";
+        //sql = "SELECT * FROM hotel NATURAL JOIN address a  NATURAL JOIN "
 
-
+        /*
         sql = "SELECT * FROM hotel NATURAL JOIN address NATURAL JOIN room WHERE " +
-                (hotelChain != null ? "AND name = '" + hotelChain + "'" : " ") +
-                (city != null ? "city = '" + city + "'" : " ") +
-                (capacity != null ? "AND capacity = '" + capacity + "' " : " ") +
-                (rating != null ? "AND rating = '" + rating + "' " : " ") +
-                (numOfRooms != null ? "AND num_of_rooms = '" + numOfRooms + "'" : " ") +
-                (price != 0 ? "AND price <= '" + price + "'" : " ") +
-                "AND (name, hotel_id, room_num) NOT IN " +
-                "(SELECT name, hotel_id, room_num FROM rental WHERE ('" + checkInDate + "'" +
+                (hotelChain != null ? "name = '" + hotelChain + "' AND " : " ") +
+                (city != null ? "city = '" + city + "' AND " : " ") +
+                (capacity != null ? "capacity = '" + capacity + "' AND " : " ") +
+                (rating != null ? "rating = '" + rating + "' AND " : " ") +
+                (numOfRooms != null ? "num_of_rooms = '" + numOfRooms + "' AND " : " ") +
+                (price != 0 ? "price <= '" + price + "' AND " : " ") +
+                "(name, hotel_id, room_num) NOT IN " +
+                "(SELECT hotel_name, hotel_id, room_num FROM rental WHERE ('" + checkInDate + "'" +
                 " >= check_in AND '" + checkInDate + "' <= check_out) OR ('" + checkOutDate + "' >=" +
                 " check_in AND '" + checkOutDate + "' <= check_out)) AND (name, hotel_id, room_num)" +
-                " NOT IN (SELECT name, hotel_id, room_num FROM booking WHERE ('" + checkInDate +
+                " NOT IN (SELECT hotel_name, hotel_id, room_num FROM booking WHERE ('" + checkInDate +
                 "' >= check_in AND '" + checkInDate + "' <= check_out) OR ('" + checkOutDate + "'" +
                 " >= check_in AND '" + checkOutDate + "' <= check_out))";
+         */
 
         // PROCESS: getting the available rooms
         try (Connection con = db.getConn()){
