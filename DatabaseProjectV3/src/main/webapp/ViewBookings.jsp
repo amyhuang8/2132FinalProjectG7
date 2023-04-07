@@ -79,6 +79,17 @@
                 bookingsBox.style.backgroundColor = "lightcoral"; //updating background style
                 form.style.display = "none";
             }
+
+            /**
+             *
+             */
+            function fillForms(booking) {
+                let fname = document.getElementById("fname");
+                let lname = document.getElementById("lname");
+                let email = document.getElementById("email");
+                let fname = document.getElementById("fname");
+                let fname = document.getElementById("fname");
+            }
         </script>
     </head>
 
@@ -121,7 +132,7 @@
                             <!--TABLE ROWS-->
                             <tbody>
                                 <%
-                                    if ( bookings != null && !bookings.isEmpty()) { // not null and not empty
+                                    if (bookings != null && !bookings.isEmpty()) { //not null and not empty
 
                                         // PROCESS: looping through arraylist
                                         for (Booking booking : bookings) {
@@ -133,7 +144,9 @@
                                     <td><%=booking.getConfirmationDate()%></td>
                                     <td><%=booking.getCustomerID()%></td>
                                     <td><%=booking.getRoomNum()%></td>
-                                    <td><button class="buttons" style="padding: 2px; background-color: indianred">FILL RENTAL FORM</button></td>
+                                    <td><button class="buttons"
+                                                style="padding: 2px; background-color: indianred"
+                                                onclick="fillForms(booking)">FILL RENTAL FORM</button></td>
                                 </tr>
                                 <%
                                         }
@@ -146,11 +159,13 @@
             </div>
             <div class="box box-2" id="rentalBox">
                 <form style="padding: 15px">
-                    <label class="labels" for="fname">FIRST NAME: </label>
-                    <input class="labels" type="text" id="fname" name="first name">
+                    <label class="labels" for="booking_id">BOOKING ID: </label>
+                    <input class="labels" type="number" id="booking_id"
+                           name="booking id" disabled placeholder="N/A">
                     <br><br>
-                    <label class="labels" for="lname">LAST NAME: </label>
-                    <input class="labels" type="text" id="lname" name="last name">
+                    <label class="labels" for="employee_id">EMPLOYEE ID: </label>
+                    <input class="labels" type="number" id="employee_id"
+                           name="booking id" disabled value=${sessionScope.uid}>
                     <br><br>
                     <label class="labels" for="email">EMAIL: </label>
                     <input class="labels" type="email" id="email" name="email">
