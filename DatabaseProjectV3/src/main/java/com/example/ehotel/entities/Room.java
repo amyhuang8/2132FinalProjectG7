@@ -43,8 +43,11 @@ public class Room {
     public String getViewType() {
         return viewType;
     }
-    public boolean isExtendable() {
-        return extendable;
+    public String isExtendable() {
+        if (extendable) {
+            return "Yes";
+        }
+        return "No";
     }
     public double getDamages() {
         return damages;

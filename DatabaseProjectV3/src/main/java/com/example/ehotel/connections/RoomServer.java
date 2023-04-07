@@ -98,14 +98,23 @@ public class RoomServer {
         ArrayList<Room> rooms = new ArrayList<>();
 
         // SQL QUERY
-        sql = "SELECT * FROM ehotels.room r JOIN ehotels.hotel h ON r.hotel_id = h.hotel_id WHERE h.rating = ? AND r.availability = true AND r.capacity = ? AND r.view_type = ? AND h.num_of_rooms = ? AND r.price <= ?";
+        //sql = "SELECT * FROM ehotels.room r JOIN ehotels.hotel h ON r.hotel_id = h.hotel_id WHERE h.rating = ? AND r.availability = true AND r.capacity = ? AND r.view_type = ? AND h.num_of_rooms = ? AND r.price <= ?";
 
-        /*
+
         sql = "SELECT * FROM hotel NATURAL JOIN address NATURAL JOIN room WHERE " +
-                (city != null ? "province = '" + city + "'" : " ") +
-                ()
-
-         */
+                (hotelChain != null ? "AND name = '" + hotelChain + "'" : " ") +
+                (city != null ? "city = '" + city + "'" : " ") +
+                (capacity != null ? "AND capacity = '" + capacity + "' " : " ") +
+                (rating != null ? "AND rating = '" + rating + "' " : " ") +
+                (numOfRooms != null ? "AND num_of_rooms = '" + numOfRooms + "'" : " ") +
+                (price != 0 ? "AND price <= '" + price + "'" : " ") +
+                "AND (name, hotel_id, room_num) NOT IN " +
+                "(SELECT name, hotel_id, room_num FROM rental WHERE ('" + checkInDate + "'" +
+                " >= check_in AND '" + checkInDate + "' <= check_out) OR ('" + checkOutDate + "' >=" +
+                " check_in AND '" + checkOutDate + "' <= check_out)) AND (name, hotel_id, room_num)" +
+                " NOT IN (SELECT name, hotel_id, room_num FROM booking WHERE ('" + checkInDate +
+                "' >= check_in AND '" + checkInDate + "' <= check_out) OR ('" + checkOutDate + "'" +
+                " >= check_in AND '" + checkOutDate + "' <= check_out))";
 
         // PROCESS: getting the available rooms
         try (Connection con = db.getConn()){
@@ -113,11 +122,12 @@ public class RoomServer {
             // SET PREPARED STATEMENT
             ps = con.prepareStatement(sql);
             // SET EVERY ? IN THE QUERY
-            ps.setString(1, rating);
-            ps.setString(2, capacity);
-            ps.setString(3, numOfRooms);
-            ps.setInt(4, price);
-            //ps.setDate(3, (java.sql.Date) checkInDate);
+            /*
+            ps.setString(1, hotelChain);
+            ps.setString(2, city);
+            ps.setString(3, rating);
+            ps.setString(4, numOfRooms);
+            ps.setInt(5, price);*/
 
             // EXECUTE QUERY
             rs = ps.executeQuery();
