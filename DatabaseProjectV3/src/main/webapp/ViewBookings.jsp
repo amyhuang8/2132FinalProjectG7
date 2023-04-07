@@ -105,7 +105,7 @@
                 <div class="box box-1" id="bookingsBox">
                     <form id="display_bookings" action="booking-servlet" style="font-size: 1em">
                         <!--TABLE FOR PENDING BOOKINGS-->
-                        <table border="1" >
+                        <table border="1" style="font-size: 20px">
                             <!--TABLE HEADERS-->
                             <thead>
                                 <tr>
@@ -133,7 +133,7 @@
                                     <td><%=booking.getConfirmationDate()%></td>
                                     <td><%=booking.getCustomerID()%></td>
                                     <td><%=booking.getRoomNum()%></td>
-                                    <td><button class="buttons" style="padding: 0px">FILL RENTAL FORM</button></td>
+                                    <td><button class="buttons" style="padding: 2px">FILL RENTAL FORM</button></td>
                                 </tr>
                                 <%
                                         }
