@@ -225,8 +225,7 @@ VALUES ('147 Mehico', 'Tijuana', 'Baja California', 'Mexico'),
 -- -------------------------------
 -- View statements for address
 -- -------------------------------
-SELECT *
-FROM address;
+SELECT * FROM address;
 
 -- -----------------------------------
 -- Table structure for a hotel chain
@@ -958,8 +957,18 @@ VALUES (1, 33, 250.99, 'LCD TV with cable & on-demand movies, Hairdryer, Iron/ir
 -- ---------------------------------
 -- View statements for a room
 -- ---------------------------------
-SELECT *
-FROM room;
+SELECT * FROM room;
+
+SELECT * FROM room WHERE availability = true;
+
+SELECT * FROM ehotels.room r JOIN ehotels.hotel h
+    ON r.hotel_id = h.hotel_id WHERE r.availability = true;
+
+-- select all from room where availability = true and capacity = 2 and view_type = 'ocean' and price <= 100 and hotel category = '1';
+select * from room
+                  join hotel on room.hotel_id = hotel.hotel_id
+where rating = 5;
+
 
 -- ---------------------------------------------------------------------------------------------------------------------
 -- Table structure for an employee
@@ -1158,16 +1167,6 @@ CREATE TABLE customer
     PRIMARY KEY (customer_id)
 );
 
--- select all from room where availability = true and capacity = 2 and view_type = 'ocean' and price <= 100 and hotel category = '1';
-select * from room
-join hotel on room.hotel_id = hotel.hotel_id
-where rating = 5;
-
-select *
-from room r
-join hotel h on r.hotel_id = h.hotel_id
-where h.rating = 5 and r.availability = true and r.capacity = 'Double' and r.view_type = 'ocean' and r.price <= 100;
-
 -- --------------------------------------
 -- Insertion statements for customers
 -- --------------------------------------
@@ -1249,11 +1248,14 @@ CREATE TABLE archive
     PRIMARY KEY (archive_id)
 );
 
+------------------------------------------------------------------------------------------------------------------------
+-- VIEWS
+------------------------------------------------------------------------------------------------------------------------
 
 -- VIEW 1: Number of available rooms per area
 DROP VIEW IF EXISTS rooms_in_area;
 CREATE VIEW rooms_in_area AS
-SELECT COUNT(room_id) AS "number of rooms", a.city
+SELECT COUNT(room_id) , a.city
 FROM room r, address a, hotel h
 WHERE r.availability = true AND r.hotel_id = h.hotel_id AND h.hotel_address_id = a.id
 GROUP BY a.city
@@ -1271,3 +1273,63 @@ WHERE r.hotel_id = h.hotel_id AND
 ORDER BY r.room_num;
 
 SELECT * FROM capacity_of_all_rooms;
+
+------------------------------------------------------------------------------------------------------------------------
+-- INDEXES
+------------------------------------------------------------------------------------------------------------------------
+CREATE INDEX hotel_address_index ON hotel (hotel_address_id);
+CREATE INDEX booking_customer_index ON booking (customer_id);
+CREATE INDEX room_hotel_index ON room (hotel_id);
+
+------------------------------------------------------------------------------------------------------------------------
+-- TRIGGERS
+------------------------------------------------------------------------------------------------------------------------
+-- Trigger to update the availability of a room when a booking is made
+CREATE OR REPLACE FUNCTION update_room_availability()
+RETURNS TRIGGER
+    LANGUAGE PLPGSQL
+    AS
+$$
+BEGIN
+    IF (TG_OP = 'INSERT') THEN
+        UPDATE room
+        SET availability = false
+        WHERE room_id = NEW.room_id;
+    ELSIF (TG_OP = 'DELETE') THEN
+        UPDATE room
+        SET availability = true
+        WHERE room_id = OLD.room_id;
+    END IF;
+    RETURN NULL;
+END
+    $$;
+
+-- Trigger to create an archive entry when a booking is made
+CREATE OR REPLACE FUNCTION create_archive_entry()
+RETURNS TRIGGER
+    LANGUAGE PLPGSQL
+    AS
+$$
+BEGIN
+    IF (TG_OP = 'INSERT') THEN
+        INSERT INTO archive (booking_id, check_in, check_out, room_num, final_price, customer_id, employee_id)
+        VALUES (NEW.booking_id, NEW.check_in, NEW.check_out, NEW.room_id, NEW.final_price, NEW.customer_id, NEW.employee_id);
+    END IF;
+    RETURN NULL;
+END
+    $$;
+
+-- Trigger to create an archive entry when a rental is made
+CREATE OR REPLACE FUNCTION create_archive_entry_rental()
+RETURNS TRIGGER
+    LANGUAGE PLPGSQL
+    AS
+$$
+BEGIN
+    IF (TG_OP = 'INSERT') THEN
+        INSERT INTO archive (rental_id, check_in, check_out, room_num, final_price, customer_id, employee_id)
+        VALUES (NEW.rental_id, NEW.check_in, NEW.check_out, NEW.room_id, NEW.final_price, NEW.customer_id, NEW.employee_id);
+    END IF;
+    RETURN NULL;
+END
+    $$;
