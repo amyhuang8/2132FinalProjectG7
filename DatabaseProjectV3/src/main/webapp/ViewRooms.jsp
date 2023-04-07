@@ -90,7 +90,6 @@
                 class="buttons" id="hotel-city" type="button">HOTEL LOCATIONS
         </button>
 
-
         <!--SEARCH MENU-->
         <div id="areaDropdown" class="dropdown-content">
             <input type="text" placeholder="Search Cities..."

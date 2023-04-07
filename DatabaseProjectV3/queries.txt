@@ -1201,10 +1201,8 @@ CREATE TABLE booking
     check_in          DATE NOT NULL,
     check_out         DATE NOT NULL,
     confirmation_date DATE NOT NULL,
-    employee_id       INT  NOT NULL,
     customer_id       INT  NOT NULL,
     room_id           INT,
-    FOREIGN KEY (employee_id) REFERENCES employee (employee_id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (customer_id) REFERENCES customer (customer_id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (room_id) REFERENCES room (room_id) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (booking_id)

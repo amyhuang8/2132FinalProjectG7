@@ -7,10 +7,8 @@ public class Booking {
     private Date checkIn;
     private Date checkOut;
     private Date confirmationDate;
-    private int employeeID;
     private int customerID;
     private int roomNum;
-
 
     /**
      * Constructor to save a booking's data
@@ -18,16 +16,14 @@ public class Booking {
      * @param checkIn check in date of customer's booking
      * @param checkOut check out date of customer's booking
      * @param confirmationDate confirmation date of customer's booking
-     * @param employeeID id of employee in charge of booking
      * @param customerID id of customer's booking
      * @param roomNum room number of booking
      */
-    public Booking(int id, Date checkIn, Date checkOut, Date confirmationDate, int employeeID, int customerID, int roomNum) {
+    public Booking(int id, Date checkIn, Date checkOut, Date confirmationDate, int customerID, int roomNum) {
         this.id = id;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.confirmationDate = confirmationDate;
-        this.employeeID = employeeID;
         this.customerID = customerID;
         this.roomNum = roomNum;
     }
@@ -45,9 +41,6 @@ public class Booking {
     public Date getConfirmationDate() {
         return this.confirmationDate;
     }
-    public int getEmployeeID() {
-        return this.employeeID;
-    }
     public int getCustomerID() {
         return this.customerID;
     }
@@ -56,9 +49,7 @@ public class Booking {
     }
 
     // SETTERS ---------------------------------------------------------------------------------------------------------
-    public void setId(int id) {
-        this.id = id;
-    }
+    public void setId(int id) { this.id = id; }
     public void setCheckIn(Date checkIn) {
         this.checkIn = checkIn;
     }
@@ -67,9 +58,6 @@ public class Booking {
     }
     public void setConfirmationDate(Date confirmationDate) {
         this.confirmationDate = confirmationDate;
-    }
-    public void setEmployeeID(int employeeID) {
-        this.employeeID = employeeID;
     }
     public void setCustomerID(int customerID) {
         this.customerID = customerID;
