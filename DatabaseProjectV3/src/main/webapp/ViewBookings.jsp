@@ -93,12 +93,12 @@
                 <div class="buttons-wrapper">
                     <div class="button-box">
                         <button id="bookingsButton" class="buttons"
-                                style="background-color: lightsalmon; color: black; border: none"
+                                style="background-color: lightsalmon; border: none"
                                 onclick="displayBookings()">Bookings</button>
                     </div>
                     <div class="button-box-2">
                         <button id="availableButton" class="buttons"
-                                style="background-color: lightcoral; color: black; border: none"
+                                style="background-color: lightcoral; border: none"
                                 onclick="displayRooms()">Available Rooms</button>
                     </div>
                 </div>
@@ -133,7 +133,7 @@
                                     <td><%=booking.getConfirmationDate()%></td>
                                     <td><%=booking.getCustomerID()%></td>
                                     <td><%=booking.getRoomNum()%></td>
-                                    <td><button class="buttons" style="padding: 2px">FILL RENTAL FORM</button></td>
+                                    <td><button class="buttons" style="padding: 2px; background-color: indianred">FILL RENTAL FORM</button></td>
                                 </tr>
                                 <%
                                         }
