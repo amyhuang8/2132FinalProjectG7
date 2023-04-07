@@ -2,7 +2,7 @@ package com.example.ehotel.entities;
 
 public class Room {
     private int roomNumber;
-    private int hotelID;
+    private String hotelName;
     private double price;
     private String amenities;
     private String capacity;
@@ -12,9 +12,9 @@ public class Room {
     private boolean availability; // true if available, false if not
 
     // CONSTRUCTOR -----------------------------------------------------------------------------------------------------
-    public Room ( int roomNumber, int hotelID, double price, String amenities, String capacity, String viewType, boolean extendable, double damages, boolean availability) {
+    public Room ( int roomNumber, String hotelName, double price, String amenities, String capacity, String viewType, boolean extendable, double damages, boolean availability) {
         this.roomNumber = roomNumber;
-        this.hotelID = hotelID;
+        this.hotelName = hotelName;
         this.price = price;
         this.amenities = amenities;
         this.capacity = capacity;
@@ -28,8 +28,8 @@ public class Room {
     public int getRoomNumber() {
         return roomNumber;
     }
-    public int getHotelID() {
-        return hotelID;
+    public String getHotelName() {
+        return hotelName;
     }
     public double getPrice() {
         return price;
@@ -60,8 +60,8 @@ public class Room {
     public void setRoomNumber(int roomNumber) {
         this.roomNumber = roomNumber;
     }
-    public void setHotelID(int hotelID) {
-        this.hotelID = hotelID;
+    public void setHotelName(String hotelName) {
+        this.hotelName = hotelName;
     }
     public void setPrice(double price) {
         this.price = price;

@@ -67,7 +67,7 @@ public class RoomServer {
 
             // FILLING THE ARRAY OF ROOMS
             while (rs.next()) {
-                rooms.add(new Room(rs.getInt("room_num"), rs.getInt("hotel_id"),
+                rooms.add(new Room(rs.getInt("room_num"), rs.getString("hotel_id"),
                         rs.getDouble("price"), rs.getString("amenities"), rs.getString("capacity"),
                         rs.getString("view_type"), rs.getBoolean("extendable"), rs.getDouble("damages"),
                         rs.getBoolean("availability")));
@@ -124,7 +124,7 @@ public class RoomServer {
                     "WHERE ('" + checkInDate + "' >= check_in AND '" + checkInDate + "' <= check_out) OR ('" + checkOutDate + "' >= check_in AND '" + checkOutDate + "' <= check_out))";
         }
 
-        LOGGER.info(sql);
+        LOGGER.severe("SQL: " + sql);
 
         // PROCESS: getting the available rooms
         try (Connection con = db.getConn()){
@@ -137,11 +137,12 @@ public class RoomServer {
 
             // FILLING THE ARRAY WITH ROOMS
             while (rs.next()) {
-                rooms.add(new Room(rs.getInt("room_num"), rs.getInt("hotel_id"),
+                rooms.add(new Room(rs.getInt("room_num"), rs.getString("name"),
                         rs.getDouble("price"), rs.getString("amenities"), rs.getString("capacity"),
                         rs.getString("view_type"), rs.getBoolean("extendable"), rs.getDouble("damages"),
                         rs.getBoolean("availability")));
             }
+
         } catch (Exception e) {
             LOGGER.severe("Error in filterRoom() method: " + e.getMessage());
         }

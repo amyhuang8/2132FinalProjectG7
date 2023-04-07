@@ -90,9 +90,9 @@ public class SearchResultsServlet extends HttpServlet {
         int price = Integer.parseInt(req.getParameter("price"));
 
         // PROCESS: filter booking of room available
-        //ArrayList<Room> rooms = con.filterRoom(hotelChain, city, new java.sql.Date(checkInDate.getTime()), new java.sql.Date(checkOutDate.getTime()), capacity, category, numRooms, price);
+        ArrayList<Room> rooms = con.filterRoom(hotelChain, city, new java.sql.Date(checkInDate.getTime()), new java.sql.Date(checkOutDate.getTime()), capacity, category, numRooms, price);
 
-        ArrayList<Room> rooms = con.getAvailableRooms();
+        //ArrayList<Room> rooms = con.getAvailableRooms();
 
         // DEBUGGING
         LOGGER.info("HOTEL CHAIN: " + hotelChain);

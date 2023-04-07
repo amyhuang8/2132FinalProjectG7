@@ -54,7 +54,7 @@
             for (Room room : rooms) { %>
         <!-- TABLE ROWS -->
         <tr>
-            <td><a href="#clicked"><%= room.getHotelID() %></a></td> <!-- CHANGE THIS TO HOTEL NAME -->
+            <td><a href="#clicked"><%= room.getHotelName() %></a></td> <!-- CHANGE THIS TO HOTEL NAME -->
             <td><%=room.getCapacity()%></td> <!-- CHANGE THIS TO HOTEL RATING -->
             <td><%= room.getRoomNumber() %></td> <!-- CHANGE THIS TO ADDRESS OF HOTEL -->
             <td><%= room.getViewType() %></td>
