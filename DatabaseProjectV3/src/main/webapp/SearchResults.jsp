@@ -21,6 +21,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta http-equiv="Content-Language" content="ch-cn">
     <link rel="stylesheet" href="css/styles.css">
+    <script src="js/searchresults.js"></script>
 
     <!-- TITLE -->
     <title>Search Results</title>
@@ -54,7 +55,7 @@
             for (Room room : rooms) { %>
         <!-- TABLE ROWS -->
         <tr>
-            <td><a href="#clicked"><%= room.getHotelName() %></a></td> <!-- CHANGE THIS TO HOTEL NAME -->
+            <td><a href="#clicked" onclick="confirmBooking()"><%= room.getHotelName() %></a></td> <!-- CHANGE THIS TO HOTEL NAME -->
             <td><%=room.getRating()%></td> <!-- CHANGE THIS TO HOTEL RATING -->
             <td><%= room.getAddress() %></td> <!-- CHANGE THIS TO ADDRESS OF HOTEL -->
             <td><%= room.getViewType() %></td>

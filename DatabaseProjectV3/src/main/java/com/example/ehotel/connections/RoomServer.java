@@ -100,7 +100,7 @@ public class RoomServer {
         ArrayList<Room> rooms = new ArrayList<>();
 
         // SQL QUERY
-        sql = "SELECT * FROM ehotels.hotel NATURAL JOIN ehotels.address NATURAL JOIN ehotels.room";
+        sql = "SELECT DISTINCT * FROM ehotels.hotel NATURAL JOIN ehotels.address NATURAL JOIN ehotels.room";
         if (hotelChain != null) {
             sql += " WHERE name = '" + hotelChain + "'";
         }

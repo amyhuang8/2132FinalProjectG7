@@ -64,7 +64,7 @@ public class SearchResultsServlet extends HttpServlet {
         // room capacity
         String capacity;
         String roomType = req.getParameter("capacity");
-        if (roomType == null) { // no room type was chosen
+        if (roomType == null || roomType.equals("default")) { // no room type was chosen
             capacity = null;
         } else {
             capacity = roomType;
@@ -95,14 +95,14 @@ public class SearchResultsServlet extends HttpServlet {
         //ArrayList<Room> rooms = con.getAvailableRooms();
 
         // DEBUGGING
-        /*
+
         LOGGER.info("HOTEL CHAIN: " + hotelChain);
         LOGGER.severe("CITY: " + city);
         LOGGER.severe("CAPACITY: " + capacity);
         LOGGER.severe("CATEGORY: " + category);
         LOGGER.severe("NUM OF ROOMS: " + numRooms);
         LOGGER.severe("PRICE: " + price);
-         */
+
 
         // SEND THE DATA TO THE JSP
         req.setAttribute("rooms", rooms);
