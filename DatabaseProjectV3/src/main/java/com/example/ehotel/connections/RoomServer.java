@@ -1,6 +1,5 @@
 package com.example.ehotel.connections;
 
-import com.example.ehotel.entities.Address;
 import com.example.ehotel.entities.Room;
 
 import java.sql.*;
@@ -101,7 +100,7 @@ public class RoomServer {
 
         // SQL QUERY
 
-        sql = "SELECT name, num_of_rooms, rating,price, room_id, amenities, capacity, view_type, damages, extendable " +
+        sql = "SELECT DISTINCT name, num_of_rooms, rating,price, room_id, amenities, capacity, view_type, damages, extendable " +
                 "FROM ehotels.hotel NATURAL JOIN ehotels.address NATURAL JOIN ehotels.room";
         if (hotelChain != null) {
             sql += " WHERE name = '" + hotelChain + "'";
@@ -129,9 +128,9 @@ public class RoomServer {
         }
         sql += " ORDER BY price";
 
-        /*
 
-        sql = "SELECT name, num_of_rooms, rating,price, room_id, amenities, capacity, view_type, damages, extendable" +
+/*
+        sql = "SELECT DISTINCT name, num_of_rooms, rating,price, room_id, amenities, capacity, view_type, damages, extendable" +
                 " FROM ehotels.hotel NATURAL JOIN ehotels.address NATURAL JOIN ehotels.room WHERE " +
                 (city != null ? "city = '" + city + "'" : " ") +
                 (capacity != null ? "AND capacity = '" + capacity + "' " : " ") +
@@ -146,10 +145,10 @@ public class RoomServer {
                 " NOT IN (SELECT name, hotel_id, room_num FROM ehotels.name_of_hotel_from_booking WHERE ('" + checkInDate +
                 "' >= check_in AND '" + checkInDate + "' <= check_out) OR ('" + checkOutDate + "' " +
                 " >= check_in AND '" + checkOutDate + "' <= check_out))" +
-                "ORDER BY price";
+                "ORDER BY room_id";
 
-         */
 
+ */
         LOGGER.severe("SQL: " + sql);
 
         try (Connection con = db.getConn()){
