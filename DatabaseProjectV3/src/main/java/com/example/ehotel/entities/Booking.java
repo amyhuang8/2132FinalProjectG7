@@ -41,7 +41,7 @@ public class Booking {
     public Date getConfirmationDate() {
         return this.confirmationDate;
     }
-    public String getCustomerID() {
+    public String getEmail() {
         return this.email;
     }
     public int getRoomNum() {
@@ -59,7 +59,7 @@ public class Booking {
     public void setConfirmationDate(Date confirmationDate) {
         this.confirmationDate = confirmationDate;
     }
-    public void setCustomerID(String customerID) {
+    public void setEmail(String email) {
         this.email = email;
     }
     public void setRoomNum(int roomNum) {

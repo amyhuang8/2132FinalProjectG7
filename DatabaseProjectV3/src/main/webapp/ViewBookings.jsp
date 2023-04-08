@@ -1,5 +1,6 @@
 <%@ page import="com.example.ehotel.entities.Booking" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.time.LocalDate" %>
 
 <!--NOT STORING CACHE-->
 <%
@@ -81,17 +82,70 @@
             }
 
             /**
-             *
+             * This function sets all the rental forms to the given booking data and disables the
+             * input fields.
+             * @param booking_id the booking ID
+             * @param email the customer email
+             * @param roomID the room ID
+             * @param checkInDate the check-in date
+             * @param checkOutDate the check-out date
              */
-            function fillForms(booking) {
+            function fillForms(booking_id, email, roomID, checkInDate, checkOutDate) {
                 // VARIABLE DECLARATION: the forms
-                let email = document.getElementById("email");
-                let roomID = document.getElementById("room_id");
-                let checkInDate = document.getElementById("check_in_date");
-                let checkOutDate = document.getElementById("check_out_date");
+                let formBookingID = document.getElementById("booking_id");
+                let formEmail = document.getElementById("customer_email");
+                let formRoomID = document.getElementById("room_id");
+                let formCheckInDate = document.getElementById("check_in_date");
+                let formCheckOutDate = document.getElementById("check_out_date");
 
                 // INITIALIZATION: setting form values to booking info
-                email.value = booking.
+                formBookingID.value = booking_id;
+                formEmail.value = email;
+                formRoomID.value = roomID;
+                formCheckInDate.value = checkInDate;
+                formCheckOutDate.value = checkOutDate;
+
+                // PROCESS: disabling all form fields
+                formEmail.disabled = true;
+                formRoomID.disabled = true;
+                formCheckInDate.disabled = true;
+                formCheckOutDate.disabled = true;
+
+                // PROCESS: changing cursor icon
+                formEmail.style.cursor = "not-allowed";
+                formRoomID.style.cursor = "not-allowed";
+                formCheckInDate.style.cursor = "not-allowed";
+                formCheckOutDate.style.cursor = "not-allowed";
+            }
+
+            /**
+             * This function enables specific input fields in the rental forms.
+             */
+            function enableForms() {
+                // VARIABLE DECLARATION: the forms
+                let formEmail = document.getElementById("customer_email");
+                let formRoomID = document.getElementById("room_id");
+                let formCheckInDate = document.getElementById("check_in_date");
+                let formCheckOutDate = document.getElementById("check_out_date");
+
+                // PROCESS: enabling all form fields
+                formEmail.disabled = false;
+                formRoomID.disabled = false;
+                formCheckInDate.disabled = false;
+                formCheckOutDate.disabled = false;
+
+                // PROCESS: changing cursor icon
+                formEmail.style.cursor = "default";
+                formRoomID.style.cursor = "default";
+                formCheckInDate.style.cursor = "default";
+                formCheckOutDate.style.cursor = "default";
+            }
+
+            function createRental() {
+                //query for email in customers
+                //if no match then create account
+                //if no Name / SIN then error
+                //create rental (Servlet??)
             }
         </script>
     </head>
@@ -117,7 +171,7 @@
                     </div>
                 </div>
                 <div class="box box-1" id="bookingsBox">
-                    <form id="display_bookings" action="booking-servlet" style="font-size: 1em">
+                    <form id="display_bookings" action="booking-servlet">
                         <!--TABLE FOR PENDING BOOKINGS-->
                         <table border="1" style="font-size: 20px">
                             <!--TABLE HEADERS-->
@@ -145,14 +199,15 @@
                                     <td><%=booking.getCheckIn()%></td>
                                     <td><%=booking.getCheckOut()%></td>
                                     <td><%=booking.getConfirmationDate()%></td>
-                                    <td><%=booking.getCustomerID()%></td>
+                                    <td><%=booking.getEmail()%></td>
                                     <td><%=booking.getRoomNum()%></td>
-                                    <td><button class="buttons"
+                                    <td><button class="buttons" type="button"
                                                 style="padding: 2px; background-color: indianred"
-                                                onclick="fillForms(<%=booking.getCustomerID()%>,
-                                                    <%=booking.getRoomNum()%>,
-                                                    <%=booking.getCheckIn()%>,
-                                                    <%=booking.getCheckOut()%>)">FILL RENTAL FORM</button></td>
+                                                onclick="fillForms('<%=booking.getId()%>',
+                                                    '<%=booking.getEmail()%>',
+                                                    '<%=booking.getRoomNum()%>',
+                                                    '<%=booking.getCheckIn()%>',
+                                                    '<%=booking.getCheckOut()%>')">FILL RENTAL FORM</button></td>
                                 </tr>
                                 <%
                                         }
@@ -167,51 +222,34 @@
                 <form style="padding: 15px">
                     <label class="labels" for="booking_id">BOOKING ID: </label>
                     <input class="labels" type="number" id="booking_id"
-                           name="booking id" disabled placeholder="N/A">
+                           style="cursor: not-allowed" name="booking id"
+                           disabled placeholder="N/A">
                     <br><br>
                     <label class="labels" for="employee_id">EMPLOYEE ID: </label>
                     <input class="labels" type="number" id="employee_id"
-                           name="booking id" disabled value=${sessionScope.uid}>
+                           style="cursor: not-allowed" name="booking id"
+                           disabled value=${sessionScope.uid}>
                     <br><br>
-                    <label class="labels" for="email">EMAIL: </label>
-                    <input class="labels" type="email" id="email" name="email">
+                    <label class="labels" for="customer_email">CUSTOMER EMAIL: </label>
+                    <input class="labels" type="email" id="customer_email" name="email">
                     <br><br>
                     <label class="labels" for="room_id">ROOM ID: </label>
-                    <input class="labels" type="number" id="room_id" name="room id">
+                    <input class="labels" type="number" id="room_id" name="room id" min="1">
                     <br><br>
                     <label class="labels" for="check_in_date">CHECK-IN DATE: </label>
-                    <input class="labels" type="date" id="check_in_date" name="check in date">
+                    <input class="labels" type="date" id="check_in_date" name="check in date"
+                           min="<%=LocalDate.now()%>">
                     <br><br>
                     <label class="labels" for="check_out_date">CHECK-OUT DATE: </label>
-                    <input class="labels" type="date" id="check_out_date" name="check out date">
+                    <input class="labels" type="date" id="check_out_date" name="check out date"
+                           min="<%=LocalDate.now()%>">
                     <br><br>
-                    <button class="buttons" id="rentalButton" type="submit">Create Rental</button>
+                    <button class="buttons" id="reset_button" type="reset" onclick="enableForms()"
+                            style="margin-right: 3px">RESET FORMS</button>
+                    <button class="buttons" id="rental_button" type="submit"
+                            style="margin-left: 3px">CREATE RENTAL</button>
                 </form>
             </div>
         </div>
-
-        <script>
-            // Get references to the button elements
-            const bookingsButton = document.getElementById("bookingsButton");
-            const availableButton = document.getElementById("availableButton");
-            const bookingsBox = document.getElementById("bookingsBox");
-            const rentalBox = document.getElementById("rentalBox");
-
-            const rentalButton = document.getElementById("rentalButton");
-            const fName = document.getElementById("fName");
-            const lName = document.getElementById("lName");
-            const sin = document.getElementById("sin");
-            const email = document.getElementById("email");
-            const roomID = document.getElementById("roomID");
-            const chkIn = document.getElementById("chkIn");
-            const chkOut = document.getElementById("chkOut");
-
-            rentalButton.addEventListener("click", function () {
-                //query for email in customers
-                //if no match then create account
-                //if no Name / SIN then error
-                //create rental (Servlet??)
-            })
-        </script>
     </body>
 </html>
