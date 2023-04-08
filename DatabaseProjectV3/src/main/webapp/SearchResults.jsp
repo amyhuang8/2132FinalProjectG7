@@ -46,7 +46,7 @@
             <th>Amenities</th>
             <th>Price (CAD)</th>
             <th>Extendable?</th>
-            <th>Damages(Reduction on Final Price)</th>
+            <th>Damages(Reduced on Final Price)</th>
         </tr>
         </thead>
 
@@ -57,7 +57,7 @@
         <tr>
             <td><a href="#clicked" onclick="confirmBooking()"><%= room.getHotelName() %></a></td> <!-- CHANGE THIS TO HOTEL NAME -->
             <td><%=room.getRating()%></td> <!-- CHANGE THIS TO HOTEL RATING -->
-            <td><%= room.getAddress() %></td> <!-- CHANGE THIS TO ADDRESS OF HOTEL -->
+            <td>address</td> <!-- CHANGE THIS TO ADDRESS OF HOTEL -->
             <td><%= room.getViewType() %></td>
             <td><%= room.getAmenities() %></td>
             <td>$ <%= room.getPrice() %></td>

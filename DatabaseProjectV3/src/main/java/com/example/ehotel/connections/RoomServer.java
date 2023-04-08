@@ -52,7 +52,7 @@ public class RoomServer {
      * This method is used to get all the available rooms in the database.
      * @return an array of all the available rooms in the database
      */
-    /*public ArrayList<Room> getAvailableRooms() {
+    public ArrayList<Room> getAvailableRooms() {
         // PROCESS: connecting to database
         ConnectionDB db = new ConnectionDB();
 
@@ -77,7 +77,7 @@ public class RoomServer {
             LOGGER.severe("Error in getAvailableRooms() method: " + e.getMessage());
         }
         return rooms;
-    }*/
+    }
     
 
     /**
@@ -100,7 +100,9 @@ public class RoomServer {
         ArrayList<Room> rooms = new ArrayList<>();
 
         // SQL QUERY
-        sql = "SELECT DISTINCT * FROM ehotels.hotel NATURAL JOIN ehotels.address NATURAL JOIN ehotels.room";
+
+        sql = "SELECT name, num_of_rooms, rating,price, room_id, amenities, capacity, view_type, damages, extendable " +
+                "FROM ehotels.hotel NATURAL JOIN ehotels.address NATURAL JOIN ehotels.room";
         if (hotelChain != null) {
             sql += " WHERE name = '" + hotelChain + "'";
         }
@@ -125,10 +127,31 @@ public class RoomServer {
                     "AND (name, hotel_id, room_num) NOT IN (SELECT name, hotel_id, room_num FROM ehotels.name_of_hotel_from_booking " +
                     "WHERE ('" + checkInDate + "' >= check_in AND '" + checkInDate + "' <= check_out) OR ('" + checkOutDate + "' >= check_in AND '" + checkOutDate + "' <= check_out))";
         }
+        sql += " ORDER BY price";
+
+        /*
+
+        sql = "SELECT name, num_of_rooms, rating,price, room_id, amenities, capacity, view_type, damages, extendable" +
+                " FROM ehotels.hotel NATURAL JOIN ehotels.address NATURAL JOIN ehotels.room WHERE " +
+                (city != null ? "city = '" + city + "'" : " ") +
+                (capacity != null ? "AND capacity = '" + capacity + "' " : " ") +
+                (rating != null ? "AND rating <= '" + rating + "' " : " ") +
+                (hotelChain != null ? "AND name = '" + hotelChain + "'" : " ") +
+                (numOfRooms != null ? "AND num_of_rooms >= '" + numOfRooms + "'" : " ") +
+                (price != 0 ? "AND price <= '" + price + "'" : " ") +
+                "AND (name, hotel_id, room_num) NOT IN " +
+                "(SELECT name, hotel_id, room_num FROM ehotels.name_of_hotel_from_rental WHERE ('" + checkInDate + "'" +
+                " >= check_in AND '" + checkInDate + "' <= check_out) OR ('" + checkOutDate + "' >= " +
+                "check_in AND '" + checkOutDate + "' <= check_out)) AND (name, hotel_id, room_num)" +
+                " NOT IN (SELECT name, hotel_id, room_num FROM ehotels.name_of_hotel_from_booking WHERE ('" + checkInDate +
+                "' >= check_in AND '" + checkInDate + "' <= check_out) OR ('" + checkOutDate + "' " +
+                " >= check_in AND '" + checkOutDate + "' <= check_out))" +
+                "ORDER BY price";
+
+         */
 
         LOGGER.severe("SQL: " + sql);
 
-        // PROCESS: getting the available rooms
         try (Connection con = db.getConn()){
 
             // SET PREPARED STATEMENT
@@ -139,6 +162,14 @@ public class RoomServer {
 
             // FILLING THE ARRAY WITH ROOMS
             while (rs.next()) {
+                rooms.add(new Room(rs.getInt("room_id"), rs.getString("name"),
+                        rs.getDouble("price"), rs.getString("amenities"), rs.getString("capacity"),
+                        rs.getString("view_type"), rs.getBoolean("extendable"), rs.getDouble("damages"),
+                        rs.getString("rating")));
+            }
+
+            /*
+            while (rs.next()) {
                 rooms.add(new Room(rs.getInt("room_num"), rs.getString("name"),
                         rs.getDouble("price"), rs.getString("amenities"), rs.getString("capacity"),
                         rs.getString("view_type"), rs.getBoolean("extendable"), rs.getDouble("damages"),
@@ -146,6 +177,7 @@ public class RoomServer {
                         new Address(rs.getString("street"), rs.getString("city"), rs.getString("province"), rs.getString("country")),
                         rs.getString("rating")));
             }
+             */
 
         } catch (Exception e) {
             LOGGER.severe("Error in filterRoom() method: " + e.getMessage());

@@ -40,6 +40,18 @@ public class Room {
         this.rating = rating;
     }
 
+    public Room(int room_id, String name, double price, String amenities, String capacity, String view_type, boolean extendable, double damages, String rating) {
+        this.roomNumber = room_id;
+        this.hotelName = name;
+        this.price = price;
+        this.amenities = amenities;
+        this.capacity = capacity;
+        this.viewType = view_type;
+        this.extendable = extendable;
+        this.damages = damages;
+        this.rating = rating;
+    }
+
     // GETTERS ---------------------------------------------------------------------------------------------------------
     public int getRoomNumber() {
         return roomNumber;
