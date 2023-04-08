@@ -1,0 +1,31 @@
+SET search_path = ehotels;
+
+-- ---------------------------------------------------------------------------------------------------------------------
+-- Deletion for any table
+-- ---------------------------------------------------------------------------------------------------------------------
+drop view if exists capacity_of_all_rooms;
+drop view if exists name_of_hotel_from_booking;
+drop view if exists name_of_hotel_from_rental;
+drop view if exists rooms_in_area;
+drop view if exists name_of_hotel_from_booking;
+drop view if exists name_of_hotel_from_rental;
+
+drop trigger if exists insert_into_archive_booking on booking;
+drop trigger if exists insert_into_archive_rental on rental;
+drop trigger if exists make_room_unavailable on rental;
+drop trigger if exists make_room_available on rental;
+
+drop table if exists archive;
+drop table if exists rental;
+drop table if exists booking;
+drop table if exists customer;
+drop table if exists employee;
+drop table if exists room;
+drop table if exists hotel;
+drop table if exists hotel_chain;
+drop table if exists address;
+
+drop function if exists create_archive_entry_booking;
+drop function if exists create_archive_entry_rental;
+drop function if exists make_room_available;
+drop function if exists make_room_unavailable;

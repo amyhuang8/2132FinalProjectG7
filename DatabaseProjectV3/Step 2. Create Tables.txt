@@ -1,0 +1,146 @@
+-- ---------------------------------------------------------------------------------------------------------------------
+-- Table structure for address
+-- ---------------------------------------------------------------------------------------------------------------------
+DROP TABLE IF EXISTS address;
+CREATE TABLE address
+(
+    id       SERIAL,
+    street   VARCHAR(50) NOT NULL,
+    city     VARCHAR(25) NOT NULL,
+    province VARCHAR(25) NOT NULL,
+    country  VARCHAR(7)  NOT NULL,
+    PRIMARY KEY (id)
+);
+
+
+-- ---------------------------------------------------------------------------------------------------------------------
+-- Table structure for a hotel
+-- ---------------------------------------------------------------------------------------------------------------------
+DROP TABLE IF EXISTS hotel_chain;
+CREATE TABLE hotel_chain
+(
+    name                   VARCHAR(50)  NOT NULL,
+    hotel_chain_address_id SERIAL,
+    num_of_hotels          INT          NOT NULL,
+    email                  VARCHAR(100) NOT NULL,
+    central_phone_number   CHAR(10)     NOT NULL,
+    FOREIGN KEY (hotel_chain_address_id) REFERENCES address (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    PRIMARY KEY (name)
+);
+
+
+-- ---------------------------------------------------------------------------------------------------------------------
+-- Table structure for a room
+-- ---------------------------------------------------------------------------------------------------------------------
+DROP TABLE IF EXISTS room;
+CREATE TABLE room
+(
+    room_id      SERIAL UNIQUE,
+    room_num     INT,
+    hotel_id     INT,
+    price        NUMERIC(8, 2),
+    amenities    VARCHAR(255),
+    capacity     VARCHAR(20),
+    view_type    VARCHAR(20),
+    extendable   BOOLEAN NOT NULL,
+    damages      NUMERIC(8, 2),
+    availability BOOLEAN NOT NULL,
+    FOREIGN KEY (hotel_id) REFERENCES hotel (hotel_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    PRIMARY KEY (room_id, room_num, hotel_id, price, capacity, view_type, extendable)
+);
+
+
+-- ---------------------------------------------------------------------------------------------------------------------
+-- Table structure for an employee
+-- ---------------------------------------------------------------------------------------------------------------------
+DROP TABLE IF EXISTS employee;
+CREATE TABLE employee
+(
+    employee_id         SMALLSERIAL UNIQUE,
+    manager_id          INT,
+    hotel_id            INT,
+    first_name          VARCHAR(25)   NOT NULL,
+    last_name           VARCHAR(25)   NOT NULL,
+    SIN                 CHAR(9)       NOT NULL UNIQUE,
+    employee_address_id INT,
+    position            VARCHAR(25)   NOT NULL,
+    salary              NUMERIC(7, 2) NOT NULL,
+    FOREIGN KEY (employee_address_id) REFERENCES address (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (hotel_id) REFERENCES hotel (hotel_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    PRIMARY KEY (employee_id, hotel_id)
+);
+
+
+-- ---------------------------------------------------------------------------------------------------------------------
+-- Table structure for a customer
+-- ---------------------------------------------------------------------------------------------------------------------
+DROP TABLE IF EXISTS customer;
+CREATE TABLE customer
+(
+    customer_id           SERIAL UNIQUE,
+    first_name            VARCHAR(25) NOT NULL,
+    last_name             VARCHAR(25) NOT NULL,
+    SIN                   CHAR(9)     NOT NULL UNIQUE,
+    customer_address_id   INT         NOT NULL,
+    registration_date     DATE,
+    credit_card_num       CHAR(16),
+    customer_phone_number CHAR(10),
+    customer_email        VARCHAR(30) NOT NULL CHECK (customer_email LIKE '_%@_%._%') UNIQUE,
+    FOREIGN KEY (customer_address_id) REFERENCES address (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    PRIMARY KEY (customer_id, customer_email)
+);
+
+
+-- ---------------------------------------------------------------------------------------------------------------------
+-- Table structure for a booking
+-- ---------------------------------------------------------------------------------------------------------------------
+DROP TABLE IF EXISTS booking;
+CREATE TABLE booking
+(
+    booking_id        SERIAL,
+    check_in          DATE NOT NULL,
+    check_out         DATE NOT NULL,
+    confirmation_date DATE NOT NULL,
+    customer_email    VARCHAR(30) NOT NULL,
+    room_id           INT,
+    final_price       NUMERIC(8, 2) NOT NULL,
+    FOREIGN KEY (room_id) REFERENCES room (room_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    PRIMARY KEY (booking_id)
+);
+
+-- ---------------------------------------------------------------------------------------------------------------------
+-- Table structure for a rental
+-- ---------------------------------------------------------------------------------------------------------------------
+DROP TABLE IF EXISTS rental;
+CREATE TABLE rental
+(
+    rental_id       SERIAL,
+    check_in        DATE NOT NULL,
+    check_out       DATE NOT NULL,
+    room_id         INT  NOT NULL,
+    employee_id     INT  NOT NULL,
+    customer_email  VARCHAR(30)  NOT NULL,
+    final_price     NUMERIC(8, 2) NOT NULL,
+    FOREIGN KEY (employee_id) REFERENCES employee (employee_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (customer_email) REFERENCES customer (customer_email) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (room_id) REFERENCES room (room_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    PRIMARY KEY (rental_id)
+);
+
+-- ---------------------------------------------------------------------------------------------------------------------
+-- Table structure for an archive
+-- ---------------------------------------------------------------------------------------------------------------------
+DROP TABLE IF EXISTS archive;
+CREATE TABLE archive
+(
+    archive_id           SERIAL,
+    booking_or_rental_id INT           NOT NULL,
+    type_of_booking      VARCHAR(10)   NOT NULL,
+    check_in             DATE          NOT NULL,
+    check_out            DATE          NOT NULL,
+    room_id              INT           NOT NULL,
+    final_price          NUMERIC(8, 2) NOT NULL,
+    customer_email       VARCHAR(30)   NOT NULL,
+    employee_id          INT,
+    PRIMARY KEY (archive_id)
+);

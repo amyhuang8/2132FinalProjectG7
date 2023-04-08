@@ -1,37 +1,7 @@
-SET search_path = ehotels;
-
 -- ---------------------------------------------------------------------------------------------------------------------
--- Deletion for any table
--- ---------------------------------------------------------------------------------------------------------------------
-drop table archive;
-drop table rental;
-drop table booking;
-drop table customer;
-drop table employee;
-drop table room;
-drop table hotel;
-drop table hotel_chain;
-drop table address;
-
--- ---------------------------------------------------------------------------------------------------------------------
--- Table structure for address
--- ---------------------------------------------------------------------------------------------------------------------
-DROP TABLE IF EXISTS address;
-CREATE TABLE address
-(
-    id       SERIAL,
-    street   VARCHAR(50) NOT NULL,
-    city     VARCHAR(25) NOT NULL,
-    province VARCHAR(25) NOT NULL,
-    country  VARCHAR(7)  NOT NULL,
-    PRIMARY KEY (id)
-);
-
--- ----------------------------------
 -- Insertion statements for address
--- ----------------------------------
+-- ---------------------------------------------------------------------------------------------------------------------
 
--- for hotel chains (id #: 1-5)
 INSERT INTO address (street, city, province, country)
 VALUES ('123 Laurier Ave', 'Ottawa', 'Ontario', 'Canada'),
        ('12 Union St', 'Toronto', 'Ontario', 'Canada'),
@@ -222,67 +192,11 @@ VALUES ('147 Mehico', 'Tijuana', 'Baja California', 'Mexico'),
        ('896 Broadway', 'New York City', 'New York', 'America'),
        ('468 Cordova St', 'Vancouver', 'British Columbia', 'Canada');
 
--- -------------------------------
--- View statements for address
--- -------------------------------
-SELECT * FROM address;
 
--- -----------------------------------
--- Table structure for a hotel chain
--- -----------------------------------
-DROP TABLE IF EXISTS hotel_chain;
-CREATE TABLE hotel_chain
-(
-    name                   VARCHAR(50)  NOT NULL,
-    hotel_chain_address_id SERIAL,
-    num_of_hotels          INT          NOT NULL,
-    email                  VARCHAR(100) NOT NULL,
-    central_phone_number   CHAR(10)     NOT NULL,
-    FOREIGN KEY (hotel_chain_address_id) REFERENCES address (id) ON DELETE CASCADE ON UPDATE CASCADE,
-    PRIMARY KEY (name)
-);
-
--- -------------------------------------
--- Insertion statements for hotel_chain
--- -------------------------------------
-INSERT INTO hotel_chain (name, num_of_hotels, email, central_phone_number)
-VALUES ('Hilton Worldwide', 40, 'hiltonworldwide@email.com', 6131231234),
-       ('Omni Hotels & Resorts', 15, 'omnihotels@email.com', 4161231234),
-       ('Four Seasons Hotels & Resorts', 21, 'fourseasonshotels@email.com', 4163214321),
-       ('Shangri-La Hotels & Resorts', 6, 'shangri-lihotels@email.com', 6041231234),
-       ('Best Western', 66, 'bestwestern@email.com', 4031231234);
-
--- -------------------------------
--- View statements for address
--- -------------------------------
-SELECT *
-FROM hotel_chain; -- view everything
-
-SELECT h.name, a.street, a.city, a.province, a.country -- view the entire address of all hotel chains
-FROM address a
-         INNER JOIN hotel_chain h ON h.hotel_chain_address_id = a.id;
 
 -- ---------------------------------------------------------------------------------------------------------------------
--- Table structure for a hotel
--- ---------------------------------------------------------------------------------------------------------------------
-DROP TABLE IF EXISTS hotel;
-CREATE TABLE hotel
-(
-    hotel_id           SERIAL,
-    name               VARCHAR(50)   NOT NULL,
-    num_of_rooms       INT           NOT NULL,
-    hotel_address_id   INT,
-    email              VARCHAR(30)   NOT NULL,
-    hotel_phone_number CHAR(10)      NOT NULL,
-    rating             int NOT NULL,
-    FOREIGN KEY (name) REFERENCES hotel_chain (name) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (hotel_address_id) REFERENCES address (id) ON DELETE CASCADE ON UPDATE CASCADE,
-    PRIMARY KEY (hotel_id)
-);
-
--- ----------------------------------
 -- Insertion statements for a hotel
--- ----------------------------------
+-- ---------------------------------------------------------------------------------------------------------------------
 
 -- insertion statements for hilton hotels worldwide
 INSERT INTO hotel (name, num_of_rooms, hotel_address_id, email, hotel_phone_number, rating)
@@ -339,41 +253,7 @@ VALUES ('Best Western', 5, 38, 'bestwestern1@email.com', 2042948568, 4),
        ('Best Western', 5, 44, 'bestwestern7@email.com', 6214209000, 3),
        ('Best Western', 5, 45, 'bestwestern8@email.com', 8086817000, 5);
 
--- -------------------------------
--- View statements for hotel
--- -------------------------------
-SELECT *
-FROM hotel; -- view everything
 
-SELECT h.name,
-       h.hotel_address_id,
-       a.street,
-       a.city,
-       a.province,
-       a.country -- view the entire address of all hotel (ordered by their id's)
-FROM address a
-         JOIN hotel h ON h.hotel_address_id = a.id
-ORDER BY h.hotel_id;
-
--- ---------------------------------------------------------------------------------------------------------------------
--- Table structure for a room
--- ---------------------------------------------------------------------------------------------------------------------
-DROP TABLE IF EXISTS room;
-CREATE TABLE room
-(
-    room_id      SERIAL UNIQUE,
-    room_num     INT,
-    hotel_id     INT,
-    price        NUMERIC(8, 2),
-    amenities    VARCHAR(255),
-    capacity     VARCHAR(20),
-    view_type    VARCHAR(20),
-    extendable   BOOLEAN NOT NULL,
-    damages      NUMERIC(8, 2),
-    availability BOOLEAN NOT NULL,
-    FOREIGN KEY (hotel_id) REFERENCES hotel (hotel_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    PRIMARY KEY (room_id, room_num, hotel_id, price, capacity, view_type, extendable)
-);
 
 -- ----------------------------------------
 -- Insertion statements for Hilton Hotels
@@ -954,37 +834,7 @@ VALUES (1, 33, 250.99, 'LCD TV with cable & on-demand movies, Hairdryer, Iron/ir
        (5, 40, 380.49, 'Chaise lounge, LCD TV with cable & on-demand movies, Hairdryer, Mini refrigerator', 'Joint',
         'Sea', false, 0.0, true);
 
--- ---------------------------------
--- View statements for a room
--- ---------------------------------
-SELECT * FROM room;
 
-SELECT * FROM room WHERE availability = true;
-
-SELECT * FROM ehotels.room r JOIN ehotels.hotel h
-ON r.hotel_id = h.hotel_id WHERE r.availability = true;
-
-
-
--- ---------------------------------------------------------------------------------------------------------------------
--- Table structure for an employee
--- ---------------------------------------------------------------------------------------------------------------------
-DROP TABLE IF EXISTS employee;
-CREATE TABLE employee
-(
-    employee_id         SMALLSERIAL UNIQUE,
-    manager_id          INT,
-    hotel_id            INT,
-    first_name          VARCHAR(25)   NOT NULL,
-    last_name           VARCHAR(25)   NOT NULL,
-    SIN                 CHAR(9)       NOT NULL UNIQUE,
-    employee_address_id INT,
-    position            VARCHAR(25)   NOT NULL,
-    salary              NUMERIC(7, 2) NOT NULL,
-    FOREIGN KEY (employee_address_id) REFERENCES address (id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (hotel_id) REFERENCES hotel (hotel_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    PRIMARY KEY (employee_id, hotel_id)
-);
 
 -- -----------------------------------------------------
 -- Insertion statements for employees at hilton hotels
@@ -1127,201 +977,17 @@ VALUES (null, 33, 'Officer', 'Jenny', 10000025, 110, 'Chef', 45689.56),
        (140, 40, 'Tracey', 'Sketchit', 10000040, 125, 'Chef Manager', 85200.67);
 
 
--- -------------------------------
--- View statement for employee
--- -------------------------------
-SELECT *
-FROM employee;
-
-SELECT e.employee_id, -- view the entire address of an employee (ordered by their id's)
-       e.first_name,
-       a.street,
-       a.city,
-       a.province,
-       a.country
-FROM address a
-         JOIN employee e ON e.employee_address_id = a.id
-ORDER BY e.employee_id;
-
 
 -- ---------------------------------------------------------------------------------------------------------------------
--- Table structure for a customer
--- ---------------------------------------------------------------------------------------------------------------------
-DROP TABLE IF EXISTS customer;
-CREATE TABLE customer
-(
-    customer_id           SERIAL UNIQUE,
-    first_name            VARCHAR(25) NOT NULL,
-    last_name             VARCHAR(25) NOT NULL,
-    SIN                   CHAR(9)     NOT NULL UNIQUE,
-    customer_address_id   INT         NOT NULL,
-    registration_date     DATE,
-    credit_card_num       CHAR(16),
-    customer_phone_number CHAR(10),
-    customer_email        VARCHAR(30) NOT NULL CHECK (customer_email LIKE '_%@_%._%') UNIQUE,
-    FOREIGN KEY (customer_address_id) REFERENCES address (id) ON DELETE CASCADE ON UPDATE CASCADE,
-    PRIMARY KEY (customer_id, customer_email)
-);
-
--- --------------------------------------
 -- Insertion statements for customers
--- --------------------------------------
+-- ---------------------------------------------------------------------------------------------------------------------
 INSERT INTO customer (first_name, last_name, SIN, customer_address_id, registration_date, credit_card_num,
                       customer_phone_number, customer_email)
 VALUES ('Bob', 'the Builder', 111111111, 126, CURRENT_DATE, 1234567891234567, 8085679514, 'bobthebuilder@email.com'),
        ('Harper', 'Finkle', 222222222, 127, CURRENT_DATE, 1111111111111111, 6467985555, 'harperfinkle@email.com'),
        ('Max', 'Russo', 333333333, 128, CURRENT_DATE, 2222222222222222, 6045687989, 'notawizard@email.com');
 
--- -------------------------------
--- View statement for customer
--- -------------------------------
-SELECT * FROM customer;
-
-SELECT c.customer_id, -- view the entire address of a customer (ordered by their id's)
-       c.first_name,
-       a.street,
-       a.city,
-       a.province,
-       a.country
-FROM address a
-         JOIN customer c ON c.customer_address_id = a.id;
 
 
--- ---------------------------------------------------------------------------------------------------------------------
--- Table structure for a booking
--- ---------------------------------------------------------------------------------------------------------------------
-DROP TABLE IF EXISTS booking;
-CREATE TABLE booking
-(
-    booking_id        SERIAL,
-    check_in          DATE NOT NULL,
-    check_out         DATE NOT NULL,
-    confirmation_date DATE NOT NULL,
-    customer_email    VARCHAR(30) NOT NULL,
-    room_id           INT,
-    FOREIGN KEY (room_id) REFERENCES room (room_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    PRIMARY KEY (booking_id)
-);
 
--- ---------------------------------------------------------------------------------------------------------------------
--- Table structure for a rental
--- ---------------------------------------------------------------------------------------------------------------------
-DROP TABLE IF EXISTS rental;
-CREATE TABLE rental
-(
-    rental_id       SERIAL,
-    check_in        DATE NOT NULL,
-    check_out       DATE NOT NULL,
-    room_id         INT  NOT NULL,
-    employee_id     INT  NOT NULL,
-    customer_email  VARCHAR(30)  NOT NULL,
-    FOREIGN KEY (employee_id) REFERENCES employee (employee_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (customer_email) REFERENCES customer (customer_email) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (room_id) REFERENCES room (room_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    PRIMARY KEY (rental_id)
-);
 
--- ---------------------------------------------------------------------------------------------------------------------
--- Table structure for an archive
--- ---------------------------------------------------------------------------------------------------------------------
-DROP TABLE IF EXISTS archive;
-CREATE TABLE archive
-(
-    archive_id  SERIAL,
-    booking_id  INT,
-    rental_id   INT,
-    check_in    DATE          NOT NULL,
-    check_out   DATE          NOT NULL,
-    room_num    INT           NOT NULL,
-    final_price NUMERIC(8, 2) NOT NULL,
-    customer_email VARCHAR(30)NOT NULL,
-    employee_id INT           NOT NULL,
-    PRIMARY KEY (archive_id)
-);
-
-------------------------------------------------------------------------------------------------------------------------
--- VIEWS
-------------------------------------------------------------------------------------------------------------------------
-
--- VIEW 1: Number of available rooms per area
-DROP VIEW IF EXISTS rooms_in_area;
-CREATE VIEW rooms_in_area AS
-SELECT COUNT(room_id) , a.city
-FROM room r, address a, hotel h
-WHERE r.availability = true AND r.hotel_id = h.hotel_id AND h.hotel_address_id = a.id
-GROUP BY a.city
-ORDER BY a.city;
-
-SELECT * FROM rooms_in_area;
-
--- VIEW 2: Capacity of all rooms in a specific hotel
-DROP VIEW IF EXISTS capacity_of_all_rooms;
-CREATE VIEW capacity_of_all_rooms AS
-SELECT r.room_num, r.capacity, h.name
-FROM room r, hotel h
-WHERE r.hotel_id = h.hotel_id AND
-        h.hotel_id = 1 -- replace this with a specific hotel name
-ORDER BY r.room_num;
-
-SELECT * FROM capacity_of_all_rooms;
-
-------------------------------------------------------------------------------------------------------------------------
--- INDEXES
-------------------------------------------------------------------------------------------------------------------------
-CREATE INDEX hotel_address_index ON hotel (hotel_address_id);
-CREATE INDEX booking_customer_index ON booking (customer_email);
-CREATE INDEX room_hotel_index ON room (hotel_id);
-CREATE INDEX customer_email_index ON customer(customer_email);
-
-------------------------------------------------------------------------------------------------------------------------
--- TRIGGERS
-------------------------------------------------------------------------------------------------------------------------
--- Trigger to update the availability of a room when a booking is made
-CREATE OR REPLACE FUNCTION update_room_availability()
-    RETURNS TRIGGER
-    LANGUAGE PLPGSQL
-AS
-$$
-BEGIN
-    IF (TG_OP = 'INSERT') THEN
-        UPDATE room
-        SET availability = false
-        WHERE room_id = NEW.room_id;
-    ELSIF (TG_OP = 'DELETE') THEN
-        UPDATE room
-        SET availability = true
-        WHERE room_id = OLD.room_id;
-    END IF;
-    RETURN NULL;
-END
-$$;
-
--- Trigger to create an archive entry when a booking is made
-CREATE OR REPLACE FUNCTION create_archive_entry()
-    RETURNS TRIGGER
-    LANGUAGE PLPGSQL
-AS
-$$
-BEGIN
-    IF (TG_OP = 'INSERT') THEN
-        INSERT INTO archive (booking_id, check_in, check_out, room_num, final_price, customer_email, employee_id)
-        VALUES (NEW.booking_id, NEW.check_in, NEW.check_out, NEW.room_id, NEW.final_price, NEW.customer_email, NEW.employee_id);
-    END IF;
-    RETURN NULL;
-END
-$$;
-
--- Trigger to create an archive entry when a rental is made
-CREATE OR REPLACE FUNCTION create_archive_entry_rental()
-    RETURNS TRIGGER
-    LANGUAGE PLPGSQL
-AS
-$$
-BEGIN
-    IF (TG_OP = 'INSERT') THEN
-        INSERT INTO archive (rental_id, check_in, check_out, room_num, final_price, customer_email, employee_id)
-        VALUES (NEW.rental_id, NEW.check_in, NEW.check_out, NEW.room_id, NEW.final_price, NEW.customer_, NEW.employee_id);
-    END IF;
-    RETURN NULL;
-END
-$$;

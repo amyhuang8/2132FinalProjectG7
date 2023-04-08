@@ -1,0 +1,53 @@
+------------------------------------------------------------------------------------------------------------------------
+-- VIEWS
+------------------------------------------------------------------------------------------------------------------------
+
+-- VIEW 1: Number of available rooms per area
+DROP VIEW IF EXISTS rooms_in_area;
+CREATE VIEW rooms_in_area AS
+SELECT COUNT(room_id) , a.city
+FROM room r, address a, hotel h
+WHERE r.availability = true AND r.hotel_id = h.hotel_id AND h.hotel_address_id = a.id
+GROUP BY a.city
+ORDER BY a.city;
+
+SELECT * FROM rooms_in_area;
+
+-- VIEW 2: Capacity of all rooms in a specific hotel
+DROP VIEW IF EXISTS capacity_of_all_rooms;
+CREATE VIEW capacity_of_all_rooms AS
+SELECT r.room_num, r.capacity, h.name
+FROM room r, hotel h
+WHERE r.hotel_id = h.hotel_id AND
+        h.hotel_id = 1 -- replace this with a specific hotel name
+ORDER BY r.room_num;
+
+-- EXTRA VIEWS
+
+-- view hotel name from booking table
+DROP VIEW IF EXISTS name_of_hotel_from_booking;
+CREATE VIEW name_of_hotel_from_booking AS
+SELECT h.name, r.hotel_id, r.room_num, b.check_in, b.check_out
+FROM room r
+         INNER JOIN booking b ON b.room_id = r.room_id
+     INNER JOIN hotel h ON h.hotel_id = r.hotel_id;
+
+select * from name_of_hotel_from_booking;
+
+-- view to get hotel name from rental table
+DROP VIEW IF EXISTS name_of_hotel_from_rental;
+CREATE VIEW name_of_hotel_from_rental AS
+SELECT h.name, r.hotel_id as hotelID, r.room_num, a.check_in, a.check_out
+FROM room r
+         INNER JOIN rental a ON a.room_id = r.room_id
+         INNER JOIN hotel h ON h.hotel_id = r.hotel_id;
+
+
+------------------------------------------------------------------------------------------------------------------------
+-- INDEXES
+------------------------------------------------------------------------------------------------------------------------
+CREATE INDEX hotel_address_index ON hotel (hotel_address_id);
+CREATE INDEX booking_customer_index ON booking (customer_email);
+CREATE INDEX room_hotel_index ON room (hotel_id);
+CREATE INDEX customer_email_index ON customer(customer_email);
+CREATE INDEX customer_SIN_index ON customer(SIN);
