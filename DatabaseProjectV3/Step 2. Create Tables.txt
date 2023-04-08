@@ -12,6 +12,17 @@ CREATE TABLE address
     PRIMARY KEY (id)
 );
 
+DROP TABLE IF EXISTS hotel_chain;
+CREATE TABLE hotel_chain
+(
+    name                   VARCHAR(50)  NOT NULL,
+    hotel_chain_address_id SERIAL,
+    num_of_hotels          INT          NOT NULL,
+    email                  VARCHAR(100) NOT NULL,
+    central_phone_number   CHAR(10)     NOT NULL,
+    FOREIGN KEY (hotel_chain_address_id) REFERENCES address (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    PRIMARY KEY (name)
+);
 
 -- ---------------------------------------------------------------------------------------------------------------------
 -- Table structure for a hotel

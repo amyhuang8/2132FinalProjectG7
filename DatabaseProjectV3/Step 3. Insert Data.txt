@@ -192,6 +192,15 @@ VALUES ('147 Mehico', 'Tijuana', 'Baja California', 'Mexico'),
        ('896 Broadway', 'New York City', 'New York', 'America'),
        ('468 Cordova St', 'Vancouver', 'British Columbia', 'Canada');
 
+-- ---------------------------------------------------------------------------------------------------------------------
+-- Insertion statements for hotel_chain
+-- ---------------------------------------------------------------------------------------------------------------------
+INSERT INTO hotel_chain (name, num_of_hotels, email, central_phone_number)
+VALUES ('Hilton Worldwide', 40, 'hiltonworldwide@email.com', 6131231234),
+       ('Omni Hotels & Resorts', 15, 'omnihotels@email.com', 4161231234),
+       ('Four Seasons Hotels & Resorts', 21, 'fourseasonshotels@email.com', 4163214321),
+       ('Shangri-La Hotels & Resorts', 6, 'shangri-lihotels@email.com', 6041231234),
+       ('Best Western', 66, 'bestwestern@email.com', 4031231234);
 
 
 -- ---------------------------------------------------------------------------------------------------------------------
