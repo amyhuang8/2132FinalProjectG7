@@ -13,8 +13,6 @@ WHERE r.availability = true AND r.hotel_id = h.hotel_id AND h.hotel_address_id =
 GROUP BY a.city
 ORDER BY a.city;
 
-SELECT * FROM rooms_in_area;
-
 -- VIEW 2: Capacity of all rooms in a specific hotel
 DROP VIEW IF EXISTS capacity_of_all_rooms;
 CREATE VIEW capacity_of_all_rooms AS
@@ -34,7 +32,6 @@ FROM room r
          INNER JOIN booking b ON b.room_id = r.room_id
      INNER JOIN hotel h ON h.hotel_id = r.hotel_id;
 
-select * from name_of_hotel_from_booking;
 
 -- view to get hotel name from rental table
 DROP VIEW IF EXISTS name_of_hotel_from_rental;
@@ -53,3 +50,22 @@ CREATE INDEX booking_customer_index ON booking (customer_email);
 CREATE INDEX room_hotel_index ON room (hotel_id);
 CREATE INDEX customer_email_index ON customer(customer_email);
 CREATE INDEX customer_SIN_index ON customer(SIN);
+
+-- indexes to search for rooms
+CREATE INDEX check_in_index ON booking (check_in);
+CREATE INDEX check_out_index ON booking (check_out);
+CREATE INDEX check_in_index_rental ON rental (check_in);
+CREATE INDEX check_out_index_rental ON rental (check_out);
+CREATE INDEX hotel_id_index ON hotel (hotel_id);
+CREATE INDEX city_index ON address (city);
+CREATE INDEX province_index ON address (province);
+CREATE INDEX country_index ON address (country);
+CREATE INDEX room_capacity_index ON room (capacity);
+CREATE INDEX hotel_name_index ON hotel (name);
+CREATE INDEX number_of_rooms_index ON hotel (num_of_rooms);
+CREATE INDEX rating_index ON hotel (rating);
+CREATE INDEX price_index ON room (price);
+CREATE INDEX amenities_index ON room (amenities);
+CREATE INDEX view_type_index ON room (view_type);
+CREATE INDEX damages_index ON room (damages);
+CREATE INDEX extendable_index on room(extendable);
