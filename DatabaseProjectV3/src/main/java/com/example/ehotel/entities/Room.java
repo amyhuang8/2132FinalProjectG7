@@ -1,6 +1,7 @@
 package com.example.ehotel.entities;
 
 public class Room {
+    private int roomID;
     private int hotelID;
     private int roomNumber;
     private String hotelName;
@@ -15,22 +16,28 @@ public class Room {
     private String rating;
 
     // CONSTRUCTOR -----------------------------------------------------------------------------------------------------
-    public Room(int hotelID, int room_id, String name, double price, String amenities, String capacity, String view_type, boolean extendable, double damages, String rating) {
-        this.hotelID = hotelID;
-        this.roomNumber = room_id;
+    public Room(int hotel_id, String name, int rating, int room_id, int room_num, String view_type, String amenities, String capacity, double price, double damages, boolean extendable, boolean availability, Address address) {
+        this.hotelID = hotel_id;
         this.hotelName = name;
-        this.price = price;
+        this.rating = String.valueOf(rating);
+        this.roomID = room_id;
+        this.roomNumber = room_num;
+        this.viewType = view_type;
         this.amenities = amenities;
         this.capacity = capacity;
-        this.viewType = view_type;
-        this.extendable = extendable;
+        this.price = price;
         this.damages = damages;
-        this.rating = rating;
+        this.extendable = extendable;
+        this.availability = availability;
+        this.address = address;
     }
 
     // GETTERS ---------------------------------------------------------------------------------------------------------
     public int getRoomNumber() {
         return roomNumber;
+    }
+    public int getRoomID() {
+        return roomID;
     }
     public String getHotelName() {
         return hotelName;
@@ -75,6 +82,9 @@ public class Room {
     }
     public void setHotelID(int hotelID) {
         this.hotelID = hotelID;
+    }
+    public void setRoomID(int roomID) {
+        this.roomID = roomID;
     }
     public void setHotelName(String hotelName) {
         this.hotelName = hotelName;

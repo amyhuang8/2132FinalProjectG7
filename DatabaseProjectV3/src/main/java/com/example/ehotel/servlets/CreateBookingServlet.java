@@ -28,21 +28,22 @@ public class CreateBookingServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        // get session variables
         HttpSession session = req.getSession();
+        String email = (String) session.getAttribute("email");
+        int roomID = (int) session.getAttribute("roomID");
+        Date checkin = (Date) session.getAttribute("checkin");
+        Date checkout = (Date) session.getAttribute("checkout");
+
+
+        // create a new connection
         BookingServer con = new BookingServer();
 
-        // obtain the form data
-        Date checkin;
-        Date checkout;
-        try {
-            checkin = dateFormat.parse(req.getParameter("checkin"));
-            checkout = dateFormat.parse(req.getParameter("checkout"));
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-        String email = req.getParameter("email");
-        int roomID = Integer.parseInt(req.getParameter("roomID"));
-        double finalPrice = Double.parseDouble(req.getParameter("finalPrice"));
+        // obtain the row's data
+        double price = Double.parseDouble(req.getParameter("price"));
+        double damages = Double.parseDouble(req.getParameter("damages"));
+        double finalPrice = price - damages;
 
         con.createBooking(checkin, checkout, email, roomID, finalPrice);
     }

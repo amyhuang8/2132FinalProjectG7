@@ -1,5 +1,6 @@
 package com.example.ehotel.servlets;
 
+import com.example.ehotel.connections.CustomerServer;
 import com.example.ehotel.connections.HotelServer;
 import com.example.ehotel.connections.RoomServer;
 import com.example.ehotel.entities.Address;
@@ -10,6 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -26,6 +28,9 @@ public class SearchResultsServlet extends HttpServlet {
     // logger
     private static final Logger LOGGER = Logger.getLogger(SearchResultsServlet.class.getName());
 
+    // Date formatter
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         doPost(req, resp);
@@ -35,7 +40,6 @@ public class SearchResultsServlet extends HttpServlet {
 
         // VARIABLE DECLARATION
         RoomServer con = new RoomServer(); //new connection
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // date format
 
         // READ THE FORM DATA
 
@@ -103,7 +107,7 @@ public class SearchResultsServlet extends HttpServlet {
         LOGGER.severe("NUM OF ROOMS: " + numRooms);
         LOGGER.severe("PRICE: " + price);
 
-        // SEARCH FOR HOTEL HERE </3
+        // SEARCH FOR HOTEL HERE AND ADD ITS ADDRESS TO ARRAYLIST
         HotelServer hotelServer = new HotelServer();
         ArrayList<Address> addresses = new ArrayList<>();
         for (Room room : rooms) {
@@ -116,6 +120,12 @@ public class SearchResultsServlet extends HttpServlet {
             }
 
         }
+
+        // set session attributes to be used in booking servlet
+        HttpSession session = req.getSession();
+        session.setAttribute("checkInDate", checkInDate);
+        session.setAttribute("checkOutDate", checkOutDate);
+        //session.setAttribute("roomID", roomID);
 
         // SEND THE DATA TO THE JSP
         req.setAttribute("rooms", rooms);

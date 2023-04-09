@@ -30,7 +30,7 @@
     <title>Search Results</title>
 
     <!-- ENTIRE SCREEN -->
-<body>
+<body onload="checkLogin()">
 <!-- HEADER -->
 <h1 style="margin-top: 30px">Here are the results of your search!</h1>
 <hr style="background-color: rosybrown; height: 1.5px">
@@ -63,7 +63,7 @@
             <!-- TABLE ROWS -->
             <tr class="options" onclick="confirmBooking(this)">
                 <td>
-                    <input type="hidden" name="choice" id="hotel-name" value="<%= room.getHotelName() %>">
+                   <input type="hidden" name="choice" id="hotel-name" value="<%= room.getHotelName() %>">
                     <%= room.getHotelName() %>
                 </td>
                 <td>
@@ -71,8 +71,8 @@
                     <%=room.getRating()%>
                 </td>
                 <td>
-                    <input type="hidden" name="choice" id="address" value="<%= addresses.get(i) %>">
-                    <%=addresses.get(i)%>
+                    <input type="hidden" name="choice" id="address" value="<%= room.getAddress() %>">
+                    <%=room.getAddress()%>
                 </td>
                 <td>
                     <input type="hidden" name="choice" id="view-type"  value="<%= room.getViewType() %>">

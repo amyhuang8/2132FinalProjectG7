@@ -1,5 +1,6 @@
 package com.example.ehotel.connections;
 
+import com.example.ehotel.entities.Address;
 import com.example.ehotel.entities.Room;
 
 import java.sql.*;
@@ -12,7 +13,6 @@ public class RoomServer {
     // VARIABLE DECLARATION: INSTANCE VARS. FOR CONNECTION -------------------------------------------------------------
     ResultSet rs = null;
     String sql;
-    Statement st = null;
     PreparedStatement ps = null;
     private static final Logger LOGGER = Logger.getLogger(CustomerServer.class.getName()); // logger
 
@@ -70,7 +70,8 @@ public class RoomServer {
 
         // SQL QUERY
 
-        sql = "SELECT DISTINCT hotel_id, name, num_of_rooms, rating,price, room_id, amenities, capacity, view_type, damages, extendable " +
+        /*
+        sql = "SELECT DISTINCT hotel_id, room_num, name, city, num_of_rooms, rating, price, room_id, amenities, capacity, view_type, damages, extendable " +
                 "FROM ehotels.hotel NATURAL JOIN ehotels.address NATURAL JOIN ehotels.room";
         if (hotelChain != null) {
             sql += " WHERE name = '" + hotelChain + "'";
@@ -97,6 +98,24 @@ public class RoomServer {
                     "WHERE ('" + checkInDate + "' >= check_in AND '" + checkInDate + "' <= check_out) OR ('" + checkOutDate + "' >= check_in AND '" + checkOutDate + "' <= check_out))";
         }
         sql += " ORDER BY price";
+        */
+        sql = "SELECT DISTINCT *" +
+                " FROM ehotels.hotel NATURAL JOIN ehotels.address NATURAL JOIN ehotels.room WHERE hotel_address_id=id " +
+                (city != null ? "AND city = '" + city + "'" : " ") +
+                (capacity != null ? "AND capacity = '" + capacity + "' " : " ") +
+                (rating != null ? "AND rating <= '" + rating + "' " : " ") +
+                (hotelChain != null ? "AND name = '" + hotelChain + "'" : " ") +
+                (numOfRooms != null ? "AND num_of_rooms >= '" + numOfRooms + "'" : " ") +
+                (price != 0 ? "AND price <= '" + price + "'" : " ") +
+                "AND (name, hotel_id, room_num) NOT IN " +
+                "(SELECT name, hotel_id, room_num FROM ehotels.name_of_hotel_from_rental WHERE ('" + checkInDate + "'" +
+                " >= check_in AND '" + checkInDate + "' <= check_out) OR ('" + checkOutDate + "' >= " +
+                "check_in AND '" + checkOutDate + "' <= check_out)) AND (name, hotel_id, room_num)" +
+                " NOT IN (SELECT name, hotel_id, room_num FROM ehotels.name_of_hotel_from_booking WHERE ('" + checkInDate +
+                "' >= check_in AND '" + checkInDate + "' <= check_out) OR ('" + checkOutDate + "' " +
+                " >= check_in AND '" + checkOutDate + "' <= check_out))" +
+                "ORDER BY price";
+
 
         LOGGER.severe("SQL: " + sql);
 
@@ -109,12 +128,22 @@ public class RoomServer {
             rs = ps.executeQuery();
 
             // FILLING THE ARRAY WITH ROOMS
+
             while (rs.next()) {
-                rooms.add(new Room(rs.getInt("hotel_id"), rs.getInt("room_id"), rs.getString("name"),
+                /* rooms.add(new Room(rs.getInt("hotel_id"), rs.getInt("room_id"), rs.getInt("room_num") ,rs.getString("name"),
                         rs.getDouble("price"), rs.getString("amenities"), rs.getString("capacity"),
                         rs.getString("view_type"), rs.getBoolean("extendable"), rs.getDouble("damages"),
                         rs.getString("rating")));
+
+                 */
+
+                rooms.add(new Room (rs.getInt("hotel_id"), rs.getString("name"), rs.getInt("rating"),
+                        rs.getInt("room_id"), rs.getInt("room_num"), rs.getString("view_type"),
+                        rs.getString("amenities"), rs.getString("capacity"), rs.getDouble("price"),
+                        rs.getDouble("damages"), rs.getBoolean("extendable"), rs.getBoolean("availability"),
+                        new Address(rs.getString("street"), rs.getString("city"), rs.getString("province"), rs.getString("country"))));
             }
+
 
         } catch (Exception e) {
             LOGGER.severe("Error in filterRoom() method: " + e.getMessage());

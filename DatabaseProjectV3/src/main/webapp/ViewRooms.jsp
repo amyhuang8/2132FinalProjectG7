@@ -199,7 +199,7 @@
         <!-- Output price text -->
         <div class="prices">
             <small>Max price per night:</small>
-            <small>$ <span id="price"></span></small>
+            <small>$ <span id="max-price"></span></small>
         </div>
         <br>
         <!-- Slider -->
@@ -245,7 +245,7 @@
 
     <!-- Max Price Slider -->
     let slider = document.getElementById("slider-range");
-    let output = document.getElementById("price");
+    let output = document.getElementById("max-price");
     output.innerHTML = slider.value; // Display the default slider value
 
     // Update the current slider value (each time you drag the slider handle)

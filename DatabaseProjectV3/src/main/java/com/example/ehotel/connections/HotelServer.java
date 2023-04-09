@@ -14,6 +14,12 @@ public class HotelServer {
     private ResultSet rs;
     private PreparedStatement ps;
 
+    /**
+     * This method retrieves the hotel data from the database given the hotel ID
+     * @param hotelID
+     * @return
+     * @throws Exception
+     */
     public Hotel getHotel(int hotelID) throws Exception {
 
         ConnectionDB db = new ConnectionDB();

@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Rooms Available Per City</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
