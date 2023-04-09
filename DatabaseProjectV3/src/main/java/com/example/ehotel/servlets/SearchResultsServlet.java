@@ -40,7 +40,7 @@ public class SearchResultsServlet extends HttpServlet {
         // READ THE FORM DATA
 
         // hotel chain chosen
-        String hotelChain = null;
+        String hotelChain;
         if (req.getParameter("hotel chain").equals("")) { // no hotel chain was chosen
             hotelChain = null;
         } else {
@@ -48,7 +48,7 @@ public class SearchResultsServlet extends HttpServlet {
         }
 
         // city chosen
-        String city = null;
+        String city;
         if (req.getParameter("location").equals("")) { // no city was chosen
             city = null;
         } else {
@@ -82,7 +82,7 @@ public class SearchResultsServlet extends HttpServlet {
         }
 
         // number of rooms in hotel
-        String numRooms = null;
+        String numRooms;
         if (req.getParameter("num of rooms") == null) { // no number of rooms was chosen
             numRooms = null;
         } else {
@@ -117,11 +117,9 @@ public class SearchResultsServlet extends HttpServlet {
 
         }
 
-
         // SEND THE DATA TO THE JSP
         req.setAttribute("rooms", rooms);
         req.setAttribute("addresses", addresses);
         req.getRequestDispatcher("SearchResults.jsp").forward(req, resp);
-        resp.sendRedirect("SearchResults.jsp");
     }
 }
