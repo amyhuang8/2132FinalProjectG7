@@ -32,6 +32,7 @@ public class BookingServer {
         // VARIABLE DECLARATION
         ArrayList<Booking> bookings = new ArrayList<Booking>(); //new arraylist to hold bookings
         sql = "select * from ehotels.booking where cast(check_in as varchar)=?"; //SQL query
+        // TODO make sure to check for room_id/hotel_id as well
 
         Date date = new Date(); //today's date
         java.sql.Date sqlDate = new java.sql.Date(date.getTime()); //new SQL date

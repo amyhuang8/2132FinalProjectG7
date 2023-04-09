@@ -13,8 +13,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Logger;
 
-@WebServlet(name = "createBookingServer", value = "/create-booking-servlet")
-public class CreateBookingServer extends HttpServlet {
+@WebServlet(name = "createBookingServlet", value = "/create-booking-servlet")
+public class CreateBookingServlet extends HttpServlet {
     // LOGGER
     private static final Logger LOGGER = Logger.getLogger(SearchResultsServlet.class.getName());
 
