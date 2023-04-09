@@ -1,7 +1,7 @@
 package com.example.ehotel.entities;
 
 public class Room {
-    private int hotel_id;
+    private int hotelID;
     private int roomNumber;
     private String hotelName;
     private double price;
@@ -15,47 +15,9 @@ public class Room {
     private String rating;
 
     // CONSTRUCTOR -----------------------------------------------------------------------------------------------------
-    public Room ( int roomNumber, String hotelName, double price, String amenities, String capacity, String viewType, boolean extendable, double damages, boolean availability) {
-        this.roomNumber = roomNumber;
-        this.hotelName = hotelName;
-        this.price = price;
-        this.amenities = amenities;
-        this.capacity = capacity;
-        this.viewType = viewType;
-        this.extendable = extendable;
-        this.damages = damages;
-        this.availability = availability;
-    }
-
-    public Room (int roomNumber, String hotelName, double price, String amenities, String capacity, String viewType, boolean extendable, double damages, boolean availability, Address address, String rating) {
-        this.roomNumber = roomNumber;
-        this.hotelName = hotelName;
-        this.price = price;
-        this.amenities = amenities;
-        this.capacity = capacity;
-        this.viewType = viewType;
-        this.extendable = extendable;
-        this.damages = damages;
-        this.availability = availability;
-        this.address = address;
-        this.rating = rating;
-    }
-
-    public Room(int room_id, String name, double price, String amenities, String capacity, String view_type, boolean extendable, double damages, String rating) {
+    public Room(int hotelID, int room_id, String name, double price, String amenities, String capacity, String view_type, boolean extendable, double damages, String rating) {
+        this.hotelID = hotelID;
         this.roomNumber = room_id;
-        this.hotelName = name;
-        this.price = price;
-        this.amenities = amenities;
-        this.capacity = capacity;
-        this.viewType = view_type;
-        this.extendable = extendable;
-        this.damages = damages;
-        this.rating = rating;
-    }
-
-    public Room(int hotel_id, int room_id, String name, double price, String amenities, String capacity, String view_type, boolean extendable, double damages, String rating) {
-        this.roomNumber = room_id;
-        this.hotel_id = hotel_id;
         this.hotelName = name;
         this.price = price;
         this.amenities = amenities;
@@ -74,7 +36,7 @@ public class Room {
         return hotelName;
     }
     public int getHotelID() {
-        return hotel_id;
+        return hotelID;
     }
     public double getPrice() {
         return price;
@@ -110,6 +72,9 @@ public class Room {
     // SETTERS ---------------------------------------------------------------------------------------------------------
     public void setRoomNumber(int roomNumber) {
         this.roomNumber = roomNumber;
+    }
+    public void setHotelID(int hotelID) {
+        this.hotelID = hotelID;
     }
     public void setHotelName(String hotelName) {
         this.hotelName = hotelName;

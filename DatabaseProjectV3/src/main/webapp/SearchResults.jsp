@@ -1,5 +1,6 @@
 <%@ page import="com.example.ehotel.entities.Room" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.example.ehotel.entities.Address" %><%--
   Created by IntelliJ IDEA.
   User: kkris
   Date: 4/4/2023
@@ -10,6 +11,7 @@
 
 <%
     ArrayList<Room> rooms = (ArrayList<Room>) request.getAttribute("rooms");
+    ArrayList<Address> addresses = (ArrayList<Address>) request.getAttribute("addresses");
 
 %>
 
@@ -55,20 +57,22 @@
         <form action="create-booking-servlet" id="booking-form">
             <tbody>
             <%
+                int i = 0;
                 for (Room room : rooms) { %>
 
             <!-- TABLE ROWS -->
             <tr class="options" onclick="confirmBooking()">
                 <td><%= room.getHotelName() %></td>
                 <td><%=room.getRating()%></td>
-                <td>address</td> <!-- CHANGE THIS TO ADDRESS OF HOTEL -->
+                <td><%=addresses.get(i)%></td> <!-- CHANGE THIS TO ADDRESS OF HOTEL -->
                 <td><%= room.getViewType() %></td>
                 <td><%= room.getAmenities() %></td>
                 <td>$ <%= room.getPrice() %></td>
                 <td><%= room.isExtendable() %></td>
                 <td>-$<%= room.getDamages() %></td>
             </tr>
-            <% } %>
+            <% i++;
+                } %>
             </tbody>
 
         </form>

@@ -39,45 +39,15 @@ public class RoomServer {
                 data.add(rs.getString("count"));
                 data.add(rs.getString("city"));
             }
-
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
+        // closing the connection
+        db.closeDB();
+
+        // returning the array list
         return data;
     }
-
-
-    /**
-     * This method is used to get all the available rooms in the database.
-     * @return an array of all the available rooms in the database
-     */
-    public ArrayList<Room> getAvailableRooms() {
-        // PROCESS: connecting to database
-        ConnectionDB db = new ConnectionDB();
-
-        // initializing the array of rooms
-        ArrayList<Room> rooms = new ArrayList<>();
-
-        // PROCESS: getting the available rooms
-        try {
-            // SQL QUERY
-            sql = "SELECT * FROM ehotels.room WHERE availability = true";
-            st = db.getConn().createStatement();
-            rs = st.executeQuery(sql);
-
-            // FILLING THE ARRAY WITH ROOMS
-            while (rs.next()) {
-                rooms.add(new Room(rs.getInt("room_num"), rs.getString("hotel_id"),
-                        rs.getDouble("price"), rs.getString("amenities"), rs.getString("capacity"),
-                        rs.getString("view_type"), rs.getBoolean("extendable"), rs.getDouble("damages"),
-                        rs.getBoolean("availability")));
-            }
-        } catch (Exception e) {
-            LOGGER.severe("Error in getAvailableRooms() method: " + e.getMessage());
-        }
-        return rooms;
-    }
-    
 
     /**
      * This method is used to get all the available rooms from the database fitting the filter criteria.
@@ -128,25 +98,6 @@ public class RoomServer {
         }
         sql += " ORDER BY price";
 
-
-/*
-        sql = "SELECT DISTINCT name, num_of_rooms, rating,price, room_id, amenities, capacity, view_type, damages, extendable" +
-                " FROM ehotels.hotel NATURAL JOIN ehotels.address NATURAL JOIN ehotels.room WHERE " +
-                (city != null ? "city = '" + city + "'" : " ") +
-                (capacity != null ? "AND capacity = '" + capacity + "' " : " ") +
-                (rating != null ? "AND rating <= '" + rating + "' " : " ") +
-                (hotelChain != null ? "AND name = '" + hotelChain + "'" : " ") +
-                (numOfRooms != null ? "AND num_of_rooms >= '" + numOfRooms + "'" : " ") +
-                (price != 0 ? "AND price <= '" + price + "'" : " ") +
-                "AND (name, hotel_id, room_num) NOT IN " +
-                "(SELECT name, hotel_id, room_num FROM ehotels.name_of_hotel_from_rental WHERE ('" + checkInDate + "'" +
-                " >= check_in AND '" + checkInDate + "' <= check_out) OR ('" + checkOutDate + "' >= " +
-                "check_in AND '" + checkOutDate + "' <= check_out)) AND (name, hotel_id, room_num)" +
-                " NOT IN (SELECT name, hotel_id, room_num FROM ehotels.name_of_hotel_from_booking WHERE ('" + checkInDate +
-                "' >= check_in AND '" + checkInDate + "' <= check_out) OR ('" + checkOutDate + "' " +
-                " >= check_in AND '" + checkOutDate + "' <= check_out))" +
-                "ORDER BY room_id";
- */
         LOGGER.severe("SQL: " + sql);
 
         try (Connection con = db.getConn()){
@@ -168,8 +119,12 @@ public class RoomServer {
         } catch (Exception e) {
             LOGGER.severe("Error in filterRoom() method: " + e.getMessage());
         }
+
+        // close the connection
         db.closeDB();
-        return rooms; // return the array of rooms fitting the filter criteria
+
+        // return the array of rooms fitting the filter criteria
+        return rooms;
 
     }
 }

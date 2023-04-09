@@ -1,6 +1,9 @@
 package com.example.ehotel.servlets;
 
+import com.example.ehotel.connections.HotelServer;
 import com.example.ehotel.connections.RoomServer;
+import com.example.ehotel.entities.Address;
+import com.example.ehotel.entities.Hotel;
 import com.example.ehotel.entities.Room;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -101,9 +104,23 @@ public class SearchResultsServlet extends HttpServlet {
         LOGGER.severe("PRICE: " + price);
 
         // SEARCH FOR HOTEL HERE </3
+        HotelServer hotelServer = new HotelServer();
+        ArrayList<Address> addresses = new ArrayList<>();
+        for (Room room : rooms) {
+            int hotelID = room.getHotelID();
+            try {
+                Hotel hotel = hotelServer.getHotel(hotelID);
+                addresses.add(hotel.getAddress());
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+
+        }
+
 
         // SEND THE DATA TO THE JSP
         req.setAttribute("rooms", rooms);
+        req.setAttribute("addresses", addresses);
         req.getRequestDispatcher("SearchResults.jsp").forward(req, resp);
         resp.sendRedirect("SearchResults.jsp");
     }
