@@ -203,7 +203,7 @@
         </div>
         <br>
         <!-- Slider -->
-        <input type="range" class="slider" value="100" id="slider-range" name = "price" min="100" max="750" step="1">
+        <input type="range" class="slider" value="150" id="slider-range" name = "price" min="150" max="750" step="1">
         <br><br>
     </div>
 </form>
