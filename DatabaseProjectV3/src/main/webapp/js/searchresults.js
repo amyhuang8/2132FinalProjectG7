@@ -9,5 +9,7 @@ function confirmBooking() {
 
     if (response) {
         alert("Booking confirmed!");
+        // Redirect to the index page
+        document.getElementById("booking-form").submit();
     }
 }

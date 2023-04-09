@@ -1,6 +1,7 @@
 package com.example.ehotel.entities;
 
 public class Room {
+    private int hotel_id;
     private int roomNumber;
     private String hotelName;
     private double price;
@@ -52,12 +53,28 @@ public class Room {
         this.rating = rating;
     }
 
+    public Room(int hotel_id, int room_id, String name, double price, String amenities, String capacity, String view_type, boolean extendable, double damages, String rating) {
+        this.roomNumber = room_id;
+        this.hotel_id = hotel_id;
+        this.hotelName = name;
+        this.price = price;
+        this.amenities = amenities;
+        this.capacity = capacity;
+        this.viewType = view_type;
+        this.extendable = extendable;
+        this.damages = damages;
+        this.rating = rating;
+    }
+
     // GETTERS ---------------------------------------------------------------------------------------------------------
     public int getRoomNumber() {
         return roomNumber;
     }
     public String getHotelName() {
         return hotelName;
+    }
+    public int getHotelID() {
+        return hotel_id;
     }
     public double getPrice() {
         return price;

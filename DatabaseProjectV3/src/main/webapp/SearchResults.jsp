@@ -21,6 +21,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta http-equiv="Content-Language" content="ch-cn">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/search-results.css">
     <script src="js/searchresults.js"></script>
 
     <!-- TITLE -->
@@ -46,26 +47,31 @@
             <th>Amenities</th>
             <th>Price (CAD)</th>
             <th>Extendable?</th>
-            <th>Damages(Reduced on Final Price)</th>
+            <th>Damages (Reduced on Final Price)</th>
         </tr>
         </thead>
 
-        <tbody>
-        <%
-            for (Room room : rooms) { %>
-        <!-- TABLE ROWS -->
-        <tr>
-            <td><a href="#clicked" onclick="confirmBooking()"><%= room.getHotelName() %></a></td> <!-- CHANGE THIS TO HOTEL NAME -->
-            <td><%=room.getRating()%></td> <!-- CHANGE THIS TO HOTEL RATING -->
-            <td>address</td> <!-- CHANGE THIS TO ADDRESS OF HOTEL -->
-            <td><%= room.getViewType() %></td>
-            <td><%= room.getAmenities() %></td>
-            <td>$ <%= room.getPrice() %></td>
-            <td><%= room.isExtendable() %></td>
-            <td>-$<%= room.getDamages() %></td>
-        </tr>
-        <% } %>
-        </tbody>
+        <!-- FORM -->
+        <form action="create-booking-servlet" id="booking-form">
+            <tbody>
+            <%
+                for (Room room : rooms) { %>
+
+            <!-- TABLE ROWS -->
+            <tr class="options" onclick="confirmBooking()">
+                <td><%= room.getHotelName() %></td>
+                <td><%=room.getRating()%></td>
+                <td>address</td> <!-- CHANGE THIS TO ADDRESS OF HOTEL -->
+                <td><%= room.getViewType() %></td>
+                <td><%= room.getAmenities() %></td>
+                <td>$ <%= room.getPrice() %></td>
+                <td><%= room.isExtendable() %></td>
+                <td>-$<%= room.getDamages() %></td>
+            </tr>
+            <% } %>
+            </tbody>
+
+        </form>
 
     </table>
 </div>

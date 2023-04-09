@@ -20,8 +20,8 @@ import java.util.logging.Logger;
  */
 @WebServlet(name = "searchResultsServlet", value = "/show-rooms-servlet")
 public class SearchResultsServlet extends HttpServlet {
-
-    private static final Logger LOGGER = Logger.getLogger(SearchResultsServlet.class.getName()); //logger
+    // logger
+    private static final Logger LOGGER = Logger.getLogger(SearchResultsServlet.class.getName());
 
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
@@ -92,10 +92,7 @@ public class SearchResultsServlet extends HttpServlet {
         // PROCESS: filter booking of room available
         ArrayList<Room> rooms = con.filterRoom(hotelChain, city, new java.sql.Date(checkInDate.getTime()), new java.sql.Date(checkOutDate.getTime()), capacity, category, numRooms, price);
 
-        //ArrayList<Room> rooms = con.getAvailableRooms();
-
         // DEBUGGING
-
         LOGGER.info("HOTEL CHAIN: " + hotelChain);
         LOGGER.severe("CITY: " + city);
         LOGGER.severe("CAPACITY: " + capacity);
@@ -103,6 +100,7 @@ public class SearchResultsServlet extends HttpServlet {
         LOGGER.severe("NUM OF ROOMS: " + numRooms);
         LOGGER.severe("PRICE: " + price);
 
+        // SEARCH FOR HOTEL HERE </3
 
         // SEND THE DATA TO THE JSP
         req.setAttribute("rooms", rooms);

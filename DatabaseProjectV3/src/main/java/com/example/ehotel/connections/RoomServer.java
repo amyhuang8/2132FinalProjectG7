@@ -100,7 +100,7 @@ public class RoomServer {
 
         // SQL QUERY
 
-        sql = "SELECT DISTINCT name, num_of_rooms, rating,price, room_id, amenities, capacity, view_type, damages, extendable " +
+        sql = "SELECT DISTINCT hotel_id, name, num_of_rooms, rating,price, room_id, amenities, capacity, view_type, damages, extendable " +
                 "FROM ehotels.hotel NATURAL JOIN ehotels.address NATURAL JOIN ehotels.room";
         if (hotelChain != null) {
             sql += " WHERE name = '" + hotelChain + "'";
@@ -146,8 +146,6 @@ public class RoomServer {
                 "' >= check_in AND '" + checkInDate + "' <= check_out) OR ('" + checkOutDate + "' " +
                 " >= check_in AND '" + checkOutDate + "' <= check_out))" +
                 "ORDER BY room_id";
-
-
  */
         LOGGER.severe("SQL: " + sql);
 
@@ -161,26 +159,16 @@ public class RoomServer {
 
             // FILLING THE ARRAY WITH ROOMS
             while (rs.next()) {
-                rooms.add(new Room(rs.getInt("room_id"), rs.getString("name"),
+                rooms.add(new Room(rs.getInt("hotel_id"), rs.getInt("room_id"), rs.getString("name"),
                         rs.getDouble("price"), rs.getString("amenities"), rs.getString("capacity"),
                         rs.getString("view_type"), rs.getBoolean("extendable"), rs.getDouble("damages"),
                         rs.getString("rating")));
             }
-
-            /*
-            while (rs.next()) {
-                rooms.add(new Room(rs.getInt("room_num"), rs.getString("name"),
-                        rs.getDouble("price"), rs.getString("amenities"), rs.getString("capacity"),
-                        rs.getString("view_type"), rs.getBoolean("extendable"), rs.getDouble("damages"),
-                        rs.getBoolean("availability"),
-                        new Address(rs.getString("street"), rs.getString("city"), rs.getString("province"), rs.getString("country")),
-                        rs.getString("rating")));
-            }
-             */
 
         } catch (Exception e) {
             LOGGER.severe("Error in filterRoom() method: " + e.getMessage());
         }
+        db.closeDB();
         return rooms; // return the array of rooms fitting the filter criteria
 
     }

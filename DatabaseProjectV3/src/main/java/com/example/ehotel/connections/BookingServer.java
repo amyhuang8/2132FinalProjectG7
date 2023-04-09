@@ -73,4 +73,37 @@ public class BookingServer {
 
     }
 
+    /**
+     * This method creates a booking in the database.
+     */
+    public boolean createBooking(Date check_in, Date check_out, String customer_email, int room_id, double final_price) {
+
+
+        // PROCESS: connecting to db
+        ConnectionDB db = new ConnectionDB();
+
+        // VARIABLE DECLARATION
+        sql = "insert into ehotels.booking (check_in, check_out, confirmation_date, customer_email, room_id, final_price) values (?, ?, ?, ?, ?, ?)"; //SQL query
+
+        // PROCESS: setting params to query reqs.
+        try (Connection con = db.getConn()) {
+
+            // INITIALIZATION
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setDate(1, new java.sql.Date(check_in.getTime()));
+            ps.setDate(2, new java.sql.Date(check_out.getTime()));
+            ps.setDate(3, new java.sql.Date(new Date().getTime()));
+            ps.setString(4, customer_email);
+            ps.setInt(5, room_id);
+            ps.setDouble(6, final_price);
+        } catch (SQLException e) { //error-handling
+            // OUTPUT
+            LOGGER.severe("FAILED TO CREATE BOOKING: " + e.getMessage());
+            return false;
+        } finally { //closing connection after querying
+            db.closeDB();
+        }
+        return true;
+    }
 }
