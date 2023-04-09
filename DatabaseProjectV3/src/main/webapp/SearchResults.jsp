@@ -61,15 +61,39 @@
                 for (Room room : rooms) { %>
 
             <!-- TABLE ROWS -->
-            <tr class="options" onclick="confirmBooking()">
-                <td><%= room.getHotelName() %></td>
-                <td><%=room.getRating()%></td>
-                <td><%=addresses.get(i)%></td> <!-- CHANGE THIS TO ADDRESS OF HOTEL -->
-                <td><%= room.getViewType() %></td>
-                <td><%= room.getAmenities() %></td>
-                <td>$ <%= room.getPrice() %></td>
-                <td><%= room.isExtendable() %></td>
-                <td>-$<%= room.getDamages() %></td>
+            <tr class="options" onclick="confirmBooking(this)">
+                <td>
+                    <input type="hidden" name="choice" id="hotel-name" value="<%= room.getHotelName() %>">
+                    <%= room.getHotelName() %>
+                </td>
+                <td>
+                    <input type="hidden" name="choice" id="rating"  value="<%= room.getRating() %>">
+                    <%=room.getRating()%>
+                </td>
+                <td>
+                    <input type="hidden" name="choice" id="address" value="<%= addresses.get(i) %>">
+                    <%=addresses.get(i)%>
+                </td>
+                <td>
+                    <input type="hidden" name="choice" id="view-type"  value="<%= room.getViewType() %>">
+                    <%= room.getViewType() %>
+                </td>
+                <td>
+                    <input type="hidden" name="choice" id="amenities"  value="<%= room.getAmenities() %>">
+                    <%= room.getAmenities() %>
+                </td>
+                <td>
+                    <input type="hidden" name="choice" id="price" value="<%= room.getPrice() %>">
+                    $ <%= room.getPrice() %>
+                </td>
+                <td>
+                    <input type="hidden" name="choice" id="extendable"  value="<%= room.isExtendable() %>">
+                    <%= room.isExtendable() %>
+                </td>
+                <td>
+                    <input type="hidden" name="choice" id="damages" value="<%= room.getDamages() %>">
+                    -$<%= room.getDamages() %>
+                </td>
             </tr>
             <% i++;
                 } %>

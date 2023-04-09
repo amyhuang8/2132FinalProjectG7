@@ -75,9 +75,14 @@ public class BookingServer {
     }
 
     /**
-     * This method creates a booking in the database.
+     * This method inserts a new booking into the database.
+     * @param check_in - the check-in date
+     * @param check_out - the check-out date
+     * @param customer_email - the customer's email
+     * @param room_id - the room's id
+     * @param final_price - the final price of the booking
      */
-    public boolean createBooking(Date check_in, Date check_out, String customer_email, int room_id, double final_price) {
+    public void createBooking(Date check_in, Date check_out, String customer_email, int room_id, double final_price) {
 
 
         // PROCESS: connecting to db
@@ -98,13 +103,46 @@ public class BookingServer {
             ps.setString(4, customer_email);
             ps.setInt(5, room_id);
             ps.setDouble(6, final_price);
+
         } catch (SQLException e) { //error-handling
             // OUTPUT
             LOGGER.severe("FAILED TO CREATE BOOKING: " + e.getMessage());
-            return false;
         } finally { //closing connection after querying
             db.closeDB();
         }
-        return true;
+    }
+
+    /**
+     * This method deletes a booking from the database.
+     * @param booking_id - the id of the booking to be deleted
+     * @return true if successful, false otherwise
+     */
+    public boolean deleteBooking(int booking_id) {
+        // PROCESS: connecting to db
+        ConnectionDB db = new ConnectionDB();
+
+        // VARIABLE DECLARATION
+        sql = "DELETE FROM ehotels.booking where booking_id=?"; //SQL query
+
+        // PROCESS: setting params to query reqs.
+        try (Connection con = db.getConn()) {
+
+            // INITIALIZATION
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setInt(1, booking_id);
+
+            ps.executeUpdate();
+
+            return true;
+
+        } catch (SQLException e) { //error-handling
+            // OUTPUT
+            LOGGER.severe("FAILED TO DELETE BOOKING: " + e.getMessage());
+        } finally { //closing connection after querying
+            db.closeDB();
+        }
+
+        return false;
     }
 }
