@@ -1,3 +1,5 @@
+SET search_path = ehotels;
+
 -- ---------------------------------------------------------------------------------------------------------------------
 -- Table structure for address
 -- ---------------------------------------------------------------------------------------------------------------------
@@ -12,6 +14,10 @@ CREATE TABLE address
     PRIMARY KEY (id)
 );
 
+
+-- ---------------------------------------------------------------------------------------------------------------------
+-- Table structure for a hotel chain
+-- ---------------------------------------------------------------------------------------------------------------------
 DROP TABLE IF EXISTS hotel_chain;
 CREATE TABLE hotel_chain
 (
@@ -24,19 +30,23 @@ CREATE TABLE hotel_chain
     PRIMARY KEY (name)
 );
 
+
 -- ---------------------------------------------------------------------------------------------------------------------
 -- Table structure for a hotel
 -- ---------------------------------------------------------------------------------------------------------------------
-DROP TABLE IF EXISTS hotel_chain;
-CREATE TABLE hotel_chain
+DROP TABLE IF EXISTS hotel;
+CREATE TABLE hotel
 (
-    name                   VARCHAR(50)  NOT NULL,
-    hotel_chain_address_id SERIAL,
-    num_of_hotels          INT          NOT NULL,
-    email                  VARCHAR(100) NOT NULL,
-    central_phone_number   CHAR(10)     NOT NULL,
-    FOREIGN KEY (hotel_chain_address_id) REFERENCES address (id) ON DELETE CASCADE ON UPDATE CASCADE,
-    PRIMARY KEY (name)
+    hotel_id           SERIAL,
+    name               VARCHAR(50)   NOT NULL,
+    num_of_rooms       INT           NOT NULL,
+    hotel_address_id   INT,
+    email              VARCHAR(30)   NOT NULL,
+    hotel_phone_number CHAR(10)      NOT NULL,
+    rating             int NOT NULL,
+    FOREIGN KEY (name) REFERENCES hotel_chain (name) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (hotel_address_id) REFERENCES address (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    PRIMARY KEY (hotel_id)
 );
 
 

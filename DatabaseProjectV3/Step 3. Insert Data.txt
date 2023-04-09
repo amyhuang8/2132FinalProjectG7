@@ -1,3 +1,5 @@
+SET search_path = ehotels;
+
 -- ---------------------------------------------------------------------------------------------------------------------
 -- Insertion statements for address
 -- ---------------------------------------------------------------------------------------------------------------------
@@ -995,8 +997,3 @@ INSERT INTO customer (first_name, last_name, SIN, customer_address_id, registrat
 VALUES ('Bob', 'the Builder', 111111111, 126, CURRENT_DATE, 1234567891234567, 8085679514, 'bobthebuilder@email.com'),
        ('Harper', 'Finkle', 222222222, 127, CURRENT_DATE, 1111111111111111, 6467985555, 'harperfinkle@email.com'),
        ('Max', 'Russo', 333333333, 128, CURRENT_DATE, 2222222222222222, 6045687989, 'notawizard@email.com');
-
-
-
-
-
