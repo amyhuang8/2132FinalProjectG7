@@ -21,6 +21,7 @@ public class CustomerUpdateProfileServlet extends HttpServlet {
      * @param req the request sent from the JSP file
      * @param resp the response to be sent to the JSP file
      * @throws IOException
+     * @throws ServletException
      */
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
@@ -38,7 +39,6 @@ public class CustomerUpdateProfileServlet extends HttpServlet {
         String province = req.getParameter("province-state");
         String country = req.getParameter("country");
         long phoneNum = Long.parseLong(req.getParameter("phone number"));
-        long sin = Long.parseLong(req.getParameter("sin"));
         long ccNum = Long.parseLong(req.getParameter("credit card number"));
 
         // PROCESS: updating fields
@@ -49,7 +49,6 @@ public class CustomerUpdateProfileServlet extends HttpServlet {
                 con.updateFieldByID("province", currentEmail, province) &&
                 con.updateFieldByID("country", currentEmail, country) &&
                 con.updateFieldByID("customer_phone_number", currentEmail, phoneNum) &&
-                con.updateFieldByID("sin", currentEmail, sin) &&
                 con.updateFieldByID("credit_card_num", currentEmail, ccNum) &&
                 con.updateFieldByID("customer_email", currentEmail, newEmail)) { //success
             session.setAttribute("uid", newEmail); //updating session's user id to customer email
