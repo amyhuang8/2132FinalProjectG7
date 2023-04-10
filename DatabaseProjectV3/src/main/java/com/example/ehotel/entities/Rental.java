@@ -9,7 +9,7 @@ public class Rental {
     private Date checkOut;
     private int roomID;
     private int employeeID;
-    private int customerID;
+    private String customerEmail;
 
     /**
      * Constructor to save rental's data
@@ -19,16 +19,16 @@ public class Rental {
      * @param checkOut
      * @param roomID
      * @param employeeID
-     * @param customerID
+     * @param customerEmail
      */
-    public Rental(int id, int bookingID, Date checkIn, Date checkOut, int roomID, int employeeID, int customerID) {
+    public Rental(int id, int bookingID, Date checkIn, Date checkOut, int roomID, int employeeID, String customerEmail) {
         this.id = id;
         this.bookingID = bookingID;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.roomID = roomID;
         this.employeeID = employeeID;
-        this.customerID = customerID;
+        this.customerEmail = customerEmail;
     }
 
     // GETTERS -----------------------------------------------------------------------------------------------------------
@@ -50,8 +50,8 @@ public class Rental {
     public int getEmployeeID() {
         return employeeID;
     }
-    public int getCustomerID() {
-        return customerID;
+    public String getCustomerEmail() {
+        return customerEmail;
     }
 
     // SETTERS -----------------------------------------------------------------------------------------------------------

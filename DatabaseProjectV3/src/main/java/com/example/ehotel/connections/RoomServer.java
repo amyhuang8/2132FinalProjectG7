@@ -121,4 +121,54 @@ public class RoomServer {
         return rooms;
 
     }
+
+    /**
+     * This method is used to get all the available rooms from the database for the purposes of walk-ins.
+     * @param hotelID id of hotel
+     * @return an array of all the available rooms in the database for the hotel in question
+     */
+    public ArrayList<Room> getAvailableRooms (int hotelID) {
+        // PROCESS: connecting to database
+        ConnectionDB db = new ConnectionDB();
+
+        // initializing the array of rooms
+        ArrayList<Room> rooms = new ArrayList<>();
+
+        // SQL QUERY
+
+        sql = "SELECT hotel_id, name, num_of_rooms, rating,price, room_id, amenities, capacity, view_type, damages, extendable " +
+                "FROM ehotels.hotel NATURAL JOIN ehotels.address NATURAL JOIN ehotels.room WHERE hotel_id = '" + hotelID + "'" + "AND availability = true";
+
+        sql += " ORDER BY price";
+
+        LOGGER.severe("SQL: " + sql);
+
+        try (Connection con = db.getConn()){
+
+            // SET PREPARED STATEMENT
+            ps = con.prepareStatement(sql);
+
+            // EXECUTE QUERY
+            rs = ps.executeQuery();
+
+            // FILLING THE ARRAY WITH ROOMS
+            while (rs.next()) {
+                rooms.add(new Room (rs.getInt("hotel_id"), rs.getString("name"), rs.getInt("rating"),
+                        rs.getInt("room_id"), rs.getInt("room_num"), rs.getString("view_type"),
+                        rs.getString("amenities"), rs.getString("capacity"), rs.getDouble("price"),
+                        rs.getDouble("damages"), rs.getBoolean("extendable"), rs.getBoolean("availability"),
+                        new Address(rs.getString("street"), rs.getString("city"), rs.getString("province"), rs.getString("country"))));
+            }
+
+        } catch (Exception e) {
+            LOGGER.severe("Error in filterRoom() method: " + e.getMessage());
+        }
+
+        // close the connection
+        db.closeDB();
+
+        // return the array of rooms fitting the filter criteria
+        return rooms;
+
+    }
 }
