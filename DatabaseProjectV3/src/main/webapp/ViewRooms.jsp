@@ -58,6 +58,9 @@
     <!--VIEW 1 BUTTON-->
     <button class="buttons" id="view-1" type="submit" name="view-1">View All Currently Available Rooms In Any Area</button>
 </form>
+
+<button class="buttons" id="view-2" onclick="location.href = 'http://localhost:8080/DatabaseProjectV3/View2Customers.jsp';">View Capacity of Rooms in a Hotel</button>
+
 <br><br>
 
 <form action="show-rooms-servlet" method="POST" id="search-form" style="display: inline">
