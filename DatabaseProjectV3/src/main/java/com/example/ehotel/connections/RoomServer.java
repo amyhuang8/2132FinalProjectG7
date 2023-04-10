@@ -68,7 +68,9 @@ public class RoomServer {
                 data.add(new Room(
                         rs.getInt("room_num"),
                         rs.getString("capacity"),
-                        rs.getString("name")));
+                        rs.getString("name"),
+                        new Address (rs.getString("street"), rs.getString("city"), rs.getString("province"), rs.getString("country")
+                        )));
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);

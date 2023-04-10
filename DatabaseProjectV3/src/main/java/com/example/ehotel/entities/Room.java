@@ -51,14 +51,17 @@ public class Room {
 
     /**
      * This constructor is used to display view 2
+     *
      * @param room_num room number
      * @param capacity capacity of the room
-     * @param name hotel name (chain)
+     * @param name     hotel name (chain)
+     * @param address address of the hotel
      */
-    public Room(int room_num, String capacity, String name) {
+    public Room(int room_num, String capacity, String name, Address address) {
         this.roomNumber = room_num;
         this.capacity = capacity;
         this.hotelName = name;
+        this.address = address;
     }
 
     // GETTERS ---------------------------------------------------------------------------------------------------------

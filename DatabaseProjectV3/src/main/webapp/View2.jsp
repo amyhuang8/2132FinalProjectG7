@@ -24,9 +24,13 @@
         <div class="col-md-12">
 
             <!--HEADING-->
-            <h1 style="margin-top: 30px">Capacity of All Rooms In <%= capacityOfRooms.get(0).getHotelName() %></h1>
+            <h1 style="margin-top: 30px">Your Results</h1>
             <hr style="background-color: rosybrown; height: 1.5px">
             <br>
+
+            <!-- HEADING MESSAGE -->
+            <h2 style="margin-top: 30px">Capacity of All Rooms At <%= capacityOfRooms.get(0).getHotelName() %></h2>
+            <h2 style="margin-top: 30px">Located at Hotel: <%= capacityOfRooms.get(0).getAddress() %></h2>
 
             <!--TABLE-->
             <table class="table table-striped" border="1" style="margin: 0px auto; background: lightyellow">
