@@ -10,7 +10,7 @@ CREATE OR REPLACE FUNCTION create_archive_entry_booking()
 AS
 $$
     BEGIN
-    INSERT INTO archive (booking_or_rental_id, type_of_booking, check_in, check_out, room_id, final_price, customer_email)
+    INSERT INTO ehotels.archive (booking_or_rental_id, type_of_booking, check_in, check_out, room_id, final_price, customer_email)
     VALUES (NEW.booking_id, 'booking', NEW.check_in, NEW.check_out, NEW.room_id, NEW.final_price, NEW.customer_email);
     RETURN new;
     END
@@ -23,7 +23,7 @@ CREATE OR REPLACE FUNCTION create_archive_entry_rental()
 AS
 $$
     BEGIN
-    INSERT INTO archive (booking_or_rental_id, type_of_booking, check_in, check_out, room_id, final_price, customer_email, employee_id)
+    INSERT INTO ehotels.archive (booking_or_rental_id, type_of_booking, check_in, check_out, room_id, final_price, customer_email, employee_id)
     VALUES (NEW.rental_id, 'rental', NEW.check_in, NEW.check_out, NEW.room_id, NEW.final_price, NEW.customer_email, NEW.employee_id);
     RETURN new;
     END
@@ -36,7 +36,7 @@ CREATE OR REPLACE FUNCTION make_room_unavailable()
 AS
 $$
     BEGIN
-    UPDATE room
+    UPDATE ehotels.room
     SET availability = false
     WHERE room_id = NEW.room_id;
     RETURN NULL;
@@ -50,7 +50,7 @@ CREATE OR REPLACE FUNCTION make_room_available()
 AS
 $$
     BEGIN
-    UPDATE room
+    UPDATE ehotels.room
     SET availability = true
     WHERE room_id = OLD.room_id;
     RETURN NULL;
@@ -63,24 +63,24 @@ $$;
 
 -- trigger for booking
 CREATE OR REPLACE TRIGGER insert_into_archive_booking
-    AFTER INSERT ON booking
+    AFTER INSERT ON ehotels.booking
     FOR EACH ROW
 EXECUTE PROCEDURE create_archive_entry_booking();
 
 -- trigger for rental
 CREATE OR REPLACE TRIGGER insert_into_archive_rental
-    AFTER INSERT ON rental
+    AFTER INSERT ON ehotels.rental
     FOR EACH ROW
 EXECUTE PROCEDURE create_archive_entry_rental();
 
 -- trigger for making a room unavailable (when an employee turns a booking into a rental OR when a customer makes a rental on spot with an employee)
 CREATE OR REPLACE TRIGGER make_room_unavailable
-    AFTER INSERT ON rental
+    AFTER INSERT ON ehotels.rental
     FOR EACH ROW
     EXECUTE PROCEDURE make_room_unavailable();
 
 --  trigger for making a room available (when a customer checks out)
 CREATE OR REPLACE TRIGGER make_room_available
-    AFTER DELETE ON rental
+    AFTER DELETE ON ehotels.rental
     FOR EACH ROW
     EXECUTE PROCEDURE make_room_available();

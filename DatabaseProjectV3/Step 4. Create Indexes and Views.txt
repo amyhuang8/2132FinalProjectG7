@@ -51,7 +51,6 @@ CREATE INDEX room_hotel_index ON room (hotel_id);
 CREATE INDEX customer_email_index ON customer(customer_email);
 CREATE INDEX customer_SIN_index ON customer(SIN);
 
--- indexes to search for rooms
 CREATE INDEX check_in_index ON booking (check_in);
 CREATE INDEX check_out_index ON booking (check_out);
 CREATE INDEX check_in_index_rental ON rental (check_in);
