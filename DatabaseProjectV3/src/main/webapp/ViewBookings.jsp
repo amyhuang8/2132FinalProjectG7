@@ -145,6 +145,7 @@
                     <label class="labels" for="customer_email">CUSTOMER EMAIL: </label>
                     <input class="labels" type="email" id="customer_email" name="email">
                     <br><br>
+                    <!--TODO add credit card here-->
                     <label class="labels" for="room_id">ROOM ID: </label>
                     <input class="labels" type="number" id="room_id" name="room id" min="1">
                     <br><br>
