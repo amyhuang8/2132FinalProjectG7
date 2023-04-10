@@ -11,8 +11,7 @@
 
 <%
     ArrayList<Room> rooms = (ArrayList<Room>) request.getAttribute("rooms");
-
-%>
+;%>
 
 
 <html>
@@ -29,7 +28,11 @@
     <title>Search Results</title>
 </head>
 
+<!-- SCRIPT -->
 <script>
+    /**
+     * This function will submit the form for view 2
+     */
     function submitFormForView2() {
         const hotelNumInput = document.getElementById("hotel-num-input").value;
         if (hotelNumInput === "") {
@@ -122,7 +125,6 @@
                         <input type="hidden" name="damages" id="damages" value="<%= room.getDamages() %>">
                         -$<%= room.getDamages() %>
                     </td>
-                        <input type="hidden" name="room-id" id="room-id" value="<%= room.getRoomID() %>">
                 </tr>
                 <%
                     } %>

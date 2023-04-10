@@ -115,7 +115,7 @@ public class RoomServer {
                 " NOT IN (SELECT name, hotel_id, room_num FROM ehotels.name_of_hotel_from_booking WHERE ('" + checkInDate +
                 "' >= check_in AND '" + checkInDate + "' <= check_out) OR ('" + checkOutDate + "' " +
                 " >= check_in AND '" + checkOutDate + "' <= check_out))" +
-                "ORDER BY price";
+                " ORDER BY price";
 
         // log the sql query
         LOGGER.severe("SQL: " + sql);
