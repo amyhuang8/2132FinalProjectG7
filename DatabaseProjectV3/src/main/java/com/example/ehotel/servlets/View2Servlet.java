@@ -34,8 +34,6 @@ public class View2Servlet extends HttpServlet {
         // get session
         HttpSession session = req.getSession();
 
-        LOGGER.severe("Employee hotel ID: " + session.getAttribute("hotel_id"));
-
         // get the hotel id
         int hotelID = Integer.parseInt((String) session.getAttribute("hotel_id"));
 

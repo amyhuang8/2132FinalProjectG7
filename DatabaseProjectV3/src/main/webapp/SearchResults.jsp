@@ -29,7 +29,7 @@
     <title>Search Results</title>
 </head>
 
-    <!-- ENTIRE SCREEN -->
+<!-- ENTIRE SCREEN -->
 <body onload="checkLogin()">
 <!-- HEADER -->
 <h1 style="margin-top: 30px">Here are the results of your search!</h1>
