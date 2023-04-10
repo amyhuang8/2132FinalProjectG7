@@ -27,6 +27,7 @@
 
     <!-- TITLE -->
     <title>Search Results</title>
+</head>
 
     <!-- ENTIRE SCREEN -->
 <body onload="checkLogin()">
@@ -103,5 +104,4 @@
     </table>
 </div>
 </body>
-</head>
 </html>

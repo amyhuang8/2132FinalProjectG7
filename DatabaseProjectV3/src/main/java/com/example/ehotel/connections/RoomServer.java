@@ -49,6 +49,37 @@ public class RoomServer {
         return data;
     }
 
+    public ArrayList<Room> getView2(int hotelID) {
+
+        // PROCESS: connecting to database
+        ConnectionDB db = new ConnectionDB();
+
+        ArrayList<Room> data = new ArrayList<>();
+
+        // initializing the array of rooms
+        try (Connection conn = db.getConn()) {
+
+            sql = "SELECT * FROM ehotels.capacity_of_all_rooms WHERE hotel_id = " + hotelID;
+
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                data.add(new Room(
+                        rs.getInt("room_num"),
+                        rs.getString("capacity"),
+                        rs.getString("name")));
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        // closing the connection
+        db.closeDB();
+
+        // returning the array list
+        return data;
+    }
+
     /**
      * This method is used to get all the available rooms from the database fitting the filter criteria.
      * @param hotelChain name of hotel chain

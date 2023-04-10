@@ -47,6 +47,13 @@
         <hr style="background-color: rosybrown; height: 1.5px">
         <br>
 
+        <!-- VIEW 2 BUTTON -->
+        <form action="show-view2-servlet" id="view-2-form" style="display: inline">
+            <!--VIEW 1 BUTTON-->
+            <button class="buttons" id="view-2" type="submit" name="view-1">View Capacity of Rooms</button>
+            <br><br>
+        </form>
+
         <div class="container">
             <div class="box-container">
                 <div class="buttons-wrapper">
