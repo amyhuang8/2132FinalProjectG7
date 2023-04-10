@@ -22,7 +22,7 @@
   <!-- HEADER -->
   <h1 style="margin-top: 30px">Want to View the Capacity of All Rooms in a Specific Hotel?</h1>
   <hr style="background-color: rosybrown; height: 1.5px">
-  <h2>Please enter the hotel number which can be found in the table below that you would wish to view</h2>
+  <h2>Please enter the hotel number that you would wish to view (hotel numbers can be found when you search)</h2>
 
   <form action="show-view2-servlet" id="view-2-form" method="get">
     <input type="number" id="hotel-num-input" name="hotel-id" min="1" placeholder="Enter Hotel Number...">
