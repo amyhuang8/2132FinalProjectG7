@@ -50,6 +50,10 @@ public class CreateBookingServlet extends HttpServlet {
         double damages = Double.parseDouble(req.getParameter("damages"));
         double finalPrice = price - damages;
 
+        // set the session variables
+        session.setAttribute("roomID", roomID);
+        session.setAttribute("price", price);
+        session.setAttribute("damages", damages);
 
         // DEBUGGING
         LOGGER.info("EMAIL: " + email);
