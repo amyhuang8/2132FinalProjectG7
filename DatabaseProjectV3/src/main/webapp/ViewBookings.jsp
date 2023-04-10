@@ -27,12 +27,14 @@
         <!--TITLE-->
         <title>Pending Bookings</title>
 
-        <!--HEADER BUTTONS-->
+        <!-- HEADER BUTTONS-->
+        <!-- VIEW PROFILE BUTTON-->
         <button id="profile_button" class="header-buttons"
                 onclick="window.location.href='EmployeeProfile.jsp'"
                 style="float: left; border-radius: 50%;
                 background-image: url('css/resources/profileicon.png');"></button>
 
+        <!-- LOGOUT BUTTON-->
         <form action="logout-servlet">
             <button type="submit" id="logout_button" class="header-buttons"
                     style="float: right; border-radius: 30%;
@@ -47,10 +49,15 @@
         <hr style="background-color: rosybrown; height: 1.5px">
         <br>
 
+        <!--VIEW 1 BUTTON-->
+        <form action="show-view1-servlet" id="view-1-form" style="display: inline">
+            <button class="buttons" id="view-1" type="submit" name="view-1">View All Currently Available Rooms In Any Area</button>
+        </form>
+
         <!-- VIEW 2 BUTTON -->
         <form action="show-view2-servlet" id="view-2-form" style="display: inline">
-            <!--VIEW 1 BUTTON-->
-            <button class="buttons" id="view-2" type="submit" name="view-1">View Capacity of Rooms</button>
+            <!--VIEW 2 BUTTON-->
+            <button class="buttons" id="view-2" type="submit" name="view-1">View Capacity of All Rooms in Hotel</button>
             <br><br>
         </form>
 
