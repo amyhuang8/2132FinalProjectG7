@@ -23,15 +23,16 @@ public class BookingServer {
      *
      * @return an ArrayList of Booking entities
      */
-    public ArrayList<Booking> getPendingBookings() {
+    public ArrayList<Booking> getPendingBookings(String hotel_id) {
 
         // PROCESS: connecting to db
         ConnectionDB db = new ConnectionDB();
 
         // VARIABLE DECLARATION
         ArrayList<Booking> bookings = new ArrayList<>(); //new arraylist to hold bookings
-        sql = "select * from ehotels.booking where cast(check_in as varchar)=?"; //SQL query
-        // TODO make sure to check for room_id/hotel_id as well
+        sql = "select * from ehotels.booking where cast(check_in as varchar)=?" +
+                " and ?=(select cast(hotel_id as varchar) from ehotels.room" +
+                " where ehotels.booking.room_id=ehotels.room.room_id);"; //SQL query
 
         Date date = new Date(); //today's date
         java.sql.Date sqlDate = new java.sql.Date(date.getTime()); //new SQL date
@@ -39,12 +40,11 @@ public class BookingServer {
         // PROCESS: setting params to query reqs.
         try (Connection con = db.getConn()) {
 
-            //sql = "SELECT * FROM ehotels.booking";
-
             // INITIALIZATION
             PreparedStatement ps = con.prepareStatement(sql);
 
             ps.setString(1, String.valueOf(sqlDate));
+            ps.setString(2, hotel_id);
 
             // PROCESS: executing SQL query
             rs = ps.executeQuery();

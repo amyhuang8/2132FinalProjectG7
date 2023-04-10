@@ -29,10 +29,11 @@ public class BookingServlet extends HttpServlet  {
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
         // VARIABLE DECLARATION
+        HttpSession session = req.getSession();
         BookingServer con = new BookingServer(); //new connection
 
         // RETRIEVE ALL PENDING BOOKINGS
-        ArrayList<Booking> bookings = con.getPendingBookings();
+        ArrayList<Booking> bookings = con.getPendingBookings((String) session.getAttribute("hotel_id"));
 
         // SEND THE DATA TO THE JSP
         req.setAttribute("bookings", bookings); //sending bookings arraylist
