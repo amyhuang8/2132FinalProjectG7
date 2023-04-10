@@ -27,6 +27,27 @@
 
     <!-- TITLE -->
     <title>Search Results</title>
+
+    <!--HEADER BUTTONS-->
+    <!--HOME BUTTON-->
+    <form action="index.jsp">
+        <button type="submit" id="home_button" class="header-buttons"
+                style="float: left; border-radius: 30%;
+                background-image: url('css/resources/homeicon.png');"></button>
+    </form>
+
+    <!-- LOGOUT BUTTON -->
+    <form action="logout-servlet">
+        <button type="submit" id="logout_button" class="header-buttons"
+                style="float: right; border-radius: 30%; margin-left: 2vh;
+                    background-image: url('css/resources/logouticon.png');"></button>
+    </form>
+
+    <!-- PROFILE BUTTON -->
+    <button id="profile_button" class="header-buttons"
+            onclick="window.location.href='CustomerProfile.jsp'"
+            style="float: right; border-radius: 50%;
+                    background-image: url('css/resources/profileicon.png');"></button>
 </head>
 
 <!-- ENTIRE SCREEN -->
