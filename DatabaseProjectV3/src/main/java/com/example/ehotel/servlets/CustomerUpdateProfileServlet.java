@@ -20,9 +20,10 @@ public class CustomerUpdateProfileServlet extends HttpServlet {
      * fields in the database. It then refreshes the page.
      * @param req the request sent from the JSP file
      * @param resp the response to be sent to the JSP file
-     * @throws IOException
-     * @throws ServletException
+     * @throws IOException if there is an error with the input/output
+     * @throws ServletException if there is an error with the servlet
      */
+    @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
         // VARIABLE DECLARATION

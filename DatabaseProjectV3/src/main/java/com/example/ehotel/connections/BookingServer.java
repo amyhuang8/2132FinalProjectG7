@@ -13,7 +13,6 @@ public class BookingServer {
     // VARIABLE DECLARATION: INSTANCE VARS. FOR CONNECTION
     ResultSet rs = null;
     String sql;
-    Statement st = null;
 
     private static final Logger LOGGER = Logger.getLogger(CustomerServer.class.getName()); //logger
 
@@ -30,7 +29,7 @@ public class BookingServer {
         ConnectionDB db = new ConnectionDB();
 
         // VARIABLE DECLARATION
-        ArrayList<Booking> bookings = new ArrayList<Booking>(); //new arraylist to hold bookings
+        ArrayList<Booking> bookings = new ArrayList<>(); //new arraylist to hold bookings
         sql = "select * from ehotels.booking where cast(check_in as varchar)=?"; //SQL query
         // TODO make sure to check for room_id/hotel_id as well
 
@@ -89,7 +88,9 @@ public class BookingServer {
         ConnectionDB db = new ConnectionDB();
 
         // VARIABLE DECLARATION
-        sql = "insert into ehotels.booking (check_in, check_out, confirmation_date, customer_email, room_id, final_price) values (?, ?, ?, ?, ?, ?)"; //SQL query
+        sql = "INSERT INTO ehotels.booking (check_in, check_out, confirmation_date, customer_email, room_id, final_price) VALUES (?, ?, CURRENT_DATE, ?, ?, ?)"; //SQL query
+
+        LOGGER.severe("Insertion into booking table SQL: " + sql);
 
         // PROCESS: setting params to query reqs.
         try (Connection con = db.getConn()) {
@@ -99,14 +100,19 @@ public class BookingServer {
 
             ps.setDate(1, new java.sql.Date(check_in.getTime()));
             ps.setDate(2, new java.sql.Date(check_out.getTime()));
-            ps.setDate(3, new java.sql.Date(new Date().getTime()));
-            ps.setString(4, customer_email);
-            ps.setInt(5, room_id);
-            ps.setDouble(6, final_price);
+            ps.setString(3, customer_email);
+            ps.setInt(4, room_id);
+            ps.setDouble(5, final_price);
 
-        } catch (SQLException e) { //error-handling
+            // EXECUTE QUERY
+            rs = ps.executeQuery();
+
             // OUTPUT
-            LOGGER.severe("FAILED TO CREATE BOOKING: " + e.getMessage());
+            //LOGGER.severe("SUCCESSFULLY CREATED BOOKING");
+
+        } catch (SQLException e) { // error-handling
+            // OUTPUT
+            LOGGER.severe(e.getMessage());
         } finally { //closing connection after querying
             db.closeDB();
         }

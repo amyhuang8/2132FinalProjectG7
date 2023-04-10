@@ -24,10 +24,26 @@ function confirmBooking(row) {
     console.log(response);
 
     if (response) {
-        var element = row.querySelector("#price")
+
+        // get the hidden inputs
+        let price = document.getElementById("price");
+        let room_id = document.getElementById("room-id");
+        let damages = document.getElementById("damages");
+
+        // get the values of the hidden inputs
+        var price_value = row.querySelector("#price").value
+        var room_id_value = row.querySelector("#room-id").value
+        var damages_value = row.querySelector("#damages").value
+
+        // change the values of the hidden inputs
+        price.value = price_value;
+        room_id.value = room_id_value;
+        damages.value = damages_value;
+
+        // confirmation message
         alert("Booking confirmed!");
-        alert(element.value);
+
         // Redirect to the index page
-        //document.getElementById("booking-form").submit();
+        document.getElementById("booking-form").submit();
     }
 }

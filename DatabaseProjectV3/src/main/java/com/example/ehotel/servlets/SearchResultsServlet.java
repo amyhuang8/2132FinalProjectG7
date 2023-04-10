@@ -1,10 +1,6 @@
 package com.example.ehotel.servlets;
 
-import com.example.ehotel.connections.CustomerServer;
-import com.example.ehotel.connections.HotelServer;
 import com.example.ehotel.connections.RoomServer;
-import com.example.ehotel.entities.Address;
-import com.example.ehotel.entities.Hotel;
 import com.example.ehotel.entities.Room;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -68,6 +64,7 @@ public class SearchResultsServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
 
+
         // room capacity
         String capacity;
         String roomType = req.getParameter("capacity");
@@ -107,29 +104,13 @@ public class SearchResultsServlet extends HttpServlet {
         LOGGER.severe("NUM OF ROOMS: " + numRooms);
         LOGGER.severe("PRICE: " + price);
 
-        // SEARCH FOR HOTEL HERE AND ADD ITS ADDRESS TO ARRAYLIST
-        HotelServer hotelServer = new HotelServer();
-        ArrayList<Address> addresses = new ArrayList<>();
-        for (Room room : rooms) {
-            int hotelID = room.getHotelID();
-            try {
-                Hotel hotel = hotelServer.getHotel(hotelID);
-                addresses.add(hotel.getAddress());
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-
-        }
-
         // set session attributes to be used in booking servlet
         HttpSession session = req.getSession();
         session.setAttribute("checkInDate", checkInDate);
         session.setAttribute("checkOutDate", checkOutDate);
-        //session.setAttribute("roomID", roomID);
 
         // SEND THE DATA TO THE JSP
         req.setAttribute("rooms", rooms);
-        req.setAttribute("addresses", addresses);
         req.getRequestDispatcher("SearchResults.jsp").forward(req, resp);
     }
 }

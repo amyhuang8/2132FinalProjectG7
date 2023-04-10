@@ -1,6 +1,6 @@
 <%@ page import="com.example.ehotel.entities.Room" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="com.example.ehotel.entities.Address" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: kkris
   Date: 4/4/2023
@@ -11,7 +11,6 @@
 
 <%
     ArrayList<Room> rooms = (ArrayList<Room>) request.getAttribute("rooms");
-    ArrayList<Address> addresses = (ArrayList<Address>) request.getAttribute("addresses");
 
 %>
 
@@ -24,7 +23,7 @@
     <meta http-equiv="Content-Language" content="ch-cn">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/search-results.css">
-    <script src="js/searchresults.js"></script>
+    <script src="js/search-results.js"></script>
 
     <!-- TITLE -->
     <title>Search Results</title>
@@ -57,7 +56,6 @@
         <form action="create-booking-servlet" id="booking-form">
             <tbody>
             <%
-                int i = 0;
                 for (Room room : rooms) { %>
 
             <!-- TABLE ROWS -->
@@ -83,7 +81,7 @@
                     <%= room.getAmenities() %>
                 </td>
                 <td>
-                    <input type="hidden" name="choice" id="price" value="<%= room.getPrice() %>">
+                    <input type="hidden" name="price" id="price" value="<%= room.getPrice() %>">
                     $ <%= room.getPrice() %>
                 </td>
                 <td>
@@ -91,11 +89,12 @@
                     <%= room.isExtendable() %>
                 </td>
                 <td>
-                    <input type="hidden" name="choice" id="damages" value="<%= room.getDamages() %>">
+                    <input type="hidden" name="damages" id="damages" value="<%= room.getDamages() %>">
                     -$<%= room.getDamages() %>
                 </td>
+                    <input type="hidden" name="room-id" id="room-id" value="<%= room.getRoomID() %>">
             </tr>
-            <% i++;
+            <%
                 } %>
             </tbody>
 

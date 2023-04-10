@@ -68,37 +68,7 @@ public class RoomServer {
         // initializing the array of rooms
         ArrayList<Room> rooms = new ArrayList<>();
 
-        // SQL QUERY
-
-        /*
-        sql = "SELECT DISTINCT hotel_id, room_num, name, city, num_of_rooms, rating, price, room_id, amenities, capacity, view_type, damages, extendable " +
-                "FROM ehotels.hotel NATURAL JOIN ehotels.address NATURAL JOIN ehotels.room";
-        if (hotelChain != null) {
-            sql += " WHERE name = '" + hotelChain + "'";
-        }
-        if (city != null) {
-            sql += (hotelChain != null ? " AND " : " WHERE ") + "city = '" + city + "'";
-        }
-        if (capacity != null) {
-            sql += (hotelChain != null || city != null ? " AND " : " WHERE ") + "capacity = '" + capacity + "'";
-        }
-        if (rating != null) {
-            sql += (hotelChain != null || city != null || capacity != null ? " AND " : " WHERE ") + "rating <= '" + rating + "'";
-        }
-        if (numOfRooms != null) {
-            sql += (hotelChain != null || city != null || capacity != null || rating != null ? " AND " : " WHERE ") + "num_of_rooms >= '" + numOfRooms + "'";
-        }
-        if (price != 0) {
-            sql += (hotelChain != null || city != null || capacity != null || rating != null || numOfRooms != null ? " AND " : " WHERE ") + "price <= '" + price + "'";
-        }
-        if (hotelChain != null || city != null || capacity != null || rating != null || numOfRooms != null || price != 0) {
-            sql += " AND (name, hotel_id, room_num) NOT IN (SELECT name, hotel_id, room_num FROM ehotels.name_of_hotel_from_rental " +
-                    "WHERE ('" + checkInDate + "' >= check_in AND '" + checkInDate + "' <= check_out) OR ('" + checkOutDate + "' >= check_in AND '" + checkOutDate + "' <= check_out)) " +
-                    "AND (name, hotel_id, room_num) NOT IN (SELECT name, hotel_id, room_num FROM ehotels.name_of_hotel_from_booking " +
-                    "WHERE ('" + checkInDate + "' >= check_in AND '" + checkInDate + "' <= check_out) OR ('" + checkOutDate + "' >= check_in AND '" + checkOutDate + "' <= check_out))";
-        }
-        sql += " ORDER BY price";
-        */
+        // sql query
         sql = "SELECT DISTINCT *" +
                 " FROM ehotels.hotel NATURAL JOIN ehotels.address NATURAL JOIN ehotels.room WHERE hotel_address_id=id " +
                 (city != null ? "AND city = '" + city + "'" : " ") +
@@ -116,7 +86,7 @@ public class RoomServer {
                 " >= check_in AND '" + checkOutDate + "' <= check_out))" +
                 "ORDER BY price";
 
-
+        // log the sql query
         LOGGER.severe("SQL: " + sql);
 
         try (Connection con = db.getConn()){
@@ -130,13 +100,8 @@ public class RoomServer {
             // FILLING THE ARRAY WITH ROOMS
 
             while (rs.next()) {
-                /* rooms.add(new Room(rs.getInt("hotel_id"), rs.getInt("room_id"), rs.getInt("room_num") ,rs.getString("name"),
-                        rs.getDouble("price"), rs.getString("amenities"), rs.getString("capacity"),
-                        rs.getString("view_type"), rs.getBoolean("extendable"), rs.getDouble("damages"),
-                        rs.getString("rating")));
 
-                 */
-
+                // Add a room to the array (including its address)
                 rooms.add(new Room (rs.getInt("hotel_id"), rs.getString("name"), rs.getInt("rating"),
                         rs.getInt("room_id"), rs.getInt("room_num"), rs.getString("view_type"),
                         rs.getString("amenities"), rs.getString("capacity"), rs.getDouble("price"),
