@@ -19,8 +19,29 @@ public class View2Servlet extends HttpServlet {
 
     private static final Logger LOGGER = Logger.getLogger(CustomerServer.class.getName()); // logger
 
+
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        doPost(req, resp);
+        // new connection
+        RoomServer con = new RoomServer();
+
+        // READ THE FORM DATA
+        int hotelID = Integer.parseInt(req.getParameter("hotel-id"));
+
+        LOGGER.info("Hotel ID: " + hotelID);
+
+        req.setAttribute("hotel_id", hotelID);
+
+        // get the data from view2
+        ArrayList<Room> capacityOfRooms = con.getView2(hotelID);
+
+        //setting the attribute
+        req.setAttribute("capacityOfRooms", capacityOfRooms);
+
+        // forward to the view2 page
+        req.setAttribute("capacityOfRooms", capacityOfRooms);
+        req.getRequestDispatcher("View2.jsp").forward(req, resp);
+        resp.sendRedirect("View2.jsp");
+
     }
 
     /**

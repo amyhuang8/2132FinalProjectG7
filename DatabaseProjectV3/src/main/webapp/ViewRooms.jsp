@@ -57,8 +57,8 @@
 <form action="show-view1-servlet" id="view-1-form" style="display: inline">
     <!--VIEW 1 BUTTON-->
     <button class="buttons" id="view-1" type="submit" name="view-1">View All Currently Available Rooms In Any Area</button>
-    <br><br>
 </form>
+<br><br>
 
 <form action="show-rooms-servlet" method="POST" id="search-form" style="display: inline">
     <!--HOTEL CHAIN SEARCH BAR-->
