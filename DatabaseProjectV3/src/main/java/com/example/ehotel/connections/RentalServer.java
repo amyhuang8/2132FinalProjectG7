@@ -22,7 +22,6 @@ public class RentalServer {
      */
     public void createRental(Date check_out, String customer_email, int room_id, int employee_id) {
 
-
         // PROCESS: connecting to db
         ConnectionDB db = new ConnectionDB();
 
