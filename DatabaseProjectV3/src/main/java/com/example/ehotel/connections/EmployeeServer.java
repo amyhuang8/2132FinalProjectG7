@@ -8,10 +8,9 @@ public class EmployeeServer {
     // VARIABLE DECLARATION: INSTANCE VARS. FOR CONNECTION
     ResultSet rs = null;
     String sql;
-    Statement st = null;
     PreparedStatement ps = null;
 
-    private static final Logger LOGGER = Logger.getLogger(CustomerServer.class.getName()); //logger
+    private static final Logger LOGGER = Logger.getLogger(EmployeeServer.class.getName()); //logger
 
     // GETTER METHODS------------------------------------------------------------------------------------
     /**

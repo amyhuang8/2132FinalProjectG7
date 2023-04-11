@@ -2,19 +2,15 @@ package com.example.ehotel.servlets;
 
 import com.example.ehotel.connections.RoomServer;
 import com.example.ehotel.entities.Room;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
-import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
+import java.io.*;
+import java.text.*;
+import java.util.*;
 import java.util.logging.Logger;
+
+import jakarta.servlet.*;
+import jakarta.servlet.annotation.*;
+import jakarta.servlet.http.*;
 
 /**
  * This servlet is used to create a new booking in the database.
@@ -26,7 +22,6 @@ public class SearchResultsServlet extends HttpServlet {
 
     // Date formatter
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
 
     /**
      * This method is used to show the available rooms in a specific hotel in the database.
@@ -59,7 +54,8 @@ public class SearchResultsServlet extends HttpServlet {
             req.setAttribute("displayBookings", "none");
             req.setAttribute("displayRooms", "block");
             req.getRequestDispatcher("ViewBookings.jsp").forward(req, resp);
-        } else {
+        }
+        else {
             // redirect to error page
             //e.printStackTrace();
             resp.setStatus(401); //setting error status
@@ -157,5 +153,7 @@ public class SearchResultsServlet extends HttpServlet {
         // SEND THE DATA TO THE JSP
         req.setAttribute("rooms", rooms);
         req.getRequestDispatcher("SearchResults.jsp").forward(req, resp);
+
     }
+
 }

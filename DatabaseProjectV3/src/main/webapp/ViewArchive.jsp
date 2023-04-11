@@ -72,7 +72,7 @@
         <hr style="background-color: rosybrown; height: 1.5px">
         <br>
         <!-- BOOKINGS BOX TABLE -->
-        <table border="1" style="font-size: 20px">
+        <table border="1" style="font-size: 20px; margin: 0px auto">
             <!--TABLE HEADERS-->
             <thead>
                 <tr>

@@ -14,7 +14,7 @@ public class BookingServer {
     ResultSet rs = null;
     String sql;
 
-    private static final Logger LOGGER = Logger.getLogger(CustomerServer.class.getName()); //logger
+    private static final Logger LOGGER = Logger.getLogger(BookingServer.class.getName()); //logger
 
     // GETTER METHODS------------------------------------------------------------------------------------
     /**
@@ -57,7 +57,8 @@ public class BookingServer {
                         rs.getString("customer_email"), rs.getInt("room_id")));
 
             }
-        } catch (SQLException e) { //error-handling
+        }
+        catch (SQLException e) { //error-handling
             // OUTPUT
             LOGGER.severe("FAILED TO RETRIEVE PENDING BOOKINGS: " + e.getMessage());
         }
@@ -82,7 +83,6 @@ public class BookingServer {
      */
     public void createBooking(Date check_in, Date check_out, String customer_email, int room_id, double final_price) {
 
-
         // PROCESS: connecting to db
         ConnectionDB db = new ConnectionDB();
 
@@ -106,15 +106,18 @@ public class BookingServer {
             // EXECUTE QUERY
             rs = ps.executeQuery();
 
+        }
+        catch (SQLException e) { // error-handling
             // OUTPUT
-            //LOGGER.severe("SUCCESSFULLY CREATED BOOKING");
-
-        } catch (SQLException e) { // error-handling
-            // OUTPUT
-            LOGGER.severe(e.getMessage());
-        } finally { //closing connection after querying
+            LOGGER.severe("FAILED TO INSERT BOOKING: " + e.getMessage()); //log msg
+        }
+        finally { //closing connection after querying
             db.closeDB();
         }
+
+        // OUTPUT
+        LOGGER.severe("SUCCESSFULLY CREATED BOOKING"); //log msg
+
     }
 
     /**
@@ -139,15 +142,22 @@ public class BookingServer {
 
             ps.executeUpdate();
 
-            return true;
+            return true; //success
 
-        } catch (SQLException e) { //error-handling
+        }
+        catch (SQLException e) { //error-handling
             // OUTPUT
-            LOGGER.severe("FAILED TO DELETE BOOKING: " + e.getMessage());
-        } finally { //closing connection after querying
+            LOGGER.severe("FAILED TO DELETE BOOKING: " + e.getMessage()); //log msg
+        }
+        finally { //closing connection after querying
             db.closeDB();
         }
 
-        return false;
+        // OUTPUT
+        LOGGER.severe("SUCCESSFULLY DELETED BOOKING"); //log msg
+
+        return false; //failure
+
     }
+
 }

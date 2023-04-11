@@ -1,19 +1,17 @@
 package com.example.ehotel.servlets;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.logging.Logger;
-
 import com.example.ehotel.connections.BookingServer;
 import com.example.ehotel.entities.Booking;
+
+import java.io.*;
+import java.util.*;
+
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.*;
 import jakarta.servlet.http.*;
 
 @WebServlet(name = "bookingServlet", value = "/booking-servlet")
 public class BookingServlet extends HttpServlet  {
-
-    private static final Logger LOGGER = Logger.getLogger(SearchResultsServlet.class.getName()); //logger
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         doPost(req, resp);
@@ -40,4 +38,5 @@ public class BookingServlet extends HttpServlet  {
         req.getRequestDispatcher("ViewBookings.jsp").forward(req, resp); //forwarding response
 
     }
+
 }

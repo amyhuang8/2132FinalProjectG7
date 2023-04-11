@@ -1,26 +1,20 @@
 package com.example.ehotel.servlets;
 
-import com.example.ehotel.connections.CustomerServer;
 import com.example.ehotel.connections.RoomServer;
 import com.example.ehotel.entities.Room;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.logging.Logger;
+import java.io.*;
+import java.util.*;
+
+import jakarta.servlet.*;
+import jakarta.servlet.annotation.*;
+import jakarta.servlet.http.*;
 
 @WebServlet(name = "View2Servlet", value = "/show-view2-servlet")
 public class View2Servlet extends HttpServlet {
 
-    private static final Logger LOGGER = Logger.getLogger(CustomerServer.class.getName()); // logger
-
-
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+
         // new connection
         RoomServer con = new RoomServer();
 
@@ -40,7 +34,8 @@ public class View2Servlet extends HttpServlet {
             req.setAttribute("capacityOfRooms", capacityOfRooms);
             req.getRequestDispatcher("View2.jsp").forward(req, resp);
             resp.sendRedirect("View2.jsp");
-        } catch (Exception e) { // failure
+        }
+        catch (Exception e) { // failure
             //e.printStackTrace();
             resp.setStatus(401); //setting error status
             req.setAttribute("status", "CLOG-DB-401"); //setting error status attribute
@@ -58,6 +53,7 @@ public class View2Servlet extends HttpServlet {
      * @param resp the response to be sent to the JSP file
      */
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         RoomServer con = new RoomServer(); //new connection
 
         // get session
@@ -78,4 +74,5 @@ public class View2Servlet extends HttpServlet {
         resp.sendRedirect("View2.jsp");
 
     }
+
 }

@@ -3,10 +3,11 @@ package com.example.ehotel.connections;
 import com.example.ehotel.entities.Address;
 import com.example.ehotel.entities.Room;
 
-import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Logger;
+
+import java.sql.*;
 
 public class RoomServer {
 
@@ -14,7 +15,8 @@ public class RoomServer {
     ResultSet rs = null;
     String sql;
     PreparedStatement ps = null;
-    private static final Logger LOGGER = Logger.getLogger(CustomerServer.class.getName()); // logger
+
+    private static final Logger LOGGER = Logger.getLogger(RoomServer.class.getName()); // logger
 
     // METHODS ---------------------------------------------------------------------------------------------------------
     /**
@@ -203,4 +205,5 @@ public class RoomServer {
 
         return rooms;
     }
+
 }

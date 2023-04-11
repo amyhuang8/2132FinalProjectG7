@@ -1,17 +1,17 @@
 package com.example.ehotel.servlets;
 
 import com.example.ehotel.connections.RoomServer;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 
-import java.io.IOException;
-import java.util.ArrayList;
+import java.io.*;
+import java.util.*;
+
+import jakarta.servlet.*;
+import jakarta.servlet.annotation.*;
+import jakarta.servlet.http.*;
 
 @WebServlet(name = "View1Servlet", value = "/show-view1-servlet")
 public class View1Servlet extends HttpServlet  {
+
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         doPost(req, resp);
     }
@@ -32,4 +32,5 @@ public class View1Servlet extends HttpServlet  {
         req.getRequestDispatcher("View1.jsp").forward(req, resp); //forwarding to the view1 page
         resp.sendRedirect("View1.jsp"); //redirecting to the view1 page
     }
+
 }
