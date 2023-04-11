@@ -112,7 +112,7 @@
 
 
                 <!-- BOOKINGS BOX TABLE -->
-                <div class="box box-1" id="bookingsBox">
+                <div class="box box-1" id="bookingsBox" style="height: auto">
                     <form action="show-rooms-servlet" method="get" id="display_rooms" style="display: <%=displayRooms%>; background: lightcoral">
                         <table border="1" style="font-size: 20px">
                             <!--TABLE HEADERS-->
@@ -204,7 +204,7 @@
             </div>
 
             <!-- RENTAL FORM BOX -->
-            <div class="box box-2" id="rentalBox">
+            <div class="box box-2" id="rentalBox" style="height: auto">
                 <form style="padding: 15px">
                     <label class="labels" for="booking_id">BOOKING ID: </label>
                     <input class="labels" type="number" id="booking_id"
