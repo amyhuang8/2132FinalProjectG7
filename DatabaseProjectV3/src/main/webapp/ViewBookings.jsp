@@ -145,7 +145,6 @@
                                             onclick="fillForms('<%=room.getRoomID()%>')">FILL RENTAL FORM</button></td>
                             </tr>
                             <%
-                                    }
                                 }
                             %>
                             </tbody>
