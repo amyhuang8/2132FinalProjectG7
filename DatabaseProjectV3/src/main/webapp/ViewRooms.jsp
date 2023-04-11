@@ -202,7 +202,7 @@
         <br><br>
         <!-- Output price text -->
         <div class="prices">
-            <small>Max price per night:</small>
+            <small>Max price:</small>
             <small>$ <span id="max-price"></span></small>
         </div>
         <br>

@@ -160,7 +160,7 @@
                                 <th>Check In Date</th>
                                 <th>Check Out Date</th>
                                 <th>Confirmation Date</th>
-                                <th>Customer ID</th>
+                                <th>Customer Email</th>
                                 <th>Room ID</th>
                             </tr>
                             </thead>
@@ -172,7 +172,7 @@
                                     // PROCESS: looping through arraylist
                                     for (Booking booking : bookings) {
                             %>
-                            <tr>
+                            <tr style="text-align: center">
                                 <td><%=booking.getId()%></td>
                                 <td><%=booking.getCheckIn()%></td>
                                 <td><%=booking.getCheckOut()%></td>
