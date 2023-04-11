@@ -28,16 +28,62 @@ public class SearchResultsServlet extends HttpServlet {
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 
+    /**
+     * This method is used to show the available rooms in a specific hotel in the database.
+     * @param req the request sent from the JSP file
+     * @param resp the response to be sent to the JSP file
+     * @throws IOException if there is an error with the input/output
+     * @throws ServletException if there is an error with the servlet
+     */
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        doPost(req, resp);
+        // VARIABLE DECLARATION
+        RoomServer con = new RoomServer(); //new connection
+
+        // get session
+        HttpSession session = req.getSession();
+
+        LOGGER.severe("Hotel ID: " + session.getAttribute("hotel_id"));
+
+        // get the hotel id from the session
+        if (session.getAttribute("hotel_id") != null) {
+            int hotelID = Integer.parseInt((String) session.getAttribute("hotel_id"));
+            // get the data from room server
+            // get the data from view2
+            ArrayList<Room> availableRooms = con.getAvailableRooms(hotelID);
+
+            // setting the attribute
+            req.setAttribute("availableRooms", availableRooms);
+
+            // forward to the view bookings page (employee's home page)
+            req.setAttribute("availableRooms", availableRooms);
+            req.setAttribute("displayBookings", "none");
+            req.setAttribute("displayRooms", "block");
+            req.getRequestDispatcher("ViewBookings.jsp").forward(req, resp);
+        } else {
+            // redirect to error page
+            //e.printStackTrace();
+            resp.setStatus(401); //setting error status
+            req.setAttribute("status", "CLOG-DB-401"); //setting error status attribute
+            req.setAttribute("heading", "USER ERROR"); //setting heading attribute
+            req.setAttribute("error_msg", "Your session has ended. Please click return."); //setting error msg attribute
+            req.getRequestDispatcher("ErrorPage.jsp").forward(req, resp); //forwarding response attributes to error page
+            resp.sendRedirect("ErrorPage.jsp"); //redirecting to error page
+        }
+
     }
+
+    /**
+     * This method is used to filter the rooms available in the database.
+     * @param req the request sent from the JSP file
+     * @param resp the response to be sent to the JSP file
+     * @throws ServletException if there is an error with the servlet
+     * @throws IOException if there is an error with the input/output
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         // VARIABLE DECLARATION
         RoomServer con = new RoomServer(); //new connection
-
-        // READ THE FORM DATA
 
         // hotel chain chosen
         String hotelChain;
@@ -63,7 +109,6 @@ public class SearchResultsServlet extends HttpServlet {
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
-
 
         // room capacity
         String capacity;

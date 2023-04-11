@@ -28,8 +28,8 @@
     <!-- TITLE -->
     <title>Search Results</title>
 
-    <!--HEADER BUTTONS-->
-    <!--HOME BUTTON-->
+    <!-- HEADER BUTTONS-->
+    <!-- HOME BUTTON-->
     <form action="index.jsp">
         <button type="submit" id="home_button" class="header-buttons"
                 style="float: left; border-radius: 30%;
