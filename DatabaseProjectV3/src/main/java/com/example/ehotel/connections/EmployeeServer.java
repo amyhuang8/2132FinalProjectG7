@@ -315,4 +315,57 @@ public class EmployeeServer {
 
     }
 
+    // DELETION METHODS---------------------------------------------------------------------------------
+    public boolean deleteHotel(String hotel_id) {
+
+        // PROCESS: connecting to db
+        ConnectionDB db = new ConnectionDB();
+
+        sql = "delete from ehotels.employee where cast(hotel_id as varchar)=?"; //updating query
+        String sql2 = "delete from ehotels.room where cast(hotel_id as varchar)=?"; //updating query
+        String sql3 = "delete from ehotels.hotel where cast(hotel_id as varchar)=?"; //updating query
+
+        // PROCESS: setting params to query reqs.
+        try (Connection con = db.getConn()){
+
+            // INITIALIZATION
+            ps = con.prepareStatement(sql);
+            ps.setString(1, String.valueOf(hotel_id));
+
+            // PROCESS: executing SQL query
+            rs = ps.executeQuery();
+
+            // INITIALIZATION
+            ps = con.prepareStatement(sql2);
+            ps.setString(1, String.valueOf(hotel_id));
+
+            // PROCESS: executing SQL query
+            rs = ps.executeQuery();
+
+            // INITIALIZATION
+            ps = con.prepareStatement(sql3);
+            ps.setString(1, String.valueOf(hotel_id));
+
+            // PROCESS: executing SQL query
+            rs = ps.executeQuery();
+
+        }
+        catch (SQLException e) { //error-handling
+            LOGGER.severe("FAILED TO DELETE HOTEL"); //log msg
+
+            // OUTPUT
+            e.printStackTrace();
+            return false; //fail
+        }
+        finally { // closing connection after querying
+            db.closeDB();
+        }
+
+        LOGGER.info("DELETED HOTEL " + hotel_id); //log msg
+
+        // OUTPUT
+        return true; //success
+
+    }
+
 }

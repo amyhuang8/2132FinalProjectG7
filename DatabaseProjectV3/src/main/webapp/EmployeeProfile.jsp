@@ -128,6 +128,15 @@
                     style="margin-left: 2px">RESET CHANGES</button>
         </form>
 
+        <br>
+        <hr style="background-color: rosybrown; height: 1.5px">
+        <br>
+
+        <form action="delete-hotel-servlet" style="text-align: center" id="delete_hotel">
+            <button type="submit" class="buttons" value="delete-hotel"
+                    onclick='return confirm("WARNING: THIS IS A FATAL ACTION AND CANNOT BE REVERSED.")'>DELETE HOTEL</button>
+        </form>
+
         <!--SAVED CHANGES SNACKBAR-->
         <div id="changes_snackbar">All changes saved!</div>
 
