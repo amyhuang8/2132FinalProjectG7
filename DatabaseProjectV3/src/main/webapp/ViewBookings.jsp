@@ -107,7 +107,7 @@
                 </div>
 
                 <!-- BOOKINGS BOX TABLE -->
-                <div class="box box-1" id="bookingsBox" style="height: auto">
+                <div class="box box-1" id="bookingsBox" style="height: fit-content">
                     <form action="show-rooms-servlet" method="get" id="display_rooms" style="display: <%=displayRooms%>; background: lightcoral">
                         <table border="1" style="font-size: 20px">
                             <!--TABLE HEADERS-->
@@ -115,6 +115,7 @@
                             <tr>
                                 <th>Room ID</th>
                                 <th>Room Number</th>
+                                <th>Next Booking</th>
                                 <th>Amenities</th>
                                 <th>View Type</th>
                                 <th>Capacity</th>
@@ -132,6 +133,7 @@
                             <tr style="text-align: center">
                                 <td><%=room.getRoomID()%></td>
                                 <td><%=room.getRoomNumber()%></td>
+                                <td><%=room.getNextBooking()%></td>
                                 <td><%=room.getAmenities()%></td>
                                 <td><%=room.getViewType()%></td>
                                 <td><%=room.getCapacity()%></td>
@@ -196,7 +198,8 @@
             </div>
 
             <!-- RENTAL FORM BOX -->
-            <div class="box box-2" id="rentalBox" style="height: auto">
+            <div class="box box-2" id="rentalBox">
+
                 <form action="rental-creation-servlet" style="padding: 15px">
                     <label class="labels" for="booking_id">BOOKING ID: </label>
                     <input class="labels" type="number" id="booking_id" name="booking id"

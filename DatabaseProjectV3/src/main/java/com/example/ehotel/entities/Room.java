@@ -169,7 +169,7 @@ public class Room {
 
     // OTHER METHODS ---------------------------------------------------------------------------------------------------
     // PROCESS: connecting to database
-    public Date getNextBooking(){
+    public String getNextBooking(){
         ConnectionDB db = new ConnectionDB();
 
         Date date = null;
@@ -196,7 +196,14 @@ public class Room {
 
         // close the connection
         db.closeDB();
-        return date;
+
+        // PROCESS: checking for null date
+        if (date == null) {
+            return "NO FURTHER BOOKINGS";
+        }
+        else {
+            return String.valueOf(date);
+        }
     }
 
 }
