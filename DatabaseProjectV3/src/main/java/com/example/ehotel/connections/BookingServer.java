@@ -14,24 +14,24 @@ public class BookingServer {
     ResultSet rs = null;
     String sql;
 
-    private static final Logger LOGGER = Logger.getLogger(CustomerServer.class.getName()); //logger
+    private static final Logger LOGGER = Logger.getLogger(BookingServer.class.getName()); //logger
 
     // GETTER METHODS------------------------------------------------------------------------------------
-
     /**
      * This method retrieves all the bookings for today's date and returns them in an ArrayList.
      *
      * @return an ArrayList of Booking entities
      */
-    public ArrayList<Booking> getPendingBookings() {
+    public ArrayList<Booking> getPendingBookings(String hotel_id) {
 
         // PROCESS: connecting to db
         ConnectionDB db = new ConnectionDB();
 
         // VARIABLE DECLARATION
         ArrayList<Booking> bookings = new ArrayList<>(); //new arraylist to hold bookings
-        sql = "select * from ehotels.booking where cast(check_in as varchar)=?"; //SQL query
-        // TODO make sure to check for room_id/hotel_id as well
+        sql = "select * from ehotels.booking where cast(check_in as varchar)=?" +
+                " and ?=(select cast(hotel_id as varchar) from ehotels.room" +
+                " where ehotels.booking.room_id=ehotels.room.room_id);"; //SQL query
 
         Date date = new Date(); //today's date
         java.sql.Date sqlDate = new java.sql.Date(date.getTime()); //new SQL date
@@ -39,12 +39,11 @@ public class BookingServer {
         // PROCESS: setting params to query reqs.
         try (Connection con = db.getConn()) {
 
-            //sql = "SELECT * FROM ehotels.booking";
-
             // INITIALIZATION
             PreparedStatement ps = con.prepareStatement(sql);
 
             ps.setString(1, String.valueOf(sqlDate));
+            ps.setString(2, hotel_id);
 
             // PROCESS: executing SQL query
             rs = ps.executeQuery();
@@ -58,7 +57,8 @@ public class BookingServer {
                         rs.getString("customer_email"), rs.getInt("room_id")));
 
             }
-        } catch (SQLException e) { //error-handling
+        }
+        catch (SQLException e) { //error-handling
             // OUTPUT
             LOGGER.severe("FAILED TO RETRIEVE PENDING BOOKINGS: " + e.getMessage());
         }
@@ -83,7 +83,6 @@ public class BookingServer {
      */
     public void createBooking(Date check_in, Date check_out, String customer_email, int room_id, double final_price) {
 
-
         // PROCESS: connecting to db
         ConnectionDB db = new ConnectionDB();
 
@@ -107,15 +106,18 @@ public class BookingServer {
             // EXECUTE QUERY
             rs = ps.executeQuery();
 
+        }
+        catch (SQLException e) { // error-handling
             // OUTPUT
-            //LOGGER.severe("SUCCESSFULLY CREATED BOOKING");
-
-        } catch (SQLException e) { // error-handling
-            // OUTPUT
-            LOGGER.severe(e.getMessage());
-        } finally { //closing connection after querying
+            LOGGER.severe("FAILED TO INSERT BOOKING: " + e.getMessage()); //log msg
+        }
+        finally { //closing connection after querying
             db.closeDB();
         }
+
+        // OUTPUT
+        LOGGER.severe("SUCCESSFULLY CREATED BOOKING"); //log msg
+
     }
 
     /**
@@ -140,15 +142,22 @@ public class BookingServer {
 
             ps.executeUpdate();
 
-            return true;
+            return true; //success
 
-        } catch (SQLException e) { //error-handling
+        }
+        catch (SQLException e) { //error-handling
             // OUTPUT
-            LOGGER.severe("FAILED TO DELETE BOOKING: " + e.getMessage());
-        } finally { //closing connection after querying
+            LOGGER.severe("FAILED TO DELETE BOOKING: " + e.getMessage()); //log msg
+        }
+        finally { //closing connection after querying
             db.closeDB();
         }
 
-        return false;
+        // OUTPUT
+        LOGGER.severe("SUCCESSFULLY DELETED BOOKING"); //log msg
+
+        return false; //failure
+
     }
+
 }

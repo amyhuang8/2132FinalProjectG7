@@ -3,95 +3,95 @@ package com.example.ehotel.entities;
 import java.util.Date;
 
 public class Archive {
-    private int id;
-    private int bookingID;
-    private int rentalID;
-    private Date checkIn;
-    private Date checkOut;
-    private int roomID;
-    private double finalPrice;
-    private int customerID;
-    private int employeeID;
+    private int archive_id;
+    private int booking_or_rental_id;
+    private String type_of_booking;
+    private Date check_in;
+    private Date check_out;
+    private int room_id;
+    private double final_price;
+    private String customer_email;
+    private int employee_id;
 
     /**
      * Constructor to save archive's data
-     * @param id
-     * @param bookingID
-     * @param rentalID
-     * @param checkIn
-     * @param checkOut
-     * @param roomID
-     * @param finalPrice
-     * @param customerID
-     * @param employeeID
+     * @param archive_id
+     * @param booking_or_rental_id
+     * @param type_of_booking
+     * @param check_in
+     * @param check_out
+     * @param room_id
+     * @param final_price
+     * @param customer_email
+     * @param employee_id
      */
-    public Archive(int id, int bookingID, int rentalID, Date checkIn, Date checkOut, int roomID, double finalPrice, int customerID, int employeeID) {
-        this.id = id;
-        this.bookingID = bookingID;
-        this.rentalID = rentalID;
-        this.checkIn = checkIn;
-        this.checkOut = checkOut;
-        this.roomID = roomID;
-        this.finalPrice = finalPrice;
-        this.customerID = customerID;
-        this.employeeID = employeeID;
+    public Archive(int archive_id, int booking_or_rental_id, String type_of_booking,
+                   Date check_in, Date check_out, int room_id, double final_price,
+                   String customer_email, int employee_id) {
+        this.archive_id = archive_id;
+        this.booking_or_rental_id = booking_or_rental_id;
+        this.type_of_booking = type_of_booking;
+        this.check_in = check_in;
+        this.check_out = check_out;
+        this.room_id = room_id;
+        this.final_price = final_price;
+        this.customer_email = customer_email;
+        this.employee_id = employee_id;
     }
 
     // GETTERS -----------------------------------------------------------------------------------------------------------
-    public int getId() {
-        return id;
+    public int getID() {
+        return archive_id;
     }
     public int getBookingID() {
-        return bookingID;
+        return booking_or_rental_id;
     }
-    public int getRentalID() {
-        return rentalID;
+    public String getBookingType() {
+        return type_of_booking;
     }
     public Date getCheckIn() {
-        return checkIn;
+        return check_in;
     }
     public Date getCheckOut() {
-        return checkOut;
+        return check_out;
     }
     public int getRoomID() {
-        return roomID;
+        return room_id;
     }
     public double getFinalPrice() {
-        return finalPrice;
+        return final_price;
     }
-    public int getCustomerID() {
-        return customerID;
-    }
+    public String getCustomerEmail() { return customer_email; }
     public int getEmployeeID() {
-        return employeeID;
+        return employee_id;
     }
 
     // SETTERS -----------------------------------------------------------------------------------------------------------
-    public void setId(int id) {
-        this.id = id;
+    public void setID(int archive_id) {
+        this.archive_id = archive_id;
     }
-    public void setBookingID(int bookingID) {
-        this.bookingID = bookingID;
+    public void setBookingID(int booking_or_rental_id) {
+        this.booking_or_rental_id = booking_or_rental_id;
     }
-    public void setRentalID(int rentalID) {
-        this.rentalID = rentalID;
+    public void setBookingType(String type_of_booking) {
+        this.type_of_booking = type_of_booking;
     }
-    public void setCheckIn(Date checkIn) {
-        this.checkIn = checkIn;
+    public void setCheckIn(Date check_in) {
+        this.check_in = check_in;
     }
-    public void setCheckOut(Date checkOut) {
-        this.checkOut = checkOut;
+    public void setCheckOut(Date check_out) {
+        this.check_out = check_out;
     }
-    public void setRoomID(int roomID) {
-        this.roomID = roomID;
+    public void setRoomID(int room_id) {
+        this.room_id = room_id;
     }
-    public void setFinalPrice(double finalPrice) {
-        this.finalPrice = finalPrice;
+    public void setFinalPrice(double final_price) {
+        this.final_price = final_price;
     }
-    public void setCustomerID(int customerID) {
-        this.customerID = customerID;
+    public void setCustomerEmail(String customer_email) {
+        this.customer_email = customer_email;
     }
-    public void setEmployeeID(int employeeID) {
-        this.employeeID = employeeID;
+    public void setEmployeeID(int employee_id) {
+        this.employee_id = employee_id;
     }
 }

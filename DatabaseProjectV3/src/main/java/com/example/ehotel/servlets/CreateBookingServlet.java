@@ -1,16 +1,14 @@
 package com.example.ehotel.servlets;
 
 import com.example.ehotel.connections.BookingServer;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
-import java.io.IOException;
-import java.util.Date;
-import java.util.logging.Logger;
+import java.io.*;
+import java.util.*;
+import java.util.logging.*;
+
+import jakarta.servlet.*;
+import jakarta.servlet.annotation.*;
+import jakarta.servlet.http.*;
 
 @WebServlet(name = "createBookingServlet", value = "/create-booking-servlet")
 public class CreateBookingServlet extends HttpServlet {
@@ -50,6 +48,10 @@ public class CreateBookingServlet extends HttpServlet {
         double damages = Double.parseDouble(req.getParameter("damages"));
         double finalPrice = price - damages;
 
+        // set the session variables
+        session.setAttribute("roomID", roomID);
+        session.setAttribute("price", price);
+        session.setAttribute("damages", damages);
 
         // DEBUGGING
         LOGGER.info("EMAIL: " + email);
@@ -66,4 +68,5 @@ public class CreateBookingServlet extends HttpServlet {
         // redirect to the previous page
         resp.sendRedirect("ViewRooms.jsp");
     }
+
 }

@@ -31,6 +31,23 @@
                     background-image: url('css/resources/logouticon.png');"></button>
         </form>
 
+        <script>
+            /**
+             * LOGIN CHECK: This function checks whether the user is still logged in
+             * and displays the page normally if so. Otherwise, it takes the user to the homepage.
+             */
+            function checkLogin() {
+                // VARIABLE DECLARATION
+                let uid = '<%= session.getAttribute("uid") %>'; //retrieving session user ID
+
+                // PROCESS: checking if id is null
+                if (uid === "null") { //no longer logged in
+                    if (confirm("You have been logged out. Please log in again.")) {
+                        window.location.href = 'index.jsp'; //redirecting to homepage
+                    }
+                }
+            }
+        </script>
     </head>
 
     <body onload="checkLogin()">
@@ -126,6 +143,15 @@
                     onclick="validateProfileSave()">SAVE CHANGES</button>
             <button type="reset" class="buttons" value="reset"
                     style="margin-left: 2px">RESET CHANGES</button>
+        </form>
+
+        <br>
+        <hr style="background-color: rosybrown; height: 1.5px">
+        <br>
+
+        <form action="delete-hotel-servlet" style="text-align: center" id="delete_hotel">
+            <button type="submit" class="buttons" value="delete-hotel"
+                    onclick='return confirm("WARNING: THIS IS A FATAL ACTION AND CANNOT BE REVERSED.")'>DELETE HOTEL</button>
         </form>
 
         <!--SAVED CHANGES SNACKBAR-->

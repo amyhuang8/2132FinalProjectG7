@@ -16,11 +16,10 @@ ORDER BY a.city;
 -- VIEW 2: Capacity of all rooms in a specific hotel
 DROP VIEW IF EXISTS capacity_of_all_rooms;
 CREATE VIEW capacity_of_all_rooms AS
-SELECT r.room_num, r.capacity, h.name
-FROM room r, hotel h
-WHERE r.hotel_id = h.hotel_id AND
-        h.hotel_id = 1 -- replace this with a specific hotel name
-ORDER BY r.room_num;
+SELECT *
+FROM room NATURAL JOIN hotel JOIN
+address a ON hotel.hotel_address_id = a.id;
+
 
 -- EXTRA VIEWS
 

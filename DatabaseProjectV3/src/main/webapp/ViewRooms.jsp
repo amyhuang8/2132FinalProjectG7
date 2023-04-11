@@ -54,11 +54,15 @@
 <hr style="background-color: rosybrown; height: 1.5px">
 <br>
 
-<form action="show-view1-servlet" id="view-1-form" style="display: inline">
+<form action="show-view1-servlet" id="view-1-form"
+      style="display: inline; margin-right: 10px">
     <!--VIEW 1 BUTTON-->
-    <button class="buttons" id="vie`w-1" type="submit" name="view-1">View All Currently Available Rooms In Any Area</button>
-    <br><br>
+    <button class="buttons" id="view-1" type="submit" name="view-1">View All Currently Available Rooms In Any Area</button>
 </form>
+
+<button class="buttons" id="view-2" onclick="location.href = 'http://localhost:8080/DatabaseProjectV3/View2Customers.jsp';">View Capacity of Rooms in a Hotel</button>
+
+<br><br>
 
 <form action="show-rooms-servlet" method="POST" id="search-form" style="display: inline">
     <!--HOTEL CHAIN SEARCH BAR-->
@@ -182,15 +186,15 @@
         <small>Number of Rooms In Hotel:</small>
         <br><br>
         <input type="radio" id="one-room" name="num of rooms" value=1>
-        <small>1</small>
+        <small>1+</small>
         <input type="radio" id="two-rooms" name="num of rooms" value=2>
-        <small>2</small>
+        <small>2+</small>
         <input type="radio" id="three-rooms" name="num of rooms" value=3>
-        <small>3</small>
+        <small>3+</small>
         <input type="radio" id="four-rooms" name="num of rooms" value=4>
-        <small>4</small>
+        <small>4+</small>
         <input type="radio" id="five-rooms" name="num of rooms" value=5>
-        <small>5</small>
+        <small>5+</small>
     </div>
 
     <!-- MAX PRICE INPUT -->

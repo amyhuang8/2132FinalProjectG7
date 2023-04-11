@@ -1,10 +1,8 @@
 package com.example.ehotel.servlets;
 
-import com.example.ehotel.connections.CustomerServer;
+import com.example.ehotel.connections.EmployeeServer;
 
 import java.io.*;
-
-import com.example.ehotel.connections.EmployeeServer;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;

@@ -53,12 +53,5 @@ public class ConnectionDB {
         }
 
     }
-
-    // MAIN METHOD------------------------------------------------------------------------------------
-    /**
-     * MAIN METHOD: Used for testing
-     * @param args
-     */
-    public static void main(String[] args) {}
     
 }

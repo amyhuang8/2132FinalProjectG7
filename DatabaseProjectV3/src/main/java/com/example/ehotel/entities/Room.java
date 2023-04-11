@@ -21,6 +21,23 @@ public class Room {
     private String rating;
 
     // CONSTRUCTOR -----------------------------------------------------------------------------------------------------
+
+    /**
+     * This constructor is used to create a room to display in the search results table
+     * @param hotel_id hotel id of where the room is located
+     * @param name hotel name (chain)
+     * @param rating hotel rating (3-5)
+     * @param room_id room id of the room
+     * @param room_num room number of the room
+     * @param view_type view type of the room
+     * @param amenities amenities of the room
+     * @param capacity capacity of the room
+     * @param price price of the room
+     * @param damages damages (if any)
+     * @param extendable if room is extendable
+     * @param availability if room is available
+     * @param address address of the hotel where the room is located
+     */
     public Room(int hotel_id, String name, int rating, int room_id, int room_num, String view_type, String amenities, String capacity, double price, double damages, boolean extendable, boolean availability, Address address) {
         this.hotelID = hotel_id;
         this.hotelName = name;
@@ -35,6 +52,34 @@ public class Room {
         this.extendable = extendable;
         this.availability = availability;
         this.address = address;
+    }
+
+    /**
+     * This constructor is used to display view 2
+     *
+     * @param room_num room number
+     * @param capacity capacity of the room
+     * @param name     hotel name (chain)
+     * @param address address of the hotel
+     */
+    public Room(int room_num, String capacity, String name, Address address) {
+        this.roomNumber = room_num;
+        this.capacity = capacity;
+        this.hotelName = name;
+        this.address = address;
+    }
+
+    public Room(int hotel_id, int room_id, int room_num, String view_type, String amenities, String capacity, double price, double damages, boolean extendable, boolean availability) {
+        this.hotelID = hotel_id;
+        this.roomID = room_id;
+        this.roomNumber = room_num;
+        this.viewType = view_type;
+        this.amenities = amenities;
+        this.capacity = capacity;
+        this.price = price;
+        this.damages = damages;
+        this.extendable = extendable;
+        this.availability = availability;
     }
 
     // GETTERS ---------------------------------------------------------------------------------------------------------

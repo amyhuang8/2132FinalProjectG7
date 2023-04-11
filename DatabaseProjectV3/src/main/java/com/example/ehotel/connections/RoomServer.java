@@ -3,10 +3,11 @@ package com.example.ehotel.connections;
 import com.example.ehotel.entities.Address;
 import com.example.ehotel.entities.Room;
 
-import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Logger;
+
+import java.sql.*;
 
 public class RoomServer {
 
@@ -14,7 +15,8 @@ public class RoomServer {
     ResultSet rs = null;
     String sql;
     PreparedStatement ps = null;
-    private static final Logger LOGGER = Logger.getLogger(CustomerServer.class.getName()); // logger
+
+    private static final Logger LOGGER = Logger.getLogger(RoomServer.class.getName()); // logger
 
     // METHODS ---------------------------------------------------------------------------------------------------------
     /**
@@ -38,6 +40,44 @@ public class RoomServer {
             while (rs.next()) {
                 data.add(rs.getString("count"));
                 data.add(rs.getString("city"));
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        // closing the connection
+        db.closeDB();
+
+        // returning the array list
+        return data;
+    }
+
+    /**
+     * This method retrieves all the data from view 2 in the database
+     * @param hotelID id of the hotel
+     * @return an array list with only the room number, capacity, name and address attributes from view 2
+     */
+    public ArrayList<Room> getView2(int hotelID) {
+
+        // PROCESS: connecting to database
+        ConnectionDB db = new ConnectionDB();
+
+        ArrayList<Room> data = new ArrayList<>();
+
+        // initializing the array of rooms
+        try (Connection conn = db.getConn()) {
+
+            sql = "SELECT * FROM ehotels.capacity_of_all_rooms WHERE hotel_id = " + hotelID;
+
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                data.add(new Room(
+                        rs.getInt("room_num"),
+                        rs.getString("capacity"),
+                        rs.getString("name"),
+                        new Address (rs.getString("street"), rs.getString("city"), rs.getString("province"), rs.getString("country")
+                        )));
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
@@ -84,7 +124,7 @@ public class RoomServer {
                 " NOT IN (SELECT name, hotel_id, room_num FROM ehotels.name_of_hotel_from_booking WHERE ('" + checkInDate +
                 "' >= check_in AND '" + checkInDate + "' <= check_out) OR ('" + checkOutDate + "' " +
                 " >= check_in AND '" + checkOutDate + "' <= check_out))" +
-                "ORDER BY price";
+                " ORDER BY price";
 
         // log the sql query
         LOGGER.severe("SQL: " + sql);
@@ -119,29 +159,22 @@ public class RoomServer {
 
         // return the array of rooms fitting the filter criteria
         return rooms;
-
     }
 
     /**
-     * This method is used to get all the available rooms from the database for the purposes of walk-ins.
-     * @param hotelID id of hotel
-     * @return an array of all the available rooms in the database for the hotel in question
+     * This method is used to get all the available rooms from the database that the employee works at
+     * @param hotelID id of the hotel
+     * @return an array of all the available rooms in that hotel
      */
-    public ArrayList<Room> getAvailableRooms (int hotelID) {
+    public ArrayList<Room> getAvailableRooms(int hotelID) {
         // PROCESS: connecting to database
         ConnectionDB db = new ConnectionDB();
 
         // initializing the array of rooms
         ArrayList<Room> rooms = new ArrayList<>();
 
-        // SQL QUERY
-
-        sql = "SELECT hotel_id, name, num_of_rooms, rating,price, room_id, amenities, capacity, view_type, damages, extendable " +
-                "FROM ehotels.hotel NATURAL JOIN ehotels.address NATURAL JOIN ehotels.room WHERE hotel_id = '" + hotelID + "'" + "AND availability = true";
-
-        sql += " ORDER BY price";
-
-        LOGGER.severe("SQL: " + sql);
+        // sql query
+        sql = "SELECT * FROM ehotels.room WHERE hotel_id = " + hotelID + " AND availability = true";
 
         try (Connection con = db.getConn()){
 
@@ -152,23 +185,25 @@ public class RoomServer {
             rs = ps.executeQuery();
 
             // FILLING THE ARRAY WITH ROOMS
+
             while (rs.next()) {
-                rooms.add(new Room (rs.getInt("hotel_id"), rs.getString("name"), rs.getInt("rating"),
+
+                // Add a room to the array (including its address)
+                rooms.add(new Room (rs.getInt("hotel_id"),
                         rs.getInt("room_id"), rs.getInt("room_num"), rs.getString("view_type"),
                         rs.getString("amenities"), rs.getString("capacity"), rs.getDouble("price"),
-                        rs.getDouble("damages"), rs.getBoolean("extendable"), rs.getBoolean("availability"),
-                        new Address(rs.getString("street"), rs.getString("city"), rs.getString("province"), rs.getString("country"))));
+                        rs.getDouble("damages"), rs.getBoolean("extendable"), rs.getBoolean("availability")));
             }
 
+
         } catch (Exception e) {
-            LOGGER.severe("Error in filterRoom() method: " + e.getMessage());
+            LOGGER.severe("Error in getAvailableRooms() method: " + e.getMessage());
         }
 
-        // close the connection
-        db.closeDB();
+        // log the sql query
+        LOGGER.severe("GET AVAILABLE ROOMS IN HOTEL SQL: " + sql);
 
-        // return the array of rooms fitting the filter criteria
         return rooms;
-
     }
+
 }

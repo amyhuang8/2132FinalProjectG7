@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 
 public class RentalServer {
     // VARIABLE DECLARATION: INSTANCE VARS. FOR CONNECTION
-    ResultSet rs = null;
     String sql;
 
     private static final Logger LOGGER = Logger.getLogger(RentalServer.class.getName()); //logger
@@ -26,9 +25,10 @@ public class RentalServer {
         ConnectionDB db = new ConnectionDB();
 
         // VARIABLE DECLARATION
-        sql = "INSERT INTO ehotels.rental (check_in, check_out, room_id, employee_id, customer_email) VALUES (CURRENT_DATE, ?, ?, ?, ?)"; //SQL query
-
-        LOGGER.severe("Insertion into rental table SQL: " + sql);
+        sql = "INSERT INTO ehotels.rental(check_in, check_out, room_id, employee_id, customer_email, final_price)" +
+                "VALUES (CURRENT_DATE, ?, ?, ?, ?," +
+                "(SELECT price FROM ehotels.room WHERE room_id=?) -" +
+                "(SELECT damages FROM ehotels.room WHERE room_id=?))"; //SQL query
 
         // PROCESS: setting params to query reqs.
         try (Connection con = db.getConn()) {
@@ -40,19 +40,23 @@ public class RentalServer {
             ps.setInt(2, room_id);
             ps.setInt(3, employee_id);
             ps.setString(4, customer_email);
-
+            ps.setInt(5, room_id);
+            ps.setInt(6, room_id);
 
             // EXECUTE QUERY
-            rs = ps.executeQuery();
+            ps.execute();
 
+        }
+        catch (SQLException e) { // error-handling
             // OUTPUT
-            //LOGGER.severe("SUCCESSFULLY CREATED BOOKING");
-
-        } catch (SQLException e) { // error-handling
-            // OUTPUT
-            LOGGER.severe(e.getMessage());
-        } finally { //closing connection after querying
+            LOGGER.severe(e.getMessage()); //log msg
+        }
+        finally { //closing connection after querying
             db.closeDB();
         }
+
+        // OUTPUT
+        LOGGER.info("SUCCESSFULLY CREATED RENTAL"); //log msg
+
     }
 }
