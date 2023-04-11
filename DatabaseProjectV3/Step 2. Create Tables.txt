@@ -77,7 +77,7 @@ CREATE TABLE room
 DROP TABLE IF EXISTS employee;
 CREATE TABLE employee
 (
-    employee_id         SMALLSERIAL UNIQUE,
+    employee_id         SERIAL UNIQUE,
     manager_id          INT,
     hotel_id            INT,
     first_name          VARCHAR(25)   NOT NULL,
@@ -85,7 +85,7 @@ CREATE TABLE employee
     SIN                 CHAR(9)       NOT NULL UNIQUE,
     employee_address_id INT,
     position            VARCHAR(25)   NOT NULL,
-    salary              NUMERIC(7, 2) NOT NULL,
+    salary              NUMERIC(8, 2) NOT NULL,
     FOREIGN KEY (employee_address_id) REFERENCES address (id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (hotel_id) REFERENCES hotel (hotel_id) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (employee_id, hotel_id)
