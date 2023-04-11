@@ -1,4 +1,9 @@
 package com.example.ehotel.entities;
+import com.example.ehotel.connections.ConnectionDB;
+
+import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 public class Room {
     private int roomID;
@@ -163,5 +168,35 @@ public class Room {
     }
 
     // OTHER METHODS ---------------------------------------------------------------------------------------------------
+    // PROCESS: connecting to database
+    public Date getNextBooking(){
+        ConnectionDB db = new ConnectionDB();
+
+        Date date = null;
+
+        // SQL QUERY
+
+        String sql = "SELECT check_in FROM ehotels.booking WHERE room_id = '" + roomID + "' ORDER BY check_in";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try(Connection con = db.getConn()){
+
+            // SET PREPARED STATEMENT
+            ps = con.prepareStatement(sql);
+
+            // EXECUTE QUERY
+            rs = ps.executeQuery();
+
+            if (rs.next())
+                date = rs.getDate("check_in");
+
+        } catch (SQLException e) {
+            //TODO Error
+        }
+
+        // close the connection
+        db.closeDB();
+        return date;
+    }
 
 }

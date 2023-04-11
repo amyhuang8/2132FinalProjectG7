@@ -143,7 +143,6 @@ CREATE TABLE rental
     customer_email  VARCHAR(30)  NOT NULL,
     final_price     NUMERIC(8, 2) NOT NULL,
     FOREIGN KEY (employee_id) REFERENCES employee (employee_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (customer_email) REFERENCES customer (customer_email) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (room_id) REFERENCES room (room_id) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (rental_id)
 );
