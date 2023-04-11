@@ -129,7 +129,8 @@
                             <!--TABLE ROWS-->
                             <tbody>
                             <%
-                                for (Room room : rooms) {
+                                if (rooms != null && !rooms.isEmpty()) { //not null and not empty
+                                     for (Room room : rooms) {
                             %>
                             <tr>
                                 <td><%=room.getRoomID()%></td>
@@ -145,6 +146,7 @@
                                             onclick="fillForms('<%=room.getRoomID()%>')">FILL RENTAL FORM</button></td>
                             </tr>
                             <%
+                                    }
                                 }
                             %>
                             </tbody>

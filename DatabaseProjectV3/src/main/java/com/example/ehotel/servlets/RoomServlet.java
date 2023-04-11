@@ -38,7 +38,14 @@ public class RoomServlet extends HttpServlet  {
         RoomServer con = new RoomServer(); //new connection
 
         // RETRIEVE ALL ROOMS
-        ArrayList<Room> rooms = con.getAvailableRooms((Integer) session.getAttribute("hotel_id"));
+        ArrayList<Room> rooms = null;
+        try{
+            rooms = con.getAvailableRooms(Integer.parseInt(session.getAttribute("hotel_id").toString()));
+        }
+        catch (ClassCastException e){
+            System.out.println(session.getAttribute("hotel_id").toString());
+        }
+
 
         // SEND THE DATA TO THE JSP
         req.setAttribute("rooms", rooms); //sending bookings arraylist
