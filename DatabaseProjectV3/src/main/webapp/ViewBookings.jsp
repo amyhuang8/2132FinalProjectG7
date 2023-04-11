@@ -63,6 +63,7 @@
     </head>
 
     <body onload="checkLogin()">
+
         <!--HEADING-->
         <h1>Pending Bookings</h1>
         <hr style="background-color: rosybrown; height: 1.5px">
@@ -77,18 +78,16 @@
         <!-- VIEW 2 BUTTON -->
         <form action="show-view2-servlet" id="view-2-form" method="post"
               style="display: inline; margin-left: 5px; margin-right: 5px">
-            <!--VIEW 2 BUTTON-->
             <button class="buttons" id="view-2" type="submit" name="view-1">VIEW CAPACITY OF ALL ROOMS IN HOTEL</button>
         </form>
 
         <!--ARCHIVE BUTTON-->
-        <!-- VIEW 2 BUTTON -->
         <form action="archive-servlet" style="display: inline; margin-left: 5px">
-            <!--VIEW 2 BUTTON-->
             <button class="buttons" type="submit">VIEW ARCHIVE</button>
             <br><br>
         </form>
 
+        <!-- DISPLAY ON LEFT SIDE OF SCREEN -->
         <div class="container">
             <div class="box-container">
                 <div class="buttons-wrapper">
@@ -109,9 +108,6 @@
                 </div>
 
                 <!-- AVAILABLE ROOMS BOX TABLE -->
-
-
-                <!-- BOOKINGS BOX TABLE -->
                 <div class="box box-1" id="bookingsBox" style="height: auto">
                     <form action="show-rooms-servlet" method="get" id="display_rooms" style="display: <%=displayRooms%>; background: lightcoral">
                         <table border="1" style="font-size: 20px">
