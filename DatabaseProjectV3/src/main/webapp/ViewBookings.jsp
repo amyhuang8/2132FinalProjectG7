@@ -21,7 +21,7 @@
         displayRooms = "none";
         displayBookings = "block";
     }
-    if (displayBookings == null || displayRooms.equals("block")) {
+    else if (displayBookings == null || displayRooms.equals("block")) {
         displayBookings = "none";
         displayRooms = "block";
     }

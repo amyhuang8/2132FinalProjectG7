@@ -86,9 +86,9 @@
             <th>Location</th>
             <th>View Type</th>
             <th>Amenities</th>
-            <th>Price (CAD)</th>
+            <th>Price</th>
             <th>Extendable?</th>
-            <th>Damages (Reduced on Final Price)</th>
+            <th>Damages (Reduced on Price)</th>
         </tr>
         </thead>
 

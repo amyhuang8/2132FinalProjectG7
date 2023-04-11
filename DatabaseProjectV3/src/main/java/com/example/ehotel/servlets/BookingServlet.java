@@ -35,6 +35,8 @@ public class BookingServlet extends HttpServlet  {
 
         // SEND THE DATA TO THE JSP
         req.setAttribute("bookings", bookings); //sending bookings arraylist
+        req.setAttribute("displayBookings", "block");
+        req.setAttribute("displayRooms", "none");
         req.getRequestDispatcher("ViewBookings.jsp").forward(req, resp); //forwarding response
 
     }
