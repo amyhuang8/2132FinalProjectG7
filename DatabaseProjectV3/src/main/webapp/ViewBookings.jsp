@@ -142,11 +142,7 @@
                                 <td><%=room.getDamages()%></td>
                                 <td><button class="buttons" type="button"
                                             style="padding: 2px; background-color: indianred"
-                                            onclick="fillForms('<%=booking.getId()%>',
-                                                    '<%=booking.getEmail()%>',
-                                                    '<%=booking.getRoomNum()%>',
-                                                    '<%=booking.getCheckIn()%>',
-                                                    '<%=booking.getCheckOut()%>')">FILL RENTAL FORM</button></td>
+                                            onclick="fillForms('<%=room.getRoomID()%>')">FILL RENTAL FORM</button></td>
                             </tr>
                             <%
                                     }

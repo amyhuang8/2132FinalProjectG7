@@ -76,6 +76,21 @@ function fillForms(booking_id, email, roomID, checkInDate, checkOutDate) {
     formCheckInDate.style.cursor = "not-allowed";
     formCheckOutDate.style.cursor = "not-allowed";
 }
+function fillForms(roomID) {
+    // VARIABLE DECLARATION: the forms
+    let formBookingID = document.getElementById("booking_id");
+    let formRoomID = document.getElementById("room_id");
+
+    // INITIALIZATION: setting form values to room info
+    formRoomID.value = roomID;
+
+    // PROCESS: disabling all form fields
+    formRoomID.disabled = true;
+
+
+    // PROCESS: changing cursor icon
+    formRoomID.style.cursor = "not-allowed";
+}
 
 /**
  * This function enables specific input fields in the rental forms.
