@@ -1,6 +1,7 @@
 <%@ page import="com.example.ehotel.entities.Booking" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.time.LocalDate" %>
+<%@ page import="com.example.ehotel.entities.Room" %>
 
 <!--NOT STORING CACHE-->
 <%
@@ -12,6 +13,7 @@
 <%
     // VARIABLE DECLARATION: retrieving ArrayList of bookings from servlet
     ArrayList<Booking> bookings = (ArrayList<Booking>) request.getAttribute("bookings");
+    ArrayList<Room> rooms = (ArrayList<Room>) request.getAttribute("rooms");
 %>
 
 <!DOCTYPE html>
@@ -107,6 +109,51 @@
                             </tbody>
                         </table>
                     </form>
+                    <form id="display_rooms" action="room-servlet">
+                        <!--TABLE FOR AVAILABLE ROOMS-->
+                        <table border="1" style="font-size: 20px">
+                            <!--TABLE HEADERS-->
+                            <thead>
+                            <tr>
+                                <th>Room ID</th>
+                                <th>Room Number</th>
+                                <th>Next Booking Start</th>
+                                <th>Price</th>
+                                <th>Amenities</th>
+                                <th>Capacity</th>
+                                <th>Extendable</th>
+                                <th>Damages</th>
+                            </tr>
+                            </thead>
+
+                            <!--TABLE ROWS-->
+                            <tbody>
+                            <%
+                                for (Room room : rooms) {
+                            %>
+                            <tr>
+                                <td><%=room.getRoomID()%></td>
+                                <td><%=room.getRoomNumber()%></td>
+                                <td><%=room.getPrice()%></td>
+                                <td><%=room.getAmenities()%></td>
+                                <td><%=room.getCapacity()%></td>
+                                <td><%=room.isExtendable()%></td>
+                                <td><%=room.getDamages()%></td>
+                                <td><button class="buttons" type="button"
+                                            style="padding: 2px; background-color: indianred"
+                                            onclick="fillForms('<%=booking.getId()%>',
+                                                    '<%=booking.getEmail()%>',
+                                                    '<%=booking.getRoomNum()%>',
+                                                    '<%=booking.getCheckIn()%>',
+                                                    '<%=booking.getCheckOut()%>')">FILL RENTAL FORM</button></td>
+                            </tr>
+                            <%
+                                    }
+                                }
+                            %>
+                            </tbody>
+                        </table>
+                    </form>
                 </div>
             </div>
             <div class="box box-2" id="rentalBox">
@@ -137,7 +184,7 @@
                     <br><br>
                     <button class="buttons" id="reset_button" type="reset" onclick="enableForms()"
                             style="margin-right: 3px">RESET FORMS</button>
-                    <button class="buttons" id="rental_button" type="submit"
+                    <button class="buttons" id="rental_button" type="submit" onclick="createRental()"
                             style="margin-left: 3px">CREATE RENTAL</button>
                 </form>
             </div>

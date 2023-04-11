@@ -34,7 +34,7 @@ function displayBookings() {
 function displayRooms() {
     // VARIABLE DECLARATION
     let bookingsBox = document.getElementById("bookingsBox");
-    let form = document.getElementById("display_bookings");
+    let form = document.getElementById("display_rooms");
 
     bookingsBox.style.backgroundColor = "lightcoral"; //updating background style
     form.style.display = "none";
@@ -100,8 +100,9 @@ function enableForms() {
     formCheckOutDate.style.cursor = "default";
 }
 
-function createRental() {
-    //query for email in customers
+function createRental(booking_id, email, roomID, checkInDate, checkOutDate) {
+    enableForms() // reset the forms
+
     //if no match then create account
     //if no Name / SIN then error
     //create rental (Servlet??)

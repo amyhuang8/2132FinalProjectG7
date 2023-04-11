@@ -26,13 +26,12 @@ public class RentalCreationServlet extends HttpServlet {
         // VARIABLE DECLARATION: new session
         HttpSession session = req.getSession();
 
-        int id = Integer.parseInt(req.getParameter("rental id"));
-        int bookingID = Integer.parseInt(req.getParameter("booking id"));
+        int bookingID = Integer.parseInt(req.getParameter("booking id")); //how do i make it so getting a booking id is optional?
         Date checkOut = null;
         try {
             checkOut = new SimpleDateFormat("dd/MM/yyyy").parse(req.getParameter("check out date"));
             int roomID = Integer.parseInt(req.getParameter("room id"));
-            int employeeID = Integer.parseInt(req.getParameter("check in date"));
+            int employeeID = Integer.parseInt(req.getParameter("employee id"));
             String customerEmail = req.getParameter("customer email");
             // VARIABLE DECLARATION: new connection
             RentalServer con = new RentalServer();
