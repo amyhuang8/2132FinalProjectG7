@@ -22,7 +22,6 @@
         <meta http-equiv="Content-Language" content="ch-cn">
         <link rel ="stylesheet" href="css/styles.css">
         <link rel ="stylesheet" href="css/view-bookings.css">
-        <script src="js/view-bookings.js"></script>
 
         <!--TITLE-->
         <title>Pending Bookings</title>
