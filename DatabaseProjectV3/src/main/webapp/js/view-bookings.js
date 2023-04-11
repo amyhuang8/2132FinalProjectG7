@@ -37,6 +37,7 @@ function displayRooms() {
     let form = document.getElementById("display_rooms");
 
     bookingsBox.style.backgroundColor = "lightcoral"; //updating background style
+    form.submit();
     form.style.display = "none";
 }
 

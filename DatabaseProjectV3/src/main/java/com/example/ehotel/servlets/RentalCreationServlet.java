@@ -15,7 +15,7 @@ import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
-@WebServlet(name = "roomCreationServlet", value = "/room-creation-servlet")
+@WebServlet(name = "rentalCreationServlet", value = "/rental-creation-servlet")
 public class RentalCreationServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
@@ -26,13 +26,13 @@ public class RentalCreationServlet extends HttpServlet {
         // VARIABLE DECLARATION: new session
         HttpSession session = req.getSession();
 
-        int bookingID = Integer.parseInt(req.getParameter("booking id")); //how do i make it so getting a booking id is optional?
+        int bookingID = Integer.parseInt(req.getParameter("booking_id")); //how do i make it so getting a booking id is optional?
         Date checkOut = null;
         try {
-            checkOut = new SimpleDateFormat("dd/MM/yyyy").parse(req.getParameter("check out date"));
-            int roomID = Integer.parseInt(req.getParameter("room id"));
-            int employeeID = Integer.parseInt(req.getParameter("employee id"));
-            String customerEmail = req.getParameter("customer email");
+            checkOut = new SimpleDateFormat("dd/MM/yyyy").parse(req.getParameter("check_out_date"));
+            int roomID = Integer.parseInt(req.getParameter("room_id"));
+            int employeeID = Integer.parseInt(req.getParameter("employee_id"));
+            String customerEmail = req.getParameter("customer_email");
             // VARIABLE DECLARATION: new connection
             RentalServer con = new RentalServer();
 

@@ -181,7 +181,7 @@
                     <br><br>
                     <button class="buttons" id="reset_button" type="reset" onclick="enableForms()"
                             style="margin-right: 3px">RESET FORMS</button>
-                    <button class="buttons" id="rental_button" type="submit" onclick="createRental()"
+                    <button class="buttons" id="rental_button" type="submit" action="rental-creation-servlet"
                             style="margin-left: 3px">CREATE RENTAL</button>
                 </form>
             </div>
