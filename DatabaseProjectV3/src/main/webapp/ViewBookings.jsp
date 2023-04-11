@@ -134,6 +134,7 @@
                             <tr>
                                 <td><%=room.getRoomID()%></td>
                                 <td><%=room.getRoomNumber()%></td>
+                                <td><%=room.getNextBooking()%></td>
                                 <td><%=room.getPrice()%></td>
                                 <td><%=room.getAmenities()%></td>
                                 <td><%=room.getCapacity()%></td>

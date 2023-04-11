@@ -124,7 +124,7 @@ public class Room {
 
     // OTHER METHODS ---------------------------------------------------------------------------------------------------
     // PROCESS: connecting to database
-    Date getNextBooking(){
+    public Date getNextBooking(){
         ConnectionDB db = new ConnectionDB();
 
         Date date = null;
