@@ -17,7 +17,6 @@ public class BookingServer {
     private static final Logger LOGGER = Logger.getLogger(CustomerServer.class.getName()); //logger
 
     // GETTER METHODS------------------------------------------------------------------------------------
-
     /**
      * This method retrieves all the bookings for today's date and returns them in an ArrayList.
      *

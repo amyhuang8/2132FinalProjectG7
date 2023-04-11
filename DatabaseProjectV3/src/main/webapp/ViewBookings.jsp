@@ -60,7 +60,6 @@
                 onclick="window.location.href='EmployeeProfile.jsp'"
                 style="float: right; border-radius: 50%;
                     background-image: url('css/resources/profileicon.png');"></button>
-
     </head>
 
     <body onload="checkLogin()">
@@ -72,14 +71,21 @@
         <!--VIEW 1 BUTTON-->
         <form action="show-view1-servlet" id="view-1-form"
               style="display: inline; margin-right: 5px">
-            <button class="buttons" id="view-1" type="submit" name="view-1">View All Currently Available Rooms In Any Area</button>
+            <button class="buttons" id="view-1" type="submit" name="view-1">VIEW ALL CURRENTLY AVAILABLE ROOMS IN ANY AREA</button>
         </form>
 
         <!-- VIEW 2 BUTTON -->
         <form action="show-view2-servlet" id="view-2-form" method="post"
-              style="display: inline; margin-left: 5px">
+              style="display: inline; margin-left: 5px; margin-right: 5px">
             <!--VIEW 2 BUTTON-->
-            <button class="buttons" id="view-2" type="submit" name="view-1">View Capacity of All Rooms in Hotel</button>
+            <button class="buttons" id="view-2" type="submit" name="view-1">VIEW CAPACITY OF ALL ROOMS IN HOTEL</button>
+        </form>
+
+        <!--ARCHIVE BUTTON-->
+        <!-- VIEW 2 BUTTON -->
+        <form action="archive-servlet" style="display: inline; margin-left: 5px">
+            <!--VIEW 2 BUTTON-->
+            <button class="buttons" type="submit">VIEW ARCHIVE</button>
             <br><br>
         </form>
 
