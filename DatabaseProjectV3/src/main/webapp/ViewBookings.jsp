@@ -110,6 +110,7 @@
                             <!--TABLE HEADERS-->
                             <thead>
                                 <tr>
+                                    <th>Room ID</th>
                                     <th>Room Number</th>
                                     <th>Amenities</th>
                                     <th>View Type</th>
@@ -127,6 +128,7 @@
                                         for (Room room : availableRooms) {
                                 %>
                                 <tr style="text-align: center">
+                                    <td><%=room.getRoomID()%></td>
                                     <td><%=room.getRoomNumber()%></td>
                                     <td><%=room.getAmenities()%></td>
                                     <td><%=room.getViewType()%></td>
