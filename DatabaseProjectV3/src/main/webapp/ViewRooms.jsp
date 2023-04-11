@@ -54,7 +54,8 @@
 <hr style="background-color: rosybrown; height: 1.5px">
 <br>
 
-<form action="show-view1-servlet" id="view-1-form" style="display: inline">
+<form action="show-view1-servlet" id="view-1-form"
+      style="display: inline; margin-right: 10px">
     <!--VIEW 1 BUTTON-->
     <button class="buttons" id="view-1" type="submit" name="view-1">View All Currently Available Rooms In Any Area</button>
 </form>

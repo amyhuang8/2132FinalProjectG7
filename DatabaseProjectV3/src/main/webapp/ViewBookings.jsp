@@ -70,12 +70,14 @@
         <br>
 
         <!--VIEW 1 BUTTON-->
-        <form action="show-view1-servlet" id="view-1-form" style="display: inline">
+        <form action="show-view1-servlet" id="view-1-form"
+              style="display: inline; margin-right: 5px">
             <button class="buttons" id="view-1" type="submit" name="view-1">View All Currently Available Rooms In Any Area</button>
         </form>
 
         <!-- VIEW 2 BUTTON -->
-        <form action="show-view2-servlet" id="view-2-form" method="post" style="display: inline">
+        <form action="show-view2-servlet" id="view-2-form" method="post"
+              style="display: inline; margin-left: 5px">
             <!--VIEW 2 BUTTON-->
             <button class="buttons" id="view-2" type="submit" name="view-1">View Capacity of All Rooms in Hotel</button>
             <br><br>
