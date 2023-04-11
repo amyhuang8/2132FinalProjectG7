@@ -21,10 +21,12 @@ function displayBookings() {
     // VARIABLE DECLARATION
     let bookingsBox = document.getElementById("bookingsBox");
     let form = document.getElementById("display_bookings");
+    let form2 = document.getElementById("display_rooms");
 
     bookingsBox.style.backgroundColor = "lightsalmon"; //updating background style
     form.submit(); //submitting form
     form.style.display = "block";
+    form2.style.display = "none";
 }
 
 /**
@@ -35,10 +37,13 @@ function displayRooms() {
     // VARIABLE DECLARATION
     let bookingsBox = document.getElementById("bookingsBox");
     let form = document.getElementById("display_rooms");
+    let form2 = document.getElementById("display_bookings");
 
     bookingsBox.style.backgroundColor = "lightcoral"; //updating background style
     form.submit();
-    form.style.display = "none";
+    form.style.display = "block";
+    form2.style.display = "none";
+
 }
 
 /**
