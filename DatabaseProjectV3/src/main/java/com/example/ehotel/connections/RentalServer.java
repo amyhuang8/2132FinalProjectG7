@@ -29,6 +29,7 @@ public class RentalServer {
                 "VALUES (CURRENT_DATE, ?, ?, ?, ?," +
                 "(SELECT price FROM ehotels.room WHERE room_id=?) -" +
                 "(SELECT damages FROM ehotels.room WHERE room_id=?))"; //SQL query
+        String sql2 = "DELETE FROM ehotels.booking WHERE room_id=?"; //updating query
 
         // PROCESS: setting params to query reqs.
         try (Connection con = db.getConn()) {
@@ -42,6 +43,14 @@ public class RentalServer {
             ps.setString(4, customer_email);
             ps.setInt(5, room_id);
             ps.setInt(6, room_id);
+
+            // EXECUTE QUERY
+            ps.execute();
+
+            // INITIALIZATION
+            ps = con.prepareStatement(sql2);
+
+            ps.setInt(1, room_id);
 
             // EXECUTE QUERY
             ps.execute();

@@ -344,6 +344,10 @@
         formCcNum.type = "text"; //showing cc num
     }
 
+    /**
+     * This function asks the user to confirm whether they'd like to make a rental.
+     * @returns {boolean} whether the user confirmed
+     */
     function createRental() {
         if (confirm('Would you like to create this rental?')) {
             // Output
