@@ -62,8 +62,12 @@ public class Archive {
         return final_price;
     }
     public String getCustomerEmail() { return customer_email; }
-    public int getEmployeeID() {
-        return employee_id;
+    public String getEmployeeID() {
+        if (employee_id != 0) {
+            return String.valueOf(employee_id);
+        } else {
+            return "N/A";
+        }
     }
 
     // SETTERS -----------------------------------------------------------------------------------------------------------

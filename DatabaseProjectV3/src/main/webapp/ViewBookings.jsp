@@ -59,44 +59,143 @@
             onclick="window.location.href='EmployeeProfile.jsp'"
             style="float: right; border-radius: 50%;
                     background-image: url('css/resources/profileicon.png');"></button>
-</head>
+    </head>
 
-<body onload="checkLogin()">
-<!--HEADING-->
-<h1>Pending Bookings</h1>
-<hr style="background-color: rosybrown; height: 1.5px">
-<br>
+    <body onload="checkLogin()">
 
-<!--VIEW 1 BUTTON-->
-<form action="show-view1-servlet" id="view-1-form"
-      style="display: inline; margin-right: 5px">
-    <button class="buttons" id="view-1" type="submit" name="view-1">VIEW ALL CURRENTLY AVAILABLE ROOMS IN ANY AREA</button>
-</form>
+        <!--HEADING-->
+        <h1>Pending Bookings</h1>
+        <hr style="background-color: rosybrown; height: 1.5px">
+        <br>
 
-<!-- VIEW 2 BUTTON -->
-<form action="show-view2-servlet" id="view-2-form" method="post"
-      style="display: inline; margin-left: 5px; margin-right: 5px">
-    <!--VIEW 2 BUTTON-->
-    <button class="buttons" id="view-2" type="submit" name="view-1">VIEW CAPACITY OF ALL ROOMS IN HOTEL</button>
-</form>
+        <!--VIEW 1 BUTTON-->
+        <form action="show-view1-servlet" id="view-1-form"
+              style="display: inline; margin-right: 5px">
+            <button class="buttons" id="view-1" type="submit" name="view-1">VIEW ALL CURRENTLY AVAILABLE ROOMS IN ANY AREA</button>
+        </form>
 
-<!--ARCHIVE BUTTON-->
-<!-- VIEW 2 BUTTON -->
-<form action="archive-servlet" style="display: inline; margin-left: 5px">
-    <!--VIEW 2 BUTTON-->
-    <button class="buttons" type="submit">VIEW ARCHIVE</button>
-    <br><br>
-</form>
+        <!-- VIEW 2 BUTTON -->
+        <form action="show-view2-servlet" id="view-2-form" method="post"
+              style="display: inline; margin-left: 5px; margin-right: 5px">
+            <button class="buttons" id="view-2" type="submit" name="view-1">VIEW CAPACITY OF ALL ROOMS IN HOTEL</button>
+        </form>
 
-<div class="container">
-    <div class="box-container">
-        <div class="buttons-wrapper">
+        <!--ARCHIVE BUTTON-->
+        <form action="archive-servlet" style="display: inline; margin-left: 5px">
+            <button class="buttons" type="submit">VIEW ARCHIVE</button>
+            <br><br>
+        </form>
 
-            <!-- CURRENT BOOKINGS BOX -->
-            <div class="button-box">
-                <button id="bookingsButton" class="buttons"
-                        style="background-color: lightsalmon; border: none"
-                        onclick="displayBookings()">Bookings</button>
+        <!-- DISPLAY ON LEFT SIDE OF SCREEN -->
+        <div class="container">
+            <div class="box-container">
+                <div class="buttons-wrapper">
+
+                    <!-- CURRENT BOOKINGS BOX -->
+                    <div class="button-box">
+                        <button id="bookingsButton" class="buttons"
+                                style="background-color: lightsalmon; border: none"
+                                onclick="displayBookings()">Bookings</button>
+                    </div>
+
+                    <!-- AVAILABLE ROOMS BOX -->
+                    <div class="button-box-2">
+                        <button id="availableButton" class="buttons"
+                                style="background-color: lightcoral; border: none"
+                                onclick="displayRooms()">Available Rooms</button>
+                    </div>
+                </div>
+
+                <!-- AVAILABLE ROOMS BOX TABLE -->
+                <div class="box box-1" id="bookingsBox" style="height: auto">
+                    <form action="show-rooms-servlet" method="get" id="display_rooms" style="display: <%=displayRooms%>; background: lightcoral">
+                        <table border="1" style="font-size: 20px">
+                            <!--TABLE HEADERS-->
+                            <thead>
+                                <tr>
+                                    <th>Room ID</th>
+                                    <th>Room Number</th>
+                                    <th>Amenities</th>
+                                    <th>View Type</th>
+                                    <th>Capacity</th>
+                                    <th>Extendable?</th>
+                                    <th>Price</th>
+                                    <th>Damages</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%
+                                    if (availableRooms != null && !availableRooms.isEmpty()) { //not null and not empty
+
+                                        // PROCESS: looping through arraylist
+                                        for (Room room : availableRooms) {
+                                %>
+                                <tr style="text-align: center">
+                                    <td><%=room.getRoomID()%></td>
+                                    <td><%=room.getRoomNumber()%></td>
+                                    <td><%=room.getAmenities()%></td>
+                                    <td><%=room.getViewType()%></td>
+                                    <td><%=room.getCapacity()%></td>
+                                    <td><%=room.isExtendable()%></td>
+                                    <td>$ <%=room.getPrice()%></td>
+                                    <td>-$ <%=room.getDamages()%></td>
+                                </tr>
+                                <%
+                                        }
+                                    }
+                                %>
+                            </tbody>
+                        </table>
+                    </form>
+
+
+                    <!-- BOOKINGS BOX TABLE -->
+                    <form id="display_bookings" action="booking-servlet" style="display: <%=displayBookings%>">
+                        <!--TABLE FOR PENDING BOOKINGS-->
+                        <table border="1" style="font-size: 20px">
+                            <!--TABLE HEADERS-->
+                            <thead>
+                                <tr>
+                                    <th>Booking ID</th>
+                                    <th>Check In Date</th>
+                                    <th>Check Out Date</th>
+                                    <th>Confirmation Date</th>
+                                    <th>Customer ID</th>
+                                    <th>Room ID</th>
+                                </tr>
+                            </thead>
+
+                            <!--TABLE ROWS-->
+                            <tbody>
+                                <%
+                                    if (bookings != null && !bookings.isEmpty()) { //not null and not empty
+
+                                        // PROCESS: looping through arraylist
+                                        for (Booking booking : bookings) {
+                                %>
+                                <tr>
+                                    <td><%=booking.getId()%></td>
+                                    <td><%=booking.getCheckIn()%></td>
+                                    <td><%=booking.getCheckOut()%></td>
+                                    <td><%=booking.getConfirmationDate()%></td>
+                                    <td><%=booking.getEmail()%></td>
+                                    <td><%=booking.getRoomNum()%></td>
+                                    <td><button class="buttons" type="button"
+                                                style="padding: 2px; background-color: indianred"
+                                                onclick="fillForms('<%=booking.getId()%>',
+                                                    '<%=booking.getEmail()%>',
+                                                    '<%=booking.getRoomNum()%>',
+                                                    '<%=booking.getCheckIn()%>',
+                                                    '<%=booking.getCheckOut()%>')">FILL RENTAL FORM</button></td>
+                                </tr>
+                                <%
+                                        }
+                                    }
+                                %>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
             </div>
 
             <!-- AVAILABLE ROOMS BOX -->
