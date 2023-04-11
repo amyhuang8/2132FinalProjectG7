@@ -1,6 +1,7 @@
 <%@ page import="com.example.ehotel.entities.Booking" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.time.LocalDate" %>
+<%@ page import="com.example.ehotel.entities.Room" %>
 
 <!--NOT STORING CACHE-->
 <%
@@ -12,6 +13,19 @@
 <%
     // VARIABLE DECLARATION: retrieving ArrayList of bookings from servlet
     ArrayList<Booking> bookings = (ArrayList<Booking>) request.getAttribute("bookings");
+    ArrayList<Room> availableRooms = (ArrayList<Room>) request.getAttribute("availableRooms");
+    String displayBookings = (String) request.getAttribute("displayBookings");
+    String displayRooms = (String) request.getAttribute("displayRooms");
+
+    // PROCESS: setting displayBookings to block if null or displayRooms to block if null
+    if (displayRooms == null || displayBookings.equals("block")) {
+    displayRooms = "none";
+    displayBookings = "block";
+    }
+    if (displayBookings == null || displayRooms.equals("block")) {
+    displayBookings = "none";
+    displayRooms = "block";
+    }
 %>
 
 <!DOCTYPE html>
@@ -71,19 +85,68 @@
         <div class="container">
             <div class="box-container">
                 <div class="buttons-wrapper">
+
+                    <!-- CURRENT BOOKINGS BOX -->
                     <div class="button-box">
                         <button id="bookingsButton" class="buttons"
                                 style="background-color: lightsalmon; border: none"
                                 onclick="displayBookings()">Bookings</button>
                     </div>
+
+                    <!-- AVAILABLE ROOMS BOX -->
                     <div class="button-box-2">
                         <button id="availableButton" class="buttons"
                                 style="background-color: lightcoral; border: none"
                                 onclick="displayRooms()">Available Rooms</button>
                     </div>
                 </div>
+
+                <!-- AVAILABLE ROOMS BOX TABLE -->
+
+
+                <!-- BOOKINGS BOX TABLE -->
                 <div class="box box-1" id="bookingsBox">
-                    <form id="display_bookings" action="booking-servlet">
+                    <form action="show-rooms-servlet" method="get" id="display_rooms" style="display: <%=displayRooms%>; background: lightcoral">
+                        <table border="1" style="font-size: 20px">
+                            <!--TABLE HEADERS-->
+                            <thead>
+                                <tr>
+                                    <th>Room Number</th>
+                                    <th>Amenities</th>
+                                    <th>View Type</th>
+                                    <th>Capacity</th>
+                                    <th>Extendable?</th>
+                                    <th>Price</th>
+                                    <th>Damages</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%
+                                    if (availableRooms != null && !availableRooms.isEmpty()) { //not null and not empty
+
+                                        // PROCESS: looping through arraylist
+                                        for (Room room : availableRooms) {
+                                %>
+                                <tr style="text-align: center">
+                                    <td><%=room.getRoomNumber()%></td>
+                                    <td><%=room.getAmenities()%></td>
+                                    <td><%=room.getViewType()%></td>
+                                    <td><%=room.getCapacity()%></td>
+                                    <td><%=room.isExtendable()%></td>
+                                    <td>$ <%=room.getPrice()%></td>
+                                    <td>-$ <%=room.getDamages()%></td>
+                                </tr>
+                                <%
+                                        }
+                                    }
+                                %>
+                            </tbody>
+                        </table>
+                    </form>
+
+
+                    <!-- BOOKINGS BOX TABLE -->
+                    <form id="display_bookings" action="booking-servlet" style="display: <%=displayBookings%>">
                         <!--TABLE FOR PENDING BOOKINGS-->
                         <table border="1" style="font-size: 20px">
                             <!--TABLE HEADERS-->
@@ -130,6 +193,8 @@
                     </form>
                 </div>
             </div>
+
+            <!-- RENTAL FORM BOX -->
             <div class="box box-2" id="rentalBox">
                 <form style="padding: 15px">
                     <label class="labels" for="booking_id">BOOKING ID: </label>

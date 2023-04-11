@@ -64,6 +64,19 @@ public class Room {
         this.address = address;
     }
 
+    public Room(int hotel_id, int room_id, int room_num, String view_type, String amenities, String capacity, double price, double damages, boolean extendable, boolean availability) {
+        this.hotelID = hotel_id;
+        this.roomID = room_id;
+        this.roomNumber = room_num;
+        this.viewType = view_type;
+        this.amenities = amenities;
+        this.capacity = capacity;
+        this.price = price;
+        this.damages = damages;
+        this.extendable = extendable;
+        this.availability = availability;
+    }
+
     // GETTERS ---------------------------------------------------------------------------------------------------------
     public int getRoomNumber() {
         return roomNumber;

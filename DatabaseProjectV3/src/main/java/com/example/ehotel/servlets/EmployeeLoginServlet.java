@@ -3,14 +3,17 @@ package com.example.ehotel.servlets;
 import com.example.ehotel.connections.EmployeeServer;
 
 import java.io.*;
+import java.util.logging.Logger;
 
-import com.example.ehotel.entities.Employee;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 @WebServlet(name = "employeeLoginServlet", value = "/employee-login-servlet")
 public class EmployeeLoginServlet extends HttpServlet {
+
+    // logger
+    private static final Logger LOGGER = Logger.getLogger(SearchResultsServlet.class.getName());
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         doPost(req, resp);
@@ -22,7 +25,8 @@ public class EmployeeLoginServlet extends HttpServlet {
      * the login information and redirects the user to the appropriate page.
      * @param req the request sent from the JSP file
      * @param resp the response to be sent to the JSP file
-     * @throws IOException
+     * @throws IOException if there is an error with the input/output
+     * @throws ServletException if there is an error with the servlet
      */
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
@@ -47,7 +51,7 @@ public class EmployeeLoginServlet extends HttpServlet {
         if (pwd == sinFromDB) { //success
             session.setAttribute("uid", username); //updating session's user id to employee id
 
-            setSessionAttributes(req, session, con, username); //setting session attributes
+            setSessionAttributes(session, con, username); //setting session attributes
 
             resp.sendRedirect("ViewBookings.jsp"); //redirecting to bookings page
         }
@@ -64,12 +68,11 @@ public class EmployeeLoginServlet extends HttpServlet {
 
     /**
      * This helper method sets all the session attributes once the user logs in.
-     * @param req the request sent from the JSP file
      * @param session the current session
      * @param con the current database connection
      * @param uid the current user ID
      */
-    private void setSessionAttributes(HttpServletRequest req, HttpSession session,
+    private void setSessionAttributes(HttpSession session,
                                       EmployeeServer con, String uid) {
 
         // VARIABLE DECLARATION: form vars. to hold values from db

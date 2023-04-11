@@ -49,6 +49,11 @@ public class RoomServer {
         return data;
     }
 
+    /**
+     * This method retrieves all the data from view 2 in the database
+     * @param hotelID id of the hotel
+     * @return an array list with only the room number, capacity, name and address attributes from view 2
+     */
     public ArrayList<Room> getView2(int hotelID) {
 
         // PROCESS: connecting to database
@@ -152,6 +157,50 @@ public class RoomServer {
 
         // return the array of rooms fitting the filter criteria
         return rooms;
+    }
 
+    /**
+     * This method is used to get all the available rooms from the database that the employee works at
+     * @param hotelID id of the hotel
+     * @return an array of all the available rooms in that hotel
+     */
+    public ArrayList<Room> getAvailableRooms(int hotelID) {
+        // PROCESS: connecting to database
+        ConnectionDB db = new ConnectionDB();
+
+        // initializing the array of rooms
+        ArrayList<Room> rooms = new ArrayList<>();
+
+        // sql query
+        sql = "SELECT * FROM ehotels.room WHERE hotel_id = " + hotelID + " AND availability = true";
+
+        try (Connection con = db.getConn()){
+
+            // SET PREPARED STATEMENT
+            ps = con.prepareStatement(sql);
+
+            // EXECUTE QUERY
+            rs = ps.executeQuery();
+
+            // FILLING THE ARRAY WITH ROOMS
+
+            while (rs.next()) {
+
+                // Add a room to the array (including its address)
+                rooms.add(new Room (rs.getInt("hotel_id"),
+                        rs.getInt("room_id"), rs.getInt("room_num"), rs.getString("view_type"),
+                        rs.getString("amenities"), rs.getString("capacity"), rs.getDouble("price"),
+                        rs.getDouble("damages"), rs.getBoolean("extendable"), rs.getBoolean("availability")));
+            }
+
+
+        } catch (Exception e) {
+            LOGGER.severe("Error in getAvailableRooms() method: " + e.getMessage());
+        }
+
+        // log the sql query
+        LOGGER.severe("GET AVAILABLE ROOMS IN HOTEL SQL: " + sql);
+
+        return rooms;
     }
 }
