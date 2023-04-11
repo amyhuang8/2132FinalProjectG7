@@ -106,48 +106,46 @@
                     </div>
                 </div>
 
-                <!-- AVAILABLE ROOMS BOX TABLE -->
+                <!-- BOOKINGS BOX TABLE -->
                 <div class="box box-1" id="bookingsBox" style="height: auto">
                     <form action="show-rooms-servlet" method="get" id="display_rooms" style="display: <%=displayRooms%>; background: lightcoral">
                         <table border="1" style="font-size: 20px">
                             <!--TABLE HEADERS-->
                             <thead>
-                                <tr>
-                                    <th>Room ID</th>
-                                    <th>Room Number</th>
-                                    <th>Amenities</th>
-                                    <th>View Type</th>
-                                    <th>Capacity</th>
-                                    <th>Extendable?</th>
-                                    <th>Price</th>
-                                    <th>Damages</th>
-                                </tr>
+                            <tr>
+                                <th>Room ID</th>
+                                <th>Room Number</th>
+                                <th>Amenities</th>
+                                <th>View Type</th>
+                                <th>Capacity</th>
+                                <th>Extendable?</th>
+                                <th>Price</th>
+                                <th>Damages</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                <%
-                                    if (availableRooms != null && !availableRooms.isEmpty()) { //not null and not empty
-
-                                        // PROCESS: looping through arraylist
-                                        for (Room room : availableRooms) {
-                                %>
-                                <tr style="text-align: center">
-                                    <td><%=room.getRoomID()%></td>
-                                    <td><%=room.getRoomNumber()%></td>
-                                    <td><%=room.getAmenities()%></td>
-                                    <td><%=room.getViewType()%></td>
-                                    <td><%=room.getCapacity()%></td>
-                                    <td><%=room.isExtendable()%></td>
-                                    <td>$ <%=room.getPrice()%></td>
-                                    <td>-$ <%=room.getDamages()%></td>
-                                </tr>
-                                <%
-                                        }
+                            <%
+                                if (availableRooms != null && !availableRooms.isEmpty()) { //not null and not empty
+                                    // PROCESS: looping through arraylist
+                                    for (Room room : availableRooms) {
+                            %>
+                            <tr style="text-align: center">
+                                <td><%=room.getRoomID()%></td>
+                                <td><%=room.getRoomNumber()%></td>
+                                <td><%=room.getAmenities()%></td>
+                                <td><%=room.getViewType()%></td>
+                                <td><%=room.getCapacity()%></td>
+                                <td><%=room.isExtendable()%></td>
+                                <td>$ <%=room.getPrice()%></td>
+                                <td>-$ <%=room.getDamages()%></td>
+                            </tr>
+                            <%
                                     }
-                                %>
+                                }
+                            %>
                             </tbody>
                         </table>
                     </form>
-
 
                     <!-- BOOKINGS BOX TABLE -->
                     <form id="display_bookings" action="booking-servlet" style="display: <%=displayBookings%>">
@@ -155,308 +153,218 @@
                         <table border="1" style="font-size: 20px">
                             <!--TABLE HEADERS-->
                             <thead>
-                                <tr>
-                                    <th>Booking ID</th>
-                                    <th>Check In Date</th>
-                                    <th>Check Out Date</th>
-                                    <th>Confirmation Date</th>
-                                    <th>Customer ID</th>
-                                    <th>Room ID</th>
-                                </tr>
+                            <tr>
+                                <th>Booking ID</th>
+                                <th>Check In Date</th>
+                                <th>Check Out Date</th>
+                                <th>Confirmation Date</th>
+                                <th>Customer ID</th>
+                                <th>Room ID</th>
+                            </tr>
                             </thead>
 
                             <!--TABLE ROWS-->
                             <tbody>
-                                <%
-                                    if (bookings != null && !bookings.isEmpty()) { //not null and not empty
-
-                                        // PROCESS: looping through arraylist
-                                        for (Booking booking : bookings) {
-                                %>
-                                <tr>
-                                    <td><%=booking.getId()%></td>
-                                    <td><%=booking.getCheckIn()%></td>
-                                    <td><%=booking.getCheckOut()%></td>
-                                    <td><%=booking.getConfirmationDate()%></td>
-                                    <td><%=booking.getEmail()%></td>
-                                    <td><%=booking.getRoomNum()%></td>
-                                    <td><button class="buttons" type="button"
-                                                style="padding: 2px; background-color: indianred"
-                                                onclick="fillForms('<%=booking.getId()%>',
+                            <%
+                                if (bookings != null && !bookings.isEmpty()) { //not null and not empty
+                                    // PROCESS: looping through arraylist
+                                    for (Booking booking : bookings) {
+                            %>
+                            <tr>
+                                <td><%=booking.getId()%></td>
+                                <td><%=booking.getCheckIn()%></td>
+                                <td><%=booking.getCheckOut()%></td>
+                                <td><%=booking.getConfirmationDate()%></td>
+                                <td><%=booking.getEmail()%></td>
+                                <td><%=booking.getRoomNum()%></td>
+                                <td><button class="buttons" type="button"
+                                            style="padding: 2px; background-color: indianred"
+                                            onclick="fillForms('<%=booking.getId()%>',
                                                     '<%=booking.getEmail()%>',
                                                     '<%=booking.getRoomNum()%>',
                                                     '<%=booking.getCheckIn()%>',
                                                     '<%=booking.getCheckOut()%>')">FILL RENTAL FORM</button></td>
-                                </tr>
-                                <%
-                                        }
+                            </tr>
+                            <%
                                     }
-                                %>
+                                }
+                            %>
                             </tbody>
                         </table>
                     </form>
                 </div>
             </div>
 
-            <!-- AVAILABLE ROOMS BOX -->
-            <div class="button-box-2">
-                <button id="availableButton" class="buttons"
-                        style="background-color: lightcoral; border: none"
-                        onclick="displayRooms()">Available Rooms</button>
+            <!-- RENTAL FORM BOX -->
+            <div class="box box-2" id="rentalBox" style="height: auto">
+                <form action="rental-creation-servlet" style="padding: 15px">
+                    <label class="labels" for="booking_id">BOOKING ID: </label>
+                    <input class="labels" type="number" id="booking_id" name="booking id"
+                           style="cursor: not-allowed" disabled placeholder="N/A">
+                    <br><br>
+                    <label class="labels" for="employee_id">EMPLOYEE ID: </label>
+                    <input class="labels" type="number" id="employee_id" name="employee id"
+                           style="cursor: not-allowed" readOnly value=${sessionScope.uid}>
+                    <br><br>
+                    <label class="labels" for="customer_email">CUSTOMER EMAIL: </label>
+                    <input class="labels" type="email" id="customer_email" name="email">
+                    <br><br>
+                    <label class="labels" for="cc_num">CREDIT CARD #: </label>
+                    <input class="labels" type="text" id="cc_num" name="credit card number"
+                           style="display: inline-block">
+                    <br><br>
+                    <label class="labels" for="room_id">ROOM ID: </label>
+                    <input class="labels" type="number" id="room_id" name="room id" min="1">
+                    <br><br>
+                    <label class="labels" for="check_in_date">CHECK-IN DATE: </label>
+                    <input class="labels" type="date" id="check_in_date" name="check in date"
+                           min="<%=LocalDate.now()%>">
+                    <br><br>
+                    <label class="labels" for="check_out_date">CHECK-OUT DATE: </label>
+                    <input class="labels" type="date" id="check_out_date" name="check out date"
+                           min="<%=LocalDate.now()%>">
+                    <br><br>
+                    <button class="buttons" id="reset_button" type="reset" onclick="enableForms()"
+                            style="margin-right: 3px">RESET FORMS</button>
+                    <button class="buttons" id="rental_button" type="submit"
+                            onclick="return createRental()"
+                            style="margin-left: 3px">CREATE RENTAL</button>
+                </form>
             </div>
         </div>
 
-        <!-- AVAILABLE ROOMS BOX TABLE -->
+        <script>
+            /**
+             * LOGIN CHECK: This function checks whether the user is still logged in
+             * and displays the page normally if so. Otherwise, it takes the user to the homepage.
+             */
+            function checkLogin() {
+                // VARIABLE DECLARATION
+                let uid = '<%= session.getAttribute("uid") %>'; //retrieving session user ID
 
-
-        <!-- BOOKINGS BOX TABLE -->
-        <div class="box box-1" id="bookingsBox" style="height: auto">
-            <form action="show-rooms-servlet" method="get" id="display_rooms" style="display: <%=displayRooms%>; background: lightcoral">
-                <table border="1" style="font-size: 20px">
-                    <!--TABLE HEADERS-->
-                    <thead>
-                    <tr>
-                        <th>Room ID</th>
-                        <th>Room Number</th>
-                        <th>Amenities</th>
-                        <th>View Type</th>
-                        <th>Capacity</th>
-                        <th>Extendable?</th>
-                        <th>Price</th>
-                        <th>Damages</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <%
-                        if (availableRooms != null && !availableRooms.isEmpty()) { //not null and not empty
-                            // PROCESS: looping through arraylist
-                            for (Room room : availableRooms) {
-                    %>
-                    <tr style="text-align: center">
-                        <td><%=room.getRoomID()%></td>
-                        <td><%=room.getRoomNumber()%></td>
-                        <td><%=room.getAmenities()%></td>
-                        <td><%=room.getViewType()%></td>
-                        <td><%=room.getCapacity()%></td>
-                        <td><%=room.isExtendable()%></td>
-                        <td>$ <%=room.getPrice()%></td>
-                        <td>-$ <%=room.getDamages()%></td>
-                    </tr>
-                    <%
-                            }
-                        }
-                    %>
-                    </tbody>
-                </table>
-            </form>
-
-
-            <!-- BOOKINGS BOX TABLE -->
-            <form id="display_bookings" action="booking-servlet" style="display: <%=displayBookings%>">
-                <!--TABLE FOR PENDING BOOKINGS-->
-                <table border="1" style="font-size: 20px">
-                    <!--TABLE HEADERS-->
-                    <thead>
-                    <tr>
-                        <th>Booking ID</th>
-                        <th>Check In Date</th>
-                        <th>Check Out Date</th>
-                        <th>Confirmation Date</th>
-                        <th>Customer ID</th>
-                        <th>Room ID</th>
-                    </tr>
-                    </thead>
-
-                    <!--TABLE ROWS-->
-                    <tbody>
-                    <%
-                        if (bookings != null && !bookings.isEmpty()) { //not null and not empty
-                            // PROCESS: looping through arraylist
-                            for (Booking booking : bookings) {
-                    %>
-                    <tr>
-                        <td><%=booking.getId()%></td>
-                        <td><%=booking.getCheckIn()%></td>
-                        <td><%=booking.getCheckOut()%></td>
-                        <td><%=booking.getConfirmationDate()%></td>
-                        <td><%=booking.getEmail()%></td>
-                        <td><%=booking.getRoomNum()%></td>
-                        <td><button class="buttons" type="button"
-                                    style="padding: 2px; background-color: indianred"
-                                    onclick="fillForms('<%=booking.getId()%>',
-                                            '<%=booking.getEmail()%>',
-                                            '<%=booking.getRoomNum()%>',
-                                            '<%=booking.getCheckIn()%>',
-                                            '<%=booking.getCheckOut()%>')">FILL RENTAL FORM</button></td>
-                    </tr>
-                    <%
-                            }
-                        }
-                    %>
-                    </tbody>
-                </table>
-            </form>
-        </div>
-    </div>
-
-    <!-- RENTAL FORM BOX -->
-    <div class="box box-2" id="rentalBox" style="height: auto">
-        <form action="rental-creation-servlet" style="padding: 15px">
-            <label class="labels" for="booking_id">BOOKING ID: </label>
-            <input class="labels" type="number" id="booking_id" name="booking id"
-                   style="cursor: not-allowed" disabled placeholder="N/A">
-            <br><br>
-            <label class="labels" for="employee_id">EMPLOYEE ID: </label>
-            <input class="labels" type="number" id="employee_id" name="employee id"
-                   style="cursor: not-allowed" readOnly value=${sessionScope.uid}>
-            <br><br>
-            <label class="labels" for="customer_email">CUSTOMER EMAIL: </label>
-            <input class="labels" type="email" id="customer_email" name="email">
-            <br><br>
-            <label class="labels" for="cc_num">CREDIT CARD #: </label>
-            <input class="labels" type="text" id="cc_num" name="credit card number"
-                   style="display: inline-block">
-            <br><br>
-            <label class="labels" for="room_id">ROOM ID: </label>
-            <input class="labels" type="number" id="room_id" name="room id" min="1">
-            <br><br>
-            <label class="labels" for="check_in_date">CHECK-IN DATE: </label>
-            <input class="labels" type="date" id="check_in_date" name="check in date"
-                   min="<%=LocalDate.now()%>">
-            <br><br>
-            <label class="labels" for="check_out_date">CHECK-OUT DATE: </label>
-            <input class="labels" type="date" id="check_out_date" name="check out date"
-                   min="<%=LocalDate.now()%>">
-            <br><br>
-            <button class="buttons" id="reset_button" type="reset" onclick="enableForms()"
-                    style="margin-right: 3px">RESET FORMS</button>
-            <button class="buttons" id="rental_button" type="submit"
-                    onclick="return createRental()"
-                    style="margin-left: 3px">CREATE RENTAL</button>
-        </form>
-    </div>
-</div>
-
-<script>
-    /**
-     * LOGIN CHECK: This function checks whether the user is still logged in
-     * and displays the page normally if so. Otherwise, it takes the user to the homepage.
-     */
-    function checkLogin() {
-        // VARIABLE DECLARATION
-        let uid = '<%= session.getAttribute("uid") %>'; //retrieving session user ID
-        // PROCESS: checking if id is null
-        if (uid === "null") { //no longer logged in
-            if (confirm("You have been logged out. Please log in again.")) {
-                window.location.href = 'index.jsp'; //redirecting to homepage
+                // PROCESS: checking if id is null
+                if (uid === "null") { //no longer logged in
+                    if (confirm("You have been logged out. Please log in again.")) {
+                        window.location.href = 'index.jsp'; //redirecting to homepage
+                    }
+                }
             }
-        }
-    }
-    /**
-     * BOOKINGS DISPLAY: This function displays all the bookings for today's date.
-     */
-    function displayBookings() {
-        // VARIABLE DECLARATION
-        let bookingsBox = document.getElementById("bookingsBox");
-        let form = document.getElementById("display_bookings");
-        let div = document.getElementById("display_rooms");
-        bookingsBox.style.backgroundColor = "lightsalmon"; //updating background style
-        form.submit(); //submitting form
-        form.style.display = "block"; //displaying booking form
-        div.style.display = "none"; //hiding room display
-    }
-    /**
-     * AVAILABLE ROOMS DISPLAY: This function displays all the available rooms in
-     * the employee's hotel.
-     */
-    function displayRooms() {
-        // VARIABLE DECLARATION
-        let bookingForm = document.getElementById("display_bookings");
-        let bookingsBox = document.getElementById("bookingsBox");
-        let div = document.getElementById("display_rooms");
-        bookingsBox.style.backgroundColor = "lightcoral"; //updating background style
-        div.style.display = "block"; //displaying room display
-        bookingForm.style.display = "none"; //hiding booking form
-        div.submit(); //submitting form
-    }
-    /**
-     * This function sets all the rental forms to the given booking data and disables the
-     * input fields.
-     * @param booking_id the booking ID
-     * @param email the customer email
-     * @param ccNum the credit card number
-     * @param roomID the room ID
-     * @param checkInDate the check-in date
-     * @param checkOutDate the check-out date
-     */
-    function fillForms(booking_id, email, roomID, checkInDate, checkOutDate) {
-        // VARIABLE DECLARATION: the forms
-        let formBookingID = document.getElementById("booking_id");
-        let formEmail = document.getElementById("customer_email");
-        let formCcNum = document.getElementById("cc_num");
-        let formRoomID = document.getElementById("room_id");
-        let formCheckInDate = document.getElementById("check_in_date");
-        let formCheckOutDate = document.getElementById("check_out_date");
-        // INITIALIZATION: setting form values to booking info
-        formBookingID.value = booking_id;
-        formEmail.value = email;
-        formCcNum.value = 1111111111111111; //placeholder value
-        formRoomID.value = roomID;
-        formCheckInDate.value = checkInDate;
-        formCheckOutDate.value = checkOutDate;
-        // PROCESS: disabling all form fields
-        formEmail.readOnly = true;
-        formCcNum.readOnly = true;
-        formRoomID.readOnly = true;
-        formCheckInDate.readOnly = true;
-        formCheckOutDate.readOnly = true;
-        // PROCESS: changing cursor icon
-        formEmail.style.cursor = "not-allowed";
-        formCcNum.style.cursor = "not-allowed";
-        formRoomID.style.cursor = "not-allowed";
-        formCheckInDate.style.cursor = "not-allowed";
-        formCheckOutDate.style.cursor = "not-allowed";
-        formCcNum.type = "password"; //hiding cc num
-    }
-    /**
-     * This function enables specific input fields in the rental forms.
-     */
-    function enableForms() {
-        // VARIABLE DECLARATION: the forms
-        let formEmail = document.getElementById("customer_email");
-        let formRoomID = document.getElementById("room_id");
-        let formCcNum = document.getElementById("cc_num");
-        let formCheckInDate = document.getElementById("check_in_date");
-        let formCheckOutDate = document.getElementById("check_out_date");
-        // PROCESS: enabling all form fields
-        formEmail.readOnly = false;
-        formRoomID.readOnly = false;
-        formCcNum.readOnly = false;
-        formCheckInDate.readOnly = false;
-        formCheckOutDate.readOnly = false;
-        // PROCESS: changing cursor icon
-        formEmail.style.cursor = "default";
-        formRoomID.style.cursor = "default";
-        formCcNum.style.cursor = "default";
-        formCheckInDate.style.cursor = "default";
-        formCheckOutDate.style.cursor = "default";
-        formCcNum.type = "text"; //showing cc num
-    }
 
-    /**
-     * This function asks the user to confirm whether they'd like to make a rental.
-     * @returns {boolean} whether the user confirmed
-     */
-    function createRental() {
-        if (confirm('Would you like to create this rental?')) {
-            // Output
-            alert("Rental confirmed!");
-            return true; //success
-        }
-        else {
-            return false; //false
-        }
-    }
-</script>
-</body>
+            /**
+             * BOOKINGS DISPLAY: This function displays all the bookings for today's date.
+             */
+            function displayBookings() {
+                // VARIABLE DECLARATION
+                let bookingsBox = document.getElementById("bookingsBox");
+                let form = document.getElementById("display_bookings");
+                let div = document.getElementById("display_rooms");
+
+                bookingsBox.style.backgroundColor = "lightsalmon"; //updating background style
+                form.submit(); //submitting form
+                form.style.display = "block"; //displaying booking form
+                div.style.display = "none"; //hiding room display
+            }
+
+            /**
+             * AVAILABLE ROOMS DISPLAY: This function displays all the available rooms in
+             * the employee's hotel.
+             */
+            function displayRooms() {
+                // VARIABLE DECLARATION
+                let bookingForm = document.getElementById("display_bookings");
+                let bookingsBox = document.getElementById("bookingsBox");
+                let div = document.getElementById("display_rooms");
+
+                bookingsBox.style.backgroundColor = "lightcoral"; //updating background style
+                div.style.display = "block"; //displaying room display
+                bookingForm.style.display = "none"; //hiding booking form
+                div.submit(); //submitting form
+            }
+
+            /**
+             * This function sets all the rental forms to the given booking data and disables the
+             * input fields.
+             * @param booking_id the booking ID
+             * @param email the customer email
+             * @param ccNum the credit card number
+             * @param roomID the room ID
+             * @param checkInDate the check-in date
+             * @param checkOutDate the check-out date
+             */
+            function fillForms(booking_id, email, roomID, checkInDate, checkOutDate) {
+                // VARIABLE DECLARATION: the forms
+                let formBookingID = document.getElementById("booking_id");
+                let formEmail = document.getElementById("customer_email");
+                let formCcNum = document.getElementById("cc_num");
+                let formRoomID = document.getElementById("room_id");
+                let formCheckInDate = document.getElementById("check_in_date");
+                let formCheckOutDate = document.getElementById("check_out_date");
+
+                // INITIALIZATION: setting form values to booking info
+                formBookingID.value = booking_id;
+                formEmail.value = email;
+                formCcNum.value = 1111111111111111; //placeholder value
+                formRoomID.value = roomID;
+                formCheckInDate.value = checkInDate;
+                formCheckOutDate.value = checkOutDate;
+
+                // PROCESS: disabling all form fields
+                formEmail.readOnly = true;
+                formCcNum.readOnly = true;
+                formRoomID.readOnly = true;
+                formCheckInDate.readOnly = true;
+                formCheckOutDate.readOnly = true;
+
+                // PROCESS: changing cursor icon
+                formEmail.style.cursor = "not-allowed";
+                formCcNum.style.cursor = "not-allowed";
+                formRoomID.style.cursor = "not-allowed";
+                formCheckInDate.style.cursor = "not-allowed";
+                formCheckOutDate.style.cursor = "not-allowed";
+                formCcNum.type = "password"; //hiding cc num
+            }
+
+            /**
+             * This function enables specific input fields in the rental forms.
+             */
+            function enableForms() {
+                // VARIABLE DECLARATION: the forms
+                let formEmail = document.getElementById("customer_email");
+                let formRoomID = document.getElementById("room_id");
+                let formCcNum = document.getElementById("cc_num");
+                let formCheckInDate = document.getElementById("check_in_date");
+                let formCheckOutDate = document.getElementById("check_out_date");
+
+                // PROCESS: enabling all form fields
+                formEmail.readOnly = false;
+                formRoomID.readOnly = false;
+                formCcNum.readOnly = false;
+                formCheckInDate.readOnly = false;
+                formCheckOutDate.readOnly = false;
+
+                // PROCESS: changing cursor icon
+                formEmail.style.cursor = "default";
+                formRoomID.style.cursor = "default";
+                formCcNum.style.cursor = "default";
+                formCheckInDate.style.cursor = "default";
+                formCheckOutDate.style.cursor = "default";
+                formCcNum.type = "text"; //showing cc num
+            }
+
+            /**
+             * This function asks the user to confirm whether they'd like to make a rental.
+             * @returns {boolean} whether the user confirmed
+             */
+            function createRental() {
+                if (confirm('Would you like to create this rental?')) {
+                    // Output
+                    alert("Rental confirmed!");
+                    return true; //success
+                }
+                else {
+                    return false; //false
+                }
+            }
+        </script>
+    </body>
 </html>
