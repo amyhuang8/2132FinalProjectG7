@@ -37,7 +37,7 @@ public class SearchResultsServlet extends HttpServlet {
         // get session
         HttpSession session = req.getSession();
 
-        LOGGER.severe("Hotel ID: " + session.getAttribute("hotel_id"));
+        //LOGGER.severe("Hotel ID: " + session.getAttribute("hotel_id"));
 
         // get the hotel id from the session
         if (session.getAttribute("hotel_id") != null) {

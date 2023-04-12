@@ -131,7 +131,16 @@
                                     for (Room room : availableRooms) {
                             %>
                             <tr style="text-align: center">
-                                <td><%=room.getRoomID()%></td>
+                                <td>
+                                    <%=room.getRoomID()%>
+                                    <form action="delete-room-servlet">
+                                        <button class="buttons" type="submit"
+                                                style="padding: 2px"
+                                                id="roomButton"
+                                                name="room_id"
+                                                onclick="setValue('<%=room.getRoomID()%>'); return confirm('WARNING: THIS IS A FATAL ACTION AND CANNOT BE REVERSED.')">DELETE</button>
+                                    </form>
+                                </td>
                                 <td><%=room.getRoomNumber()%></td>
                                 <td><%=room.getNextBooking()%></td>
                                 <td><%=room.getAmenities()%></td>
@@ -367,6 +376,17 @@
                 else {
                     return false; //false
                 }
+            }
+
+            /**
+             * This function sets the room ID value to the given param.
+             * @param room_id the room ID
+             */
+            function setValue(room_id) {
+                // VARIABLE DECLARATION
+                let button = document.getElementById("roomButton");
+
+                button.value = room_id; //setting the value
             }
         </script>
     </body>

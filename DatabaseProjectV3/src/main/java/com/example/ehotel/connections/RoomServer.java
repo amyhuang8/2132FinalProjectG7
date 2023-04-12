@@ -127,7 +127,7 @@ public class RoomServer {
                 " ORDER BY price";
 
         // log the sql query
-        LOGGER.severe("SQL: " + sql);
+        //LOGGER.severe("SQL: " + sql);
 
         try (Connection con = db.getConn()){
 
@@ -204,6 +204,65 @@ public class RoomServer {
         LOGGER.severe("GET AVAILABLE ROOMS IN HOTEL SQL: " + sql);
 
         return rooms;
+    }
+
+    // DELETION METHODS---------------------------------------------------------------------------------
+    /**
+     * This method deletes the room associated with the given room_id,
+     * as well as all bookings and rentals.
+     * @param room_id the room ID
+     * @return whether the deletion was successful
+     */
+    public boolean deleteRoom(String room_id) {
+
+        // PROCESS: connecting to db
+        ConnectionDB db = new ConnectionDB();
+
+        sql = "delete from ehotels.booking where cast(room_id as varchar)=?"; //updating query
+        String sql2 = "delete from ehotels.rental where cast(room_id as varchar)=?"; //updating query
+        String sql3 = "delete from ehotels.room where cast(room_id as varchar)=?"; //updating query
+
+        // PROCESS: setting params to query reqs.
+        try (Connection con = db.getConn()){
+
+            // INITIALIZATION
+            ps = con.prepareStatement(sql);
+            ps.setString(1, String.valueOf(room_id));
+
+            // PROCESS: executing SQL query
+            ps.execute();
+
+            // INITIALIZATION
+            ps = con.prepareStatement(sql2);
+            ps.setString(1, String.valueOf(room_id));
+
+            // PROCESS: executing SQL query
+            ps.execute();
+
+            // INITIALIZATION
+            ps = con.prepareStatement(sql3);
+            ps.setString(1, String.valueOf(room_id));
+
+            // PROCESS: executing SQL query
+            ps.execute();
+
+        }
+        catch (SQLException e) { //error-handling
+            LOGGER.severe("FAILED TO DELETE ROOM"); //log msg
+
+            // OUTPUT
+            e.printStackTrace();
+            return false; //fail
+        }
+        finally { // closing connection after querying
+            db.closeDB();
+        }
+
+        LOGGER.info("SUCCESSFULLY DELETED ROOM " + room_id); //log msg
+
+        // OUTPUT
+        return true; //success
+
     }
 
 }
