@@ -83,6 +83,11 @@
         <!--ARCHIVE BUTTON-->
         <form action="archive-servlet" style="display: inline; margin-left: 5px">
             <button class="buttons" type="submit">VIEW ARCHIVE</button>
+        </form>
+
+        <!-- DELETE ROOM BUTTON -->
+        <form action="delete-room-servlet" style="display: inline; margin-left: 5px">
+            <button class="buttons" id="delete-room" type="submit" name="delete-room">DELETE ROOM</button>
             <br><br>
         </form>
 
@@ -106,7 +111,7 @@
                     </div>
                 </div>
 
-                <!-- BOOKINGS BOX TABLE -->
+                <!-- AVAILABLE ROOMS TABLE -->
                 <div class="box box-1" id="bookingsBox" style="height: fit-content">
                     <form action="show-rooms-servlet" method="get" id="display_rooms" style="display: <%=displayRooms%>; background: lightcoral">
                         <table border="1" style="font-size: 20px">
@@ -131,16 +136,7 @@
                                     for (Room room : availableRooms) {
                             %>
                             <tr style="text-align: center">
-                                <td>
-                                    <%=room.getRoomID()%>
-                                    <form action="delete-room-servlet">
-                                        <button class="buttons" type="submit"
-                                                style="padding: 2px"
-                                                id="roomButton"
-                                                name="room_id"
-                                                onclick="setValue('<%=room.getRoomID()%>'); return confirm('WARNING: THIS IS A FATAL ACTION AND CANNOT BE REVERSED.')">DELETE</button>
-                                    </form>
-                                </td>
+                                <td><%=room.getRoomID()%></td>
                                 <td><%=room.getRoomNumber()%></td>
                                 <td><%=room.getNextBooking()%></td>
                                 <td><%=room.getAmenities()%></td>
@@ -158,7 +154,7 @@
                         </table>
                     </form>
 
-                    <!-- BOOKINGS BOX TABLE -->
+                    <!-- BOOKINGS TABLE -->
                     <form id="display_bookings" action="booking-servlet" style="display: <%=displayBookings%>">
                         <!--TABLE FOR PENDING BOOKINGS-->
                         <table border="1" style="font-size: 20px">
@@ -376,17 +372,6 @@
                 else {
                     return false; //false
                 }
-            }
-
-            /**
-             * This function sets the room ID value to the given param.
-             * @param room_id the room ID
-             */
-            function setValue(room_id) {
-                // VARIABLE DECLARATION
-                let button = document.getElementById("roomButton");
-
-                button.value = room_id; //setting the value
             }
         </script>
     </body>

@@ -162,6 +162,48 @@ public class RoomServer {
     }
 
     /**
+     * This method is used to get all the rooms from the database that the employee works at
+     * @param hotelID id of the hotel
+     * @return an array of all the rooms in that hotel
+     */
+    public ArrayList<Room> getAllRooms(int hotelID){
+        // PROCESS: connecting to database
+        ConnectionDB db = new ConnectionDB();
+
+        // initializing the array of rooms
+        ArrayList<Room> rooms = new ArrayList<>();
+
+        // sql query
+        sql = "SELECT * FROM ehotels.room";
+
+        try (Connection con = db.getConn()){
+
+            // SET PREPARED STATEMENT
+            ps = con.prepareStatement(sql);
+
+            // EXECUTE QUERY
+            rs = ps.executeQuery();
+
+            // FILLING THE ARRAY WITH ROOMS
+
+            while (rs.next()) {
+                rooms.add(new Room(
+                        rs.getInt("room_id"),
+                        rs.getInt("room_num"),
+                        rs.getString("capacity"),
+                        rs.getString("view_type"),
+                        rs.getString("price")
+                        ));
+            }
+
+
+        } catch (Exception e) {
+            LOGGER.severe("Error in getAllRooms() method: " + e.getMessage());
+        }
+        return rooms;
+    }
+
+    /**
      * This method is used to get all the available rooms from the database that the employee works at
      * @param hotelID id of the hotel
      * @return an array of all the available rooms in that hotel
