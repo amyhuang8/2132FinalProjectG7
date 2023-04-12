@@ -313,6 +313,102 @@ public class EmployeeServer {
         return true;
 
     }
+    /**
+     * This method creates a hotel in the database.
+     * @param name the name of the new hotel (likely the same as the name of the hotel the employee currently works for)
+     * @param num_of_rooms the number of rooms in the new hotel
+     * @param streetAddress the street the new hotel is on
+     * @param city the city the new hotel is in
+     * @param province the province the new hotel is in
+     * @param country the country the new hotel is in
+     * @param email the email of the new hotel
+     * @param phoneNumber the phone number of the new hotel
+     * @param rating the rating of the new hotel
+     * @return whether the update was a success
+     */
+    public boolean createHotel(String name, int num_of_rooms, String streetAddress, String city,
+                               String province, String country, String email, int phoneNumber, int rating) {
+        ConnectionDB db = new ConnectionDB();
+
+
+        // VARIABLE DECLARATION
+        sql = "INSERT INTO ehotels.hotel(name, num_of_rooms, hotel_address_id, email, hotel_phone_number, rating)" +
+                "VALUES (?, ?, ?, ?, ?, ?)"; //SQL query
+
+        // PROCESS: setting params to query reqs.
+        try (Connection con = db.getConn()) {
+
+            // PROCESS: calling helper method to insert new address
+            if (insertNewAddress(streetAddress, city, province, country)) { // success
+
+                // VARIABLE DECLARATION:
+                int address_id = 0;                                     // setting address ID to initial 0
+                sql = "select id from ehotels.address where street=?"; // sql query
+
+                // PROCESS: setting params to query reqs.
+                try {
+
+                    // INITIALIZATION
+                    ps = con.prepareStatement(sql);
+                    ps.setString(1, streetAddress);
+
+                    // PROCESS: executing SQL query
+                    rs = ps.executeQuery();
+
+                    while (rs.next()) { // looping while RS still has conditions
+                        // INITIALIZATION
+                        address_id = Integer.parseInt(rs.getString(1));
+                    }
+
+                }
+                catch (SQLException e) { // error-handling
+                    // OUTPUT
+                    e.printStackTrace();
+                }
+
+                // INITIALIZATION
+                st = db.getConn().createStatement();
+
+                // updating query statement
+                sql = "insert into ehotels.hotel(name, num_of_rooms, hotel_address_id, email, hotel_phone_number, rating)" +
+                        "values(?,?,?,?,?,?)";
+
+                PreparedStatement ps = con.prepareStatement(sql);
+
+                ps.setString(1, name);
+                ps.setInt(2, num_of_rooms);
+                ps.setInt(3, address_id);
+                ps.setString(4, email);
+                ps.setInt(5, phoneNumber);
+                ps.setInt(6, rating);
+
+                // PROCESS: executing insertion
+                st.executeUpdate(sql);
+
+                LOGGER.info("HOTEL INSERTION IN DB SUCCESS"); //log msg
+
+                // OUTPUT
+                return true;
+
+            }
+            else { // failed address insertion
+                // OUTPUT
+                return false;
+            }
+        }
+        catch (SQLException e) { // error-handling
+            // OUTPUT
+            LOGGER.severe(e.getMessage()); //log msg
+        }
+        finally { //closing connection after querying
+            db.closeDB();
+        }
+
+        // OUTPUT
+        LOGGER.info("SUCCESSFULLY CREATED HOTEL"); //log msg
+
+        return true;
+    }
 
     // DELETION METHODS---------------------------------------------------------------------------------
     public boolean deleteHotel(String hotel_id) {
@@ -364,6 +460,54 @@ public class EmployeeServer {
 
         // OUTPUT
         return true; //success
+
+    }
+    /**
+     * This helper method inserts a new address into the database, given the information at registration.
+     * It is called in the <code>CreateHotel()</code> method.
+     * @param streetAddress the street address
+     * @param city the city
+     * @param province the province
+     * @param country the country
+     * @return whether the insertion was successful
+     */
+    Statement st = null;
+    private boolean insertNewAddress(String streetAddress, String city, String province, String country) {
+
+        // PROCESS: connecting to db
+        ConnectionDB db = new ConnectionDB();
+
+        // PROCESS: setting params to query reqs.
+        try (Connection con = db.getConn()) {
+
+            // INITIALIZATION
+            st = con.createStatement();
+
+            sql = "insert into ehotels.address(street, city, province, country) values('" + streetAddress + "','" + city +
+                    "','" + province + "','" + country + "')"; //updating quire statement
+
+            LOGGER.info(sql); //log msg
+
+            // PROCESS: executing insertion
+            st.executeUpdate(sql);
+
+            LOGGER.info("ADDRESS INSERTION IN DB SUCCESS"); //log msg
+
+            // OUTPUT: insertion success
+            return true;
+
+        }
+        catch(SQLException e){ //error-handling
+
+            // OUTPUT
+            e.printStackTrace();
+
+            LOGGER.severe("ADDRESS INSERTION IN DB FAILED"); //log msg
+
+            // OUTPUT: insertion failure
+            return false;
+
+        }
 
     }
 
