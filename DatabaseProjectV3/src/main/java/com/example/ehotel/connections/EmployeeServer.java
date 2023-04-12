@@ -411,6 +411,12 @@ public class EmployeeServer {
     }
 
     // DELETION METHODS---------------------------------------------------------------------------------
+    /**
+     * This method deletes the hotel associated with the given hotel_id,
+     * as well as all its employees and rooms.
+     * @param hotel_id the hotel ID
+     * @return whether the deletion was successful
+     */
     public boolean deleteHotel(String hotel_id) {
 
         // PROCESS: connecting to db
