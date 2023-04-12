@@ -16,6 +16,19 @@
 <head>
     <title>Capacity of All Rooms In Hotel</title>
   <link rel="stylesheet" href="css/styles.css">
+    <!-- HEADER BUTTONS-->
+    <!-- GOES BACK BUTTON-->
+    <button type="button" id="home_button" class="header-buttons"
+            style="float: left; border-radius: 30%;
+            background-image: url('css/resources/backicon.png')"
+            onclick=history.back();></button>
+
+    <!-- LOGOUT BUTTON -->
+    <form action="logout-servlet">
+        <button type="submit" id="logout_button" class="header-buttons"
+                style="float: right; border-radius: 30%; margin-left: 2vh;
+                    background-image: url('css/resources/logouticon.png');"></button>
+    </form>
 </head>
 <body>
 

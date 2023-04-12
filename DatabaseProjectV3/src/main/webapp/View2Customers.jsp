@@ -16,12 +16,11 @@
     <title>View Capacity of Hotel</title>
 
     <!--HEADER BUTTONS-->
-    <!--HOME BUTTON-->
-    <form action="index.jsp">
-        <button type="submit" id="home_button" class="header-buttons"
-                style="float: left; border-radius: 30%;
-                background-image: url('css/resources/homeicon.png');"></button>
-    </form>
+    <!-- GOES BACK BUTTON-->
+    <button type="button" id="home_button" class="header-buttons"
+            style="float: left; border-radius: 30%;
+            background-image: url('css/resources/backicon.png')"
+            onclick=history.back();></button>
 
     <!-- LOGOUT BUTTON -->
     <form action="logout-servlet">
@@ -46,7 +45,7 @@
   <h2>Please enter the hotel number that you would wish to view (hotel numbers can be found when you search)</h2>
 
   <form action="show-view2-servlet" id="view-2-form" method="get">
-    <input type="number" id="hotel-num-input" name="hotel-id" min="1" placeholder="Enter Hotel Number...">
+    <input class="labels" type="number" id="hotel-num-input" name="hotel-id" min="1" placeholder="Enter Hotel Number...">
     <button class="buttons" id="view-2" type="button" name="view-2" onclick="submitFormForView2()" >View</button>
   </form>
   <br>

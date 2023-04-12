@@ -27,12 +27,11 @@
         <title>Hotel Archives</title>
 
         <!-- HEADER BUTTONS-->
-        <!--HOME BUTTON-->
-        <form action="index.jsp">
-            <button type="submit" id="home_button" class="header-buttons"
-                    style="float: left; border-radius: 30%;
-                    background-image: url('css/resources/homeicon.png');"></button>
-        </form>
+        <!-- GOES BACK BUTTON-->
+        <button type="button" id="home_button" class="header-buttons"
+                style="float: left; border-radius: 30%;
+            background-image: url('css/resources/backicon.png')"
+                onclick=history.back();></button>
 
         <!-- LOGOUT BUTTON -->
         <form action="logout-servlet">

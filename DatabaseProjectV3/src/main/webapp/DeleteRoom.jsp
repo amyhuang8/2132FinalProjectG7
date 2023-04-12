@@ -21,38 +21,50 @@
     <link rel ="stylesheet" href="css/styles.css">
 
     <!-- TITLE -->
-    <title>Delete Rooms </title>
-
+    <title>Room Deletion</title>
 
     <!-- HEADER BUTTONS-->
     <!-- GOES BACK BUTTON-->
-    <form action="ViewBookings.jsp">
-        <button type="submit" id="home_button" class="header-buttons"
-                style="float: left; border-radius: 30%;
-                background-image: url('css/resources/homeicon.png');"></button>
+    <button type="button" id="home_button" class="header-buttons"
+            style="float: left; border-radius: 30%;
+            background-image: url('css/resources/backicon.png')"
+            onclick=history.back();></button>
+
+    <!-- LOGOUT BUTTON -->
+    <form action="logout-servlet">
+        <button type="submit" id="logout_button" class="header-buttons"
+                style="float: right; border-radius: 30%; margin-left: 2vh;
+                    background-image: url('css/resources/logouticon.png');"></button>
     </form>
 
-    <!-- HEADING -->
-    <h1 style="margin-top: 30px">Delete any Room In any Hotel!</h1>
-    <hr style="background-color: rosybrown; height: 1.5px">
-    <br>
-
-    <!-- Heading Message -->
-    <h2 style="margin-top: 30px">Please type in the room ID you want to delete</h2>
-    <h2 style="margin-top: 30px">IDs can be found in the table below!</h2>
-
-    <!-- DELETE ROOM FORM -->
-    <form action="delete-room-servlet" method="post">
-        <label for="roomID">Room ID:</label>
-        <input type="number" id="roomID" name="room_id">
-        <br>
-        <br>
-        <input type="submit" value="Delete Room">
-    </form>
+    <!-- PROFILE BUTTON -->
+    <button id="profile_button" class="header-buttons"
+            onclick="window.location.href='CustomerProfile.jsp'"
+            style="float: right; border-radius: 50%;
+                    background-image: url('css/resources/profileicon.png');"></button>
 
 </head>
 
 <body>
+
+<!-- HEADING -->
+<h1 style="margin-top: 30px">Delete any Room In any Hotel!</h1>
+<hr style="background-color: rosybrown; height: 1.5px">
+<br>
+
+<!-- Heading Message -->
+<h2 style="margin-top: 30px">Please type in the room ID you want to delete.</h2>
+<h2 style="margin-top: 30px">IDs can be found in the table below!</h2>
+
+<!-- DELETE ROOM FORM -->
+<form action="delete-room-servlet" method="post">
+    <label class="labels" for="roomID">Room ID:</label>
+    <input class="labels" type="number" id="roomID" name="room_id">
+    <br>
+    <br>
+    <button type="submit" class="buttons">DELETE ROOM</button>
+</form>
+
 <!--TABLE-->
 <table class="table table-striped" border="1" style="margin: 0px auto; background: lightyellow">
     <thead>

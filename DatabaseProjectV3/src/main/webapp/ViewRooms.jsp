@@ -57,10 +57,10 @@
 <form action="show-view1-servlet" id="view-1-form"
       style="display: inline; margin-right: 10px">
     <!--VIEW 1 BUTTON-->
-    <button class="buttons" id="view-1" type="submit" name="view-1">View All Currently Available Rooms In Any Area</button>
+    <button class="buttons" id="view-1" type="submit" name="view-1">VIEW ALL CURRENTLY AVAILABLE ROOMS IN ANY AREA</button>
 </form>
 
-<button class="buttons" id="view-2" onclick="location.href = 'http://localhost:8080/DatabaseProjectV3/View2Customers.jsp';">View Capacity of Rooms in a Hotel</button>
+<button class="buttons" id="view-2" onclick="location.href = 'http://localhost:8080/DatabaseProjectV3/View2Customers.jsp'">VIEW CAPACITY OF ROOMS IN A HOTEL</button>
 
 <br><br>
 
