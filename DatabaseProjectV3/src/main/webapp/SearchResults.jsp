@@ -81,6 +81,7 @@
 
         <thead>
         <tr>
+            <th>Hotel ID</th>
             <th>Hotel</th>
             <th>Category</th>
             <th>Location</th>
