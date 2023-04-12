@@ -61,7 +61,7 @@ public class EmployeeLoginServlet extends HttpServlet {
             req.setAttribute("heading", "LOGIN ERROR"); //setting heading attribute
             req.setAttribute("error_msg", "Your login information is incorrect. Please return to the previous page, and try again."); //setting error msg attribute
             req.getRequestDispatcher("ErrorPage.jsp").forward(req, resp); //forwarding response attributes to error page
-            resp.sendRedirect("ErrorPage.jsp"); //redirecting to error page
+        //    resp.sendRedirect("ErrorPage.jsp"); //redirecting to error page
         }
 
     }

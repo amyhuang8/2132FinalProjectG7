@@ -37,7 +37,7 @@ public class ArchiveServlet extends HttpServlet  {
         req.setAttribute("archive", archive); //sending bookings arraylist
         req.getRequestDispatcher("ViewArchive.jsp").forward(req, resp); //forwarding response
 
-        resp.sendRedirect("ViewArchive.jsp"); //redirecting
+       // resp.sendRedirect("ViewArchive.jsp"); //redirecting
 
     }
 

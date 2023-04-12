@@ -71,7 +71,7 @@ public class View2Servlet extends HttpServlet {
         // forward to the view2 page
         req.setAttribute("capacityOfRooms", capacityOfRooms);
         req.getRequestDispatcher("View2.jsp").forward(req, resp);
-        resp.sendRedirect("View2.jsp");
+       // resp.sendRedirect("View2.jsp");
 
     }
 

@@ -174,7 +174,7 @@ public class RoomServer {
         ArrayList<Room> rooms = new ArrayList<>();
 
         // sql query
-        sql = "SELECT * FROM ehotels.room";
+        sql = "SELECT * FROM ehotels.room ORDER BY room_id";
 
         try (Connection con = db.getConn()){
 
@@ -216,7 +216,7 @@ public class RoomServer {
         ArrayList<Room> rooms = new ArrayList<>();
 
         // sql query
-        sql = "SELECT * FROM ehotels.room WHERE hotel_id = " + hotelID + " AND availability = true";
+        sql = "SELECT * FROM ehotels.room WHERE hotel_id = " + hotelID + " AND availability = true ORDER by room_id";
 
         try (Connection con = db.getConn()){
 

@@ -101,6 +101,10 @@
             <!-- TABLE ROWS -->
             <tr class="options" onclick="confirmBooking(this)">
                 <td>
+                    <input type="hidden" name="choice" id="hotel-id" value="<%= room.getHotelID() %>">
+                    <%= room.getHotelID() %>
+                </td>
+                <td>
                     <input type="hidden" name="choice" id="hotel-name" value="<%= room.getHotelName() %>">
                     <%= room.getHotelName() %>
                 </td>

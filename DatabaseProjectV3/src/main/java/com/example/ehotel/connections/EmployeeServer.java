@@ -434,21 +434,21 @@ public class EmployeeServer {
             ps.setString(1, String.valueOf(hotel_id));
 
             // PROCESS: executing SQL query
-            rs = ps.executeQuery();
+            ps.execute();
 
             // INITIALIZATION
             ps = con.prepareStatement(sql2);
             ps.setString(1, String.valueOf(hotel_id));
 
             // PROCESS: executing SQL query
-            rs = ps.executeQuery();
+            ps.execute();
 
             // INITIALIZATION
             ps = con.prepareStatement(sql3);
             ps.setString(1, String.valueOf(hotel_id));
 
             // PROCESS: executing SQL query
-            rs = ps.executeQuery();
+            ps.execute();
 
         }
         catch (SQLException e) { //error-handling
