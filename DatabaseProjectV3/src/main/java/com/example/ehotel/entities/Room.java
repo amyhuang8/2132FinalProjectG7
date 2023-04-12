@@ -82,6 +82,23 @@ public class Room {
         this.availability = availability;
     }
 
+
+    /**
+     * This constructor is used to view all rooms in the hotel
+     * @param room_id room id
+     * @param room_num room number
+     * @param capacity capacity of the room
+     * @param view_type view type of the room
+     * @param price price of the room
+     */
+    public Room(int room_id, int room_num, String capacity, String view_type, String price) {
+        this.roomID = room_id;
+        this.roomNumber = room_num;
+        this.capacity = capacity;
+        this.viewType = view_type;
+        this.price = Double.parseDouble(price);
+    }
+
     // GETTERS ---------------------------------------------------------------------------------------------------------
     public int getRoomNumber() {
         return roomNumber;

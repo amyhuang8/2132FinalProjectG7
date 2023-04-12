@@ -83,6 +83,11 @@
         <!--ARCHIVE BUTTON-->
         <form action="archive-servlet" style="display: inline; margin-left: 5px">
             <button class="buttons" type="submit">VIEW ARCHIVE</button>
+        </form>
+
+        <!-- DELETE ROOM BUTTON -->
+        <form action="delete-room-servlet" style="display: inline; margin-left: 5px">
+            <button class="buttons" id="delete-room" type="submit" name="delete-room">DELETE ROOM</button>
             <br><br>
         </form>
 
@@ -106,7 +111,7 @@
                     </div>
                 </div>
 
-                <!-- BOOKINGS BOX TABLE -->
+                <!-- AVAILABLE ROOMS TABLE -->
                 <div class="box box-1" id="bookingsBox" style="height: fit-content">
                     <form action="show-rooms-servlet" method="get" id="display_rooms" style="display: <%=displayRooms%>; background: lightcoral">
                         <table border="1" style="font-size: 20px">
@@ -149,7 +154,7 @@
                         </table>
                     </form>
 
-                    <!-- BOOKINGS BOX TABLE -->
+                    <!-- BOOKINGS TABLE -->
                     <form id="display_bookings" action="booking-servlet" style="display: <%=displayBookings%>">
                         <!--TABLE FOR PENDING BOOKINGS-->
                         <table border="1" style="font-size: 20px">

@@ -127,7 +127,7 @@ public class RoomServer {
                 " ORDER BY price";
 
         // log the sql query
-        LOGGER.severe("SQL: " + sql);
+        //LOGGER.severe("SQL: " + sql);
 
         try (Connection con = db.getConn()){
 
@@ -158,6 +158,48 @@ public class RoomServer {
         db.closeDB();
 
         // return the array of rooms fitting the filter criteria
+        return rooms;
+    }
+
+    /**
+     * This method is used to get all the rooms from the database that the employee works at
+     * @param hotelID id of the hotel
+     * @return an array of all the rooms in that hotel
+     */
+    public ArrayList<Room> getAllRooms(int hotelID){
+        // PROCESS: connecting to database
+        ConnectionDB db = new ConnectionDB();
+
+        // initializing the array of rooms
+        ArrayList<Room> rooms = new ArrayList<>();
+
+        // sql query
+        sql = "SELECT * FROM ehotels.room";
+
+        try (Connection con = db.getConn()){
+
+            // SET PREPARED STATEMENT
+            ps = con.prepareStatement(sql);
+
+            // EXECUTE QUERY
+            rs = ps.executeQuery();
+
+            // FILLING THE ARRAY WITH ROOMS
+
+            while (rs.next()) {
+                rooms.add(new Room(
+                        rs.getInt("room_id"),
+                        rs.getInt("room_num"),
+                        rs.getString("capacity"),
+                        rs.getString("view_type"),
+                        rs.getString("price")
+                        ));
+            }
+
+
+        } catch (Exception e) {
+            LOGGER.severe("Error in getAllRooms() method: " + e.getMessage());
+        }
         return rooms;
     }
 
@@ -204,6 +246,65 @@ public class RoomServer {
         LOGGER.severe("GET AVAILABLE ROOMS IN HOTEL SQL: " + sql);
 
         return rooms;
+    }
+
+    // DELETION METHODS---------------------------------------------------------------------------------
+    /**
+     * This method deletes the room associated with the given room_id,
+     * as well as all bookings and rentals.
+     * @param room_id the room ID
+     * @return whether the deletion was successful
+     */
+    public boolean deleteRoom(String room_id) {
+
+        // PROCESS: connecting to db
+        ConnectionDB db = new ConnectionDB();
+
+        sql = "delete from ehotels.booking where cast(room_id as varchar)=?"; //updating query
+        String sql2 = "delete from ehotels.rental where cast(room_id as varchar)=?"; //updating query
+        String sql3 = "delete from ehotels.room where cast(room_id as varchar)=?"; //updating query
+
+        // PROCESS: setting params to query reqs.
+        try (Connection con = db.getConn()){
+
+            // INITIALIZATION
+            ps = con.prepareStatement(sql);
+            ps.setString(1, String.valueOf(room_id));
+
+            // PROCESS: executing SQL query
+            ps.execute();
+
+            // INITIALIZATION
+            ps = con.prepareStatement(sql2);
+            ps.setString(1, String.valueOf(room_id));
+
+            // PROCESS: executing SQL query
+            ps.execute();
+
+            // INITIALIZATION
+            ps = con.prepareStatement(sql3);
+            ps.setString(1, String.valueOf(room_id));
+
+            // PROCESS: executing SQL query
+            ps.execute();
+
+        }
+        catch (SQLException e) { //error-handling
+            LOGGER.severe("FAILED TO DELETE ROOM"); //log msg
+
+            // OUTPUT
+            e.printStackTrace();
+            return false; //fail
+        }
+        finally { // closing connection after querying
+            db.closeDB();
+        }
+
+        LOGGER.info("SUCCESSFULLY DELETED ROOM " + room_id); //log msg
+
+        // OUTPUT
+        return true; //success
+
     }
 
 }
