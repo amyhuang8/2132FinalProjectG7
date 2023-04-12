@@ -1,5 +1,7 @@
 package com.example.ehotel.servlets;
 
+import com.example.ehotel.connections.CustomerServer;
+import com.example.ehotel.connections.EmployeeServer;
 import com.example.ehotel.connections.RoomServer;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -11,7 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
-@WebServlet(name = "hotelDeletionServlet", value = "/hotel-deletion-servlet")
+@WebServlet(name = "hotelCreationServlet", value = "/hotel-creation-servlet")
 public class HotelCreationServlet {
     private static final Logger LOGGER = Logger.getLogger(SearchResultsServlet.class.getName()); //logger
 
@@ -29,21 +31,22 @@ public class HotelCreationServlet {
 
         // VARIABLE DECLARATION
         HttpSession session = req.getSession();
-        RoomServer con = new RoomServer(); //new connection
-        // RETRIEVE ALL ROOMS
-        ArrayList<Room> rooms = null;
-        try{
-            rooms = con.getAvailableRooms(Integer.parseInt(session.getAttribute("hotel_id").toString()));
-        }
-        catch (ClassCastException e){
-            System.out.println(session.getAttribute("hotel_id").toString());
-        }
 
+        String hotelName = req.getParameter("hotel name");
+        int roomNum = Integer.parseInt(req.getParameter("number of rooms"));
+        String streetAddress = req.getParameter("street address");
+        String city = req.getParameter("city");
+        String province = req.getParameter("province-state");
+        String country = req.getParameter("country");
+        int phoneNum = Integer.parseInt(req.getParameter("phone number"));
+        String email = req.getParameter("email");
+        int rating = Integer.parseInt(req.getParameter("rating"));
 
-        // SEND THE DATA TO THE JSP
-        req.setAttribute("rooms", rooms); //sending bookings arraylist
-        req.getRequestDispatcher("ViewBookings.jsp").forward(req, resp); //forwarding response
+        // VARIABLE DECLARATION: new connection
+        EmployeeServer con = new EmployeeServer();
 
+        // PROCESS: inserting new hotel to database
+        con.createHotel(hotelName,roomNum,streetAddress,city,province,country,email,phoneNum,rating);
     }
 }
 
