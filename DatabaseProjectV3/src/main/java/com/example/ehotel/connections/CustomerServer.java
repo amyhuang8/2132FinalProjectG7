@@ -490,4 +490,62 @@ public class CustomerServer {
 
     }
 
+    // DELETION METHODS---------------------------------------------------------------------------------
+    /**
+     * This method deletes the customer account with the given customer_email,
+     * as well as all associated bookings and rentals.
+     * @param uid the user ID
+     * @return whether the deletion was successful
+     */
+    public boolean deleteAccount(String uid) {
+
+        // PROCESS: connecting to db
+        ConnectionDB db = new ConnectionDB();
+
+        sql = "delete from ehotels.booking where cast(customer_email as varchar)=?"; //updating query
+        String sql2 = "delete from ehotels.rental where cast(customer_email as varchar)=?"; //updating query
+        String sql3 = "delete from ehotels.customer where cast(customer_email as varchar)=?"; //updating query
+
+        // PROCESS: setting params to query reqs.
+        try (Connection con = db.getConn()){
+
+            // INITIALIZATION
+            ps = con.prepareStatement(sql);
+            ps.setString(1, String.valueOf(uid));
+
+            // PROCESS: executing SQL query
+            ps.execute();
+
+            // INITIALIZATION
+            ps = con.prepareStatement(sql2);
+            ps.setString(1, String.valueOf(uid));
+
+            // PROCESS: executing SQL query
+            ps.execute();
+            // INITIALIZATION
+            ps = con.prepareStatement(sql3);
+            ps.setString(1, String.valueOf(uid));
+
+            // PROCESS: executing SQL query
+            ps.execute();
+
+        }
+        catch (SQLException e) { //error-handling
+            LOGGER.severe("FAILED TO DELETE CUSTOMER"); //log msg
+
+            // OUTPUT
+            e.printStackTrace();
+            return false; //fail
+        }
+        finally { // closing connection after querying
+            db.closeDB();
+        }
+
+        LOGGER.info("SUCCESSFULLY DELETED CUSTOMER " + uid); //log msg
+
+        // OUTPUT
+        return true; //success
+
+    }
+
 }

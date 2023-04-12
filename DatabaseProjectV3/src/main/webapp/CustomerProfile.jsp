@@ -134,6 +134,15 @@
                     style="margin-left: 2px">RESET CHANGES</button>
         </form>
 
+        <br>
+        <hr style="background-color: rosybrown; height: 1.5px">
+        <br>
+
+        <form action="delete-customer-servlet" style="text-align: center" id="delete_customer">
+            <button type="submit" class="buttons"
+                    onclick='return confirm("WARNING: THIS IS A FATAL ACTION AND CANNOT BE REVERSED.")'>DELETE ACCOUNT</button>
+        </form>
+
         <!--SAVED CHANGES SNACKBAR-->
         <div id="changes_snackbar">All changes saved!</div>
 
