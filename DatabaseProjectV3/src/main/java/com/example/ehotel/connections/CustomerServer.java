@@ -19,13 +19,13 @@ public class CustomerServer {
      * @param email the customer email provided at login time
      * @return SIN of customer
      */
-    public int getCSINByEmail(String email) {
+    public String getCSINByEmail(String email) {
 
         // PROCESS: connecting to db
         ConnectionDB db = new ConnectionDB();
 
         // VARIABLE DECLARATION:
-        int SIN = 0;                                                        // setting SIN to initial 0
+        String SIN = null;                                                        // setting SIN to initial 0
         sql = "select SIN from ehotels.customer where customer_email=?";    // sql query
 
         // PROCESS: setting params to query reqs.
@@ -40,7 +40,7 @@ public class CustomerServer {
 
             while (rs.next()) { //looping while RS still has conditions
                 // INITIALIZATION
-                SIN = Integer.parseInt(rs.getString(1));
+                SIN = rs.getString(1);
             }
 
         }
@@ -360,7 +360,7 @@ public class CustomerServer {
      * @param email the email address
      * @return whether the insertion was successful
      */
-    public boolean insertNewCustomer(String fName, String lName, int SIN, String streetAddress,
+    public boolean insertNewCustomer(String fName, String lName, String SIN, String streetAddress,
                                      String city, String province, String country, long ccNum,
                                      long phoneNum, String email) {
 

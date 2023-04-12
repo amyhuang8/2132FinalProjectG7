@@ -24,7 +24,7 @@ public class CustomerRegistrationServlet extends HttpServlet {
         // VARIABLE DECLARATION: registration vars.
         String fName = req.getParameter("first name");
         String lName = req.getParameter("last name");
-        int SIN = Integer.parseInt(req.getParameter("sin"));
+        String SIN = req.getParameter("sin");
         String streetAddress = req.getParameter("street address");
         String city = req.getParameter("city");
         String province = req.getParameter("province-state");

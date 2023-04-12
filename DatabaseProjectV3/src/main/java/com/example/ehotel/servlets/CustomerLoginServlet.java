@@ -22,6 +22,7 @@ public class CustomerLoginServlet extends HttpServlet {
      * @param req the request sent from the JSP file
      * @param resp the response to be sent to the JSP file
      * @throws IOException
+     * @throws ServletException
      */
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
@@ -30,20 +31,20 @@ public class CustomerLoginServlet extends HttpServlet {
 
         // VARIABLE DECLARATION: email and password from user input
         String email = req.getParameter("email");
-        int password = Integer.parseInt(req.getParameter("password"));
+        String password = req.getParameter("password");
 
         // VARIABLE DECLARATION: new connection
         CustomerServer con = new CustomerServer();
 
         // VARIABLE DECLARATION: new SIN var. to hold SIN retrieved from db
-        int sinFromDB;
+        String sinFromDB;
 
         // PROCESS: retrieving customer SIN from given username (email)
         // INITIALIZATION
         sinFromDB = con.getCSINByEmail(email);
 
         // PROCESS: checking if given password matches SIN from db
-        if (password == sinFromDB) { //success
+        if (password.equals(sinFromDB)) { //success
             session.setAttribute("uid", email); //updating session's user id to customer email
 
             setSessionAttributes(session, con, email); //setting session attributes
@@ -70,8 +71,15 @@ public class CustomerLoginServlet extends HttpServlet {
     private void setSessionAttributes(HttpSession session, CustomerServer con, String uid) {
 
         // VARIABLE DECLARATION: form vars. to hold values from db
-        String fName, lName, email, street, city, province, country;
-        long phoneNum, sin, ccNum;
+        String fName;
+        String lName;
+        String email;
+        String street;
+        String city;
+        String province;
+        String country;
+        Object sin;
+        long phoneNum, ccNum;
 
         // PROCESS: retrieving form values from db using uid
         // INITIALIZATION
@@ -83,7 +91,7 @@ public class CustomerLoginServlet extends HttpServlet {
         province = (String) con.getFieldByID("province", uid);
         country = (String) con.getFieldByID("country", uid);
         phoneNum = Long.parseLong((String) con.getFieldByID("customer_phone_number", uid));
-        sin = Long.parseLong((String) con.getFieldByID("sin", uid));
+        sin = con.getFieldByID("sin", uid);
         ccNum = Long.parseLong((String) con.getFieldByID("credit_card_num", uid));
 
         // PROCESS: setting form values to the ones retrieved
