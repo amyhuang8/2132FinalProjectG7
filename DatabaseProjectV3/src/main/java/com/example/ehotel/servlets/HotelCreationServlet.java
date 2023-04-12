@@ -1,6 +1,7 @@
 package com.example.ehotel.servlets;
 
 import com.example.ehotel.connections.RoomServer;
+import com.example.ehotel.entities.Room;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,7 +24,7 @@ public class HotelCreationServlet {
      * This method creates a hotel, given all the data a hotel requires
      * @param req the request sent from the JSP file
      * @param resp the response to be sent to the JSP file
-     * @throws IOException
+     * @throws IOException if there is an error with the input/output
      */
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
